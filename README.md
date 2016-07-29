@@ -1,6 +1,6 @@
-# THE ODIN PROJECT COURSE
+# THE ODIN PROJECT COURSE (http://www.theodinproject.com/home)
 
-This group the solutions of projects of The Odin Project, according the list below:
+This repository contain the solutions of projects of The Odin Project, according the list below:
 
 - Project: HTML/CSS;
 
