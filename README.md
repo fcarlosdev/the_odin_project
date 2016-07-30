@@ -2,16 +2,21 @@
 
 This repository contain the solutions of projects of The Odin Project, according the list below:
 
-- Project: HTML/CSS (http://www.theodinproject.com/web-development-101/html-css);
-  - Project Google Homepage.
-- Project: Javascript Basics (http://www.theodinproject.com/web-development-101/javascript-basics);
-  - Project Euler
+**Projects/Tasks**
+
+**- HTML/CSS** (http://www.theodinproject.com/web-development-101/html-css);
+  - Google Homepage.
+   
+**- Javascript Basics** (http://www.theodinproject.com/web-development-101/javascript-basics);
+  - **Project Euler**
     - Multiples of 3 and 5;
     - Even Fibonacci Numbers;
     - Largest Prime Factor.
-- Project: Javascript/jQuery (http://www.theodinproject.com/web-development-101/javascript-and-jquery);
-  - Project Scketchpad.
-- Project: Ruby (http://www.theodinproject.com/web-development-101/ruby);
+    
+**- Javascript/jQuery** (http://www.theodinproject.com/web-development-101/javascript-and-jquery);
+  - Scketchpad.
+  
+**- Ruby (Learn Ruby Folder)** (http://www.theodinproject.com/web-development-101/ruby);<br />
   - Hello;
   - Temperature;
   - Calculator;
@@ -19,10 +24,16 @@ This repository contain the solutions of projects of The Odin Project, according
   - Pig Latin;
   - Book Titles;
   - Timer.
-- Project: Ruby on Rails (http://www.theodinproject.com/web-development-101/ruby-on-rails);
-- Projects: Ruby Building Blocks (http://www.theodinproject.com/ruby-programming/building-blocks);
-- Projects: Advanced Building Blocks (http://www.theodinproject.com/ruby-programming/advanced-building-blocks);
-- Project: OOP (http://www.theodinproject.com/ruby-programming/oop);
-- Project: File I/O and Serialization (http://www.theodinproject.com/ruby-programming/file-i-o-and-serialization);
-- Project: Ruby on the Web (http://www.theodinproject.com/ruby-programming/ruby-on-the-web);
+  
+**- Ruby on Rails** (http://www.theodinproject.com/web-development-101/ruby-on-rails);
+
+**- Ruby Building Blocks** (http://www.theodinproject.com/ruby-programming/building-blocks);
+
+**- Advanced Building Blocks** (http://www.theodinproject.com/ruby-programming/advanced-building-blocks);
+
+**- OOP** (http://www.theodinproject.com/ruby-programming/oop);
+
+**- File I/O and Serialization** (http://www.theodinproject.com/ruby-programming/file-i-o-and-serialization);
+
+**- Ruby on the Web** (http://www.theodinproject.com/ruby-programming/ruby-on-the-web);
 
