@@ -4,6 +4,10 @@ This repository contain the solutions of projects of The Odin Project, according
 
 - Project: HTML/CSS (http://www.theodinproject.com/web-development-101/html-css);
   - Project Google Homepage.
+- Project: Javascript Basics (http://www.theodinproject.com/web-development-101/javascript-basics);
+  - Multiples of 3 and 5;
+  - Even Fibonacci Numbers;
+  - Largest Prime Factor.
 - Project: Javascript/jQuery (http://www.theodinproject.com/web-development-101/javascript-and-jquery);
   - Project Scketchpad.
 - Project: Ruby (http://www.theodinproject.com/web-development-101/ruby);
