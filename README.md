@@ -7,6 +7,13 @@ This repository contain the solutions of projects of The Odin Project, according
 - Project: Javascript/jQuery (http://www.theodinproject.com/web-development-101/javascript-and-jquery);
   - Project Scketchpad.
 - Project: Ruby (http://www.theodinproject.com/web-development-101/ruby);
+  - Hello;
+  - Temperature;
+  - Calculator;
+  - Simon Says;
+  - Pig Latin;
+  - Book Titles;
+  - Timer.
 - Project: Ruby on Rails (http://www.theodinproject.com/web-development-101/ruby-on-rails);
 - Projects: Ruby Building Blocks (http://www.theodinproject.com/ruby-programming/building-blocks);
 - Projects: Advanced Building Blocks (http://www.theodinproject.com/ruby-programming/advanced-building-blocks);
