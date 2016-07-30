@@ -1,3 +1,5 @@
 #Project: sketchpad
-Training Javascript/JQuery habilities.<br />
-Lesson link: http://www.theodinproject.com/web-development-101/javascript-and-jquery
+
+Description: Building a browser version of something between a sketchpad and an Etch-A-Sketch.<br/>
+Objective : Training Javascript/JQuery habilities.<br />
+Result:(nonthing fo while)
