@@ -38,6 +38,8 @@ This repository contain the solutions of projects of The Odin Project, according
   - Enumerable Methods.
 
 **- OOP** (http://www.theodinproject.com/ruby-programming/oop);
+  - Tic Tac Toe;
+  - Mastermind.
 
 **- File I/O and Serialization** (http://www.theodinproject.com/ruby-programming/file-i-o-and-serialization);
 
