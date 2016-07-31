@@ -42,5 +42,7 @@ This repository contain the solutions of projects of The Odin Project, according
   - Mastermind.
 
 **- File I/O and Serialization** (http://www.theodinproject.com/ruby-programming/file-i-o-and-serialization);
+  - Event Manager.
+  - Hangman.
 
 **- Ruby on the Web** (http://www.theodinproject.com/ruby-programming/ruby-on-the-web);
