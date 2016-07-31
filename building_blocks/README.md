@@ -1,10 +1,10 @@
 #Building Blocks
 
-**Description: **
+**Description:** 
   Applying the new knowledge about Arrays, Hash, Conditionals and Flow Control work in Ruby.
 
-**Goal: **
+**Goal:**
   Solidify the new knowledges learned about Ruby language.
 
-**Final Result: **
+**Final Result:**
   See the code of the solutions.
