@@ -26,7 +26,7 @@ This repository contain the solutions of projects of The Odin Project, according
   - Timer.
   
 **- Ruby on Rails** (http://www.theodinproject.com/web-development-101/ruby-on-rails);
-
+  - Blog.
 **- Ruby Building Blocks** (http://www.theodinproject.com/ruby-programming/building-blocks);
 
 **- Advanced Building Blocks** (http://www.theodinproject.com/ruby-programming/advanced-building-blocks);
