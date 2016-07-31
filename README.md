@@ -46,3 +46,5 @@ This repository contain the solutions of projects of The Odin Project, according
   - Hangman.
 
 **- Ruby on the Web** (http://www.theodinproject.com/ruby-programming/ruby-on-the-web);
+  - Twitter Spambot;
+  - A Real Web Server and Browser (from the command line).
