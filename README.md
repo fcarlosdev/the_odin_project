@@ -34,6 +34,8 @@ This repository contain the solutions of projects of The Odin Project, according
   - Substrings.
 
 **- Advanced Building Blocks** (http://www.theodinproject.com/ruby-programming/advanced-building-blocks);
+  - Bubble Sort;
+  - Enumerable Methods.
 
 **- OOP** (http://www.theodinproject.com/ruby-programming/oop);
 
