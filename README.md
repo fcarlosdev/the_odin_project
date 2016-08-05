@@ -4,19 +4,19 @@ This repository contain the solutions of projects of The Odin Project, according
 
 **Projects/Tasks**
 
-**- HTML/CSS** (http://www.theodinproject.com/web-development-101/html-css);
+- [**HTML/CSS**] (http://www.theodinproject.com/web-development-101/html-css)
   - Google Homepage.
 
-**- Javascript Basics** (http://www.theodinproject.com/web-development-101/javascript-basics);
+- [**Javascript Basics**] (http://www.theodinproject.com/web-development-101/javascript-basics)
   - **Project Euler**
     - Multiples of 3 and 5;
     - Even Fibonacci Numbers;
     - Largest Prime Factor.
 
-**- Javascript/jQuery** (http://www.theodinproject.com/web-development-101/javascript-and-jquery);
+- [**Javascript/jQuery**] (http://www.theodinproject.com/web-development-101/javascript-and-jquery)
   - Scketchpad.
 
-**- Ruby (Learn Ruby Folder)** (http://www.theodinproject.com/web-development-101/ruby);<br />
+- [**Ruby (Learn Ruby Folder)**] (http://www.theodinproject.com/web-development-101/ruby);
   - Hello;
   - Temperature;
   - Calculator;
@@ -25,26 +25,26 @@ This repository contain the solutions of projects of The Odin Project, according
   - Book Titles;
   - Timer.
 
-**- Ruby on Rails** (http://www.theodinproject.com/web-development-101/ruby-on-rails);
+- [**Ruby on Rails**] (http://www.theodinproject.com/web-development-101/ruby-on-rails);
   - Blog.
 
-**- Ruby Building Blocks** (http://www.theodinproject.com/ruby-programming/building-blocks);
+- [**Ruby Building Blocks**] (http://www.theodinproject.com/ruby-programming/building-blocks);
   - Caesar Cipher;
   - Stock Picker;
   - Substrings.
 
-**- Advanced Building Blocks** (http://www.theodinproject.com/ruby-programming/advanced-building-blocks);
+- [**Advanced Building Blocks**] (http://www.theodinproject.com/ruby-programming/advanced-building-blocks);
   - Bubble Sort;
   - Enumerable Methods.
 
-**- OOP** (http://www.theodinproject.com/ruby-programming/oop);
+- [**OOP**] (http://www.theodinproject.com/ruby-programming/oop);
   - Tic Tac Toe;
   - Mastermind.
 
-**- File I/O and Serialization** (http://www.theodinproject.com/ruby-programming/file-i-o-and-serialization);
+- [**File I/O and Serialization**] (http://www.theodinproject.com/ruby-programming/file-i-o-and-serialization);
   - Event Manager.
   - Hangman.
 
-**- Ruby on the Web** (http://www.theodinproject.com/ruby-programming/ruby-on-the-web);
+- [**Ruby on the Web**] (http://www.theodinproject.com/ruby-programming/ruby-on-the-web);
   - Twitter Spambot;
   - A Real Web Server and Browser (from the command line).
