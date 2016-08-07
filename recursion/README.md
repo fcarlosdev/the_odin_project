@@ -1,8 +1,8 @@
-**PROJECT RECURSION**
+PROJECT RECURSION
 
-Description: Learning about recursion.
+**Description:** Learning about recursion.
 
-Goal: Fix knowledges to problems related to recursion algorithm.
+**Goal:** Fix knowledges to problems related to recursion algorithm.
 
-Final Result: See the code of solutions.
+**Final Result:** See the code of solutions.
 
