@@ -1,4 +1,4 @@
-**PROJECT LINKED LISTS**
+#PROJECT LINKED LISTS
 
 Description: Studying computer science concepts on Ruby through examples.
 
