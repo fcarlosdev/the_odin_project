@@ -42,7 +42,7 @@ This repository contain the solutions of projects of The Odin Project, according
   - Mastermind.
 
 - [**File I/O and Serialization**] (http://www.theodinproject.com/ruby-programming/file-i-o-and-serialization);
-  - Event Manager.
+  - Event Manager;
   - Hangman.
 
 - [**Ruby on the Web**] (http://www.theodinproject.com/ruby-programming/ruby-on-the-web);
@@ -50,5 +50,8 @@ This repository contain the solutions of projects of The Odin Project, according
   - A Real Web Server and Browser (from the command line).
 
 - [**Project Recursion**] (http://www.theodinproject.com/ruby-programming/recursion);
-- Fibonacci;
-- Merge Sort;
+  - Fibonacci;
+  - Merge Sort.
+  -
+- [**Project Linked Lists**] (http://www.theodinproject.com/ruby-programming/linked-lists);
+  - Linked List.
