@@ -48,3 +48,7 @@ This repository contain the solutions of projects of The Odin Project, according
 - [**Ruby on the Web**] (http://www.theodinproject.com/ruby-programming/ruby-on-the-web);
   - Twitter Spambot;
   - A Real Web Server and Browser (from the command line).
+
+- [**Project Recursion**] (http://www.theodinproject.com/ruby-programming/recursion);
+- Fibonacci;
+- Merge Sort;
