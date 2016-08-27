@@ -52,6 +52,5 @@ This repository contain the solutions of projects of The Odin Project, according
 - [**Project Recursion**] (http://www.theodinproject.com/ruby-programming/recursion);
   - Fibonacci;
   - Merge Sort.
-  -
 - [**Project Linked Lists**] (http://www.theodinproject.com/ruby-programming/linked-lists);
   - Linked List.
