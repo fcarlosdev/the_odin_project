@@ -52,5 +52,10 @@ This repository contain the solutions of projects of The Odin Project, according
 - [**Project Recursion**] (http://www.theodinproject.com/ruby-programming/recursion);
   - Fibonacci;
   - Merge Sort.
+  
 - [**Project Linked Lists**] (http://www.theodinproject.com/ruby-programming/linked-lists);
   - Linked List.
+
+- [**Projects: Basic Data Structures and Algorithms**] (http://www.theodinproject.com/ruby-programming/data-structures-and-algorithms);
+  - Searching Binary Trees;
+  - Knight's Travails.
