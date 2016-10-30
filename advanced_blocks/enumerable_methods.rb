@@ -1,30 +1,31 @@
-module Enumarable
+module Enumerable
 
   def my_each
-    return self.inspect if !block_given?
+    return self if !block_given?
     for i in 0..self.size-1
       yield(self[i])
     end
   end
 
   def my_each_with_index
-    return self.inspect if !block_given?
+    return self if !block_given?
     for i in 0..self.size-1
       yield(self[i],i)
     end
   end
 
   def my_select
-    return self.inspect if !block_given?
+    return self if !block_given?
     new_array = []
     self.my_each do |x|
       new_array << x if yield(x)
     end
-    new_array.inspect
+    new_array
   end
 
   def my_all?
-    return true if !block_given?
+    return true if (!block_given? && !self.include?(false) && !self.include?(nil))
+    return false if (!block_given? && self.include?(false) || self.include?(nil))
     self.my_each do |x|
       return false unless yield(x)
     end
@@ -32,15 +33,19 @@ module Enumarable
   end
 
   def my_any?
-    return true if !block_given?
     self.my_each do |x|
-      return true if yield(x)
+      if block_given?
+        return true if yield(x)
+      else
+        return true if ![nil,false].include?x
+      end
     end
     false
   end
 
   def my_none?
-    return false if !block_given?
+    return false if !block_given? && self.my_any?
+    return true if !block_given? && !self.my_any?
     self.my_each do |x|
       return false if yield(x)
     end

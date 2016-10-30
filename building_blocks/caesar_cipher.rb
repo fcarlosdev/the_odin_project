@@ -7,7 +7,7 @@ def cipher(text, shift)
       first_letter = (l.match(regex_letters_down_case)? 96 : 64)
       last_letter = (l.match(regex_letters_down_case)? 122 : 90)
       grather_than_last_pos = (l.ord + shift) - last_letter
-      
+
       if ( grather_than_last_pos > 0)
         text_ciphered += (first_letter + grather_than_last_pos).chr
       else
@@ -17,5 +17,5 @@ def cipher(text, shift)
       text_ciphered += l
     end
   end
-  puts text_ciphered
+  text_ciphered
 end

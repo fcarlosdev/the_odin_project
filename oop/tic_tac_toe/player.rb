@@ -1,15 +1,15 @@
 class Player
 
-  def initialize(type)
+  attr_reader :name, :type
+
+  def initialize(type,name="Player")
     @type = type
+    @name = name
   end
 
-  def type
-    @type
-  end
-
-  def mark_cell(board,place,value)
-    board.fill_cell(place,value)
+  def make_a_play
+    print "Make a move Player #{self.name}: "
+    gets.chomp.upcase.to_sym
   end
 
 end
