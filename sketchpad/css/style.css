@@ -1,0 +1,46 @@
+#container {
+   width:600px;
+   height:auto;
+   border:1px solid white;
+   background-color: #908712;
+   margin: 0px 27%;
+}
+
+.row {
+    width:auto;
+    height:auto;
+}
+
+.square {
+    height: 40px;
+    width: 40px;
+    background: #ffffff;
+    margin: 0px;
+    outline: 1px solid;
+    display: inline-block;
+    float:left;
+}
+
+button {
+    display:inline-bock;
+    margin-right:2px;
+}
+
+.buttons {
+    margin: 0px auto;
+    height: 40px;
+    width: 100%;
+    text-align: center;
+}
+
+#default {
+    margin-left: 2%;
+}
+
+#gradient {
+    margin-left: 2%;
+}
+
+#clear {
+    margin-left: 2%;
+}

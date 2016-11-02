@@ -1,0 +1,85 @@
+$primary_color: #AAA;
+
+body {
+  background-color: $primary_color;
+  font: {
+    family: Verdana, Helvetica, Arial;
+    size: 14px;
+  }
+}
+
+a {
+  color: #0000FF;
+  img {
+    border: none;
+  }
+}
+
+.clear {
+  clear: both;
+  height: 0;
+  overflow: hidden;
+}
+
+#container {
+  width: 75%;
+  margin: 0 auto;
+  background: #fff;
+  padding: 20px 40px;
+  border: solid 1px black;
+  margin-top: 20px;
+}
+
+#content {
+  clear: both;
+  padding-top: 20px;
+}
+
+.link {
+  text-decoration: none;
+  font-family: "Lucida Grande",Lucida,Arial,sans-serif;
+  cursor: pointer;
+  border-style: solid;
+  font-weight: bold;
+  color:#2d3822;
+}
+
+.button-link {
+    -moz-border-radius: 6px;
+    -webkit-border-radius: 6px;
+    -o-border-radius: 6px;
+    -ms-border-radius: 6px;
+    -khtml-border-radius: 6px;
+    border-radius: 6px;
+    font-size: 18px;
+    line-height: 1.2em;
+    padding: 0.3em 1em;
+    border-width: 1px;
+    background-color: #134e89;
+    border-color: #192836;
+    background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #81a2c3), color-stop(10%, #4b749e), color-stop(50%, #2d4660), color-stop(50%, #283f55), color-stop(100%, #395878));
+    background-image: -moz-linear-gradient(#81a2c3,#4b749e 10%,#2d4660 50%,#283f55 50%,#395878);
+    background-image: linear-gradient(#81a2c3,#4b749e 10%,#2d4660 50%,#283f55 50%,#395878);
+    text-shadow: #030e19 0px 1px 1px;
+    -moz-box-shadow: rgba(255, 255, 255, 0.306) 0 0 0.1em 1px inset;
+    -webkit-box-shadow: rgba(255, 255, 255, 0.306) 0 0 0.1em 1px inset;
+    -o-box-shadow: rgba(255, 255, 255, 0.306) 0 0 0.1em 1px inset;
+    box-shadow: rgba(255, 255, 255, 0.306) 0 0 0.1em 1px inset;
+    -moz-background-clip: padding;
+    -webkit-background-clip: padding;
+    -o-background-clip: padding-box;
+    -ms-background-clip: padding-box;
+    -khtml-background-clip: padding-box;
+    background-clip: padding-box;
+    font-size: 1.2em;
+    color: #fff;
+    font-family: "Lucida Grande",Lucida,Arial,sans-serif;
+    margin: 0;
+    width: auto;
+    overflow: visible;
+    display: inline-block;
+    cursor: pointer;
+    text-decoration: none;
+    border-style: solid;
+    font-weight: bold;    
+}
