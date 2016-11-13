@@ -1,6 +1,6 @@
 require "./cell.rb"
 
-class Grid
+class Board
 
   WIDTH_OF_CELL           = 3
   TOP_LEFT_CORNER         = "\u250c"
@@ -8,54 +8,73 @@ class Grid
   TOP_LINE_JUNCTION       = "\u252c"
   TOP_RIGHT_CORNER        = "\u2510"
   VERTICAL_LINE           = "\u2502"
-  INTERNAL_JUNCTION       = "\u251c"
   VERTICAL_LEFT_JUNCTION  = "\u251c"
   VERTICAL_RIGHT_JUNCTION = "\u2524"
   BOTTOM_LEFT_CORNER      = "\u2514"
   BOTTOM_JUNCTION         = "\u2534"
   BOTTOM_RIGHT_CORNER     = "\u2518"
+  INTERNAL_JUNCTION       = "\u253C"
 
   attr_reader :cells, :columns, :rows
 
   def initialize(rows,columns)
-    @cells   = Array.new(rows) {Array.new(columns)}
+    @cells   = Array.new(rows) {Array.new(columns) {Cell.new}}
     @rows    = rows-1
     @columns = columns-1
-    default_values
   end
 
-  def fill_cell(row,col,value)
-    if (cell_empty?(row,col) == false)
-      @cells[row][col].value = value
-      return true
-    end
-    false
+  def fill(cell,value)
+    cell.value = value
   end
 
-  def draw_grid
-    s_grid = ""
+  def show
+    s_grid = "\n"
     s_grid += draw_top_line+"\n"
     s_grid += draw_inner_cell
     s_grid += draw_bottom_lines
-    s_grid
+    puts s_grid
   end
 
   def column_full?(column)
-    (0..@rows-1).all?{|i| @cells[i][column].value.length > 0}
+    # return false if !(0..@columns).cover?(column)
+    (0..@rows).all?{|row| @cells[row][column].value.length > 0}
+  end
+
+  def get_empty_cell_on_column(number)
+    return nil if number > @columns
+    empty_cells = @rows.downto(0).select {|row| @cells[row][number] if @cells[row][number].value.length == 0}
+    (empty_cells.length > 0) ? @cells[empty_cells.first][number] : nil
+  end
+
+  def row(number)
+    return nil if (number > @rows)
+    @cells[number]
+  end
+
+  def get_position(cell)
+
+    return nil if cell.eql?nil
+
+    row = get_row_of(cell)
+    return nil if row == nil
+
+    col = get_column_of(cell,row)
+    return nil if col == nil
+
+    pos = [row,col]
+
   end
 
   private
 
-  def default_values
-    (0..@rows).each_with_index do |row|
-      (0..@columns).each_with_index do |col|
-        @cells[row][col] = Cell.new
-      end
-    end
+  def get_row_of(cell)
+    r = (0..@rows).select {|row| row if @cells[row].include?cell}
+    line  = (r[0] == nil) ? nil : r[0]
   end
 
-  def cell_empty?(row,column)
-    @cells[row][column].value.length > 0
+  def get_column_of(cell,in_row)
+    return nil if in_row.eql?nil
+    (0..@columns).select {|c| c if @cells[in_row][c] == cell}[0]
   end
 
   def draw_top_line

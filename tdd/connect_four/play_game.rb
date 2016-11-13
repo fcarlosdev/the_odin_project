@@ -37,14 +37,26 @@ players = create_players
 board = Board.new(6,7)
 game = Game.new(board,players)
 game.current_player = game.players[0]
-system 'clear'
 loop do
+  system 'clear'
   game.board.show
-  print "Make a move #{game.current_player.name}: "
-  column = gets.chomp.to_i
-  game.board.drop_a_piece(column,game.current_player.piece)
+  print "Make a move #{game.current_player.name} (Number between 0 to 6): "
+  column = gets.chomp
+  if ('0'..'6').include?(column) == false
+    puts "please enter a valid column number"
+    sleep 1
+    redo
+  end
+  if (game.board.column_full?(column.to_i))
+    puts "This column is full, please enter other number."
+    sleep 1
+    redo
+  end
 
-  if game.over?(column)
+  game.fill_position(column.to_i,game.current_player.piece.symbol)
+
+  if game.over?
+    system 'clear'
     game.board.show
     puts "The #{game.current_player.name} win the game!!!"
     break
@@ -53,6 +65,5 @@ loop do
     puts "The board is full and there is no winner."
     break
   end
-  system 'clear'
   game.current_player = game.change_player
 end
