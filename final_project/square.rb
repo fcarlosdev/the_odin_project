@@ -1,14 +1,17 @@
 class Square
 
-  attr_reader :black, :content
-
-  def initialize(black=false, content=nil)
-    @black = black
-    @content = content
+  attr_reader :content
+  # attr_reader :black, :content
+  #
+  def initialize
+    # @black = false
+    @content = nil
   end
 
-  def create
-    (@black) ? black_square : white_square
+  def create(black=false, content=nil)
+    @content = content
+    (black) ? black_square : white_square
+    # (@black) ? black_square : white_square
   end
 
   private
@@ -34,11 +37,11 @@ class Square
 end
 
 
-# s = Square.new(false,"\u2654")
-# puts s.create
-# puts
-# s_black = Square.new(true,"\u265A")
-# puts s_black.create
-# puts
-# s_empty = Square.new(true)
-# puts s_empty.create
+s = Square.new
+puts s.create(false,"\u2654")
+puts
+s_black = Square.new
+puts s_black.create(true,"\u265A")
+puts
+s_empty = Square.new
+puts s_empty.create
