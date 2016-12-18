@@ -50,7 +50,6 @@ class Board
 
   def draw_top_line_black_square
     (DARK_SHADE * 7).ljust(6)
-
   end
 
 end
