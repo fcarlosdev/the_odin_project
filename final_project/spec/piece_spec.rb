@@ -11,16 +11,15 @@ describe "Piece" do
     end
   end
 
-  describe "#valid_move?" do
+  describe "#move_to" do
     context "when is a valid move" do
-      it "returns true" do
-        expect(piece.valid_move?(new_pos[1],new_pos[2])).to eq(true)
+      it "moves the piece" do
+        expect(piece.move_to(new_pos)).to eql true
       end
     end
     context "when is an invalid move" do
-      it "return false" do
-        new_pos[2] = "i"
-        expect(piece.valid_move?(new_pos[1],new_pos[2])).to eq(false)
+      it "doesn't moves the piece" do
+        expect(piece.move_to("Ki6")).to eql false
       end
     end
   end

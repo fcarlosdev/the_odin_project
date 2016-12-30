@@ -7,11 +7,11 @@ class Piece
 
   def initialize(color, image)
     @color = color
-    @icon  = image
+    @image = image
   end
 
-  def valid_move?(letter,line)
-    (LETTERS.include?letter) && (LINES.include?line)    
+  def move_to(new_position)
+    (LETTERS.include?new_position[1]) && (LINES.include?new_position[2])
   end
 
 end

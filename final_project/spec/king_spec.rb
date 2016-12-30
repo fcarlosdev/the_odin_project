@@ -6,24 +6,37 @@ describe "King" do
   let(:new_pos) {"Kd4"}
   let(:king) {King.new(:light_white)}
 
+  def set_current_position
+    king.current_pos = new_pos
+  end
+
   describe "#new" do
     it "creates a new piece king" do
       expect(king).to be_instance_of(King)
     end
   end
 
-  describe "#valid_move?" do
+  describe "#move_to" do
     context "when is a valid move" do
       it "returns true" do
-        allow(king).to receive(:valid_move?).with("d","4").and_return(true)        
-        expect(king.valid_move?(new_pos)).to eq(true)
+        set_current_position
+        expect(king.move_to(new_pos)).to eq(new_pos)
       end
     end
-    # context "when is an invalid move" do
-    #   it "return false" do
-    #     expect(king.valid_move?("K4i")).to eq(false)
-    #   end
-    # end
+    context "when try to move more than one horizontal square" do
+      it "return false" do
+        set_current_position
+        king.move_to("Kd4")
+        expect(king.move_to("Kf4")).to eq("Kd4")
+      end
+    end
+    context "when try to move more than one vertical square" do
+      it "return false" do
+        set_current_position
+        king.move_to("Kd4")
+        expect(king.move_to("Kd6")).to eq("Kd4")
+      end
+    end
   end
 
 end
