@@ -1,14 +1,15 @@
 require "./king.rb"
-require "./piece.rb"
+require "./module/piece.rb"
 
 describe "King" do
 
-  let(:new_pos) {"Kd4"}
-  let(:king) {King.new(:light_white)}
-
-  def set_current_position
-    king.current_pos = new_pos
-  end
+  let(:moves) {
+    {
+      :d3 => "Kd3", :f3 => "Kf3", :f4 => "Kf4",
+      :f5 => "Kf5", :f6 => "Kf6", :f7 => "Kf7"
+    }
+  }
+  let(:king) {King.new(:light_white, moves[:f5])}
 
   describe "#new" do
     it "creates a new piece king" do
@@ -18,23 +19,23 @@ describe "King" do
 
   describe "#move_to" do
     context "when is a valid move" do
-      it "returns true" do
-        set_current_position
-        expect(king.move_to(new_pos)).to eq(new_pos)
+      it "changes the positon of the king" do
+        expect(king.move_to(moves[:f6])).to eq(king.current_pos)
       end
     end
     context "when try to move more than one horizontal square" do
-      it "return false" do
-        set_current_position
-        king.move_to("Kd4")
-        expect(king.move_to("Kf4")).to eq("Kd4")
+      it "doesn't changes the position of the king" do
+        expect(king.move_to(moves[:f7])).to eq(moves[:f5])
       end
     end
     context "when try to move more than one vertical square" do
-      it "return false" do
-        set_current_position
-        king.move_to("Kd4")
-        expect(king.move_to("Kd6")).to eq("Kd4")
+      it "doesn't changes the position of the king" do
+        expect(king.move_to(moves[:f3])).to eq(moves[:f5])
+      end
+    end
+    context "when try to move more than one diagonal square" do
+      it "doesn't changes the position of the king" do
+        expect(king.move_to(moves[:d3])).to eq(moves[:f5])
       end
     end
   end

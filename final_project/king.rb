@@ -1,23 +1,18 @@
-require "./piece.rb"
+require "./module/piece.rb"
 
-class King < Piece
+class King
+
+  include Piece
 
   WHITE_KING_IMAGE = "\u2654"
   BLACK_KING_IMAGE = "\u265A"
 
-  attr_reader :current_pos
-
-  def initialize(color)
-    @current_pos = {self => ""}
-    super(color, switch_image(color))
-  end
-
-  def current_pos=(position)
-    @current_pos[self] = position
+  def initialize(color,position)
+    super(color, switch_image(color),position)
   end
 
   def move_to(new_position)
-    @current_pos[self] = (super(new_position) && valid_move?(new_position)) ? new_position : @current_pos[self]
+    @current_pos = (super(new_position) && valid_move?(new_position)) ? new_position : @current_pos
   end
 
   private
@@ -27,7 +22,7 @@ class King < Piece
   end
 
   def moved_by_one_square?(position)
-    2.times.all? {|ind| ((position[ind+1].ord - @current_pos[self][ind+1].ord) <= 1)}
+    2.times.all? {|ind| (-1..1).include?(position[ind+1].ord - @current_pos[ind+1].ord)}
   end
 
   def switch_image(color)
