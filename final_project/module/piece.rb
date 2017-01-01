@@ -1,13 +1,17 @@
+require "./module/pieces.rb"
+
 module Piece
+
+  include Pieces
 
   LETTERS    = ("a".."h")
   LINES      = ("0".."7")
 
   attr_reader :color, :image, :current_pos
 
-  def initialize(color, image, position=nil)
+  def initialize(color, position=nil)
     @color = color
-    @image = image
+    @image = get_icon_of(self)
     @current_pos = position
   end
 

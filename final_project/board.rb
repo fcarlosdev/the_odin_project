@@ -1,64 +1,62 @@
 require 'colorize'
 require 'colorized_string'
+require "./module/pieces.rb"
 
 class Board
+
+  include Pieces
+
+  ROWS    = 8
+  COLUMNS = 8
+  LINE_COLOR = :black
 
   attr_reader :rows, :columns, :color, :bg_colors, :size_of_square,
               :pieces
 
   def initialize
-    @rows           = 8
-    @columns        = 8
-    @color          = :black
+    @rows           = ROWS
+    @columns        = COLUMNS
+    @color          = LINE_COLOR
     @bg_colors      = [:light_white, :cyan]
-    @pieces         = Array.new(8) {Array.new(8,"")}
+    @board         = Array.new(ROWS) {Array.new(COLUMNS,"")}
     @size_of_square = 9
     load_pieces
   end
 
   def load_pieces
-    @white_pieces = {
-      :white_king  => "\u2654", :white_queen => "\u2655", :white_rook => "\u2656",
-      :white_bishop => "\u2657", :white_knight => "\u2658", :white_pawn => "\u2659"
-    }
-    @black_pieces = {
-      :black_king  => "\u265A", :black_queen => "\u265B", :black_rook => "\u265C",
-      :black_bishop => "\u265D", :black_knight => "\u265E", :black_pawn => "\u265F"
-    }
+    @board[0][0] = ICONS[:black_rook]
+    @board[0][1] = ICONS[:black_knight]
+    @board[0][2] = ICONS[:black_bishop]
+    @board[0][3] = ICONS[:black_queen]
+    @board[0][4] = ICONS[:black_king]
+    @board[0][5] = ICONS[:black_bishop]
+    @board[0][6] = ICONS[:black_knight]
+    @board[0][7] = ICONS[:black_rook]
+    @board[1][0] = ICONS[:black_pawn]
+    @board[1][1] = ICONS[:black_pawn]
+    @board[1][2] = ICONS[:black_pawn]
+    @board[1][3] = ICONS[:black_pawn]
+    @board[1][4] = ICONS[:black_pawn]
+    @board[1][5] = ICONS[:black_pawn]
+    @board[1][6] = ICONS[:black_pawn]
+    @board[1][7] = ICONS[:black_pawn]
 
-    @pieces[0][0] = @black_pieces[:black_rook]
-    @pieces[0][1] = @black_pieces[:black_knight]
-    @pieces[0][2] = @black_pieces[:black_bishop]
-    @pieces[0][3] = @black_pieces[:black_queen]
-    @pieces[0][4] = @black_pieces[:black_king]
-    @pieces[0][5] = @black_pieces[:black_bishop]
-    @pieces[0][6] = @black_pieces[:black_knight]
-    @pieces[0][7] = @black_pieces[:black_rook]
-    @pieces[1][0] = @black_pieces[:black_pawn]
-    @pieces[1][1] = @black_pieces[:black_pawn]
-    @pieces[1][2] = @black_pieces[:black_pawn]
-    @pieces[1][3] = @black_pieces[:black_pawn]
-    @pieces[1][4] = @black_pieces[:black_pawn]
-    @pieces[1][5] = @black_pieces[:black_pawn]
-    @pieces[1][6] = @black_pieces[:black_pawn]
-    @pieces[1][7] = @black_pieces[:black_pawn]
-
-    @pieces[6][0] = @white_pieces[:white_pawn]
-    @pieces[6][1] = @white_pieces[:white_pawn]
-    @pieces[6][2] = @white_pieces[:white_pawn]
-    @pieces[6][3] = @white_pieces[:white_pawn]
-    @pieces[6][4] = @white_pieces[:white_pawn]
-    @pieces[6][5] = @white_pieces[:white_pawn]
-    @pieces[6][6] = @white_pieces[:white_pawn]
-    @pieces[6][7] = @white_pieces[:white_pawn]
-    @pieces[7][0] = @white_pieces[:white_rook]
-    @pieces[7][1] = @white_pieces[:white_knight]
-    @pieces[7][2] = @white_pieces[:white_bishop]
-    @pieces[7][3] = @white_pieces[:white_queen]
-    @pieces[7][4] = @white_pieces[:white_king]
-    @pieces[7][5] = @white_pieces[:white_bishop]
-    @pieces[7][6] = @white_pieces[:white_knight]
-    @pieces[7][7] = @white_pieces[:white_rook]
+    @board[6][0] = ICONS[:white_pawn]
+    @board[6][1] = ICONS[:white_pawn]
+    @board[6][2] = ICONS[:white_pawn]
+    @board[6][3] = ICONS[:white_pawn]
+    @board[6][4] = ICONS[:white_pawn]
+    @board[6][5] = ICONS[:white_pawn]
+    @board[6][6] = ICONS[:white_pawn]
+    @board[6][7] = ICONS[:white_pawn]
+    @board[7][0] = ICONS[:white_rook]
+    @board[7][1] = ICONS[:white_knight]
+    @board[7][2] = ICONS[:white_bishop]
+    @board[7][3] = ICONS[:white_queen]
+    @board[7][4] = ICONS[:white_king]
+    @board[7][5] = ICONS[:white_bishop]
+    @board[7][6] = ICONS[:white_knight]
+    @board[7][7] = ICONS[:white_rook]
   end
 
   def draw_board
@@ -67,7 +65,7 @@ class Board
 
     @rows.times do |row|
       puts "".center(3) + create_line(bg_color)
-      puts "#{@rows-row}".center(3) + create_line(@pieces[row], bg_color)
+      puts "#{@rows-row}".center(3) + create_line(@board[row], bg_color)
       puts "".center(3) + create_line(bg_color)
       bg_color = switch_color_of_square(bg_color)
     end

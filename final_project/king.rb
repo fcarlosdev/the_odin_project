@@ -8,7 +8,7 @@ class King
   BLACK_KING_IMAGE = "\u265A"
 
   def initialize(color,position)
-    super(color, switch_image(color),position)
+    super(color, position)
   end
 
   def move_to(new_position)
@@ -30,3 +30,6 @@ class King
   end
 
 end
+
+# k = King.new(:light_white,"Rd5")
+# puts k.image
