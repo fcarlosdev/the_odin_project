@@ -12,9 +12,16 @@ describe "Bishop" do
   end
 
   describe "#move_to" do
-    context "when is a valide move" do
+    context "when is a valid move" do
       it "changes the position of the bishop" do
-        expect(bishop.move_to("Bd5")).to eq(bishop.current_pos)
+        expect(bishop.move_to("Bc6")).to eq(bishop.current_pos)
+      end
+    end
+
+    context "when is an invalid move" do
+      it "doesn't changes the bishop to the new position" do
+        current_position = bishop.move_to("Be5")
+        expect(current_position).not_to eql("Be5")                
       end
     end
   end

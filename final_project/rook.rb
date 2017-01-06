@@ -1,8 +1,10 @@
 require "./module/piece.rb"
+require "./module/allowed_moves.rb"
 
 class Rook
 
   include Piece
+  include AllowedMoves
 
   def initialize(color, position)
     super(color,position)
@@ -15,15 +17,7 @@ class Rook
   private
 
   def valid_move?(position)
-    valid  = (position[0].eql?"R")
-    valid &= rook_moved_allowed?(position)
-  end
-
-  def rook_moved_allowed?(position)
-    2.times.all? {|ind| position[ind+1] == @current_pos[ind+1]}
+    (position[0].eql?"R") && valid_xy_move?(@current_pos,position)
   end
 
 end
-
-# r = Rook.new(:light_white,"Rd5")
-# puts "Color = #{r.color} Image = #{r.image}"
