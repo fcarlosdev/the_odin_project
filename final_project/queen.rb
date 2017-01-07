@@ -1,27 +1,24 @@
-require "./piece.rb"
+require "./module/piece.rb"
+require "./module/allowed_moves.rb"
 
-class Queen < Piece
+class Queen
 
-  WHITE_QUEEN_IMAGE = "\u2655"
-  BLACK_QUEEN_IMAGE = "\u2658"
+  include Piece
+  include AllowedMoves
 
-  attr_reader :current_pos
-
-  def initialize(color)
-    super(color,switch_image(color))
-    @current_pos = {self => ""}
+  def initialize(color,position)
+    super(color,position)
   end
 
-  def current_pos=(position)
-    @current_pos[self] = position
+  def move_to(position)
+    @current_pos = (super(position) && valid_move?(position)) ? position : @current_pos
   end
 
-  def move_to(new_position)
-    super(new_position) ? new_position : current_pos
-  end
+  private
 
-  def switch_image(color)
-    (color == :light_white) ? WHITE_QUEEN_IMAGE : BLACK_QUEEN_IMAGE
+  def valid_move?(position)
+    position[0]=="Q" && (valid_xy_move?(@current_pos,position) ||
+                         valid_diagonal_move?(@current_pos,position))
   end
 
 end
