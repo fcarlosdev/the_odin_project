@@ -5,7 +5,7 @@ module Piece
   include Pieces
 
   LETTERS    = ("a".."h")
-  LINES      = ("0".."7")
+  LINES      = ("1".."8")
 
   attr_reader :color, :image, :current_pos
 

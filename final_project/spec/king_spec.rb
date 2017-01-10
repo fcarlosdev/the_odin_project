@@ -38,6 +38,19 @@ describe "King" do
         expect(king.move_to(moves[:d3])).to eq(moves[:f5])
       end
     end
+    context "When is trying the castling and is the first move" do
+      it "Moves the king two square towards the rook" do
+        k = King.new(king.color,"Ke1")
+        expect(k.move_to("Kg1")).to eq("Kg1")
+      end
+    end
+    context "When is trying the castling and is not the first move" do
+      it "Doesn't moves the king two square towards the rook" do
+        k = King.new(king.color,"Ke1")
+        k.move_to("Ke2")
+        expect(k.move_to("Kg1")).to_not eq("Kg1")
+      end
+    end
   end
 
 end

@@ -33,8 +33,29 @@ describe "Pawn" do
 
     context "When move two positions and is not the first move" do
       it "Doesn't moves the pawn to the new position" do
-        pawn.first_move = false
-        expect(pawn.move_to("Pf4")).to_not eql("Pf4")
+        pawn.move_to("Pf3")
+        expect(pawn.move_to("Pf5")).to_not eql("Pf5")
+      end
+    end
+
+    context "When is a capture opponent pice move" do
+      it "Moves the pawn diagonally one square" do
+        expect(pawn.move_to("Pg3")).to eql("Pg3")
+      end
+    end
+
+    context "When is a invalid capture opponent piece move" do
+      it "Doesn't moves pawn diagonally" do
+        expect(pawn.move_to("Ph4")).to_not eql("Ph3")
+      end
+    end
+
+    context "when the pawn reach the other side of the board" do
+      it "Is able to be promoted to any other chess piece" do
+        8.times do
+          pawn.move_to(pawn.current_pos[0..1] + (pawn.current_pos[2].to_i + 1).to_s)
+        end
+        expect(pawn.promote_to_other_piece?(pawn.current_pos)).to eql(true)
       end
     end
   end

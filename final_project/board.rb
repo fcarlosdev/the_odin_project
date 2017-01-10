@@ -89,6 +89,6 @@ class Board
 
 end
 
-system('clear')
-board = Board.new
-board.draw_board
+# system('clear')
+# board = Board.new
+# board.draw_board

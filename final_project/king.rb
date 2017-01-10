@@ -4,9 +4,6 @@ class King
 
   include Piece
 
-  WHITE_KING_IMAGE = "\u2654"
-  BLACK_KING_IMAGE = "\u265A"
-
   def initialize(color,position)
     super(color, position)
   end
@@ -18,18 +15,16 @@ class King
   private
 
   def valid_move?(position)
-    (position[0].eql?"K") && moved_by_one_square?(position)
+    (position[0].eql?"K") && (castling_move?(position) || moved_by_one_square?(position))
   end
 
   def moved_by_one_square?(position)
     2.times.all? {|ind| (-1..1).include?(position[ind+1].ord - @current_pos[ind+1].ord)}
   end
 
-  def switch_image(color)
-    (color == :light_white) ? WHITE_KING_IMAGE : BLACK_KING_IMAGE
+  def castling_move?(position)
+    (@current_pos == "Ke1") && (position[1].ord - @current_pos[1].ord) == 2 &&
+      (position[2].to_i - @current_pos[2].to_i == 0)
   end
 
 end
-
-# k = King.new(:light_white,"Rd5")
-# puts k.image
