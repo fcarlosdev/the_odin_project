@@ -4,6 +4,7 @@ class Pawn
 
   include Piece
 
+  CAPTURE_XY = [[1,-1], [-1,-1], [1,1], [-1,1]]
   attr_reader :initial_position
 
   def initialize(color, position)
@@ -17,6 +18,15 @@ class Pawn
 
   def promote_to_other_piece?(position)
     (position[2].to_i  == 8 && @initial_position[2].to_i == 2)
+  end
+
+  def capture(piece)
+    return false if (piece == nil)
+    pos = piece.current_pos
+    CAPTURE_XY.any? do |v|
+      (pos[1].ord + v[0]).chr + (pos[2].to_i + v[1]).to_s == @current_pos[1,2] &&
+        self.color != piece.color
+    end
   end
 
   private

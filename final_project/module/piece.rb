@@ -23,4 +23,8 @@ module Piece
     (LETTERS.include?new_position[1]) && (LINES.include?new_position[2])
   end
 
+  def capture(the_piece,by_the_piece)
+    self.capture(the_piece)
+  end
+
 end

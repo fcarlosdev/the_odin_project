@@ -60,5 +60,21 @@ describe "Pawn" do
     end
   end
 
+  describe "#make_a_capture_move" do
+    context "When exists an opponent piece next diagonal square of the current piece" do
+      it "Captures the opponent piece" do
+        pawn_d5 = Pawn.new("white","Pd5")
+        pawn_e4 = Pawn.new("black","Pe4")
+        expect(pawn_e4.capture(pawn_d5)).to eq true
+      end
+    end
+
+    context "When not exists an opponent piece on the location to capture" do
+      it "Doesn't capture the opponent piece" do
+        pawn_d5 = Pawn.new("black","Pd5")
+        expect(pawn_d5.capture(nil)).to eq false
+      end
+    end
+  end
 
 end
