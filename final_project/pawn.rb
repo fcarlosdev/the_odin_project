@@ -4,44 +4,52 @@ class Pawn
 
   include Piece
 
-  CAPTURE_XY = [[1,-1], [-1,-1], [1,1], [-1,1]]
-  attr_reader :initial_position
-
   def initialize(color, position)
     super(color,position)
-    @initial_position = position
   end
 
   def move_to(position)
-    @current_pos = (super(position) && valid_move?(position)) ? position : @current_pos
-  end
-
-  def promote_to_other_piece?(position)
-    (position[2].to_i  == 8 && @initial_position[2].to_i == 2)
+    if (super(position) && valid_move?(position))
+      update_first_move if @first_move
+      update_current_position(position)
+      @current_pos
+    end
   end
 
   def capture(piece)
-    return false if (piece == nil)
-    pos = piece.current_pos
-    CAPTURE_XY.any? do |v|
-      (pos[1].ord + v[0]).chr + (pos[2].to_i + v[1]).to_s == @current_pos[1,2] &&
-        self.color != piece.color
-    end
+    limits = get_xy_limits(@initial_position[2].to_i)
+    get_capture_moves(limits).any? {|xy| xy == piece.current_pos[1..2]}
   end
 
   private
 
-  def valid_move?(position)
-    position[0] == "P" && allowed_pawn_move?(position)
+  def valid_move?(square)
+   on_same_file?(@initial_position[1],square[1]) && square.start_with?("P") && on_limit?(square)
   end
 
-  def allowed_pawn_move?(position)
-    [2,7].include?(@current_pos[2].to_i) ? move_ok?(position,2) : move_ok?(position,1)
+  def on_limit?(to_position)
+    moved_by = (to_position[2].to_i - @current_pos[2].to_i)
+    (@first_move && moved_by <= 2) || moved_by == 1
   end
 
-  def move_ok?(position, move_by)
-    (position[2].to_i - @current_pos[2].to_i) <= move_by
+  def on_same_file?(initial_file,new_file)
+    initial_file[1] == new_file[1]
   end
 
+  def update_current_position(new_position)
+    @current_pos = new_position
+  end
+
+  def get_xy_limits(initial_position)
+    xy_moves = [[-1,1], [1,1], [-1,-1], [1,-1]]
+    (initial_position == 2) ? xy_moves[0..1] : xy_moves[2..3]
+  end
+
+
+  def get_capture_moves(xy_moves)
+    possible_moves = xy_moves.collect do |xy|
+      (@current_pos[1].ord + xy[0]).chr + (@current_pos[2].to_i + xy[1].to_i).to_s
+    end
+  end
 
 end
