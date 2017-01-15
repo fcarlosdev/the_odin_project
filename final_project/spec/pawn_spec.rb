@@ -1,4 +1,5 @@
 require "./pawn.rb"
+require "./king.rb"
 
 describe "Pawn" do
 
@@ -79,5 +80,29 @@ describe "Pawn" do
         expect(black_pawn.capture(pawn)).to eq(true)
       end
     end
+
+    context "when a white pawn has en passan move available" do
+      it "it captures the opponent pawn on beside it moving to square behind the opponent pawn diagonally" do
+        pawn.move_to("Pe4")
+        pawn.move_to("Pe5")
+        black_pawn = create_new_pawn("black","Pd7")
+        black_pawn.move_to("Pd5")
+        expect(pawn.capture(black_pawn)).to eql(true)
+      end
+    end
+  end
+
+  describe "#promotion" do
+
+    context "when the piece reach the first oposite rank on board" do
+      it "It is replaced for the chosen piece" do
+        8.times do |by|
+          pawn.move_to("Pe"+(by+1).to_s)
+        end
+        to_king = King.new(:light_white,"Ke8")
+        expect(pawn.promotion(to_king)).to be_instance_of(King)
+      end
+    end
+    
   end
 end
