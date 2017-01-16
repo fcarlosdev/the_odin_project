@@ -1,8 +1,6 @@
-require "./module/piece.rb"
+require "./piece.rb"
 
-class Knight
-
-  include Piece
+class Knight < Piece
 
   AXIS = [[-1, 2], [1, 2], [-2, 1], [2, 1],
            [-2, -1], [2, -1], [-1, -2], [1, -2]]

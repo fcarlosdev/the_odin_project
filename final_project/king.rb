@@ -1,8 +1,6 @@
-require "./module/piece.rb"
+require "./piece.rb"
 
-class King
-
-  include Piece
+class King < Piece
 
   def initialize(color,position)
     super(color, position)

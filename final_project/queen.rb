@@ -1,9 +1,8 @@
-require "./module/piece.rb"
+require "./piece.rb"
 require "./module/allowed_moves.rb"
 
-class Queen
+class Queen < Piece
 
-  include Piece
   include AllowedMoves
 
   def initialize(color,position)

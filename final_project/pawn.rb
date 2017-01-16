@@ -1,69 +1,47 @@
-require "./module/piece.rb"
+require "./piece.rb"
 
-class Pawn
+class Pawn < Piece
 
-  include Piece
+  DIFF_BY_RANK = 0
+  DIFF_BY_FILE = 1
 
-  def initialize(color, position)
-    super(color,position)
+  def initialize(color,initial_position)
+    super(color,initial_position)
   end
 
-  def move_to(position)
-    if (super(position) && valid_move?(position))
-      update_first_move if @first_move
-      update_current_position(position)
-      @current_pos
-    end
+  def move_to(new_position)
+    return (valid_move?(new_position)) ? super(new_position) : @current_position
   end
 
-  def capture(piece)
-    (in_passing_available?(piece) || in_capturable_square?(piece))
-  end
-
-  def promotion(to_other_piece)
-    if [8,1].include?(@current_pos[2].to_i)
-      return to_other_piece
+  def valid_move?(new_position)
+    valid = super(new_position)
+    if (new_position[1] == @start_position[1])
+      valid &= valid_rank_move?(new_position)
+    else
+      valid &= valid_capture_move?(new_position)
     end
   end
 
   private
 
-  def valid_move?(square)
-   on_same_file?(@initial_position[1],square[1]) && square.start_with?("P") && on_limit?(square)
+  def valid_rank_move?(new_position)
+    moved_by(new_position) ? (2 && @first_move) : 1
   end
 
-  def on_limit?(to_position)
-    moved_by = (to_position[2].to_i - @current_pos[2].to_i)
-    (@first_move && moved_by <= 2) || moved_by == 1
+  def valid_capture_move?(new_position)
+    (-1..1).cover?(diff(@current_position,new_position,DIFF_BY_FILE))
   end
 
-  def on_same_file?(initial_file,new_file)
-    initial_file[1] == new_file[1]
+  def moved_by(new_position)
+    diff(new_position,get_ref_positon,DIFF_BY_RANK)
   end
 
-  def update_current_position(new_position)
-    @current_pos = new_position
+  def diff(from,to,xy)
+    position_to_xy(from)[xy] - position_to_xy(to)[xy]
   end
 
-  def in_capturable_square?(piece)
-    range_xy = get_xy_range(@initial_position[2].to_i)
-    get_capture_moves(range_xy).any? {|xy| xy == piece.current_pos[1..2]}
-  end
-
-  def get_xy_range(initial_position)
-    xy_moves = [[-1,1], [1,1], [-1,-1], [1,-1]]
-    (initial_position == 2) ? xy_moves[0..1] : xy_moves[2..3]
-  end
-
-  def get_capture_moves(xy_moves)
-    possible_moves = xy_moves.collect do |xy|
-      (@current_pos[1].ord + xy[0]).chr + (@current_pos[2].to_i + xy[1].to_i).to_s
-    end
-  end
-
-  def in_passing_available?(piece)
-    (piece.current_pos[1] == (@current_pos[1].ord - 1).chr &&
-        ([-2,2].include?(piece.current_pos[2].to_i - piece.initial_position[2].to_i)))
+  def get_ref_positon
+    (@current_position != @start_position) ? @start_position : @current_position
   end
 
 end
