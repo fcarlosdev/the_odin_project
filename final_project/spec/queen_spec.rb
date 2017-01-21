@@ -9,29 +9,29 @@ describe "Queen" do
     queen.current_pos = new_pos
   end
 
-  describe "#new" do
-    it "creates a new piece of queen" do
-      expect(queen).to be_instance_of(Queen)
-    end
-  end
+  # describe "#new" do
+  #   it "creates a new piece of queen" do
+  #     expect(queen).to be_instance_of(Queen)
+  #   end
+  # end
 
   describe "#move_to" do
 
     context "When is a valid rank move" do
       it "moves the queen along to the rank to the new position" do
-        expect(queen.move_to("Qd5")).to eql(queen.current_pos)
+        expect(queen.move_to("Qd5")).to eql(queen.current_position)
       end
     end
 
     context "When is a valid file move" do
       it "moves the queen along the file to the new position" do
-        expect(queen.move_to("Qh4")).to eql(queen.current_pos)
+        expect(queen.move_to("Qh4")).to eql(queen.current_position)
       end
     end
 
     context "When is a valid diagonal move" do
       it "moves the queen along the diagonal to the new position" do
-        expect(queen.move_to("Qh8")).to eql(queen.current_pos)
+        expect(queen.move_to("Qh8")).to eql(queen.current_position)
       end
     end
 
@@ -52,7 +52,7 @@ describe "Queen" do
         expect(queen.move_to("Qf5")).to_not eql("Qf5")
       end
     end
-    
+
   end
 
 end

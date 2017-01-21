@@ -10,38 +10,32 @@ class Pawn < Piece
   end
 
   def move_to(new_position)
-    return (valid_move?(new_position)) ? super(new_position) : @current_position
+    (valid_move?(new_position)) ? super(new_position) : @current_position
   end
 
-  def valid_move?(new_position)
-    valid = super(new_position)
-    if (new_position[1] == @start_position[1])
-      valid &= valid_rank_move?(new_position)
-    else
-      valid &= valid_capture_move?(new_position)
-    end
+  def valid_move?(position)
+    super(position) && distance_valid?(position)
   end
 
   private
 
-  def valid_rank_move?(new_position)
-    moved_by(new_position) ? (2 && @first_move) : 1
+  def distance_valid?(position)
+    distance = get_distance(position)
+    rank_move = is_rank_move?(position)
+    (distance == 2 && rank_move && is_first_move?) || distance == 1
   end
 
-  def valid_capture_move?(new_position)
-    (-1..1).cover?(diff(@current_position,new_position,DIFF_BY_FILE))
+  def is_rank_move?(position)
+    (position[1].ord - @current_position[1].ord == 0)
   end
 
-  def moved_by(new_position)
-    diff(new_position,get_ref_positon,DIFF_BY_RANK)
+  def is_first_move?
+    ["7","2"].include?(@current_position[2])
   end
 
-  def diff(from,to,xy)
-    position_to_xy(from)[xy] - position_to_xy(to)[xy]
+  def get_distance(position)
+    (position[2].to_i - @current_position[2].to_i).abs
   end
 
-  def get_ref_positon
-    (@current_position != @start_position) ? @start_position : @current_position
-  end
 
 end

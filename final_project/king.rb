@@ -7,22 +7,20 @@ class King < Piece
   end
 
   def move_to(new_position)
-    @current_pos = (super(new_position) && valid_move?(new_position)) ? new_position : @current_pos
+    @current_position = (valid_move?(new_position)) ? super(new_position) : @current_position
+  end
+
+  def valid_move?(position)
+    super(position) && (moved_by_one?(position) || castling_move?(position))
   end
 
   private
 
-  def valid_move?(position)
-    (position[0].eql?"K") && (castling_move?(position) || moved_by_one_square?(position))
+  def moved_by_one?(position)
+    2.times.all? {|ind| (-1..1).include?(position[ind+1].ord - @current_position[ind+1].ord)}
   end
 
-  def moved_by_one_square?(position)
-    2.times.all? {|ind| (-1..1).include?(position[ind+1].ord - @current_pos[ind+1].ord)}
+  def castling_move?(positon)
+    (@first_move && ((positon[1].ord - @current_position[1].ord) == 2))
   end
-
-  def castling_move?(position)
-    (@current_pos == "Ke1") && (position[1].ord - @current_pos[1].ord) == 2 &&
-      (position[2].to_i - @current_pos[2].to_i == 0)
-  end
-
 end

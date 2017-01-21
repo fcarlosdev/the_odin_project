@@ -10,14 +10,22 @@ class Queen < Piece
   end
 
   def move_to(position)
-    @current_pos = (super(position) && valid_move?(position)) ? position : @current_pos
+    valid_move?(position) ? super(position) : @current_position
+  end
+
+  def valid_move?(position)
+    super(position) && position.start_with?("Q") &&
+      (valid_xy_move?(@current_position,position) || move_trough_diagonal?(position))
   end
 
   private
 
-  def valid_move?(position)
-    position[0]=="Q" && (valid_xy_move?(@current_pos,position) ||
-                         valid_diagonal_move?(@current_pos,position))
+  def move_through_xy?(position)
+    valid_xy_move?(@current_position,position)
+  end
+
+  def move_trough_diagonal?(position)
+    valid_diagonal_move?(@current_position,position)
   end
 
 end

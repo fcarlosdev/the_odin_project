@@ -15,7 +15,7 @@ describe "Knight" do
 
     context "When is valid move" do
       it "moves the knight to the new position" do
-        expect(knight.move_to("Nc6")).to eql(knight.current_pos)
+        expect(knight.move_to("Nc6")).to eql(knight.current_position)
       end
     end
 
@@ -24,6 +24,7 @@ describe "Knight" do
         expect(knight.move_to("Nf6")).to_not eql("Nf6")
       end
     end
+    
   end
 
 end

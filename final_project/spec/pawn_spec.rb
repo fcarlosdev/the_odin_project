@@ -26,31 +26,42 @@ describe "Pawn" do
       it "moves two squares if it is the first move" do
         expect(pawn.move_to("Pe4")).to eq(pawn.current_position)
       end
+
     end
 
     context "when is an invalid move" do
 
       it "doesn't moves the pawn to the new position" do
-        expect(pawn.move_to("Pa2")).to_not eq("Pa2")
+        expect(pawn.move_to("Pe5")).to_not eql("Pe5")
       end
 
-      it "doesn't moves two squares if isn't first move" do
+      it "doesn't moves two squares if isn't the first move" do
         pawn.move_to("Pe3")
-        pawn.move_to("Pe4")
-        expect(pawn.move_to("Pe4")).to_not eq("Pe4")
+        expect(pawn.move_to("Pe5")).to_not eql("Pe5")
       end
+
     end
 
-    context "when is a valid capture move" do
-      it "moves the pawn to the new positon and captures the opponent piece" do
-        pawn.move_to("Pe4")
-        black_pawn = Pawn.new(:black,"Pd7")
-        black_pawn.move_to("Pd5")
-        expect(pawn.move_to("Pd5")).to eq(black_pawn.current_position)
+    context "when there is a valid capture move" do
+
+      it "moves to the left diagonal if there is an opponent piece there" do
+        expect(pawn.move_to("Pd3")).to eql("Pd3")
       end
+
+      it "moves to the right diagonal if there is an opponent piece there" do
+        expect(pawn.move_to("Pf3")).to eql("Pf3")
+      end
+
+    end
+
+    context "when is an invalid capture move" do
+
+      it "doesn't executes the capture of the opponent piece" do
+        expect(pawn.move_to("Ph4")).to_not eql("Ph4")
+      end
+
     end
 
   end
-
 
 end

@@ -2,29 +2,28 @@ require "./piece.rb"
 
 class Knight < Piece
 
-  AXIS = [[-1, 2], [1, 2], [-2, 1], [2, 1],
-           [-2, -1], [2, -1], [-1, -2], [1, -2]]
+  AXIS = [[-1, 2], [1, 2], [-2, 1], [2, 1], [-2, -1], [2, -1], [-1, -2], [1, -2]]
 
   def initialize(color,position)
     super(color,position)
   end
 
   def move_to(position)
-    @current_pos = (super(position) && valid_knight_move?(position))? position : @current_pos
+    @current_position = valid_move?(position)? super(position) : @current_position
+  end
+
+  def valid_move?(position)
+    super(position) && position[0] == "N" && valid_axis_move?(position)
   end
 
   private
 
-  def valid_knight_move?(position)
-    position[0] == "N" && valid_axis_move?(position)
+  def valid_axis_move?(position)
+    AXIS.any? {|xy| xy.include?([calculate_xy(position)])}
   end
 
-  def valid_axis_move?(position)
-    AXIS.any? do |r|
-      file = (@current_pos[1].ord + r[0]).chr
-      rank = (@current_pos[1].to_i + r[1]).to_s
-      (rank+file).include?(position)
-    end
+  def calculate_xy(position)
+    (1..2).collect {|xy| position[xy].ord - @current_position[xy].ord}
   end
 
 end
