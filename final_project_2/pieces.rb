@@ -68,7 +68,8 @@ module Pieces
     end
 
     def move_to(new_position)
-      super(new_position) && valid_move?(new_position)
+      @position = new_position if super(new_position) && valid_move?(new_position)
+      @position == new_position
     end
 
     def valid_move?(new_position)
@@ -89,7 +90,8 @@ module Pieces
     end
 
     def move_to(new_position)
-      super(new_position) && valid_move?(new_position)
+      @position = new_position if super(new_position) && valid_move?(new_position)
+      @position == new_position
     end
 
     def valid_move?(new_position)

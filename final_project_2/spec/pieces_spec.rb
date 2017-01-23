@@ -74,6 +74,7 @@ describe "Pieces" do
 
       it "moves the rook piece if the final position is valid" do
         expect(pieces[:rook].move_to("Rd8")).to eq(true)
+        expect(pieces[:rook].position).to eq("Rd8")
       end
 
       it "doesn't moves the rook piece if final position is invalid" do
@@ -86,6 +87,7 @@ describe "Pieces" do
 
       it "moves the bishop piece if the final position is valid" do
         expect(pieces[:bishop].move_to("Bf7")).to eq(true)
+        expect(pieces[:bishop].position).to eq("Bf7")
       end
 
       it "doesn't moves the bishop piece if the final position is invalid" do
