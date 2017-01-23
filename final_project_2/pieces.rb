@@ -16,7 +16,8 @@ module Pieces
     end
 
     def valid_move?(new_position)
-      PiecesUtil::FILE_LIMITS.include?(new_position[1]) && PiecesUtil::RANK_LIMITS.include?(new_position[2])
+      PiecesUtil::FILE_LIMITS.include?(new_position[1]) &&
+                              PiecesUtil::RANK_LIMITS.include?(new_position[2])
     end
 
   end
@@ -30,8 +31,7 @@ module Pieces
     end
 
     def move_to(new_position)
-      @position = super(new_position) && valid_move?(new_position) ? new_position :
-                                                                     @position
+      @position = new_position if super(new_position) && valid_move?(new_position)
       @position == new_position
     end
 
@@ -71,10 +71,10 @@ module Pieces
       super(new_position) && valid_move?(new_position)
     end
 
-    def valid_move?(position)
-      if (super(position))
+    def valid_move?(new_position)
+      if (super(new_position))
         possible_moves = PiecesUtil.move_till_limits(@position,[:NORTH,:SOUTH, :EAST, :WEST])
-        PiecesUtil.xy_to_rank_files(possible_moves).include?(position[1..2])
+        PiecesUtil.xy_to_rank_files(possible_moves).include?(new_position[1..2])
       end
     end
 
@@ -83,10 +83,22 @@ module Pieces
   class Bishop < Piece
 
     def initialize(color,position=nil)
-      super(color)
+      super(color,position)
       @type = :bishop
       @icon = PiecesUtil.get_icon_of(self)
     end
+
+    def move_to(new_position)
+      super(new_position) && valid_move?(new_position)
+    end
+
+    def valid_move?(new_position)
+      if (super(new_position))
+        possible_moves = PiecesUtil.move_till_limits(@position,[:NE, :SE, :SW, :NW])
+        PiecesUtil.xy_to_rank_files(possible_moves).include?(new_position[1..2])
+      end
+    end
+
   end
 
   class Queen < Piece
