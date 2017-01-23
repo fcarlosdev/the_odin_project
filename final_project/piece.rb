@@ -2,13 +2,11 @@ require "./module/pieces.rb"
 
 class Piece
 
-  include Pieces
-
   attr_reader :color, :icon, :current_position, :start_position, :first_move
 
   def initialize(color, position)
     @color            = color
-    @icon             = get_icon_of(self)
+    @icon             = Pieces.get_icon_of(self)
     @start_position   = position
     @current_position = position
     @first_move       = true

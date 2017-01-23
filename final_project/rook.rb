@@ -9,13 +9,13 @@ class Rook < Piece
   end
 
   def move_to(position)
-    @current_pos = (super(position) && valid_move?(position)) ? position : @current_pos
+    valid_move?(position) ? super(position) : @current_position
   end
 
   private
 
   def valid_move?(position)
-    (position[0].eql?"R") && valid_xy_move?(@current_pos,position)
+    (position[0].eql?"R") && valid_xy_move?(@current_position,position)
   end
 
 end

@@ -87,8 +87,13 @@ class Board
     @bg_colors.find {|color| color != current_bg_color}
   end
 
+  def positions
+    get_board_positions
+  end
+
 end
 
 # system('clear')
 # board = Board.new
 # board.draw_board
+# puts board.positions.inspect

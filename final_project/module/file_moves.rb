@@ -28,8 +28,4 @@ module FileMoves
   end
 
   private_class_method :get_moves
-    #   private :generate_moves
-    #   private :get_distances
-    # end
-
 end

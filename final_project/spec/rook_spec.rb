@@ -15,7 +15,7 @@ describe "Rook" do
 
     context "When is a valid move" do
       it "changes the position of the hook" do
-        expect(rook.move_to("Re5")).to eq(rook.current_pos)
+        expect(rook.move_to("Re5")).to eq(rook.current_position)
       end
     end
 
