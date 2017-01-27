@@ -1,4 +1,8 @@
+require "./directions.rb"
+
 module PiecesUtil
+
+  include Directions
 
   RANK_LIMITS = ("1".."8")
   FILE_LIMITS = ("a".."h")
@@ -10,20 +14,24 @@ module PiecesUtil
    black_bishop: "\u265D", black_knight: "\u265E", black_pawn: "\u265F"
   }
 
-  DIRECTIONS = {
-    NORTH: [-1, 0], NE: [-1, 1], EAST: [0,  1], SE: [ 1,  1],
-    SOUTH: [1,  0], SW: [1, -1], WEST: [0, -1], NW: [-1, -1]
-  }
-
-  ALL_DIRECTIONS = [:NORTH, :NE, :EAST, :SE, :SOUTH, :SW, :WEST, :NW]
+  # DIRECTIONS = {
+  #   NORTH: [-1, 0], NE:   [-1, 1], EAST: [0,  1],  SE:  [1, 1], SOUTH: [1,  0],
+  #   SW:    [1, -1], WEST: [0, -1], NW:   [-1, -1], NNW: [1,-2], NNE:   [-1,-2],
+  #   ENE:   [-2,-1], ESE:  [-2, 1], SSE:  [-1,  2], SSW: [1, 2], WSW:   [ 2, 1],
+  #   WNW:   [ 2,-1]
+  # }
+  #
+  # ALL_DIRECTIONS = [:NORTH, :NE, :EAST, :SE, :SOUTH, :SW, :WEST, :NW]
+  #
+  # SECONDARY_DIRECTIONS = [:NNW, :NNE, :ENE, :ESE, :SSE, :SSW, :WSW, :WNW]
 
   def self.move_one_square(position,directions)
     xy = position_to_axis(position)
-    directions.collect {|d| [xy[0]+DIRECTIONS[d][0], xy[1]+DIRECTIONS[d][1]]  }
+    Directions.xy_from_cardinals(directions).collect {|d| [xy[0]+d[0], xy[1]+d[1]]}
   end
 
   def self.move_till_limits(position,directions)
-    xy = position_to_axis(position)
+    xy    = position_to_axis(position)
     moves = [xy]
     directions.each do |d|
       xy = [ xy[0]+DIRECTIONS[d][0], xy[1]+DIRECTIONS[d][1] ]
