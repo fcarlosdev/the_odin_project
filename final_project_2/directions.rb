@@ -32,5 +32,9 @@ module Directions
     cardinals.collect {|c| DIRECTIONS[c]}
   end
 
+  def self.north_south
+    [:NORTH, :SOUTH]
+  end
+
 
 end
