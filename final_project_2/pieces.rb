@@ -11,13 +11,6 @@ module Pieces
       @position = position
     end
 
-    # def move_to(new_position)
-    #   valid_move?(new_position)
-    # end
-
-    # def valid_move?(new_position)
-    #   PiecesUtil::FILE_LIMITS.include?(new_position[1]) && PiecesUtil::RANK_LIMITS.include?(new_position[2])
-    # end
     def move_to(new_position)
         @position = new_position if valid_move?(new_position)
         @position == new_position
