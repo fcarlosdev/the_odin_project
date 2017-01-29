@@ -65,7 +65,6 @@ module PiecesUtil
     piece_name[(piece_name.index("::")+2)..piece_name.length]
   end
 
-
   private_class_method :get_piece_name
 
 end
