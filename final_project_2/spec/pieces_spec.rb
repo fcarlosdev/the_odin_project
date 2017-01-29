@@ -4,12 +4,12 @@ describe "Pieces" do
 
   let(:colors) {[:light_white, :cyan]}
   let(:pieces) {
-    { king:   Pieces::King.new(colors[0],"Kf5"),
-      rook:   Pieces::Rook.new(colors[0],"Rd5"),
-      bishop: Pieces::Bishop.new(colors[0],"Bd5"),
-      queen:  Pieces::Queen.new(colors[0],"Qd4"),
-      knight: Pieces::Knight.new(colors[0],"Nd4"),
-      pawn:   Pieces::Pawn.new(colors[0],"Pf2")
+    { king:   Pieces::King.new(color: colors[0],position: "Kf5"),
+      rook:   Pieces::Rook.new(color: colors[0],position: "Rd5"),
+      bishop: Pieces::Bishop.new(color: colors[0],position: "Bd5"),
+      queen:  Pieces::Queen.new(color: colors[0],position: "Qd4"),
+      knight: Pieces::Knight.new(color: colors[0],position: "Nd4"),
+      pawn:   Pieces::Pawn.new(color: colors[0],position: "Pf2")
     }
   }
 

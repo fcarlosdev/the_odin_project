@@ -6,9 +6,14 @@ module Pieces
 
     attr_reader :color, :icon, :type, :position
 
-    def initialize(color,position=nil)
-      @color = color
-      @position = position
+    def initialize(args={})
+      @color    = args[:color]
+      @position = args[:position]
+      post_initialize
+    end
+
+    def post_initialize
+      nil
     end
 
     def move_to(new_position)
@@ -21,15 +26,14 @@ module Pieces
     end
 
     def possible_moves
-      raise "Not implemented yet"
+      raise NotImplementedError, "This #{self.class} cannot respond to:"
     end
 
   end
 
   class King < Piece
 
-    def initialize(color,position=nil)
-      super(color,position)
+    def post_initialize
       @type = :king
       @icon = PiecesUtil.get_icon_of(self)
     end
@@ -56,8 +60,7 @@ module Pieces
 
   class Rook < Piece
 
-    def initialize(color,position=nil)
-      super(color,position)
+    def post_initialize
       @type = :rook
       @icon = PiecesUtil.get_icon_of(self)
     end
@@ -70,8 +73,7 @@ module Pieces
 
   class Bishop < Piece
 
-    def initialize(color,position=nil)
-      super(color,position)
+    def post_initialize
       @type = :bishop
       @icon = PiecesUtil.get_icon_of(self)
     end
@@ -84,8 +86,7 @@ module Pieces
 
   class Queen < Piece
 
-    def initialize(color,position=nil)
-      super(color,position)
+    def post_initialize
       @type = :queen
       @icon = PiecesUtil.get_icon_of(self)
     end
@@ -98,8 +99,7 @@ module Pieces
 
   class Knight < Piece
 
-    def initialize(color,position=nil)
-      super(color,position)
+    def post_initialize
       @type = :knight
       @icon = PiecesUtil.get_icon_of(self)
     end
@@ -114,8 +114,7 @@ module Pieces
 
     attr_reader :capture_moves
 
-    def initialize(color,position=nil)
-      super(color,position)
+    def post_initialize
       @type = :pawn
       @icon = PiecesUtil.get_icon_of(self)
       @capture_moves = [[-1,1], [1,1], [-1,-1], [1,-1]]
