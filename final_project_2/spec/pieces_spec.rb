@@ -107,7 +107,7 @@ describe "Pieces" do
       end
 
       it "doesn't moves the queen piece if the destiny position isn't possible move" do
-        expect(pieces[:queen].move_to("Qe6")).to eq(false)
+        expect(pieces[:queen].move_to("Qf5")).to eq(false)
       end
 
     end

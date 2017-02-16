@@ -112,16 +112,17 @@ module Pieces
 
   class Pawn < Piece
 
-    attr_reader :capture_moves
+    attr_reader :capture_moves, :move_direction
 
     def post_initialize
       @type = :pawn
       @icon = PiecesUtil.get_icon_of(self)
       @capture_moves = [[-1,1], [1,1], [-1,-1], [1,-1]]
+      @move_direction = (self.color.to_s.include?"white") ? :NORTH : :SOUTH
     end
 
     def possible_moves
-      PiecesUtil.move_one_square(@position,Directions.north_south)
+      PiecesUtil.move_one_square(position,[move_direction])
     end
 
   end

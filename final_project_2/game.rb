@@ -1,3 +1,6 @@
+require './board.rb'
+require './player.rb'
+
 class Game
 
   attr_reader :board, :players, :current_player
@@ -9,15 +12,23 @@ class Game
   end
 
   def play
+    board.draw_board
+
     from = move_piece_from
     to   = move_piece_to
 
-    board.each do |cells|
-      cells.each do |cell|
-        if (cell != "" && cell.position == from)
-          return PiecesUtil.position_to_axis(from)
-        end
-      end
+    origin = PiecesUtil.position_to_axis(from)
+    piece = board.cells[origin[0]][origin[1]]
+    if (piece.move_to(to))
+      system("clear")
+      destiny = PiecesUtil.position_to_axis(to)
+      board.cells[destiny[0]][destiny[1]] = piece
+      board.cells[origin[0]][origin[1]] = ""
+      board.draw_board(board.cells)
+      true
+    else
+      puts "Invalid move of the #{piece.type} to #{to} position."
+      false
     end
 
   end
@@ -41,3 +52,11 @@ class Game
   end
 
 end
+
+system("clear")
+b = Board.new(Array.new(8){Array.new(8,"")})
+players = [Player.new("player1",:white), Player.new("player2",:black)]
+
+g = Game.new(b,players)
+
+g.play

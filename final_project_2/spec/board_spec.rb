@@ -34,10 +34,19 @@ describe "Board" do
   end
 
   describe "#load_pieces" do
-    it "fill the board with chess pieces" do
+    it "fills the board with chess pieces if it is the start of the game" do
       board.load_pieces
       expect(board.cells[0][0].icon).to eq(PiecesUtil::ICONS[:black_rook])
       expect(board.cells[7][0].icon).to eq(PiecesUtil::ICONS[:white_rook])
+    end
+
+    it "updates the board with the updated pieces postition if not is the start of the game" do
+      board.load_pieces
+      board.cells[5][5] = board.cells[6][5]
+      board.cells[6][5] = ""
+      board.load_pieces(board.cells)
+      expect(board.cells[6][5]).to eq("")
+      expect(board.cells[5][5].type).to eq(:pawn)
     end
   end
 

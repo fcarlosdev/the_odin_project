@@ -9,7 +9,8 @@ describe "Game" do
     [Player.new("Player1","white"), Player.new("Player2","black")]
   }
 
-  let(:board) {
+  let(:board) {Board.new(cells)}
+  let(:cells) {
     [
       [Pieces::Rook.new(color:   "black", position: "Ra8"),
        Pieces::Knight.new(color: "black", position: "Nb8"),
@@ -72,9 +73,10 @@ describe "Game" do
   describe "#play" do
 
     it "prompts to player to move one piece" do
+      allow(board).to receive(:draw_board)
       allow(game).to receive(:move_piece_from).and_return("Pf2")
       allow(game).to receive(:move_piece_to).and_return("Pf3")
-      expect(game.play).to eq([1,5])
+      expect(game.play).to eq true
     end
 
   end

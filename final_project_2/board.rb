@@ -6,7 +6,7 @@ class Board
 
   include Pieces
 
-  attr_reader :columns, :rows, :cells
+  attr_reader :columns, :rows, :cells, :bg_colors, :size_of_square
 
   def initialize(cells)
     @rows           = cells.length
@@ -16,12 +16,21 @@ class Board
     @size_of_square = 8
   end
 
-  def draw_board
+  def draw_board(updated_cells=nil)
+    load_pieces(updated_cells)
     create_lines(bg_colors[0])
-    puts "".center(7)+(97.chr..(97+7).chr).to_a.join("".center(8))
+    puts "".center(6)+(97.chr..(97+7).chr).to_a.join("".center(7))
   end
 
-  def load_pieces
+  def load_pieces(updated_cells=nil)
+    if (updated_cells != nil)
+      @cells = updated_cells
+    else
+      init_cells
+    end
+  end
+
+  def init_cells
 
     cells[0][0] = Rook.new(color:   "black", position: "Ra8")
     cells[0][1] = Knight.new(color: "black", position: "Nb8")
