@@ -9,8 +9,17 @@ class Game
   end
 
   def play
-    { from: move_piece_from, to: move_piece_to }
-    
+    from = move_piece_from
+    to   = move_piece_to
+
+    board.each do |cells|
+      cells.each do |cell|
+        if (cell != "" && cell.position == from)
+          return PiecesUtil.position_to_axis(from)
+        end
+      end
+    end
+
   end
 
   private

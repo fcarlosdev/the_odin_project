@@ -41,12 +41,4 @@ describe "Board" do
     end
   end
 
-  describe "#get_piece" do
-    it "gets the pice on given location on the board" do
-      pawn = instance_double("Piece", color: "white", position: "Pf2")
-      board.cells[6][5] = pawn
-      expect(board.get_piece("Pf2")).to eq(pawn)
-    end
-  end
-
 end

@@ -1,55 +1,56 @@
 require './game.rb'
 require './board.rb'
 require './player.rb'
+require './pieces.rb'
 
 describe "Game" do
 
   let(:players) {
     [Player.new("Player1","white"), Player.new("Player2","black")]
   }
-  
+
   let(:board) {
     [
-      [Rook.new(color:   "black", position: "Ra8"),
-       Knight.new(color: "black", position: "Nb8"),
-       Bishop.new(color: "black", position: "Bc8"),
-       Queen.new(color:  "black", position: "Qd8"),
-       King.new(color:   "black", position: "Ke8"),
-       Bishop.new(color: "black", position: "Bf8"),
-       Knight.new(color: "black", position: "Ng8"),
-       Rook.new(color:   "black", position: "Rh8")],
+      [Pieces::Rook.new(color:   "black", position: "Ra8"),
+       Pieces::Knight.new(color: "black", position: "Nb8"),
+       Pieces::Bishop.new(color: "black", position: "Bc8"),
+       Pieces::Queen.new(color:  "black", position: "Qd8"),
+       Pieces::King.new(color:   "black", position: "Ke8"),
+       Pieces::Bishop.new(color: "black", position: "Bf8"),
+       Pieces::Knight.new(color: "black", position: "Ng8"),
+       Pieces::Rook.new(color:   "black", position: "Rh8")],
 
-       [Pawn.new(color:   "black", position: "Pa7"),
-        Pawn.new(color:   "black", position: "Pb7"),
-        Pawn.new(color:   "black", position: "Pc7"),
-        Pawn.new(color:   "black", position: "Pd7"),
-        Pawn.new(color:   "black", position: "Pe7"),
-        Pawn.new(color:   "black", position: "Pf7"),
-        Pawn.new(color:   "black", position: "Pg7"),
-        Pawn.new(color:   "black", position: "Ph7")],
+       [Pieces::Pawn.new(color:   "black", position: "Pa7"),
+        Pieces::Pawn.new(color:   "black", position: "Pb7"),
+        Pieces::Pawn.new(color:   "black", position: "Pc7"),
+        Pieces::Pawn.new(color:   "black", position: "Pd7"),
+        Pieces::Pawn.new(color:   "black", position: "Pe7"),
+        Pieces::Pawn.new(color:   "black", position: "Pf7"),
+        Pieces::Pawn.new(color:   "black", position: "Pg7"),
+        Pieces::Pawn.new(color:   "black", position: "Ph7")],
 
        ["","","","","","","",""],
        ["","","","","","","",""],
        ["","","","","","","",""],
        ["","","","","","","",""],
 
-       [Pawn.new(color:   "white", position: "Pa2"),
-        Pawn.new(color:   "white", position: "Pb2"),
-        Pawn.new(color:   "white", position: "Pc2"),
-        Pawn.new(color:   "white", position: "Pd2"),
-        Pawn.new(color:   "white", position: "Pe2"),
-        Pawn.new(color:   "white", position: "Pf2"),
-        Pawn.new(color:   "white", position: "Pg2"),
-        Pawn.new(color:   "white", position: "Ph2")],
+       [Pieces::Pawn.new(color:   "white", position: "Pa2"),
+        Pieces::Pawn.new(color:   "white", position: "Pb2"),
+        Pieces::Pawn.new(color:   "white", position: "Pc2"),
+        Pieces::Pawn.new(color:   "white", position: "Pd2"),
+        Pieces::Pawn.new(color:   "white", position: "Pe2"),
+        Pieces::Pawn.new(color:   "white", position: "Pf2"),
+        Pieces::Pawn.new(color:   "white", position: "Pg2"),
+        Pieces::Pawn.new(color:   "white", position: "Ph2")],
 
-       [Rook.new(color:   "white", position: "Ra1"),
-        Knight.new(color: "white", position: "Nb1"),
-        Bishop.new(color: "white", position: "Bc1"),
-        Queen.new(color:  "white", position: "Qd1"),
-        King.new(color:   "white", position: "Ke1"),
-        Bishop.new(color: "white", position: "Bf1"),
-        Knight.new(color: "white", position: "Ng1"),
-        Rook.new(color:   "white", position: "Rh1")]
+       [Pieces::Rook.new(color:   "white", position: "Ra1"),
+        Pieces::Knight.new(color: "white", position: "Nb1"),
+        Pieces::Bishop.new(color: "white", position: "Bc1"),
+        Pieces::Queen.new(color:  "white", position: "Qd1"),
+        Pieces::King.new(color:   "white", position: "Ke1"),
+        Pieces::Bishop.new(color: "white", position: "Bf1"),
+        Pieces::Knight.new(color: "white", position: "Ng1"),
+        Pieces::Rook.new(color:   "white", position: "Rh1")]
     ]
   }
 
@@ -73,7 +74,7 @@ describe "Game" do
     it "prompts to player to move one piece" do
       allow(game).to receive(:move_piece_from).and_return("Pf2")
       allow(game).to receive(:move_piece_to).and_return("Pf3")
-      expect(game.play).to eq(movement)
+      expect(game.play).to eq([1,5])
     end
 
   end

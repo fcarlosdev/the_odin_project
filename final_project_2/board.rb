@@ -59,14 +59,6 @@ class Board
 
   end
 
-  def get_piece(on)
-    cells.each do |pieces|
-      pieces.each do |piece|
-        return piece if piece != "" && piece.position == on
-      end
-    end
-  end
-
   private
 
   def create_lines(bg_color)
