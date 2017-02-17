@@ -12,35 +12,37 @@ class Game
   end
 
   def play
-    board.draw_board
-
-    from = move_piece_from
-    to   = move_piece_to
-
-    origin = PiecesUtil.position_to_axis(from)
-    piece = board.cells[origin[0]][origin[1]]
-    if (piece.move_to(to))
-      system("clear")
-      destiny = PiecesUtil.position_to_axis(to)
-      board.cells[destiny[0]][destiny[1]] = piece
-      board.cells[origin[0]][origin[1]] = ""
-      board.draw_board(board.cells)
-      true
-    else
-      puts "Invalid move of the #{piece.type} to #{to} position."
-      false
+    loop do
+      take_turn
+      break if game_over?
+      change_player
     end
-
   end
 
   private
 
-  def move_piece_from
-    current_player.move_piece_from
+  def take_turn
+    clear_screen
+    display_board
+    if !move_piece
+      puts "Invalid moviment."
+    end
   end
 
-  def move_piece_to
-    current_player.move_piece_to
+  def game_over?
+    true
+  end
+
+  def display_board(cells=nil)
+    return (cells.nil? ) ? board.draw_board : board.draw_board(cells)
+  end
+
+  def move_piece
+    print "Move the piece from: "
+    from = current_player.move_one_piece
+    print "Move the piece to:"
+    to = current_player.move_one_piece
+    board.move(from,to)
   end
 
   def set_current_player
@@ -48,15 +50,23 @@ class Game
   end
 
   def change_player
-    players.select {|p| p if current_player != p }
+    current_player = players.select {|p| p if current_player != p }
+  end
+
+  def clear_screen
+    system("clear")
+  end
+
+  def get_piece(from)
+    board.get_piece(from)
   end
 
 end
 
-system("clear")
-b = Board.new(Array.new(8){Array.new(8,"")})
-players = [Player.new("player1",:white), Player.new("player2",:black)]
-
-g = Game.new(b,players)
-
-g.play
+# system("clear")
+# b = Board.new(Array.new(8){Array.new(8,"")})
+# players = [Player.new("player1",:white), Player.new("player2",:black)]
+#
+# g = Game.new(b,players)
+#
+# g.play

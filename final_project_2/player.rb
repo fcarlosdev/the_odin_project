@@ -17,4 +17,8 @@ class Player
     gets.chomp.downcase.capitalize
   end
 
+  def move_one_piece
+    gets.chomp.downcase.capitalize
+  end
+
 end

@@ -50,4 +50,24 @@ describe "Board" do
     end
   end
 
+  describe "#to_xy" do
+    it "converts a board position to xy coordenates" do
+      expect(board.to_xy("Pf2")).to eq([6,5])
+    end
+  end
+
+  describe "#get_piece" do
+    it "returns a piece on a given position" do
+      board.load_pieces
+      expect(board.get_piece("Pf2")).to eq board.cells[6][5]
+    end
+  end
+
+  describe "#move" do
+    it "moves a given piece from original position to target position" do
+      board.load_pieces
+      expect(board.move("Pf2","Pf3")).to eq true
+    end
+  end
+
 end

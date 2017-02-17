@@ -68,6 +68,28 @@ class Board
 
   end
 
+  def move(from,to)
+    piece = get_piece(from)
+    if (piece.move_to(to))
+      origin = to_xy(from)
+      destiny = to_xy(to)
+      cells[destiny[0]][destiny[1]] = piece
+      cells[origin[0]][origin[1]] = nil
+      true
+    else
+      false
+    end
+  end
+
+  def to_xy(position)
+    PiecesUtil.position_to_axis(position)
+  end
+
+  def get_piece(from)
+    xy = to_xy(from)
+    cells[xy[0]][xy[1]]
+  end
+
   private
 
   def create_lines(bg_color)

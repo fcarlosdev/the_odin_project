@@ -60,10 +60,6 @@ describe "Game" do
     { from: "Pf2", to: "Pf3" }
   }
 
-  before do
-    allow(game).to receive(:puts).at_least(3).times
-  end
-
   describe "#new" do
     it "Creates a new game" do
       expect(game).to be_instance_of(Game)
@@ -72,12 +68,20 @@ describe "Game" do
 
   describe "#play" do
 
-    it "prompts to player to move one piece" do
-      allow(board).to receive(:draw_board)
-      allow(game).to receive(:move_piece_from).and_return("Pf2")
-      allow(game).to receive(:move_piece_to).and_return("Pf3")
-      expect(game.play).to eq true
+    subject(:play_game) {game.play}
+
+    before do
+      # allow(game).to receive(:puts).at_least(3).times
+      allow(game).to receive(:move_piece).and_return(true)
+      allow(game).to receive(:loop).and_yield
+      allow(board).to receive(:draw_board).and_return(board)
     end
+
+    it "prompts to the player to move one piece" do
+      expect(game).to receive(:take_turn)
+      subject
+    end
+
 
   end
 
