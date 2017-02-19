@@ -90,6 +90,10 @@ class Board
     cells[xy[0]][xy[1]]
   end
 
+  def get_king_color(color)
+    cells.flatten.select {|piece| piece != "" && piece.type == :king && piece.color == color}
+  end
+
   private
 
   def create_lines(bg_color)
@@ -116,35 +120,3 @@ class Board
   end
 
 end
-
-# system("clear")
-# b = Board.new(Array.new(8){Array.new(8,"")})
-# b.load_pieces
-# puts b.draw_board
-# pawn = b.cells[1][0]
-# 4.times do |i|
-#   b.cells[(i+2)][0] = pawn
-#   b.cells[(i+1)][0] = ""
-#   sleep(1)
-#   system("clear")
-#   puts b.draw_board
-# end
-# b.cells[5][0] = ""
-# b.cells[6][1] = pawn
-# sleep(1)
-# system("clear")
-# puts b.draw_board
-#
-# pawn_b = b.cells[6][0]
-# 4.times do |i|
-#   b.cells[(6-(i+1))][0] = pawn_b
-#   b.cells[(6-i)][0] = ""
-#   sleep(1)
-#   system("clear")
-#   puts b.draw_board
-# end
-# b.cells[1][1] = pawn_b
-# b.cells[2][0] = ""
-# sleep(1)
-# system("clear")
-# puts b.draw_board

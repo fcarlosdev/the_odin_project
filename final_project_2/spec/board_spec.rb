@@ -70,4 +70,12 @@ describe "Board" do
     end
   end
 
+  describe "get_king_color" do
+    it "returns the king piece of the given color" do
+      board.load_pieces
+      expect(board.get_king_color("black")).to_not be_nil
+      expect(board.get_king_color("black")).to eq([board.cells[0][4]])
+    end
+  end
+
 end

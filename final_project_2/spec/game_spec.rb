@@ -6,7 +6,8 @@ require './pieces.rb'
 describe "Game" do
 
   let(:players) {
-    [Player.new("Player1","white"), Player.new("Player2","black")]
+    [Player.new("Player1","white"),
+     Player.new("Player2","black")]
   }
 
   let(:board) {Board.new(cells)}
@@ -71,17 +72,24 @@ describe "Game" do
     subject(:play_game) {game.play}
 
     before do
-      # allow(game).to receive(:puts).at_least(3).times
-      allow(game).to receive(:move_piece).and_return(true)
       allow(game).to receive(:loop).and_yield
       allow(board).to receive(:draw_board).and_return(board)
     end
 
-    it "prompts to the player to move one piece" do
-      expect(game).to receive(:take_turn)
+    it "lets the player to make a valid move of one piece" do
+      allow(game).to receive(:take_turn)
+      allow(game).to receive(:clear_screen)
+      allow(game).to receive(:show_board)
+      allow(game).to receive(:move_piece).with(["Pf2","Pf3"]).and_return(true)
       subject
     end
 
+    it "checks if there was a checkmate move" do    
+      allow(game).to receive(:take_turn)
+      expect(game.game_over?).to eq "black"
+      # expect(game.game_over?).to eq true
+      subject
+    end
 
   end
 

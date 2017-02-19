@@ -3,8 +3,8 @@ require "./pieces.rb"
 
 describe "Player" do
 
-  let(:player) {Player.new("Player1",:white_pieces)}
-  let(:pawn)  {Pieces::Pawn.new(color: :white ,position: "Pf2")}
+  let(:player) {Player.new("Player1","white")}
+  let(:pawn)  {Pieces::Pawn.new(color: "white" ,position: "Pf2")}
   let(:moviment) {
     {from: pawn.position, to: "Pf3"}
   }
@@ -15,17 +15,13 @@ describe "Player" do
     end
   end
 
-  describe "#move_piece_from" do
-    it "moves one piece from given position" do
-      allow(player).to receive(:move_piece_from).and_return("Pf2")
-      player.move_piece_from
-    end
-  end
-
-  describe "#move_piece_to" do
-    it "moves one piece to give destination position" do
-      allow(player).to receive(:move_piece_to).and_return("Pf3")
-      player.move_piece_to
+  describe "#move_piece" do
+    it "enters the location of the piece to be moved" do
+      from = "pf2"
+      to   = "pf3"
+      allow(player).to receive(:move_piece).and_return(from)
+      allow(player).to receive(:move_piece).and_return(to)
+      player.move_piece
     end
   end
 end

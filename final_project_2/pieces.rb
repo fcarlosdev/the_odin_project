@@ -9,6 +9,7 @@ module Pieces
     def initialize(args={})
       @color    = args[:color]
       @position = args[:position]
+      @type = nil
       post_initialize
     end
 

@@ -14,39 +14,43 @@ class Game
   def play
     loop do
       take_turn
-      break if game_over?
-      change_player
     end
+  end
+
+  def game_over?
+    color = (current_player.color == "white") ? "black" : "white"
+    king = board.get_king_color(color)
+    king[0].color
   end
 
   private
 
   def take_turn
     clear_screen
-    display_board
-    if !move_piece
-      puts "Invalid moviment."
+    show_board
+    if !move_piece(moves_of_player)
+      puts "Invalid movement, try again."
     end
   end
 
-  def game_over?
-    true
+  def move_piece(directions)
+    board.move(directions[0],direction[1])
+  end
+
+  def moves_of_player
+    print "Move the piece from of the position (Ex.:pf2): "
+    from = current_player.move_piece
+    print "Move to position (Ex.:pf3): "
+    to = current_player.move_piece
+    [from,to]
   end
 
   def display_board(cells=nil)
     return (cells.nil? ) ? board.draw_board : board.draw_board(cells)
   end
 
-  def move_piece
-    print "Move the piece from: "
-    from = current_player.move_one_piece
-    print "Move the piece to:"
-    to = current_player.move_one_piece
-    board.move(from,to)
-  end
-
   def set_current_player
-    (players[0].piece_type == :white) ? players[0] : players[1]
+    (players[0].color == "white") ? players[0] : players[1]
   end
 
   def change_player
@@ -57,8 +61,8 @@ class Game
     system("clear")
   end
 
-  def get_piece(from)
-    board.get_piece(from)
+  def show_board
+    board.draw_board
   end
 
 end
