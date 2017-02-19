@@ -1,6 +1,6 @@
 require "./directions.rb"
 
-module PiecesUtil
+module PiecesHelper
 
   include Directions
 
@@ -46,15 +46,12 @@ module PiecesUtil
   end
 
   def self.position_to_axis(position)
-    files = { a: 0, b: 1, c: 2, d: 3, e: 4, f: 5, g: 6, h: 7 }
-    column = files[position[1].to_sym]
-    row = (position[2].to_i <= 0) ? 7 : (8 - position[2].to_i)
-    [row,column]
+    idx = (position.length == 3) ? [1,2] : [0,1]
+    [to_line(position[idx[1]].to_i),to_column(position[idx[0]].ord)]
   end
 
   def self.axis_to_position(xy)
-    files = { 0 => "a", 1 => "b", 2 => "c", 3 => "d", 4 => "e", 5 => "f", 6 => "g", 7 => "h" }
-    files[ xy[1] ] + (8 - xy[0]).to_s
+    ('a'.ord + xy[1]).chr + (8 - xy[0]).to_s
   end
 
   private
@@ -64,6 +61,16 @@ module PiecesUtil
     piece_name[(piece_name.index("::")+2)..piece_name.length]
   end
 
+  def self.to_line(rank)
+    (rank <= 0) ? 7 : (8 - rank)
+  end
+
+  def self.to_column(file)
+    (file - 'a'.ord)
+  end
+
   private_class_method :get_piece_name
+  private_class_method :to_line
+  private_class_method :to_column
 
 end

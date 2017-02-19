@@ -1,4 +1,4 @@
-require "./pieces_util.rb"
+require "./pieces_helper.rb"
 
 module Pieces
 
@@ -23,7 +23,7 @@ module Pieces
     end
 
     def valid_move?(position)
-      PiecesUtil.xy_to_rank_files(possible_moves).include?(position[1..2])
+      PiecesHelper.xy_to_rank_files(possible_moves).include?(position[1..2])
     end
 
     def possible_moves
@@ -36,7 +36,7 @@ module Pieces
 
     def post_initialize
       @type = :king
-      @icon = PiecesUtil.get_icon_of(self)
+      @icon = PiecesHelper.get_icon_of(self)
     end
 
     def valid_move?(position)
@@ -44,7 +44,7 @@ module Pieces
     end
 
     def possible_moves
-      PiecesUtil.move_one_square(@position,Directions.cardinal_and_ordinal)
+      PiecesHelper.move_one_square(@position,Directions.cardinal_and_ordinal)
     end
 
     private
@@ -63,11 +63,11 @@ module Pieces
 
     def post_initialize
       @type = :rook
-      @icon = PiecesUtil.get_icon_of(self)
+      @icon = PiecesHelper.get_icon_of(self)
     end
 
     def possible_moves
-      PiecesUtil.move_till_limits(@position,Directions.cardinal)
+      PiecesHelper.move_till_limits(@position,Directions.cardinal)
     end
 
   end
@@ -76,11 +76,11 @@ module Pieces
 
     def post_initialize
       @type = :bishop
-      @icon = PiecesUtil.get_icon_of(self)
+      @icon = PiecesHelper.get_icon_of(self)
     end
 
     def possible_moves
-      PiecesUtil.move_till_limits(@position,Directions.intercardinal)
+      PiecesHelper.move_till_limits(@position,Directions.intercardinal)
     end
 
   end
@@ -89,11 +89,11 @@ module Pieces
 
     def post_initialize
       @type = :queen
-      @icon = PiecesUtil.get_icon_of(self)
+      @icon = PiecesHelper.get_icon_of(self)
     end
 
     def possible_moves
-      PiecesUtil.move_till_limits(@position,Directions.cardinal_and_ordinal)
+      PiecesHelper.move_till_limits(@position,Directions.cardinal_and_ordinal)
     end
 
   end
@@ -102,11 +102,11 @@ module Pieces
 
     def post_initialize
       @type = :knight
-      @icon = PiecesUtil.get_icon_of(self)
+      @icon = PiecesHelper.get_icon_of(self)
     end
 
     def possible_moves
-      PiecesUtil.move_till_limits(@position,Directions.secondary)
+      PiecesHelper.move_till_limits(@position,Directions.secondary)
     end
 
   end
@@ -117,13 +117,34 @@ module Pieces
 
     def post_initialize
       @type = :pawn
-      @icon = PiecesUtil.get_icon_of(self)
-      @capture_moves = [[-1,1], [1,1], [-1,-1], [1,-1]]
+      @icon = PiecesHelper.get_icon_of(self)
+      # @capture_moves = [[-1,1], [1,1], [-1,-1], [1,-1]]
       @move_direction = (self.color.to_s.include?"white") ? :NORTH : :SOUTH
+      @moves = []
     end
 
     def possible_moves
-      PiecesUtil.move_one_square(position,[move_direction])
+      PiecesHelper.move_one_square(position,[move_direction])
+    end
+
+    def valid_move?(position)
+      @moves << position
+      if @moves.length == 1
+        super(position)
+      else
+        (caputre_moves(position).include?(position_to_xy(position)) || super(position))
+      end
+    end
+
+    private
+
+    def caputre_moves(position)
+      index =  @moves.find_index(position)
+      PiecesHelper.move_one_square(@moves[index-1],Directions.intercardinal)
+    end
+
+    def position_to_xy(position)
+      (PiecesHelper.position_to_axis(position))
     end
 
   end

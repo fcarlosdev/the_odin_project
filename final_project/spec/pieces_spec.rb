@@ -134,6 +134,12 @@ describe "Pieces" do
       it "doesn't moves the pawn piece if the destiny position isn't possible move" do
         expect(pieces[:pawn].move_to("Ph4")).to eq(false)
       end
+
+      it "moves the pawn piece if it is a valid capture move" do
+        black_pawn = Pieces::Pawn.new(color: colors[1],position: "Pe4")
+        pieces[:pawn].move_to("Pf3")
+        expect(pieces[:pawn].move_to("Pe4")).to eq(true)
+      end
     end
 
   end

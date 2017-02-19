@@ -1,5 +1,5 @@
 require "./board.rb"
-require "./pieces_util.rb"
+require "./pieces_helper.rb"
 
 describe "Board" do
 
@@ -36,8 +36,8 @@ describe "Board" do
   describe "#load_pieces" do
     it "fills the board with chess pieces if it is the start of the game" do
       board.load_pieces
-      expect(board.cells[0][0].icon).to eq(PiecesUtil::ICONS[:black_rook])
-      expect(board.cells[7][0].icon).to eq(PiecesUtil::ICONS[:white_rook])
+      expect(board.cells[0][0].icon).to eq(PiecesHelper::ICONS[:black_rook])
+      expect(board.cells[7][0].icon).to eq(PiecesHelper::ICONS[:white_rook])
     end
 
     it "updates the board with the updated pieces postition if not is the start of the game" do
@@ -53,6 +53,7 @@ describe "Board" do
   describe "#to_xy" do
     it "converts a board position to xy coordenates" do
       expect(board.to_xy("Pf2")).to eq([6,5])
+      expect(board.to_xy("f2")).to eq([6,5])
     end
   end
 
@@ -64,18 +65,44 @@ describe "Board" do
   end
 
   describe "#move" do
-    it "moves a given piece from original position to target position" do
-      board.load_pieces
-      expect(board.move("Pf2","Pf3")).to eq true
+
+    context "when is a valid move" do
+      it "moves a given piece from original position to target position" do
+        board.load_pieces
+        expect(board.move("Pf2","Pf3")).to eq true
+      end
     end
+
+    context "when is an invalid move" do
+      it "doesn't moves the given piece to the target positon" do
+        board.load_pieces
+        expect(board.move("Pf2","Pe2")).to eq false
+      end
+    end
+
+    context "when is the actual positon of the piece" do
+      it "doesn't moves the given pice" do
+        board.load_pieces
+        expect(board.move("Pf2","Pf2")).to eq false
+      end
+    end
+
+
   end
 
   describe "get_king_color" do
     it "returns the king piece of the given color" do
       board.load_pieces
       expect(board.get_king_color("black")).to_not be_nil
-      expect(board.get_king_color("black")).to eq([board.cells[0][4]])
+      expect(board.get_king_color("black")).to eq(board.cells[0][4])
     end
   end
+
+  # describe "to_file_row" do
+  #   it "converts the xy coordenates to board files and rows position" do
+  #     board.load_pieces
+  #     expect(board.to_file_row([]))
+  #   end
+  # end
 
 end
