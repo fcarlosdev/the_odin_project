@@ -19,6 +19,7 @@ class Game
     end
   end
 
+  #Unfinish in construction
   def game_over?
     color = (current_player.color == "white") ? "black" : "white"
     king = board.get_king_color(color)
@@ -50,7 +51,7 @@ class Game
   end
 
   def move_piece(xy)
-    (piece_of_your_color(xy[0])) ? board.move(xy[0],xy[1]) : false
+    (!empty_cell?(xy[0]) && owner_of_piece?(xy[0]) && move_ok?(xy[0],xy[1]))
   end
 
   def require_movements
@@ -78,16 +79,23 @@ class Game
     system("clear")
   end
 
-  def piece_of_your_color(position)
-    piece = piece_on(position)
-    (piece != "" && @current_player.color == piece.color)
+  def owner_of_piece?(position)
+    @current_player.color == piece_on(position).color
   end
 
   def piece_on(position)
     board.get_piece(position)
   end
 
+  def empty_cell?(position)
+    board.empty_cell?(position)
+  end
+
+  def move_ok?(from,to)
+    board.move(from,to)
+  end
+
 end
 
-g = Game.new(Board.new(Array.new(8){Array.new(8,"")}), [Player.new("player1","white"), Player.new("player2","black")])
-g.play
+# g = Game.new(Board.new(Array.new(8){Array.new(8,"")}), [Player.new("player1","white"), Player.new("player2","black")])
+# g.play

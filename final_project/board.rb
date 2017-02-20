@@ -19,15 +19,11 @@ class Board
   def draw_board(updated_cells=nil)
     load_pieces(updated_cells)
     create_lines(bg_colors[0])
-    puts "".center(6)+(97.chr..(97+7).chr).to_a.join("".center(7))
+    show_bottom_letters
   end
 
   def load_pieces(updated_cells=nil)
-    if (updated_cells != nil)
-      @cells = updated_cells
-    else
-      init_cells
-    end
+    (updated_cells != nil) ? (@cells = updated_cells) : init_cells
   end
 
   def init_cells
@@ -95,6 +91,10 @@ class Board
     cells.flatten.select {|piece| (piece != "" && piece != nil) && piece.type == :king && piece.color == color}[0]
   end
 
+  def empty_cell?(position)
+    get_piece(position) == ""
+  end
+
   private
 
   def create_lines(bg_color)
@@ -118,6 +118,10 @@ class Board
 
   def switch_color_of_square(current_bg_color)
     bg_colors.find {|color| color != current_bg_color}
+  end
+
+  def show_bottom_letters
+    puts "".center(6)+(97.chr..(97+7).chr).to_a.join("".center(7))
   end
 
 end
