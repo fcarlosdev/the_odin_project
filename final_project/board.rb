@@ -14,16 +14,12 @@ class Board
     @cells          = cells
     @bg_colors      = [:light_white, :cyan]
     @size_of_square = 8
+    init_cells
   end
 
   def draw_board(updated_cells=nil)
-    load_pieces(updated_cells)
     create_lines(bg_colors[0])
     show_bottom_letters
-  end
-
-  def load_pieces(updated_cells=nil)
-    (updated_cells != nil) ? (@cells = updated_cells) : init_cells
   end
 
   def init_cells
@@ -64,6 +60,7 @@ class Board
 
   end
 
+  #refactor this method
   def move(from,to)
     return false if (from == to)
     piece = get_piece(from)
@@ -72,6 +69,7 @@ class Board
       destiny = to_xy(to)
       cells[destiny[0]][destiny[1]] = piece
       cells[origin[0]][origin[1]] = ""
+      update_cells(cells)
       true
     else
       false
@@ -122,6 +120,10 @@ class Board
 
   def show_bottom_letters
     puts "".center(6)+(97.chr..(97+7).chr).to_a.join("".center(7))
+  end
+
+  def update_cells(updated_cells)
+    cells = updated_cells
   end
 
 end
