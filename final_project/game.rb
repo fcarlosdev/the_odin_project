@@ -22,7 +22,7 @@ class Game
       end
       break if game_over?
       switch_player
-    end
+    end    
   end
 
   def game_over?
@@ -108,5 +108,5 @@ class Game
 
 end
 
-# g = Game.new(Board.new(Array.new(8){Array.new(8,"")}), [Player.new("player1","white"), Player.new("player2","black")])
-# g.play
+g = Game.new(Board.new(Array.new(8){Array.new(8,"")}), [Player.new("player1","white"), Player.new("player2","black")])
+g.play
