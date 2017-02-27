@@ -5,10 +5,10 @@ This repository contain the solutions of projects of The Odin Project, according
 **Projects/Tasks**
 
 - [**HTML/CSS**] (http://www.theodinproject.com/web-development-101/html-css)
-  - Google Homepage.
+  - [**Google Homepage**](https://github.com/fcarlosdev/the_odin_project/tree/master/google_homepage)
 
 - [**Javascript Basics**] (http://www.theodinproject.com/web-development-101/javascript-basics)
-  - **Project Euler**
+  - [**Project Euler**](https://github.com/fcarlosdev/the_odin_project/tree/master/projecteuler)
     - Multiples of 3 and 5;
     - Even Fibonacci Numbers;
     - Largest Prime Factor.
