@@ -48,7 +48,7 @@ module Pieces
     end
 
     def possible_moves
-      PiecesHelper.move_one_square(@position,Directions.cardinal_and_ordinal)
+      PiecesHelper.move_till_two_squares(@position,Directions.cardinal_and_ordinal)
     end
 
     def capture_moves
@@ -138,39 +138,50 @@ module Pieces
   class Pawn < Piece
 
     attr_reader :move_direction
+    # , :en_passant
 
     def post_initialize
       @type = :pawn
       @icon = PiecesHelper.get_icon_of(self)
       @move_direction = (self.color.to_s.include?"white") ? :NORTH : :SOUTH
-      @moves = []
+      @new_position = ""
+      # @en_passant  = false
     end
 
     def possible_moves
-      PiecesHelper.move_one_square(position,[move_direction])
+      move_by = (move_by_two?(position) && first_move?(position)) ? 2 : 1
+      PiecesHelper.move_till_two_squares(position,[move_direction],move_by)
     end
 
     def valid_move?(position)
-      @moves << position
+      set_new_position(position)
       (capture_moves(position).include?(position[1,2]) || super(position))
     end
 
     def capture_moves(position=nil)
-      PiecesHelper.xy_to_rank_files(possible_capture_moves(get_last_move(position)))
+      PiecesHelper.xy_to_rank_files(possible_capture_moves)
+    end
+
+    def is_en_passant(confirmation)
+      @en_passant = confirmation
     end
 
     private
 
-    def possible_capture_moves(last_move)
-      PiecesHelper.move_one_square(last_move,Directions.intercardinal)
+    def possible_capture_moves
+      PiecesHelper.move_till_two_squares(position,Directions.intercardinal)
     end
 
-    def get_last_move(position)
-      @moves[index_of(position)-1]
+    def set_new_position(position)
+      @new_position = position
     end
 
-    def index_of(position)
-      @moves.find_index((position == nil) ? self.position : position)
+    def move_by_two?(position)
+      ((@new_position[2].to_i) - (position[2].to_i)).abs >= 2
+    end
+
+    def first_move?(position)
+      ([2,7]).include?(position[2].to_i)
     end
 
   end

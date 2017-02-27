@@ -132,6 +132,7 @@ describe "Pieces" do
       end
 
       it "doesn't moves the pawn piece if the destiny position isn't possible move" do
+        pieces[:pawn].move_to("Pf3")
         expect(pieces[:pawn].move_to("Ph4")).to eq(false)
       end
 
@@ -139,6 +140,10 @@ describe "Pieces" do
         black_pawn = Pieces::Pawn.new(color: colors[1],position: "Pe4")
         pieces[:pawn].move_to("Pf3")
         expect(pieces[:pawn].move_to("Pe4")).to eq(true)
+      end
+
+      it "moves the pawn piece two squares if it's first move" do
+        expect(pieces[:pawn].move_to("Pf4")).to eq(true)
       end
     end
 

@@ -14,9 +14,9 @@ module PiecesHelper
    black_bishop: "\u265D", black_knight: "\u265E", black_pawn: "\u265F"
   }
 
-  def self.move_one_square(position,directions)
+  def self.move_till_two_squares(position,directions, by_two = 1)
     xy = position_to_axis(position)
-    Directions.xy_from_cardinals(directions).collect {|d| [xy[0]+d[0], xy[1]+d[1]]}
+    extract_factors(directions).map {|f| [(xy[0]+(f[0]*by_two)), xy[1]+f[1]] }
   end
 
   def self.move_till_limits(position,directions)
@@ -69,8 +69,13 @@ module PiecesHelper
     (file - 'a'.ord)
   end
 
+  def self.extract_factors(directions)
+    Directions.xy_from_cardinals(directions)
+  end
+
   private_class_method :get_piece_name
   private_class_method :to_line
   private_class_method :to_column
+  private_class_method :extract_factors
 
 end
