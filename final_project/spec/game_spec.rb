@@ -57,8 +57,14 @@ describe "Game" do
   }
 
   let(:game) {Game.new(board,players)}
-  let(:movement) {
-    { from: "Pf2", to: "Pf3" }
+
+  let(:pieces_moved) {
+    [
+      Pieces::Pawn.new(color:  "white", position: "Pf3"),
+      Pieces::Pawn.new(color:  "black", position: "Pe5"),
+      Pieces::Pawn.new(color:  "white", position: "Pg4"),
+      Pieces::Queen.new(color: "black", position: "Qh4")
+    ]
   }
 
   describe "#new" do
@@ -73,21 +79,36 @@ describe "Game" do
 
     before do
       allow(game).to receive(:loop).and_yield
+      allow(game).to receive(:display_move_messages)
+      allow(game).to receive(:clear_screen)
       allow(board).to receive(:draw_board).and_return(board)
     end
 
-    it "lets the player to make a valid move of one piece" do
+    it "lets the player move a piece" do
+      allow(game).to receive(:from_to).and_return(["Pf2","Pf3"])
       allow(game).to receive(:take_turn)
-      allow(game).to receive(:clear_screen)
-      allow(game).to receive(:show_board)
-      allow(game).to receive(:move_piece).with(["Pf2","Pf3"]).and_return(true)
       subject
     end
 
-    it "checks if there was a checkmate move" do
-      allow(game).to receive(:take_turn)
-      expect(game.game_over?).to eq true
-      subject
+    context "end game scnearios" do
+
+      context "when is a checkmate move" do
+
+        it "returns the winning message" do
+          from_to = [["Pf2","Pf3"],["Pe7","Pe5"],["Pg2","Pg4"],["Qd8","Qh4"]]
+          colors = ["white", "black","white","black"]
+
+          from_to.each_index do |i|
+            allow(game.current_player).to receive(:color).and_return(colors[i])
+            allow(game).to receive(:from_to).and_return(from_to[i])
+            allow(game).to receive(:piece_on).with(from_to[i][0]).and_return("")
+            allow(game).to receive(:piece_on).with(from_to[i][1]).and_return(pieces_moved[i])
+            allow(game).to receive(:scape_moves).with(board.cells[7][4]).and_return(["f2"])
+          end
+          expect(game.game_over?).to eql(true)
+        end
+
+      end
     end
 
   end

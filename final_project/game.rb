@@ -3,37 +3,34 @@ require './player.rb'
 
 class Game
 
-  attr_reader :board, :players, :current_player, :has_moved_piece
+  attr_reader :board, :players, :current_player, :from_to
 
   def initialize(board, players)
-    @board   = board
-    @players = players
-    @current_player = set_current_player
-    @has_moved_piece = false
+    @board           = board
+    @players         = players
+    @current_player  = set_current_player
+    @valid_move      = false
+    @from_to         = []
+    @piece_moved     = nil
   end
 
   def play
     loop do
       take_turn
+      if !move_piece(from_to)
+        display_error_message
+        redo
+      end
+      @piece_moved = piece_on(from_to[1])
       break if game_over?
+      switch_player
     end
   end
 
-  #Unfinish in construction
   def game_over?
     color = (current_player.color == "white") ? "black" : "white"
-    king = board.get_king_color(color)
-    moves = king.possible_moves.select {|m| PiecesHelper.on_limits?(m)}.collect {|m| PiecesHelper.axis_to_position(m)}
-
-    moves.each do |m|
-      piece = board.get_piece(m)
-      if (piece != "" && piece.color != king.color)
-        opponent_moves = piece.possible_moves.select {|m| PiecesHelper.on_limits?(m)}.collect {|m| PiecesHelper.axis_to_position(m)}
-        puts "Opponent #{piece.type} moves = #{opponent_moves.inspect}"
-        return true
-      end
-    end
-    false
+    piece = piece_on(from_to[1])
+    (piece != "") && check?(piece.capture_moves,board.get_king_color(color))
   end
 
   private
@@ -41,37 +38,48 @@ class Game
   def take_turn
     clear_screen
     display_board
-    if !move_piece(require_movements)
-      puts "Invalid movement, try again"
-      sleep(1)
-    else
-      @has_moved_piece = true
-      change_player
-    end
+    display_move_messages
+  end
+
+  def display_move_messages
+    puts "Turn of the #{current_player.name}"
+    print "Move one piece from (Ex.:pf2): "
+    from = current_player.move_one_piece
+    print "Move the piece #{from} to (Ex.:pf3): "
+    to = current_player.move_one_piece
+    from_to[0] = from
+    from_to[1] = to
   end
 
   def move_piece(xy)
     (!empty_cell?(xy[0]) && owner_of_piece?(xy[0]) && move_ok?(xy[0],xy[1]))
   end
 
-  def require_movements
-    puts "Turn of the #{current_player.name}"
-    print "Move one piece from (Ex.:pf2): "
-    from = current_player.move_piece
-    print "Move the piece #{from} to (Ex.:pf3): "
-    to = current_player.move_piece
-    [from,to]
+  def check?(capture_moves,king)
+    capture_moves.include?(king.position[1,2]) && has_no_scape_move?(capture_moves,king)
+  end
+
+  def has_no_scape_move?(capture_moves,king)
+    scape_moves(king).all?{|move| capture_moves.include?(move)}
+  end
+
+  def scape_moves(king)
+    PiecesHelper.xy_to_rank_files(king.possible_moves).select {|m| piece_on(m) == ""}
+  end
+
+  def king_moves(king)
+    PiecesHelper.xy_to_rank_files(king.possible_moves)
   end
 
   def display_board
-    return (@has_moved_piece) ? board.draw_board(board.cells) : board.draw_board
+    board.draw_board
   end
 
   def set_current_player
     (players[0].color == "white") ? players[0] : players[1]
   end
 
-  def change_player
+  def switch_player
     @current_player = players.find {|p| p if current_player != p }
   end
 
@@ -93,6 +101,11 @@ class Game
 
   def move_ok?(from,to)
     board.move(from,to)
+  end
+
+  def display_error_message
+    puts "Invalid movement, try again"
+    sleep(1)
   end
 
 end
