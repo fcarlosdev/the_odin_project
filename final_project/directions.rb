@@ -36,5 +36,4 @@ module Directions
     [:NORTH, :SOUTH]
   end
 
-
 end
