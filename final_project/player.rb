@@ -7,7 +7,7 @@ class Player
     @color = color
   end
 
-  def move_piece
+  def move_one_piece
     gets.chomp.downcase.capitalize
   end
 
