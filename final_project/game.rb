@@ -11,7 +11,6 @@ class Game
     @current_player  = set_current_player
     @valid_move      = false
     @from_to         = []
-    @piece_moved     = nil
   end
 
   def play
@@ -21,7 +20,6 @@ class Game
         display_error_message
         redo
       end
-      @piece_moved = piece_on(from_to[1])
       break if game_over?
       switch_player
     end
