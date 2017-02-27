@@ -19,9 +19,9 @@ describe "Player" do
     it "enters the location of the piece to be moved" do
       from = "pf2"
       to   = "pf3"
-      allow(player).to receive(:move_piece).and_return(from)
-      allow(player).to receive(:move_piece).and_return(to)
-      player.move_piece
+      allow(player).to receive(:move_one_piece).and_return(from)
+      allow(player).to receive(:move_one_piece).and_return(to)
+      player.move_one_piece
     end
   end
 end
