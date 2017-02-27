@@ -7,9 +7,9 @@ module Pieces
     attr_reader :color, :icon, :type, :position
 
     def initialize(args={})
-      @color    = args[:color]
-      @position = args[:position]
-      @type = nil
+      @color         = args[:color]
+      @position      = args[:position]
+      @type          = nil
       post_initialize
     end
 
@@ -26,7 +26,11 @@ module Pieces
       PiecesHelper.xy_to_rank_files(possible_moves).include?(position[1..2])
     end
 
-    def possible_moves
+    def possible_moves(position=nil)
+      raise NotImplementedError, "This #{self.class} cannot respond to:"
+    end
+
+    def capture_moves
       raise NotImplementedError, "This #{self.class} cannot respond to:"
     end
 
@@ -45,6 +49,10 @@ module Pieces
 
     def possible_moves
       PiecesHelper.move_one_square(@position,Directions.cardinal_and_ordinal)
+    end
+
+    def capture_moves
+      PiecesHelper.xy_to_rank_files(possible_moves)
     end
 
     private
@@ -70,6 +78,10 @@ module Pieces
       PiecesHelper.move_till_limits(@position,Directions.cardinal)
     end
 
+    def capture_moves
+      PiecesHelper.xy_to_rank_files(possible_moves)
+    end
+
   end
 
   class Bishop < Piece
@@ -81,6 +93,10 @@ module Pieces
 
     def possible_moves
       PiecesHelper.move_till_limits(@position,Directions.intercardinal)
+    end
+
+    def capture_moves
+      PiecesHelper.xy_to_rank_files(possible_moves)
     end
 
   end
@@ -96,6 +112,10 @@ module Pieces
       PiecesHelper.move_till_limits(@position,Directions.cardinal_and_ordinal)
     end
 
+    def capture_moves
+      PiecesHelper.xy_to_rank_files(possible_moves)
+    end
+
   end
 
   class Knight < Piece
@@ -109,16 +129,19 @@ module Pieces
       PiecesHelper.move_till_limits(@position,Directions.secondary)
     end
 
+    def capture_moves
+      PiecesHelper.xy_to_rank_files(possible_moves)
+    end
+
   end
 
   class Pawn < Piece
 
-    attr_reader :capture_moves, :move_direction
+    attr_reader :move_direction
 
     def post_initialize
       @type = :pawn
       @icon = PiecesHelper.get_icon_of(self)
-      # @capture_moves = [[-1,1], [1,1], [-1,-1], [1,-1]]
       @move_direction = (self.color.to_s.include?"white") ? :NORTH : :SOUTH
       @moves = []
     end
@@ -129,22 +152,25 @@ module Pieces
 
     def valid_move?(position)
       @moves << position
-      if @moves.length == 1
-        super(position)
-      else
-        (caputre_moves(position).include?(position_to_xy(position)) || super(position))
-      end
+      (capture_moves(position).include?(position[1,2]) || super(position))
+    end
+
+    def capture_moves(position=nil)
+      PiecesHelper.xy_to_rank_files(possible_capture_moves(get_last_move(position)))
     end
 
     private
 
-    def caputre_moves(position)
-      index =  @moves.find_index(position)
-      PiecesHelper.move_one_square(@moves[index-1],Directions.intercardinal)
+    def possible_capture_moves(last_move)
+      PiecesHelper.move_one_square(last_move,Directions.intercardinal)
     end
 
-    def position_to_xy(position)
-      (PiecesHelper.position_to_axis(position))
+    def get_last_move(position)
+      @moves[index_of(position)-1]
+    end
+
+    def index_of(position)
+      @moves.find_index((position == nil) ? self.position : position)
     end
 
   end
