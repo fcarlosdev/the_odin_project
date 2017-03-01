@@ -3,32 +3,31 @@ require './player.rb'
 
 class Game
 
-  attr_reader :board, :players, :current_player, :from_to
+  attr_reader :board, :players, :current_player, :from, :to
 
   def initialize(board, players)
     @board           = board
     @players         = players
     @current_player  = set_current_player
     @valid_move      = false
-    @from_to         = []
+    @from            = ""
+    @to              = ""
   end
 
   def play
     loop do
       take_turn
-      if !move_piece(from_to)
+      if !move_piece(from,to)
         display_error_message
         redo
       end
       break if game_over?
       switch_player
-    end    
+    end
   end
 
   def game_over?
-    color = (current_player.color == "white") ? "black" : "white"
-    piece = piece_on(from_to[1])
-    (piece != "") && check?(piece.capture_moves,board.get_king_color(color))
+    (!empty_cell?(to) && check?(piece_on(to)) )
   end
 
   private
@@ -36,25 +35,24 @@ class Game
   def take_turn
     clear_screen
     display_board
-    display_move_messages
+    enter_moves
   end
 
-  def display_move_messages
+  def enter_moves
     puts "Turn of the #{current_player.name}"
     print "Move one piece from (Ex.:pf2): "
-    from = current_player.move_one_piece
+    @from = current_player.move_one_piece
     print "Move the piece #{from} to (Ex.:pf3): "
-    to = current_player.move_one_piece
-    from_to[0] = from
-    from_to[1] = to
+    @to = current_player.move_one_piece
   end
 
-  def move_piece(xy)
-    (!empty_cell?(xy[0]) && owner_of_piece?(xy[0]) && move_ok?(xy[0],xy[1]))
+  def move_piece(from,to)
+    (!empty_cell?(from) && owner_of_piece?(from) && move_ok?(from,to))
   end
 
-  def check?(capture_moves,king)
-    capture_moves.include?(king.position[1,2]) && has_no_scape_move?(capture_moves,king)
+  def check?(piece)
+    piece.capture_moves.include?(get_opponent_king.position[1,2]) &&
+          has_no_scape_move(piece.capture_moves,get_opponent_king)
   end
 
   def has_no_scape_move?(capture_moves,king)
@@ -104,6 +102,14 @@ class Game
   def display_error_message
     puts "Invalid movement, try again"
     sleep(1)
+  end
+
+  def get_opponent_king
+    board.get_king_color(get_color_opponent_king)
+  end
+
+  def get_color_opponent_king
+    (current_player.color == "white") ? "black" : "white"
   end
 
 end

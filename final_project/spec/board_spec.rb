@@ -82,6 +82,7 @@ describe "Board" do
 
     context "when is a valid move" do
       it "moves a given piece from original position to target position" do
+        allow(board).to receive(:has_ally_on_the_way?).with(cells[6][5],"Pf3").and_return(false)
         expect(board.move("Pf2","Pf3")).to eq true
       end
     end
@@ -95,6 +96,13 @@ describe "Board" do
     context "when is the actual positon of the piece" do
       it "doesn't moves the given pice" do
         expect(board.move("Pf2","Pf2")).to eq false
+      end
+    end
+
+    context "when there is an piece of the same color on the final position" do
+      it "doesn't moves the piece to the final position" do
+        allow(board).to receive(:has_ally_on_the_way?).with(cells[7][5],"Bg2").and_return(true)
+        expect(board.move("Bf1","Bg2")).to eq false
       end
     end
 

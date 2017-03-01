@@ -14,7 +14,7 @@ class Board
     @cells          = cells
     @bg_colors      = [:light_white, :cyan]
     @size_of_square = 8
-    init_cells
+    load_pieces
   end
 
   def draw_board(updated_cells=nil)
@@ -22,7 +22,89 @@ class Board
     show_bottom_letters
   end
 
-  def init_cells
+  def move(from,to)
+    # if (!from_equal_to?(from,to) &&
+    #     !has_ally_on_the_way?(get_piece(from),to) &&
+    #     valid_move_of?(get_piece(from),to) )
+    if !has_ally_on_the_way?(get_piece(from),to)
+      set_position(from,to)
+      update_cells(cells)
+      true
+    else
+      false
+    end
+  end
+
+  def to_xy(position)
+    PiecesHelper.position_to_axis(position)
+  end
+
+  def get_piece(from)
+    xy = to_xy(from)
+    cells[xy[0]][xy[1]]
+  end
+
+  def get_king_color(color)
+    cells.flatten.select {|piece| (piece != "" && piece != nil) && piece.type == :king && piece.color == color}[0]
+  end
+
+  def empty_cell?(position)
+    get_piece(position) == ""
+  end
+
+  def has_ally_on_the_way?(piece,to)
+    (!empty_cell?(to) && (piece.color == get_piece(to).color))
+  end
+
+  private
+
+  def create_lines(bg_color)
+    rows.times do |row|
+      puts "".center(3) + create_columns(bg_color)
+      puts "#{rows-row}".center(3) + create_columns(cells[row], bg_color)
+      puts "".center(3) + create_columns(bg_color)
+      bg_color = switch_color_of_square(bg_color)
+    end
+  end
+
+  def create_columns(pieces=nil, bg_color)
+    line = ""
+    columns.times do |col|
+      tmp_piece = (pieces != nil && pieces[col] != "") ? pieces[col].icon : ""
+      line += tmp_piece.center(size_of_square).colorize(:color => :black, :background => bg_color)
+      bg_color = switch_color_of_square(bg_color)
+    end
+    line
+  end
+
+  def switch_color_of_square(current_bg_color)
+    bg_colors.find {|color| color != current_bg_color}
+  end
+
+  def show_bottom_letters
+    puts "".center(6)+(97.chr..(97+7).chr).to_a.join("".center(7))
+  end
+
+  def update_cells(updated_cells)
+    cells = updated_cells
+  end
+
+  def from_equal_to?(from,to)
+    (from == to)
+  end
+
+  def valid_move_of?(piece,to)
+    piece.move_to(to)
+  end
+
+  def set_position(from,to)
+    origin = to_xy(from)
+    destiny = to_xy(to)
+    cells[destiny[0]][destiny[1]] = cells[origin[0]][origin[1]]
+    cells[origin[0]][origin[1]] = ""
+  end
+
+  def load_pieces
 
     cells[0][0] = Rook.new(color:   "black", position: "Ra8")
     cells[0][1] = Knight.new(color: "black", position: "Nb8")
@@ -58,72 +140,6 @@ class Board
     cells[7][6] = Knight.new(color: "white", position: "Ng1")
     cells[7][7] = Rook.new(color:   "white", position: "Rh1")
 
-  end
-
-  #refactor this method
-  def move(from,to)
-    return false if (from == to)
-    piece = get_piece(from)
-    if (piece.move_to(to))
-      origin = to_xy(from)
-      destiny = to_xy(to)
-      cells[destiny[0]][destiny[1]] = piece
-      cells[origin[0]][origin[1]] = ""
-      update_cells(cells)
-      true
-    else
-      false
-    end
-  end
-
-  def to_xy(position)
-    PiecesHelper.position_to_axis(position)
-  end
-
-  def get_piece(from)
-    xy = to_xy(from)
-    cells[xy[0]][xy[1]]
-  end
-
-  def get_king_color(color)
-    cells.flatten.select {|piece| (piece != "" && piece != nil) && piece.type == :king && piece.color == color}[0]
-  end
-
-  def empty_cell?(position)
-    get_piece(position) == ""
-  end
-
-  private
-
-  def create_lines(bg_color)
-    rows.times do |row|
-      puts "".center(3) + create_columns(bg_color)
-      puts "#{rows-row}".center(3) + create_columns(cells[row], bg_color)
-      puts "".center(3) + create_columns(bg_color)
-      bg_color = switch_color_of_square(bg_color)
-    end
-  end
-
-  def create_columns(pieces=nil, bg_color)
-    line = ""
-    columns.times do |col|
-      tmp_piece = (pieces != nil && pieces[col] != "") ? pieces[col].icon : ""
-      line += tmp_piece.center(size_of_square).colorize(:color => :black, :background => bg_color)
-      bg_color = switch_color_of_square(bg_color)
-    end
-    line
-  end
-
-  def switch_color_of_square(current_bg_color)
-    bg_colors.find {|color| color != current_bg_color}
-  end
-
-  def show_bottom_letters
-    puts "".center(6)+(97.chr..(97+7).chr).to_a.join("".center(7))
-  end
-
-  def update_cells(updated_cells)
-    cells = updated_cells
   end
 
 end

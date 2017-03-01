@@ -85,7 +85,9 @@ describe "Game" do
     end
 
     it "lets the player move a piece" do
-      allow(game).to receive(:from_to).and_return(["Pf2","Pf3"])
+      # allow(game).to receive(:from_to).and_return(["Pf2","Pf3"])
+      allow(game).to receive(:from).and_return("Pf2")
+      allow(game).to receive(:to).and_return("Pf3")
       allow(game).to receive(:take_turn)
       subject
     end
@@ -95,15 +97,11 @@ describe "Game" do
       context "when is a checkmate move" do
 
         it "returns the winning message" do
-          from_to = [["Pf2","Pf3"],["Pe7","Pe5"],["Pg2","Pg4"],["Qd8","Qh4"]]
-          colors = ["white", "black","white","black"]
-
-          from_to.each_index do |i|
-            allow(game.current_player).to receive(:color).and_return(colors[i])
-            allow(game).to receive(:from_to).and_return(from_to[i])
-            allow(game).to receive(:piece_on).with(from_to[i][0]).and_return("")
-            allow(game).to receive(:piece_on).with(from_to[i][1]).and_return(pieces_moved[i])
-            allow(game).to receive(:scape_moves).with(board.cells[7][4]).and_return(["f2"])
+          4.times do |i|
+            allow(game).to receive(:to).and_return(pieces_moved[i].position)
+            allow(game).to receive(:empty_cell?).with(pieces_moved[i].position).and_return(false)
+            allow(game).to receive(:piece_on).with(pieces_moved[i].position).and_return(pieces_moved[i])
+            allow(game).to receive(:check?).with(pieces_moved[i]).and_return(true)
           end
           expect(game.game_over?).to eql(true)
         end
