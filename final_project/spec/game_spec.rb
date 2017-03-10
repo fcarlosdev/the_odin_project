@@ -79,7 +79,7 @@ describe "Game" do
 
     before do
       allow(game).to receive(:loop).and_yield
-      allow(game).to receive(:display_move_messages)
+      allow(game).to receive(:enter_moves)
       allow(game).to receive(:clear_screen)
       allow(board).to receive(:draw_board).and_return(board)
     end
