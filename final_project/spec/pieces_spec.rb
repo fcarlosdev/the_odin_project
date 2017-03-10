@@ -149,4 +149,20 @@ describe "Pieces" do
 
   end
 
+  describe "#possible_moves" do
+    context "when the piece is a queen" do
+
+      it "contains [7,4] position when queen is on the h4" do
+        pieces[:queen].move_to("Kh4")        
+        expect(pieces[:queen].possible_moves).to include([7,4])
+      end
+
+      it "contais e1 positions when is on the h4 position" do
+        pieces[:queen].move_to("Kh4")
+        expect(pieces[:queen].capture_moves).to include("e1")
+      end
+
+    end
+  end
+
 end
