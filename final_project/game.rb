@@ -44,6 +44,7 @@ class Game
     @from = current_player.move_one_piece
     print "Move the piece #{from} to (Ex.:pf3): "
     @to = current_player.move_one_piece
+    puts "From = #{from}, To = #{to}"
   end
 
   def move_piece(from,to)
@@ -52,7 +53,7 @@ class Game
 
   def check?(piece)
     piece.capture_moves.include?(get_opponent_king.position[1,2]) &&
-          has_no_scape_move(piece.capture_moves,get_opponent_king)
+          has_no_scape_move?(piece.capture_moves,get_opponent_king)
   end
 
   def has_no_scape_move?(capture_moves,king)
@@ -114,5 +115,5 @@ class Game
 
 end
 
-g = Game.new(Board.new(Array.new(8){Array.new(8,"")}), [Player.new("player1","white"), Player.new("player2","black")])
-g.play
+# g = Game.new(Board.new(Array.new(8){Array.new(8,"")}), [Player.new("player1","white"), Player.new("player2","black")])
+# g.play
