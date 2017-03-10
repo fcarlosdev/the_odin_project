@@ -23,9 +23,6 @@ class Board
   end
 
   def move(from,to)
-    # if (!from_equal_to?(from,to) &&
-    #     !has_ally_on_the_way?(get_piece(from),to) &&
-    #     valid_move_of?(get_piece(from),to) )
     piece = get_piece(from)
     if valid_move_of?(piece,to) && !has_ally_on_the_way?(piece,to)
       set_position(from,to)
