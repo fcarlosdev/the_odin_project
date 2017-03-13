@@ -9,7 +9,6 @@ class Game
     @board           = board
     @players         = players
     @current_player  = set_current_player
-    @valid_move      = false
     @from            = ""
     @to              = ""
   end
@@ -27,6 +26,7 @@ class Game
   end
 
   def game_over?
+    # check?(piece_on(to))
     (!empty_cell?(to) && check?(piece_on(to)) )
   end
 
@@ -115,5 +115,5 @@ class Game
 
 end
 
-# g = Game.new(Board.new(Array.new(8){Array.new(8,"")}), [Player.new("player1","white"), Player.new("player2","black")])
-# g.play
+g = Game.new(Board.new(Array.new(8){Array.new(8,"")}), [Player.new("player1","white"), Player.new("player2","black")])
+g.play

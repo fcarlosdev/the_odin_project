@@ -24,7 +24,8 @@ class Board
 
   def move(from,to)
     piece = get_piece(from)
-    if valid_move_of?(piece,to) && !has_ally_on_the_way?(piece,to)
+    if valid_move_of?(piece,to) && !has_piece_on_the_way?(piece,to)
+      piece.move_to(to)
       set_position(from,to)
       update_cells(cells)
       true
@@ -50,8 +51,26 @@ class Board
     get_piece(position) == ""
   end
 
-  def has_ally_on_the_way?(piece,to)
-    (!empty_cell?(to) && (piece.color == get_piece(to).color))
+  # def has_ally_on_the_way?(piece,to)
+  #   result = has_piece_on_the_way?(piece,to)
+  #   (!empty_cell?(to) && (piece.color == get_piece(to).color))
+  # end
+
+  def has_piece_on_the_way?(piece,to)
+    directions = piece.possible_directions.map {|d| piece.moves_from_direction(d)}
+    searched_direction = directions.select {|d| d.include?(to_xy(to))}
+    limit = [to_xy(piece.position),to_xy(to)]
+    on_way = []
+    searched_direction.each do |d|
+      d.each do |v|
+        if v != limit[0] && v != limit[1]
+          if (v[0] > limit[0][0]) && (v[1] < limit[0][1]) && cells[v[0]][v[1]] != ""
+            on_way << v
+          end
+        end
+      end
+    end
+    on_way.any?{|v| v != nil}
   end
 
   private
@@ -92,7 +111,8 @@ class Board
   end
 
   def valid_move_of?(piece,to)
-    piece.move_to(to)
+    # piece.move_to(to)
+    piece.valid_move?(to)
   end
 
   def set_position(from,to)
@@ -139,5 +159,6 @@ class Board
     cells[7][7] = Rook.new(color:   "white", position: "Rh1")
 
   end
+
 
 end

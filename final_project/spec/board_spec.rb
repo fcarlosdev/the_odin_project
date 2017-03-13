@@ -80,13 +80,6 @@ describe "Board" do
 
   describe "#move" do
 
-    context "when is a valid move" do
-      it "moves a given piece from original position to target position" do
-        allow(board).to receive(:has_ally_on_the_way?).with(cells[6][5],"Pf3").and_return(false)
-        expect(board.move("Pf2","Pf3")).to eq true
-      end
-    end
-
     context "when is an invalid move" do
       it "doesn't moves the given piece to the target positon" do
         expect(board.move("Pf2","Pe2")).to eq false
@@ -99,20 +92,31 @@ describe "Board" do
       end
     end
 
-    context "when there is an piece of the same color on the final position" do
-      it "doesn't moves the piece to the final position" do
-        allow(board).to receive(:has_ally_on_the_way?).with(cells[7][5],"Bg2").and_return(true)
-        expect(board.move("Bf1","Bg2")).to eq false
-      end
-    end
 
   end
 
-  describe "get_king_color" do
+  describe "#get_king_color" do
     it "returns the king piece of the given color" do
       expect(board.get_king_color("black")).to_not be_nil
       expect(board.get_king_color("black")).to eq(board.cells[0][4])
     end
+  end
+
+  describe "#has_piece_on_the_way?" do
+
+    it "returns false when there is no piece on the way" do
+      expect(board.has_piece_on_the_way?(board.get_piece("Pf2"),"Pf3")).to eq(false)
+    end
+
+    it "returns true when there is a piece on the way" do
+      board.move("Pf2","Pf3")
+      board.move("Pe7","Pe5")
+      board.move("Pg2","Pg3")
+      board.move("Qd8","Qh4")
+      expect(board.has_piece_on_the_way?(board.get_piece("Qh4"),"Ke1")).to eq(true)
+    end
+
+
   end
 
 end
