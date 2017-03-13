@@ -4,7 +4,7 @@ module Pieces
 
   class Piece
 
-    attr_reader :color, :icon, :type, :position
+    attr_reader :color, :icon, :type, :position, :possible_directions
 
     def initialize(args={})
       @color         = args[:color]
@@ -19,7 +19,7 @@ module Pieces
 
     def move_to(new_position)
         @position = new_position if valid_move?(new_position)
-        @position == new_position
+        # @position == new_position
     end
 
     def valid_move?(position)
@@ -34,6 +34,10 @@ module Pieces
       raise NotImplementedError, "This #{self.class} cannot respond to:"
     end
 
+    def moves_from_direction(direction)
+      raise NotImplementedError, "This #{self.class} cannot respond to:"
+    end
+
   end
 
   class King < Piece
@@ -41,6 +45,7 @@ module Pieces
     def post_initialize
       @type = :king
       @icon = PiecesHelper.get_icon_of(self)
+      @possible_directions = Directions.cardinal_and_ordinal
     end
 
     def valid_move?(position)
@@ -48,11 +53,15 @@ module Pieces
     end
 
     def possible_moves
-      PiecesHelper.move_till_two_squares(@position,Directions.cardinal_and_ordinal)
+      PiecesHelper.move_till_two_squares(@position,possible_directions)
     end
 
     def capture_moves
       PiecesHelper.xy_to_rank_files(possible_moves)
+    end
+
+    def moves_from_direction(direction)
+      PiecesHelper.move_till_limits(@position,[direction])
     end
 
     private
@@ -72,14 +81,19 @@ module Pieces
     def post_initialize
       @type = :rook
       @icon = PiecesHelper.get_icon_of(self)
+      @possible_directions = Directions.cardinal
     end
 
     def possible_moves
-      PiecesHelper.move_till_limits(@position,Directions.cardinal)
+      PiecesHelper.move_till_limits(@position,possible_directions)
     end
 
     def capture_moves
       PiecesHelper.xy_to_rank_files(possible_moves)
+    end
+
+    def moves_from_direction(direction)
+      PiecesHelper.move_till_limits(@position,[direction])
     end
 
   end
@@ -89,14 +103,19 @@ module Pieces
     def post_initialize
       @type = :bishop
       @icon = PiecesHelper.get_icon_of(self)
+      @possible_directions = Directions.intercardinal
     end
 
     def possible_moves
-      PiecesHelper.move_till_limits(@position,Directions.intercardinal)
+      PiecesHelper.move_till_limits(@position,possible_directions)
     end
 
     def capture_moves
       PiecesHelper.xy_to_rank_files(possible_moves)
+    end
+
+    def moves_from_direction(direction)
+      PiecesHelper.move_till_limits(@position,[direction])
     end
 
   end
@@ -106,10 +125,15 @@ module Pieces
     def post_initialize
       @type = :queen
       @icon = PiecesHelper.get_icon_of(self)
+      @possible_directions = Directions.cardinal_and_ordinal
     end
 
     def possible_moves
-      PiecesHelper.move_till_limits(@position,Directions.cardinal_and_ordinal)
+      PiecesHelper.move_till_limits(@position,possible_directions)
+    end
+
+    def moves_from_direction(direction)
+      PiecesHelper.move_till_limits(@position,[direction])
     end
 
     def capture_moves
@@ -123,14 +147,19 @@ module Pieces
     def post_initialize
       @type = :knight
       @icon = PiecesHelper.get_icon_of(self)
+      @possible_directions = Directions.secondary
     end
 
     def possible_moves
-      PiecesHelper.move_till_limits(@position,Directions.secondary)
+      PiecesHelper.move_till_limits(@position,possible_directions)
     end
 
     def capture_moves
       PiecesHelper.xy_to_rank_files(possible_moves)
+    end
+
+    def moves_from_direction(direction)
+      PiecesHelper.move_till_limits(@position,[direction])
     end
 
   end
@@ -143,7 +172,8 @@ module Pieces
     def post_initialize
       @type = :pawn
       @icon = PiecesHelper.get_icon_of(self)
-      @move_direction = (self.color.to_s.include?"white") ? :NORTH : :SOUTH
+      @possible_directions = [:NORTH,:SOUTH]
+      @move_direction = set_move_direction
       @new_position = ""
       # @en_passant  = false
     end
@@ -166,6 +196,10 @@ module Pieces
       @en_passant = confirmation
     end
 
+    def moves_from_direction(direction)
+      PiecesHelper.move_till_limits(@position,[direction])
+    end
+
     private
 
     def possible_capture_moves
@@ -182,6 +216,10 @@ module Pieces
 
     def first_move?(position)
       ([2,7]).include?(position[2].to_i)
+    end
+
+    def set_move_direction
+      (self.color.to_s.include?"white") ? @possible_directions[0]: @possible_directions[1]
     end
 
   end

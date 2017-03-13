@@ -58,17 +58,19 @@ describe "Pieces" do
     context "when try to move a king piece" do
 
       it "moves the king piece if the final position is possible move" do
-        expect(pieces[:king].move_to("Kf6")).to eq(true)
+        pieces[:king].move_to("Kf6")
         expect(pieces[:king].position).to eq("Kf6")
       end
 
       it "doesn't move the king piece if the destiny position isn't possible move" do
-        expect(pieces[:king].move_to("Ka5")).to eq(false)
+        pieces[:king].move_to("Ka5")
+        expect(pieces[:king].position).not_to eq("Ka5")
       end
 
       context "when try to move a king piece more than one square and not is castling move" do
         it "doesn't moves the king piece if try to the new postions" do
-          expect(pieces[:king].move_to("Kf7")).to eq(false)
+          pieces[:king].move_to("Kf7")
+          expect(pieces[:king].position).not_to eq("Kf7")
         end
       end
 
@@ -77,12 +79,13 @@ describe "Pieces" do
     context "when try to move a rook piece" do
 
       it "moves the rook piece if the final position is valid" do
-        expect(pieces[:rook].move_to("Rd8")).to eq(true)
+        pieces[:rook].move_to("Rd8")
         expect(pieces[:rook].position).to eq("Rd8")
       end
 
       it "doesn't moves the rook piece if final position is invalid" do
-        expect(pieces[:rook].move_to("Re6")).to eq(false)
+        pieces[:rook].move_to("Re6")
+        expect(pieces[:rook].position).not_to eq("Re6")
       end
 
     end
@@ -90,24 +93,26 @@ describe "Pieces" do
     context "when try to move a bishop piece" do
 
       it "moves the bishop piece if the final position is valid" do
-        expect(pieces[:bishop].move_to("Bf7")).to eq(true)
+        pieces[:bishop].move_to("Bf7")
         expect(pieces[:bishop].position).to eq("Bf7")
       end
 
       it "doesn't moves the bishop piece if the final position is invalid" do
-        expect(pieces[:bishop].move_to("Bd6")).to eq(false)
+        pieces[:bishop].move_to("Bd6")
+        expect(pieces[:bishop].position).not_to eq("Bd6")
       end
     end
 
     context "when try to move a queen piece" do
 
       it "moves the queen piece if the destiny position is valid" do
-        expect(pieces[:queen].move_to("Qd8")).to eq(true)
+        pieces[:queen].move_to("Qd8")
         expect(pieces[:queen].position).to eq("Qd8")
       end
 
       it "doesn't moves the queen piece if the destiny position isn't possible move" do
-        expect(pieces[:queen].move_to("Qf5")).to eq(false)
+        pieces[:queen].move_to("Qf5")
+        expect(pieces[:queen].position).not_to eq("Qf5")
       end
 
     end
@@ -115,12 +120,13 @@ describe "Pieces" do
     context "when try to move a knight piece" do
 
       it "moves the knight piece if the destiny position is between possible moves" do
-        expect(pieces[:knight].move_to("Nf5")).to eq(true)
+        pieces[:knight].move_to("Nf5")
         expect(pieces[:knight].position).to eq("Nf5")
       end
 
       it "doesn't moves the knight piece if the destiny position isn't possible move" do
-        expect(pieces[:knight].move_to("Ne7")).to eq(false)
+        pieces[:knight].move_to("Ne7")
+        expect(pieces[:knight].position).not_to eq("Ne7")
       end
 
     end
@@ -128,22 +134,26 @@ describe "Pieces" do
     context "when try to move a pawn piece" do
 
       it "moves the pawn piece if the destiny position is between possible moves" do
-        expect(pieces[:pawn].move_to("Pf3")).to eq(true)
+        pieces[:pawn].move_to("Pf3")
+        expect(pieces[:pawn].position).to eq("Pf3")
       end
 
       it "doesn't moves the pawn piece if the destiny position isn't possible move" do
         pieces[:pawn].move_to("Pf3")
-        expect(pieces[:pawn].move_to("Ph4")).to eq(false)
+        pieces[:pawn].move_to("Ph4")
+        expect(pieces[:pawn].position).not_to eq("Ph4")
       end
 
       it "moves the pawn piece if it is a valid capture move" do
         black_pawn = Pieces::Pawn.new(color: colors[1],position: "Pe4")
         pieces[:pawn].move_to("Pf3")
-        expect(pieces[:pawn].move_to("Pe4")).to eq(true)
+        pieces[:pawn].move_to("Pe4")
+        expect(pieces[:pawn].position).to eq("Pe4")
       end
 
       it "moves the pawn piece two squares if it's first move" do
-        expect(pieces[:pawn].move_to("Pf4")).to eq(true)
+        pieces[:pawn].move_to("Pf4")
+        expect(pieces[:pawn].position).to eq("Pf4")
       end
     end
 
@@ -153,7 +163,7 @@ describe "Pieces" do
     context "when the piece is a queen" do
 
       it "contains [7,4] position when queen is on the h4" do
-        pieces[:queen].move_to("Kh4")        
+        pieces[:queen].move_to("Kh4")
         expect(pieces[:queen].possible_moves).to include([7,4])
       end
 
