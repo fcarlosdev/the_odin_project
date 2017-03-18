@@ -85,7 +85,6 @@ describe "Game" do
     end
 
     it "lets the player move a piece" do
-      # allow(game).to receive(:from_to).and_return(["Pf2","Pf3"])
       allow(game).to receive(:from).and_return("Pf2")
       allow(game).to receive(:to).and_return("Pf3")
       allow(game).to receive(:take_turn)
@@ -101,7 +100,9 @@ describe "Game" do
             allow(game).to receive(:to).and_return(pieces_moved[i].position)
             allow(game).to receive(:empty_cell?).with(pieces_moved[i].position).and_return(false)
             allow(game).to receive(:piece_on).with(pieces_moved[i].position).and_return(pieces_moved[i])
-            allow(game).to receive(:check?).with(pieces_moved[i]).and_return(true)
+            allow(game).to receive(:piece_on_way?).with("e1",pieces_moved[i]).and_return(false)
+            allow(game).to receive(:get_opponent_king).and_return(cells[7][4])
+            allow(game).to receive(:check?).with(pieces_moved[i],cells[7][4]).and_return(true)
           end
           expect(game.game_over?).to eql(true)
         end

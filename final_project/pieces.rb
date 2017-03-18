@@ -19,7 +19,6 @@ module Pieces
 
     def move_to(new_position)
         @position = new_position if valid_move?(new_position)
-        # @position == new_position
     end
 
     def valid_move?(position)
@@ -52,7 +51,7 @@ module Pieces
       inside_limits?(position) ? super(position) : false
     end
 
-    def possible_moves
+    def possible_moves(position=nil)
       PiecesHelper.move_till_two_squares(@position,possible_directions)
     end
 
@@ -61,7 +60,11 @@ module Pieces
     end
 
     def moves_from_direction(direction)
-      PiecesHelper.move_till_limits(@position,[direction])
+      PiecesHelper.xy_to_rank_files(PiecesHelper.move_till_limits(@position,[direction]))
+    end
+
+    def scape_moves
+      PiecesHelper.xy_to_rank_files(possible_moves)
     end
 
     private
@@ -84,7 +87,7 @@ module Pieces
       @possible_directions = Directions.cardinal
     end
 
-    def possible_moves
+    def possible_moves(position=nil)
       PiecesHelper.move_till_limits(@position,possible_directions)
     end
 
@@ -93,7 +96,7 @@ module Pieces
     end
 
     def moves_from_direction(direction)
-      PiecesHelper.move_till_limits(@position,[direction])
+      PiecesHelper.xy_to_rank_files(PiecesHelper.move_till_limits(@position,[direction]))
     end
 
   end
@@ -106,7 +109,7 @@ module Pieces
       @possible_directions = Directions.intercardinal
     end
 
-    def possible_moves
+    def possible_moves(position=nil)
       PiecesHelper.move_till_limits(@position,possible_directions)
     end
 
@@ -115,7 +118,7 @@ module Pieces
     end
 
     def moves_from_direction(direction)
-      PiecesHelper.move_till_limits(@position,[direction])
+      PiecesHelper.xy_to_rank_files(PiecesHelper.move_till_limits(@position,[direction]))
     end
 
   end
@@ -128,12 +131,12 @@ module Pieces
       @possible_directions = Directions.cardinal_and_ordinal
     end
 
-    def possible_moves
+    def possible_moves(position=nil)
       PiecesHelper.move_till_limits(@position,possible_directions)
     end
 
     def moves_from_direction(direction)
-      PiecesHelper.move_till_limits(@position,[direction])
+      PiecesHelper.xy_to_rank_files(PiecesHelper.move_till_limits(@position,[direction]))
     end
 
     def capture_moves
@@ -159,7 +162,7 @@ module Pieces
     end
 
     def moves_from_direction(direction)
-      PiecesHelper.move_till_limits(@position,[direction])
+      PiecesHelper.xy_to_rank_files(PiecesHelper.move_till_limits(@position,[direction]))
     end
 
   end
@@ -197,7 +200,7 @@ module Pieces
     end
 
     def moves_from_direction(direction)
-      PiecesHelper.move_till_limits(@position,[direction])
+      PiecesHelper.xy_to_rank_files(PiecesHelper.move_till_limits(@position,[direction]))
     end
 
     private

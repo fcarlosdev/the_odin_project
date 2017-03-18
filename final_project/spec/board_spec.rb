@@ -102,21 +102,4 @@ describe "Board" do
     end
   end
 
-  describe "#has_piece_on_the_way?" do
-
-    it "returns false when there is no piece on the way" do
-      expect(board.has_piece_on_the_way?(board.get_piece("Pf2"),"Pf3")).to eq(false)
-    end
-
-    it "returns true when there is a piece on the way" do
-      board.move("Pf2","Pf3")
-      board.move("Pe7","Pe5")
-      board.move("Pg2","Pg3")
-      board.move("Qd8","Qh4")
-      expect(board.has_piece_on_the_way?(board.get_piece("Qh4"),"Ke1")).to eq(true)
-    end
-
-
-  end
-
 end

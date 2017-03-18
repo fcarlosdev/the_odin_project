@@ -24,7 +24,7 @@ class Board
 
   def move(from,to)
     piece = get_piece(from)
-    if valid_move_of?(piece,to) && !has_piece_on_the_way?(piece,to)
+    if valid_move_of?(piece,to) && is_same_type?(piece,from[0])
       piece.move_to(to)
       set_position(from,to)
       update_cells(cells)
@@ -51,26 +51,8 @@ class Board
     get_piece(position) == ""
   end
 
-  # def has_ally_on_the_way?(piece,to)
-  #   result = has_piece_on_the_way?(piece,to)
-  #   (!empty_cell?(to) && (piece.color == get_piece(to).color))
-  # end
-
-  def has_piece_on_the_way?(piece,to)
-    directions = piece.possible_directions.map {|d| piece.moves_from_direction(d)}
-    searched_direction = directions.select {|d| d.include?(to_xy(to))}
-    limit = [to_xy(piece.position),to_xy(to)]
-    on_way = []
-    searched_direction.each do |d|
-      d.each do |v|
-        if v != limit[0] && v != limit[1]
-          if (v[0] > limit[0][0]) && (v[1] < limit[0][1]) && cells[v[0]][v[1]] != ""
-            on_way << v
-          end
-        end
-      end
-    end
-    on_way.any?{|v| v != nil}
+  def to_positions(coordinates)
+    PiecesHelper.xy_to_rank_files(coordinates)
   end
 
   private
@@ -111,7 +93,6 @@ class Board
   end
 
   def valid_move_of?(piece,to)
-    # piece.move_to(to)
     piece.valid_move?(to)
   end
 
@@ -120,6 +101,14 @@ class Board
     destiny = to_xy(to)
     cells[destiny[0]][destiny[1]] = cells[origin[0]][origin[1]]
     cells[origin[0]][origin[1]] = ""
+  end
+
+  def is_same_type?(piece,typeof)
+    types = {
+      pawn: "P", queen: "Q", king: "K", knight: "N",
+      bishop: "B", rook: "R"
+    }
+    types[piece.type] == typeof.upcase
   end
 
   def load_pieces
