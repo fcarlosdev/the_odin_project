@@ -4,7 +4,7 @@ module CalculateMoves
 
   include Mapper
 
-  def calcule_moves(from,axes)
+  def calculate_moves(from,axes)
     xy = map_to_axis(from)
     remove_invalid_positions(axes.map{|axis| [xy[0]+axis[0], xy[1]+axis[1]]})
   end
