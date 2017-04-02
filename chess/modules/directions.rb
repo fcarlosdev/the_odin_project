@@ -36,4 +36,20 @@ module Directions
     directions.collect {|c| DIRECTIONS[c]}
   end
 
+  def get_north_coordinates(from_rank)
+    from_rank.downto(1).map {|rank| [rank * DIRECTIONS[:NORTH][0],DIRECTIONS[:NORTH][1]]}
+  end
+
+  def get_south_coordinates(from_rank)
+    (from_rank..6).map {|rank| [rank * DIRECTIONS[:SOUTH][0],DIRECTIONS[:SOUTH][1]]}
+  end
+
+  def get_east_coordinates(from_file)
+    (from_file..6).map {|file| [DIRECTIONS[:EAST][0], file * DIRECTIONS[:EAST][1]]}
+  end
+
+  def get_west_coordinates(from_file)
+    from_file.downto(1).map {|file| [DIRECTIONS[:WEST][0], file * DIRECTIONS[:WEST][1]]}
+  end
+
 end

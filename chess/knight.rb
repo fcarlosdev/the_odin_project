@@ -1,9 +1,9 @@
-require "./piece.rb"
+require './piece.rb'
 
-class King < Piece
+class Knight < Piece
 
   def possible_moves(from)
-    generate_moves(from).map {|move| "K"+move}
+    generate_moves(from).map {|move| "N"+move}
   end
 
   def valid_move?(from,to)
@@ -13,8 +13,7 @@ class King < Piece
   private
 
   def get_axis_directions
-    get_axes_from(cardinal_and_ordinal)
+    get_axes_from(secondary)
   end
-
 
 end
