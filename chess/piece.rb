@@ -1,10 +1,10 @@
 require "./modules/directions.rb"
-require "./modules/moves_calculator.rb"
+require "./modules/movements.rb"
 
 class Piece
 
   include Directions
-  include MovesCalculator
+  include Movements
 
   attr_reader :color, :type, :image, :possible_directions
 
