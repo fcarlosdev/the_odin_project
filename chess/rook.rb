@@ -13,7 +13,7 @@ class Rook < Piece
   private
 
   def get_axis_directions
-    get_axes_from(cardinal)
+    get_coordinates_from(cardinal)
   end
 
   def generate_moves(from)
@@ -23,10 +23,10 @@ class Rook < Piece
 
   def get_coordinates(from)
     from_coordinates = map_to_axis(from)
-    directions = get_north_coordinates(from_coordinates[0])
-    directions |= get_south_coordinates(from_coordinates[0])
-    directions |= get_east_coordinates(from_coordinates[1])
-    directions |= get_west_coordinates(from_coordinates[1])
+    get_north_coordinates(from_coordinates[0]) +
+    get_south_coordinates(from_coordinates[0]) +
+    get_east_coordinates(from_coordinates[1]) +
+    get_west_coordinates(from_coordinates[1])
   end
 
 end

@@ -32,7 +32,7 @@ module Directions
     [:NORTH, :SOUTH]
   end
 
-  def get_axes_from(directions)
+  def get_coordinates_from(directions)
     directions.collect {|c| DIRECTIONS[c]}
   end
 
@@ -50,6 +50,22 @@ module Directions
 
   def get_west_coordinates(from_file)
     from_file.downto(1).map {|file| [DIRECTIONS[:WEST][0], file * DIRECTIONS[:WEST][1]]}
+  end
+
+  def get_northwest_coordinates(from_file)
+    (0..from_file-1).map {|i| [DIRECTIONS[:NW][0]-i, DIRECTIONS[:NW][1]-i]}
+  end
+
+  def get_southeast_coordinates(from_rank)
+    (from_rank..6).map {|i| [DIRECTIONS[:SE][0]+i, DIRECTIONS[:SE][1]+i]}
+  end
+
+  def get_southwest_coordinates(from_rank)
+    (from_rank..6).map {|i| [DIRECTIONS[:SW][0]+i, DIRECTIONS[:SW][1]-i]}
+  end
+
+  def get_northeast_coordinates(from_rank)
+    (0..from_rank-1).map {|i| [DIRECTIONS[:NE][0]-i, DIRECTIONS[:NE][1]+i]}
   end
 
 end

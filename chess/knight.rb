@@ -13,7 +13,7 @@ class Knight < Piece
   private
 
   def get_axis_directions
-    get_axes_from(secondary)
+    get_coordinates_from(secondary)
   end
 
 end

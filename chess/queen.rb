@@ -13,7 +13,7 @@ class Queen < Piece
   private
 
   def get_axis_directions
-    get_axes_from(cardinal_and_ordinal)
+    get_coordinates_from(cardinal_and_ordinal)
   end
 
 end

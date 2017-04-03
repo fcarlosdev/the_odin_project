@@ -13,7 +13,7 @@ class Pawn < Piece
   private
 
   def get_axis_directions
-    get_axes_from(north_south)
+    get_coordinates_from(north_south)
   end
 
 
