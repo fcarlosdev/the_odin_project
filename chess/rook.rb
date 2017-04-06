@@ -12,7 +12,7 @@ class Rook < Piece
 
   private
 
-  def get_axis_directions
+  def get_coordinates
     get_coordinates_from(cardinal)
   end
 

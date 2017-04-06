@@ -12,7 +12,7 @@ class Bishop < Piece
 
   private
 
-  def get_axis_directions
+  def get_coordinates
     get_coordinates_from(intercardinal)
   end
 

@@ -27,15 +27,22 @@ describe "Pawn" do
         expect(pawn.valid_move?("Pa2","Pa3")).to eq(true)
       end
 
-      # it "validates the move by two square when is the first move" do
-      #  expect(pawn.valid_move?("Pa2","Pa4")).to eq(true)
-      # end
+      it "validates the move by two square when is the first move" do
+       expect(pawn.valid_move?("Pa2","Pa4")).to eq(true)
+       expect(pawn.valid_move?("Pa7","Pa5")).to eq(true)
+      end
 
     end
 
     context "when is an invalid move" do
+
       it "invalidates the move" do
         expect(pawn.valid_move?("Pa2","Pb2")).to eq(false)
+      end
+
+      it "invalidates when move by two squares and no first move" do
+        allow(pawn).to receive(:first_move).and_return(false)
+        expect(pawn.valid_move?("Pa2","Pa4")).to eq(false)
       end
     end
 
