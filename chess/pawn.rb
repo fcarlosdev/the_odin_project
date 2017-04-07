@@ -7,7 +7,7 @@ class Pawn < Piece
   end
 
   def valid_move?(from,to)
-    possible_moves(from).include?(to)
+    possible_moves(from).include?(to) || capture_moves(from).include?(to)
   end
 
   private
@@ -30,6 +30,18 @@ class Pawn < Piece
 
   def get_moves_by_two_squares(from)
     coordinates.map {|v| [v[0],v[1]] + [v[0]+v[0],v[1]]}.flatten.each_slice(2).to_a
+  end
+
+  def capture_moves(from)
+    map_to_positions(calculate_moves(from,diagonals_coordinates)).map {|l| "P"+l}
+  end
+
+  def diagonals_coordinates
+    (color == "white") ? get_coordinates_from([:NE, :NW]) : get_coordinates_from([:SW, :SE])
+  end
+
+  def get_image
+    (color == "white") ? "\u2659" : "\u265F"
   end
 
 

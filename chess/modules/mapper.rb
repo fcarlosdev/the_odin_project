@@ -5,15 +5,27 @@ module Mapper
   end
 
   def map_to_positions(from_axes)
-    from_axes.map {|axis| ('a'.ord + axis[1]).chr + (8 - axis[0]).to_s}
+    from_axes.map {|axis| map_to_position(axis)}
   end
 
   def to_row(rank)
     (rank == 0) ? 0 : (8 - rank)
   end
 
+  def map_to_position(from_axis)
+    (from_axis.length > 0) ? to_file(from_axis[1]) + to_rank(from_axis[0]) : ""
+  end
+
   def to_column(file)
     (file - 'a'.ord)
+  end
+
+  def to_rank(row)
+    (8 - row).to_s
+  end
+
+  def to_file(col)
+    ('a'.ord + col).chr
   end
 
 end

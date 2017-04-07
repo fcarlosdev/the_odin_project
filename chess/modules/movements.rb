@@ -11,6 +11,6 @@ module Movements
 
   def remove_invalid_positions(axes)
     axes.select {|axis| (0..7).include?(axis[0]) && (0..7).include?(axis[1])}
-  end
+  end  
 
 end

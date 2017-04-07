@@ -29,4 +29,8 @@ class Rook < Piece
     get_west_coordinates(from_coordinates[1])
   end
 
+  def get_image
+    (color == "white") ? "\u2656" : "\u265C"
+  end
+
 end

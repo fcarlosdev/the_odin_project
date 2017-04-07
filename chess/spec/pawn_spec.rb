@@ -2,7 +2,8 @@ require "./pawn.rb"
 
 describe "Pawn" do
 
-  let(:pawn) {Pawn.new("white",:pawn,"\u2659")}
+  let(:pawn) {Pawn.new("white",:pawn)}
+  let(:black_pawn) {Pawn.new("black",:pawn)}
 
   describe '#new' do
     it "creates a new intance of the pawn piece" do
@@ -22,14 +23,26 @@ describe "Pawn" do
 
   describe '#valid_move?' do
 
-    context "when is a valid move?" do
-      it "validates the move when moved by one square" do
-        expect(pawn.valid_move?("Pa2","Pa3")).to eq(true)
+    context "when is a valid move" do
+
+      context "when is only a move forward one square" do
+        it "validates the move when moved by one square" do
+          expect(pawn.valid_move?("Pa2","Pa3")).to eq(true)
+        end
       end
 
-      it "validates the move by two square when is the first move" do
-       expect(pawn.valid_move?("Pa2","Pa4")).to eq(true)
-       expect(pawn.valid_move?("Pa7","Pa5")).to eq(true)
+      context "when is a move forward two squares in the first move" do
+        it "validates the move" do
+          expect(pawn.valid_move?("Pa2","Pa4")).to eq(true)
+          expect(pawn.valid_move?("Pa7","Pa5")).to eq(true)
+        end
+      end
+
+      context "when is a move to capture opponent piece" do
+        it "validates the capture move" do
+          expect(pawn.valid_move?("Pa2","Pb3")).to eq(true)
+          expect(black_pawn.valid_move?("Pb7","Pa6")).to eq(true)
+        end
       end
 
     end

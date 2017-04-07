@@ -29,5 +29,9 @@ class Bishop < Piece
     get_northeast_coordinates(from_coordinates[0])
   end
 
+  def get_image
+    (color == "white") ? "\u2657" : "\u265D"
+  end
+
 
 end

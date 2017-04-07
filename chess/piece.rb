@@ -8,10 +8,10 @@ class Piece
 
   attr_reader :color, :type, :image, :coordinates, :first_move
 
-  def initialize(color, type, image)
+  def initialize(color, type)
     @color = color
     @type = type
-    @image = image
+    @image = get_image
     @coordinates = get_coordinates
     @first_move = true
   end
@@ -33,9 +33,5 @@ class Piece
   def first_move?
     (first_move == true)
   end
-
-  # def update_coordinates(new_coordinates)
-  #   coordinates = new_coordinates
-  # end
 
 end

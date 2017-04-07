@@ -16,5 +16,9 @@ class King < Piece
     get_coordinates_from(cardinal_and_ordinal)
   end
 
+  def get_image
+    (color == "white") ? "\u2654" : "\u265A"
+  end
+
 
 end

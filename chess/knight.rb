@@ -16,4 +16,9 @@ class Knight < Piece
     get_coordinates_from(secondary)
   end
 
+  def get_image
+    (color == "white") ? "\u2658" : "\u265E"
+  end
+
+
 end
