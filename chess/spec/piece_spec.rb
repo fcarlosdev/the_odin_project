@@ -3,7 +3,7 @@ require './king.rb'
 
 describe "Piece" do
 
-  let(:king) {King.new("white",:king,"\u2654")}
+  let(:king) {King.new("white",:king)}
 
   describe '#new' do
     it "creates a new instance of piece" do

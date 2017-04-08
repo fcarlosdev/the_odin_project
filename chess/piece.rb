@@ -12,15 +12,11 @@ class Piece
     @color = color
     @type = type
     @image = get_image
-    @coordinates = get_coordinates
+    @coordinates = default_coordinates
     @first_move = true
   end
 
   private
-
-  def get_coordinates
-    []
-  end
 
   def generate_moves(from)
     map_to_positions(calculate_moves(from,coordinates))

@@ -2,7 +2,7 @@ require './queen.rb'
 
 describe "Queen" do
 
-  let(:queen) {Queen.new("white",:queen,"\u2655")}
+  let(:queen) {Queen.new("white",:queen)}
 
   describe '#new' do
     it "creates a new intance of the Queen piece" do

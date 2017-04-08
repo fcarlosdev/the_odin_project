@@ -12,7 +12,7 @@ class Knight < Piece
 
   private
 
-  def get_coordinates
+  def default_coordinates
     get_coordinates_from(secondary)
   end
 

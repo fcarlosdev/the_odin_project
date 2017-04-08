@@ -12,16 +12,16 @@ class Rook < Piece
 
   private
 
-  def get_coordinates
+  def default_coordinates
     get_coordinates_from(cardinal)
   end
 
   def generate_moves(from)
-    @possible_directions = get_coordinates(from)
+    @coordinates = generate_coordinates(from)
     super(from)
   end
 
-  def get_coordinates(from)
+  def generate_coordinates(from)
     from_coordinates = map_to_axis(from)
     get_north_coordinates(from_coordinates[0]) +
     get_south_coordinates(from_coordinates[0]) +

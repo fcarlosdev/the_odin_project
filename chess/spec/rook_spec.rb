@@ -2,7 +2,7 @@ require "./rook.rb"
 
 describe "Rook" do
 
-  let(:rook) {Rook.new("white",:rook,"\u2656")}
+  let(:rook) {Rook.new("white",:rook)}
 
   describe '#new' do
     it "creates new instance of the rook piece" do
@@ -14,28 +14,89 @@ describe "Rook" do
   end
 
   describe '#possible_moves' do
-    it "calculates the possible moves from given initial positon" do
-      expect(rook.possible_moves("Ra1")).to_not be_nil
-      expect(rook.possible_moves("Ra1")).to include("Ra2")
-      expect(rook.possible_moves("Ra1")).to include("Ra4")
+
+    context "when the moves is to the north direction" do
+      it "calculates the north possible positions" do
+        expect(rook.possible_moves("Rd5")).to include("Rd7")
+      end
     end
+
+    context "when the moves is to the south direction" do
+      it "calculates the south possible positions" do
+        expect(rook.possible_moves("Rd5")).to include("Rd4")
+      end
+    end
+
+    context "when the moves is to the east direction" do
+      it "calculates the east possible positions" do
+        expect(rook.possible_moves("Rd5")).to include("Rf5")
+      end
+    end
+
+    context "when the moves is to the west direction" do
+      it "calculates the west possible positions" do
+        expect(rook.possible_moves("Rd5")).to include("Rb5")
+      end
+    end
+
   end
 
   describe '#valid_move?' do
 
     context "when is a valid move?" do
-      it "validates the move" do
-        expect(rook.valid_move?("Ra1","Ra2")).to eq(true)
-        expect(rook.valid_move?("Ra1","Rb1")).to eq(true)
-        expect(rook.valid_move?("Ra1","Ra6")).to eq(true)
-        expect(rook.valid_move?("Ra1","Rd1")).to eq(true)
+
+      context "when the move is to the north direction" do
+        it "validates the north move" do
+          expect(rook.valid_move?("Rd5","Rd7")).to eq(true)
+        end
       end
+
+      context "when the move is to the south direction" do
+        it "validates the south move" do
+          expect(rook.valid_move?("Rd5","Rd4")).to eq(true)
+        end
+      end
+
+      context "when the move is to the west direction" do
+        it "validates the west move" do
+          expect(rook.valid_move?("Rd5","Rb5")).to eq(true)
+        end
+      end
+
+      context "when the move is to the east direction" do
+        it "validates the est move" do
+          expect(rook.valid_move?("Rd5","Re5")).to eq(true)
+        end
+      end
+
     end
 
     context "when is an invalid move" do
-      it "invalidates the move" do
-        expect(rook.valid_move?("Ra1","Rb2")).to eq(false)
+
+      context "when is an invalid to the north direction" do
+        it "invalidates the north move" do
+          expect(rook.valid_move?("Rd5","Re6")).to eq(false)
+        end
       end
+
+      context "when is an invalid to the sourh direction" do
+        it "invalidates the south move" do
+          expect(rook.valid_move?("Rd5","Re4")).to eq(false)
+        end
+      end
+
+      context "when is an invalid to the west direction" do
+        it "invalidates the west move" do
+          expect(rook.valid_move?("Rd5","Rc4")).to eq(false)
+        end
+      end
+
+      context "when is an invalid to the east direction" do
+        it "invalidates the east move" do
+          expect(rook.valid_move?("Rd5","Re6")).to eq(false)
+        end
+      end
+
     end
 
   end

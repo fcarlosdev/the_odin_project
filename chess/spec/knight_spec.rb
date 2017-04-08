@@ -2,7 +2,7 @@ require "./knight.rb"
 
 describe "Knight" do
 
-  let(:knight) {Knight.new("white",:knight,"\u2658")}
+  let(:knight) {Knight.new("white",:knight)}
 
   describe '#new' do
     it "creates a new intance of the knight piece" do

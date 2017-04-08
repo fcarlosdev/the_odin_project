@@ -12,20 +12,20 @@ class Bishop < Piece
 
   private
 
-  def get_coordinates
+  def default_coordinates
     get_coordinates_from(intercardinal)
   end
 
   def generate_moves(from)
-    @possible_directions = get_coordinates(from)
+    @coordinates = generate_coordinates(from)
     super(from)
   end
 
-  def get_coordinates(from)
+  def generate_coordinates(from)
     from_coordinates = map_to_axis(from)
-    get_northwest_coordinates(from_coordinates[1]) +
-    get_southeast_coordinates(from_coordinates[0]) +
-    get_southwest_coordinates(from_coordinates[0]) +
+    get_northwest_coordinates(from_coordinates[0])  +
+    get_southeast_coordinates(from_coordinates[0])  +
+    get_southwest_coordinates(from_coordinates[1]) +
     get_northeast_coordinates(from_coordinates[0])
   end
 

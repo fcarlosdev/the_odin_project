@@ -41,11 +41,11 @@ module Directions
   end
 
   def get_south_coordinates(from_rank)
-    (from_rank..6).map {|rank| [rank * DIRECTIONS[:SOUTH][0],DIRECTIONS[:SOUTH][1]]}
+    (1..(7-from_rank)).map {|rank| [rank * DIRECTIONS[:SOUTH][0],DIRECTIONS[:SOUTH][1]]}
   end
 
   def get_east_coordinates(from_file)
-    (from_file..6).map {|file| [DIRECTIONS[:EAST][0], file * DIRECTIONS[:EAST][1]]}
+    (0..(7-from_file)).map {|file| [DIRECTIONS[:EAST][0], file * DIRECTIONS[:EAST][1]]}
   end
 
   def get_west_coordinates(from_file)
@@ -57,15 +57,15 @@ module Directions
   end
 
   def get_southeast_coordinates(from_rank)
-    (from_rank..6).map {|i| [DIRECTIONS[:SE][0]+i, DIRECTIONS[:SE][1]+i]}
+    (0..(6-from_rank)).map {|i| [DIRECTIONS[:SE][0]+i, DIRECTIONS[:SE][1]+i]}
   end
 
-  def get_southwest_coordinates(from_rank)
-    (from_rank..6).map {|i| [DIRECTIONS[:SW][0]+i, DIRECTIONS[:SW][1]-i]}
+  def get_southwest_coordinates(from_file)
+    (from_file -1).downto(0).map {|i| [DIRECTIONS[:SW][0]+i, DIRECTIONS[:SW][1]-i]}
   end
 
   def get_northeast_coordinates(from_rank)
-    (0..from_rank-1).map {|i| [DIRECTIONS[:NE][0]-i, DIRECTIONS[:NE][1]+i]}
+    (0..from_rank-1).map {|i| [DIRECTIONS[:NE][0]-i, DIRECTIONS[:NE][1]+i]}    
   end
 
 end

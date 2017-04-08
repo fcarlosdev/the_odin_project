@@ -12,7 +12,7 @@ class Pawn < Piece
 
   private
 
-  def get_coordinates
+  def default_coordinates
     get_coordinates_from(north_south)
   end
 
