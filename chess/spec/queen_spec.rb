@@ -3,6 +3,12 @@ require './queen.rb'
 describe "Queen" do
 
   let(:queen) {Queen.new("white",:queen)}
+  let(:positions) {
+    [ "Qe3","Qf2","Qg1","Qe5","Qf6","Qg7","Qh8",
+      "Qc3","Qb2","Qa1","Qd5","Qd6","Qd7","Qd8",
+      "Qd3","Qd2","Qd1","Qe4","Qf4","Qg4","Qh4",
+      "Qc4","Qb4","Qa4"]
+  }
 
   describe '#new' do
     it "creates a new intance of the Queen piece" do
@@ -14,9 +20,11 @@ describe "Queen" do
   end
 
   describe '#possible_moves' do
+
     it "calculates the possible moves from given initial positon" do
-      expect(queen.possible_moves("Qd1")).to_not be_nil
-      expect(queen.possible_moves("Qd1")).to include("Qd2")
+      positions.each do |position|
+        expect(queen.possible_moves("Qd4")).to include(position)
+      end
     end
   end
 
@@ -24,14 +32,15 @@ describe "Queen" do
 
     context "when is a valid move?" do
       it "validates the move" do
-        expect(queen.valid_move?("Qd1","Qd2")).to eq(true)
-        expect(queen.valid_move?("Qd1","Qe2")).to eq(true)
+        positions.each do |position|
+          expect(queen.valid_move?("Qd4",position)).to eq(true)
+        end
       end
     end
 
     context "when is an invalid move" do
       it "invalidates the move" do
-        expect(queen.valid_move?("Qd1","Qi1")).to eq(false)
+        expect(queen.valid_move?("Qd4","Qe6")).to eq(false)
       end
     end
 
