@@ -18,6 +18,7 @@ describe "Rook" do
     context "when the moves is to the north direction" do
       it "calculates the north possible positions" do
         expect(rook.possible_moves("Rd5")).to include("Rd7")
+        expect(rook.possible_moves("Rd1")).to include("Rd7")
       end
     end
 

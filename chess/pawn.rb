@@ -7,7 +7,12 @@ class Pawn < Piece
   end
 
   def valid_move?(from,to)
-    possible_moves(from).include?(to) || capture_moves(from).include?(to)
+    possible_moves(from).include?(to)
+    # possible_moves(from).include?(to) || capture_move?(from,to)
+  end
+
+  def capture_move?(from,to)
+    capture_moves(from).include?(to)
   end
 
   private

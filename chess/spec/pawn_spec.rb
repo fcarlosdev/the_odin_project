@@ -38,13 +38,6 @@ describe "Pawn" do
         end
       end
 
-      context "when is a move to capture opponent piece" do
-        it "validates the capture move" do
-          expect(pawn.valid_move?("Pa2","Pb3")).to eq(true)
-          expect(black_pawn.valid_move?("Pb7","Pa6")).to eq(true)
-        end
-      end
-
     end
 
     context "when is an invalid move" do
@@ -59,6 +52,21 @@ describe "Pawn" do
       end
     end
 
+  end
+
+  describe '#capture_move?' do
+
+    context "when is a capture move" do
+      it "returns true" do
+        expect(pawn.capture_move?("Pa2","Pb3")).to eq(true)
+      end
+    end
+
+    context "when is not a captue move" do
+      it "returns false" do
+        expect(pawn.capture_move?("Pa2","Pa3")).to eq(false)
+      end
+    end
   end
 
 end
