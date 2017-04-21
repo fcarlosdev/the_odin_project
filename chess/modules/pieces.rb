@@ -39,4 +39,8 @@ module Pieces
     LIST_OF_PIECES.values.select {|v| v.type == "white"}
   end
 
+  def get_piece(type)
+    LIST_OF_PIECES[type]
+  end
+
 end

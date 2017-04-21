@@ -1,10 +1,12 @@
 require "./modules/directions.rb"
-require "./modules/movements.rb"
+require "./modules/coordenates.rb"
+require "./modules/distance.rb"
 
 class Piece
 
   include Directions
-  include Movements
+  include Coordenates
+  include Distance
 
   attr_reader :color, :type, :image, :coordinates, :first_move
 
@@ -14,6 +16,10 @@ class Piece
     @image = get_image
     @coordinates = default_coordinates
     @first_move = true
+  end
+
+  def capture_move?(from,to)
+    false
   end
 
   private

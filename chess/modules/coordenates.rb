@@ -1,6 +1,6 @@
 require './modules/mapper.rb'
 
-module Movements
+module Coordenates
 
   include Mapper
 

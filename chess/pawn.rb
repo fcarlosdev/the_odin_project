@@ -3,16 +3,15 @@ require "./piece.rb"
 class Pawn < Piece
 
   def possible_moves(from)
-    generate_moves(from).map {|move| "P"+move}
+    generate_moves(from).map {|move| "P"+move} + capture_moves(from)
   end
 
   def valid_move?(from,to)
     possible_moves(from).include?(to)
-    # possible_moves(from).include?(to) || capture_move?(from,to)
   end
 
   def capture_move?(from,to)
-    capture_moves(from).include?(to)
+    file_distance(from,to) == 1 && rank_distance(from,to) == 1
   end
 
   private
@@ -49,5 +48,8 @@ class Pawn < Piece
     (color == "white") ? "\u2659" : "\u265F"
   end
 
+  def empty?(value)
+    ["",nil].include?(value)
+  end
 
 end
