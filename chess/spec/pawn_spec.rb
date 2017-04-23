@@ -47,7 +47,7 @@ describe "Pawn" do
       end
 
       it "invalidates when move by two squares and no first move" do
-        allow(pawn).to receive(:first_move).and_return(false)
+        allow(pawn).to receive(:number_of_moves).and_return(false)
         expect(pawn.valid_move?("Pa2","Pa4")).to eq(false)
       end
     end
@@ -66,7 +66,9 @@ describe "Pawn" do
       it "returns false" do
         expect(pawn.capture_move?("Pa2","Pa3")).to eq(false)
       end
+
     end
+
   end
 
 end

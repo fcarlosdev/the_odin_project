@@ -8,12 +8,9 @@ describe "MovePawn" do
 
   let(:board) {Board.new(8,8)}
   let(:move_pawn) {MovePawn.new(board)}
-  let(:positions) {
-    ["Pa2","Pa3", "Pb3"]
-  }
   let(:pieces) {
     {
-      white_pawn: board.get_piece(positions[0]),
+      white_pawn: board.get_piece("Pa2"),
       black_pawn: get_piece(:black_pawn)
     }
   }
@@ -31,8 +28,8 @@ describe "MovePawn" do
       context "when is only a move to other position" do
 
         it "moves the piece from one square to another" do
-          expect(move_pawn.move(board.get_piece(positions[0]),positions[0],positions[1])).to eq(true)
-          expect(board.get_piece(positions[0])).to be_nil
+          expect(move_pawn.move(board.get_piece("Pa2"),"Pa2","Pa3")).to eq(true)
+          expect(board.get_piece("Pa2")).to be_nil
         end
 
       end
@@ -40,9 +37,9 @@ describe "MovePawn" do
       context "when is a capture move" do
 
         it "captures the opponent piece" do
-          board.update_square(positions[2],get_piece(:black_pawn))
-          expect(move_pawn.move(pieces[:white_pawn],positions[0],positions[2])).to eq(true)
-          expect(board.get_piece(positions[2])).to eq(pieces[:white_pawn])
+          board.update_square("Pb3",get_piece(:black_pawn))
+          expect(move_pawn.move(pieces[:white_pawn],"Pa2","Pb3")).to eq(true)
+          expect(board.get_piece("Pb3")).to eq(pieces[:white_pawn])
         end
 
       end
@@ -54,9 +51,9 @@ describe "MovePawn" do
       context "when is not a capture move and the destiny position is occupied" do
 
         it "doesn't moves the piece to the destiny position" do
-          board.update_square(positions[1],get_piece(:black_pawn))
-          expect(move_pawn.move(board.get_piece(positions[0]),positions[0],positions[1])).to eq(false)
-          expect(board.get_piece(positions[0])).to_not be_nil
+          board.update_square("Pa3",get_piece(:black_pawn))
+          expect(move_pawn.move(board.get_piece("Pa2"),"Pa2","Pa3")).to eq(false)
+          expect(board.get_piece("Pa2")).to_not be_nil
         end
 
       end
@@ -64,11 +61,22 @@ describe "MovePawn" do
       context "when is a capture move and there is no opponent piece on capture position" do
 
         it "doesn't executes the capture move" do
-          expect(move_pawn.move(board.get_piece(positions[0]),positions[0],positions[2])).to eq(false)
-          expect(board.get_piece(positions[0])).to_not be_nil
+          expect(move_pawn.move(board.get_piece("Pa2"),"Pa2","Pb3")).to eq(false)
+          expect(board.get_piece("Pa2")).to_not be_nil
         end
 
       end
+
+    end
+
+    context "when is possible an enpassant move" do
+
+      it "allows the capture of the opponent pawn" do
+        board.update_square("Pf5",get_piece(:white_pawn))
+        move_pawn.move(board.get_piece("Pg7"),"Pg7","Pg5")
+        expect(move_pawn.move(board.get_piece("Pf5"),"Pf5","Pg6")).to eq(true)
+      end
+
     end
 
   end

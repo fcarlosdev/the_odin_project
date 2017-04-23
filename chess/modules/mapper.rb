@@ -28,4 +28,8 @@ module Mapper
     ('a'.ord + col).chr
   end
 
+  def perfix_position_with(prefix,positions)
+    positions.map {|position| prefix+position}
+  end
+
 end

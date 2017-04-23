@@ -2,6 +2,8 @@ require "./piece.rb"
 
 class Pawn < Piece
 
+  # attr_reader :moved_by
+
   def possible_moves(from)
     generate_moves(from).map {|move| "P"+move} + capture_moves(from)
   end
@@ -12,6 +14,10 @@ class Pawn < Piece
 
   def capture_move?(from,to)
     file_distance(from,to) == 1 && rank_distance(from,to) == 1
+  end
+
+  def moved_by=(number_of_squares)
+    @moved_by = number_of_squares
   end
 
   private

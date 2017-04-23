@@ -8,14 +8,15 @@ class Piece
   include Coordenates
   include Distance
 
-  attr_reader :color, :type, :image, :coordinates, :first_move
+  attr_reader :color, :type, :image, :coordinates, :number_of_moves, :moved_by
 
   def initialize(color, type)
     @color = color
     @type = type
     @image = get_image
     @coordinates = default_coordinates
-    @first_move = true
+    @number_of_moves = 0
+    @moved_by = 0
   end
 
   def capture_move?(from,to)
@@ -29,11 +30,11 @@ class Piece
   end
 
   def update_first_move
-    @first_move = false
+    @number_of_moves += 1
   end
 
   def first_move?
-    (first_move == true)
+    number_of_moves == 0
   end
 
 end
