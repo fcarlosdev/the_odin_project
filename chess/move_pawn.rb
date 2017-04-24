@@ -68,7 +68,6 @@ class MovePawn < Move
   end
 
   def enable_en_passant(piece,to)
-    # puts "Piece = #{piece.inspect}, To = #{to}"
     if first_move?(piece) && moved_two_squares?(piece)
       adjacent_opponents_from(piece,to).each {|op| op.en_passant_allowed = true}
     else
