@@ -17,10 +17,15 @@ class Piece
     @coordinates = default_coordinates
     @number_of_moves = 0
     @moved_by = 0
+    post_initialize
   end
 
   def capture_move?(from,to)
     false
+  end
+
+  def post_initialize
+    nil
   end
 
   private

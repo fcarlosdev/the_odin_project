@@ -2,7 +2,11 @@ require "./piece.rb"
 
 class Pawn < Piece
 
-  # attr_reader :moved_by
+  attr_reader :en_passant_allowed
+
+  def post_initialize
+    en_passant_allowed = false
+  end
 
   def possible_moves(from)
     generate_moves(from).map {|move| "P"+move} + capture_moves(from)
@@ -18,6 +22,10 @@ class Pawn < Piece
 
   def moved_by=(number_of_squares)
     @moved_by = number_of_squares
+  end
+
+  def en_passant_allowed=(allowed)
+    @en_passant_allowed = allowed
   end
 
   private
