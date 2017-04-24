@@ -31,7 +31,8 @@ class MovePawn < Move
   end
 
   def en_passant_move?(piece,from,to)
-    valid_move?(piece,from,to) && piece.en_passant_allowed
+    valid_move?(piece,from,to) && piece.capture_move?(from,to) &&
+    piece.en_passant_allowed
   end
 
   def valid_move?(piece,from,to)
@@ -47,9 +48,7 @@ class MovePawn < Move
     board.update_square(to,piece_from)
     board.update_square(from,nil)
     enable_en_passant(piece_from,to)
-    if en_passant_move && piece_from.en_passant_allowed
-      board.update_square(get_side_square(from,to),nil)
-    end
+    board.update_square(get_side_square(from,to),nil) if en_passant_move
   end
 
   def get_piece(position)
@@ -69,6 +68,7 @@ class MovePawn < Move
   end
 
   def enable_en_passant(piece,to)
+    # puts "Piece = #{piece.inspect}, To = #{to}"
     if first_move?(piece) && moved_two_squares?(piece)
       adjacent_opponents_from(piece,to).each {|op| op.en_passant_allowed = true}
     else

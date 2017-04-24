@@ -69,20 +69,20 @@ describe "MovePawn" do
 
     end
 
-    context "when is possible an enpassant move" do
+    context "when is possible an En passant move" do
 
       before (:example) do
         board.update_square("Pf5",get_piece(:white_pawn))
         move_pawn.move(board.get_piece("Pg7"),"Pg7","Pg5")
       end
 
-      context "when is the next move after el_passant is possible" do
+      context "when is the next move after En passant is possible" do
         it "allows the capture of the opponent pawn" do
           expect(move_pawn.move(board.get_piece("Pf5"),"Pf5","Pg6")).to eq(true)
         end
       end
 
-      context "when is not the next move after el_passant is possible" do
+      context "when is not the next move after En passant is possible" do
         it "doesn't allows the capture of the opponent pawn" do
           move_pawn.move(board.get_piece("Pa2"),"Pa2","Pa3")
           expect(move_pawn.move(board.get_piece("Pf5"),"Pf5","Pg6")).to eq(false)
@@ -90,7 +90,6 @@ describe "MovePawn" do
       end
 
     end
-
 
   end
 end
