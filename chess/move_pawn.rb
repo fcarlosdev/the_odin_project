@@ -5,7 +5,7 @@ class MovePawn < Move
   def move(piece,from,to)
     if can_move_piece?(piece,from,to)
       update_squares(from,piece,to,en_passant_move?(piece,from,to))
-      enable_en_passant(piece,to)
+      enable_en_passant_to_opponents_from(piece,to)
       return true
     end
     false
@@ -64,7 +64,7 @@ class MovePawn < Move
     piece.number_of_moves == 1
   end
 
-  def enable_en_passant(piece,to)
+  def enable_en_passant_to_opponents_from(piece,to)
     if first_move?(piece) && moved_two_squares?(piece)
       adjacent_opponents_from(piece,to).each {|op| op.en_passant_allowed = true}
     else
