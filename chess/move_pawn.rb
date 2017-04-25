@@ -2,10 +2,12 @@ require "./move.rb"
 
 class MovePawn < Move
 
+  attr_reader :en_passnt_move
+
   def move(piece,from,to)
-    if can_move_piece?(piece,from,to)
-      update_squares(from,piece,to,en_passant_move?(piece,from,to))
-      enable_en_passant_to_opponents_from(piece,to)
+    if valid_move?(piece,from,to)
+      update_squares(from,piece,to,@en_passant_move)
+      update_en_passant(piece,to)
       return true
     end
     false
@@ -13,28 +15,22 @@ class MovePawn < Move
 
   private
 
-  def can_move_piece?(piece,from,to)
-    forward_move?(piece,from,to) || capture_move?(piece,from,to) ||
-    en_passant_move?(piece,from,to)
+  def valid_move?(piece,from,to)
+     piece.valid_move?(from,to) &&
+     (forward_move?(piece,from,to) || capture_move?(piece,from,to) ||
+      en_passant_move?(piece,from,to))
   end
 
   def forward_move?(piece,from,to)
-    !piece.capture_move?(from,to) && valid_move?(piece,from,to) &&
-      empty?(get_piece(to))
+    !piece.capture_move?(from,to) && empty?(get_piece(to))
   end
 
   def capture_move?(piece,from,to)
-    piece.capture_move?(from,to) && valid_move?(piece,from,to) &&
-      !empty?(get_piece(to))
+    piece.capture_move?(from,to) && !empty?(get_piece(to))
   end
 
   def en_passant_move?(piece,from,to)
-    valid_move?(piece,from,to) && piece.capture_move?(from,to) &&
-    piece.en_passant_allowed
-  end
-
-  def valid_move?(piece,from,to)
-     piece.valid_move?(from,to)
+    @en_passant_move = piece.capture_move?(from,to) && piece.en_passant_allowed
   end
 
   def empty?(value)
@@ -54,6 +50,19 @@ class MovePawn < Move
 
   def update_moved_by(piece,from,to)
     piece.moved_by = rank_distance(from,to)
+    piece.number_of_moves += 1
+  end
+
+  def update_en_passant(piece,to)
+    if first_move?(piece) && moved_two_squares?(piece)
+      set_en_passant_to(adjacent_opponents_from(piece,to),true)
+    else
+      set_en_passant_to([piece],false)
+    end
+  end
+
+  def set_en_passant_to(pieces,to_status)
+    pieces.each {|piece| piece.en_passant_allowed = to_status}
   end
 
   def moved_two_squares?(piece)
@@ -64,24 +73,16 @@ class MovePawn < Move
     piece.number_of_moves == 1
   end
 
-  def enable_en_passant_to_opponents_from(piece,to)
-    if first_move?(piece) && moved_two_squares?(piece)
-      adjacent_opponents_from(piece,to).each {|op| op.en_passant_allowed = true}
-    else
-      piece.en_passant_allowed = false
-    end
-  end
-
   def adjacent_opponents_from(piece,to)
-    opponent_pieces(adjacent_pieces_from(adjacent_squares(to)),piece)
+    opponent_pieces_from(piece,to)
   end
 
-  def opponent_pieces(pieces,from_piece)
-    pieces.select {|piece| piece.color != from_piece.color}
+  def opponent_pieces_from(to_piece,to)
+    adjacent_pieces_from(to).select {|piece| piece.color != to_piece.color}
   end
 
-  def adjacent_pieces_from(squares)
-    squares.map {|square| board.get_piece(square)}.compact
+  def adjacent_pieces_from(to)
+    adjacent_squares(to).map {|square| board.get_piece(square)}.compact
   end
 
   def adjacent_squares(from_square)

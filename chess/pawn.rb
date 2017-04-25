@@ -41,7 +41,7 @@ class Pawn < Piece
 
   def coordinates_for_two_squares(from)
     if (first_move?)
-      update_first_move
+      # update_first_move
       @coordinates = get_moves_by_two_squares(from)
     end
   end
