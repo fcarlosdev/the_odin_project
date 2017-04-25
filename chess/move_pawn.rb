@@ -3,14 +3,12 @@ require "./move.rb"
 class MovePawn < Move
 
   def move(piece,from,to)
-
     if can_move_piece?(piece,from,to)
       update_squares(from,piece,to,en_passant_move?(piece,from,to))
+      enable_en_passant(piece,to)
       return true
     end
-
     false
-
   end
 
   private
@@ -47,7 +45,6 @@ class MovePawn < Move
     update_moved_by(piece_from,from,to)
     board.update_square(to,piece_from)
     board.update_square(from,nil)
-    enable_en_passant(piece_from,to)
     board.update_square(get_side_square(from,to),nil) if en_passant_move
   end
 
