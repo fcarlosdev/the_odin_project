@@ -11,7 +11,7 @@ describe "MoveKing" do
   let(:pieces) {
     {
       white_king: get_piece(:white_king),
-      black_king: get_piece(:black_king)
+      black_king: get_piece(:black_king),
       white_pawn: get_piece(:white_pawn)
     }
   }
@@ -24,11 +24,11 @@ describe "MoveKing" do
 
   describe '#move' do
 
-    context "when is a valid move" do
+    before (:example) do
+      board.update_square("Kd4",pieces[:white_king])
+    end
 
-       before (:example) do
-         board.update_square("Kd4",pieces[:white_king])
-       end
+    context "when is a valid move" do
 
        context "when is not a capture move" do
 
@@ -43,10 +43,12 @@ describe "MoveKing" do
        context "when is a capture move" do
 
          it "allows the king piece to captures the opponent piece" do
-           board.update_square("Kd5",get_piece(:white_king))
+           board.update_square("Kd5",get_piece(:black_king))
            expect(move_king.move(pieces[:white_king],"Kd4","Kd5")).to eq(true)
          end
+
        end
+
     end
 
     context "when is an invalid move" do
@@ -69,7 +71,7 @@ describe "MoveKing" do
       end
 
     end
-    
+
   end
 
 end

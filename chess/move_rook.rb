@@ -1,14 +1,14 @@
 require "./move.rb"
 
-class MoveKing < Move
+class MoveRook < Move
 
   def move(piece,from,to)
-
     if ordinary_move?(piece,from,to)
-      move_king(piece,from,to)
+      move_rook(piece,from,to)
       return true
     elsif capture_move?(piece,from,to)
-      move_king(piece,from,to)
+      board.get_piece(to).color != piece.color
+      move_rook(piece,from,to)
       return true
     end
     false
@@ -17,14 +17,15 @@ class MoveKing < Move
   private
 
   def ordinary_move?(piece,from,to)
-    piece.valid_move?(from,to) && board.get_piece(to) == nil
+    piece.valid_move?(from,to) && empty?(get_piece(to))
   end
 
   def capture_move?(piece,from,to)
-    piece.valid_move?(from,to) && !empty?(get_piece(to)) && opponent_piece?(piece,to)
+    piece.valid_move?(from,to) && !empty?(get_piece(to)) &&
+    opponent_piece?(piece,to)
   end
 
-  def move_king(piece,from,to)
+  def move_rook(piece,from,to)
     board.update_square(to,piece)
     board.update_square(from,nil)
   end
@@ -40,5 +41,6 @@ class MoveKing < Move
   def opponent_piece?(piece,to)
     !get_piece(to).color.eql?(piece.color)
   end
+
 
 end
