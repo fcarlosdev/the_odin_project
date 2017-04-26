@@ -12,6 +12,7 @@ describe "MoveKing" do
     {
       white_king: get_piece(:white_king),
       black_king: get_piece(:black_king)
+      white_pawn: get_piece(:white_pawn)
     }
   }
 
@@ -47,6 +48,28 @@ describe "MoveKing" do
          end
        end
     end
+
+    context "when is an invalid move" do
+
+      context "when is a not possible move to the king piece" do
+        it "doesn't moves the king piece to the destiny position" do
+          expect(move_king.move(board.get_piece("Kd4"),"Kd4","Kd7")).to eq(false)
+        end
+      end
+
+      context "when there is other piece of the same color on destiny position" do
+
+        it "doesn't moves the king piece to the destiny position" do
+          board.update_square("Kd5",pieces[:white_pawn])
+          expect(move_king.move(board.get_piece("Kd4"),"Kd4","Kd5")).to eq(false)
+          expect(board.get_piece("Kd4")).to eq(pieces[:white_king])
+          expect(board.get_piece("Kd5")).to eq(pieces[:white_pawn])
+        end
+
+      end
+
+    end
+    
   end
 
 end
