@@ -12,4 +12,8 @@ module Distance
     (destiny > origin) ? (destiny - origin) : (origin - destiny)
   end
 
+  def calc_distance(from,to)
+    to[2].to_i - from[2].to_i
+  end
+
 end

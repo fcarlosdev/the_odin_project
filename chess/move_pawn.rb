@@ -2,12 +2,11 @@ require "./move.rb"
 
 class MovePawn < Move
 
-  attr_reader :en_passnt_move
-
   def move(piece,from,to)
-    if valid_move?(piece,from,to)
-      update_squares(from,piece,to,@en_passant_move)
-      update_en_passant(piece,to)
+    if right_direction?(piece,from,to) && can_move?(piece,from,to)
+      update_position_of(piece,from,to)
+      set_moved_by(piece,from,to)
+      piece.en_passant_allowed = false
       return true
     end
     false
@@ -15,82 +14,69 @@ class MovePawn < Move
 
   private
 
-  def valid_move?(piece,from,to)
-     piece.valid_move?(from,to) &&
-     (forward_move?(piece,from,to) || capture_move?(piece,from,to) ||
-      en_passant_move?(piece,from,to))
+  def can_move?(piece,from,to)
+    ordinary_move?(piece,from,to) || capture_move?(piece,from,to) || en_passant_move?(piece,from,to)
   end
 
-  def forward_move?(piece,from,to)
-    !piece.capture_move?(from,to) && empty?(get_piece(to))
+  def ordinary_move?(piece,from,to)
+    piece.valid_move?(from,to) && empty_square?(to) && !piece.capture_move?(from,to)
   end
 
   def capture_move?(piece,from,to)
-    piece.capture_move?(from,to) && !empty?(get_piece(to))
+    piece.capture_move?(from,to) && !empty_square?(to) && opponent_of?(piece,to)
   end
 
   def en_passant_move?(piece,from,to)
-    @en_passant_move = piece.capture_move?(from,to) && piece.en_passant_allowed
+    if piece.en_passant_allowed && en_passant_ok?(piece,from,to,opponent_at(to,from))
+      update_squares_en_passant_move(piece,from,to)
+      return true
+    end
+    false
   end
 
-  def empty?(value)
-    ["",nil].include?(value)
+  def en_passant_ok?(piece,from,to,opponent)
+    opponent != nil && opponent.first_move &&
+        opponent.moved_by == 2 && piece.capture_move?(from,to)
   end
 
-  def update_squares(from,piece_from,to,en_passant_move=false)
-    update_moved_by(piece_from,from,to)
-    board.fill_square(to,piece_from)
-    board.fill_square(from,nil)
-    board.fill_square(get_side_square(from,to),nil) if en_passant_move
+  def right_direction?(piece,from,to)
+    north_direction?(piece,from,to) || south_direction?(piece,from,to)
   end
 
-  def get_piece(position)
-    board.get_piece(position)
+  def north_direction?(piece,from,to)
+    calc_distance(from,to) > 0 && piece.move_direction.eql?(:NORTH)
   end
 
-  def update_moved_by(piece,from,to)
+  def south_direction?(piece,from,to)
+    calc_distance(from,to) < 0 && piece.move_direction.eql?(:SOUTH)
+  end
+
+  def opponent_at(side,from)
+    board.get_piece(prefix_position_with('P',select_square(side,from)[0]))
+  end
+
+  def select_square(at_side,from)
+    squares_at_side_of(from).select {|s| s[0] == at_side[1] }
+  end
+
+  def set_moved_by(piece,from,to)
     piece.moved_by = rank_distance(from,to)
-    piece.number_of_moves += 1
-  end
-
-  def update_en_passant(piece,to)
-    if first_move?(piece) && moved_two_squares?(piece)
-      set_en_passant_to(adjacent_opponents_from(piece,to),true)
-    else
-      set_en_passant_to([piece],false)
+    if (piece.moved_by == 2 && piece.first_move)
+      enable_en_passant_to_opponents(piece,to)
     end
   end
 
-  def set_en_passant_to(pieces,to_status)
-    pieces.each {|piece| piece.en_passant_allowed = to_status}
+  def enable_en_passant_to_opponents(from_piece,at)
+    squares_at_side_of(at).each do |s|
+      opponent = board.get_piece(prefix_position_with('P',s))
+      if (!opponent.nil? && opponent.color != from_piece.color)
+        opponent.en_passant_allowed = true
+      end
+    end
   end
 
-  def moved_two_squares?(piece)
-    piece.moved_by == 2
-  end
-
-  def first_move?(piece)
-    piece.number_of_moves == 1
-  end
-
-  def adjacent_opponents_from(piece,to)
-    opponent_pieces_from(piece,to)
-  end
-
-  def opponent_pieces_from(to_piece,to)
-    adjacent_pieces_from(to).select {|piece| piece.color != to_piece.color}
-  end
-
-  def adjacent_pieces_from(to)
-    adjacent_squares(to).map {|square| board.get_piece(square)}.compact
-  end
-
-  def adjacent_squares(from_square)
-    perfix_positions_with("P",squares_at_side_of(from_square))
-  end
-
-  def get_side_square(from,to)
-    adjacent_squares(from).select {|square| square[1] == to[1]}[0]
+  def update_squares_en_passant_move(piece,from,to)
+    board.fill_square(prefix_position_with('P',select_square(to,from)[0]),nil)
   end
 
 end

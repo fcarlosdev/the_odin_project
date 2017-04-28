@@ -2,10 +2,11 @@ require "./piece.rb"
 
 class Pawn < Piece
 
-  attr_reader :en_passant_allowed
+  attr_reader :en_passant_allowed, :move_direction
 
   def post_initialize
-    en_passant_allowed = false
+    set_en_passant
+    set_direction
   end
 
   def possible_moves(from)
@@ -40,9 +41,10 @@ class Pawn < Piece
   end
 
   def coordinates_for_two_squares(from)
-    if (first_move?)
-      # update_first_move
+    if (first_move)
       @coordinates = get_moves_by_two_squares(from)
+    else
+      @first_move = false
     end
   end
 
@@ -65,5 +67,14 @@ class Pawn < Piece
   def empty?(value)
     ["",nil].include?(value)
   end
+
+  def set_direction
+    @move_direction = color.eql?("white") ? :NORTH : :SOUTH
+  end
+
+  def set_en_passant
+    @en_passant_allowed = false
+  end
+
 
 end

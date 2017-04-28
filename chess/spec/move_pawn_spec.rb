@@ -10,8 +10,9 @@ describe "MovePawn" do
   let(:move_pawn) {MovePawn.new(board)}
   let(:pieces) {
     {
-      white_pawn: board.get_piece("Pa2"),
-      black_pawn: get_piece(:black_pawn)
+      white_pawn: get_piece(:white_pawn),
+      black_pawn: get_piece(:black_pawn),
+      white_rook: get_piece(:white_rook)
     }
   }
 
@@ -23,73 +24,87 @@ describe "MovePawn" do
 
   describe '#move' do
 
-    context "when is valid move" do
+    before (:example) do
+      board.fill_square("Pf5",pieces[:white_pawn])
+    end
 
-      context "when is only a move to other position" do
+    context "when is a valid ordinary move" do
+      it "moves the pawn piece to the destiny position" do
+        expect(move_pawn.move(pieces[:white_pawn],"Pf5", "Pf6")).to eq(true)
+        expect(board.get_piece("Pf5")).to be_nil
+        expect(board.get_piece("Pf6")).to eq(pieces[:white_pawn])
+      end
+    end
 
-        it "moves the piece from one square to another" do
-          expect(move_pawn.move(board.get_piece("Pa2"),"Pa2","Pa3")).to eq(true)
-          expect(board.get_piece("Pa2")).to be_nil
+    context "when is a valid capture move" do
+      it "allows to the pawn piece to capture opponent piece" do
+        board.fill_square("Pg6",pieces[:black_pawn])
+        expect(move_pawn.move(pieces[:white_pawn],"Pf5", "Pg6")).to eq(true)
+        expect(board.get_piece("Pf5")).to be_nil
+        expect(board.get_piece("Pg6")).to eq(pieces[:white_pawn])
+      end
+    end
+
+    context "when is an invalid ordinary move" do
+
+      context "when there is a ally piece on the destiny position" do
+        it "doesn't moves the pawn piece to the destiny position" do
+          board.fill_square("Pf6",pieces[:white_rook])
+          expect(move_pawn.move(pieces[:white_pawn],"Pf5", "Pf6")).to eq(false)
         end
-
       end
 
-      context "when is a capture move" do
-
-        it "captures the opponent piece" do
-          board.fill_square("Pb3",get_piece(:black_pawn))
-          expect(move_pawn.move(pieces[:white_pawn],"Pa2","Pb3")).to eq(true)
-          expect(board.get_piece("Pb3")).to eq(pieces[:white_pawn])
+      context "when is a not possible move" do
+        it "doesn't moves the pawn piece to the destiny position" do
+          expect(move_pawn.move(pieces[:white_pawn],"Pf5", "Pg5")).to eq(false)
         end
+      end
 
+      context "when should move to north direction but move to south" do
+        it "doesn't moves the pawn piece to the destiny position" do
+          expect(move_pawn.move(pieces[:white_pawn],"Pf5", "Pf4")).to eq(false)
+        end
+      end
+    end
+
+    context "when is an invalid capture move" do
+
+      context "when capture position is empty" do
+        it "doesn't allows to the pawn piece to capture the opponent piece" do
+          expect(move_pawn.move(pieces[:white_pawn],"Pf5", "Pg6")).to eq(false)
+        end
+      end
+
+      context "when there is an ally piece on capture position" do
+        it "doesn't allows to the pawn piece to capture the opponent piece" do
+          board.fill_square("Pg6",pieces[:white_rook])
+          expect(move_pawn.move(pieces[:white_pawn],"Pf5", "Pg6")).to eq(false)
+        end
       end
 
     end
 
-    context "when is an invalid move" do
-
-      context "when is not a capture move and the destiny position is occupied" do
-
-        it "doesn't moves the piece to the destiny position" do
-          board.fill_square("Pa3",get_piece(:black_pawn))
-          expect(move_pawn.move(board.get_piece("Pa2"),"Pa2","Pa3")).to eq(false)
-          expect(board.get_piece("Pa2")).to_not be_nil
-        end
-
-      end
-
-      context "when is a capture move and there is no opponent piece on capture position" do
-
-        it "doesn't executes the capture move" do
-          expect(move_pawn.move(board.get_piece("Pa2"),"Pa2","Pb3")).to eq(false)
-          expect(board.get_piece("Pa2")).to_not be_nil
-        end
-
-      end
-
-    end
-
-    context "when is possible an En passant move" do
-
-      before (:example) do
-        board.fill_square("Pf5",get_piece(:white_pawn))
+    context "when is a valid en passant move" do
+      it "allows the pawn piece to capture the opponent piece" do
+        board.fill_square("Pg7",pieces[:black_pawn])
         move_pawn.move(board.get_piece("Pg7"),"Pg7","Pg5")
+        expect(move_pawn.move(pieces[:white_pawn],"Pf5","Pg6")).to eq(true)
+        expect(board.get_piece("Pf5")).to be_nil
+        expect(board.get_piece("Pg6")).to_not be_nil
+        expect(board.get_piece("Pg5")).to be_nil
       end
+    end
 
-      context "when is the next move after En passant is possible" do
-        it "allows the capture of the opponent pawn" do
-          expect(move_pawn.move(board.get_piece("Pf5"),"Pf5","Pg6")).to eq(true)
-        end
+    context "when lost the chance of en passant move" do
+      it "doesn't allows the pawn piece to capture the opponent piece" do
+        board.fill_square("Pg7",pieces[:black_pawn])
+        move_pawn.move(board.get_piece("Pg7"),"Pg7","Pg5")
+        move_pawn.move(board.get_piece("Pa2"),"Pa2","Pa3")
+        expect(move_pawn.move(pieces[:white_pawn],"Pf5","Pg6")).to eq(false)
       end
-
-      context "when is not the next move after En passant is possible" do
-        it "doesn't allows the capture of the opponent pawn" do
-          move_pawn.move(board.get_piece("Pa2"),"Pa2","Pa3")
-          expect(move_pawn.move(board.get_piece("Pf5"),"Pf5","Pg6")).to eq(false)
-        end
-      end
-
     end
 
   end
+
+
 end
