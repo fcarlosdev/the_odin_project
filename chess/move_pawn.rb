@@ -39,9 +39,9 @@ class MovePawn < Move
 
   def update_squares(from,piece_from,to,en_passant_move=false)
     update_moved_by(piece_from,from,to)
-    board.update_square(to,piece_from)
-    board.update_square(from,nil)
-    board.update_square(get_side_square(from,to),nil) if en_passant_move
+    board.fill_square(to,piece_from)
+    board.fill_square(from,nil)
+    board.fill_square(get_side_square(from,to),nil) if en_passant_move
   end
 
   def get_piece(position)

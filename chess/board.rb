@@ -30,7 +30,7 @@ class Board
     squares[square[0]][square[1]]
   end
 
-  def update_square(position,value)
+  def fill_square(position,value)
     at_xy = map_to_axis(position)
     squares[at_xy[0]][at_xy[1]] = value
   end

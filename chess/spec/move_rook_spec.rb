@@ -27,7 +27,7 @@ describe "MoveRook" do
   describe '#move' do
 
     before(:example) do
-      board.update_square("Rd5",pieces[:white_rook])
+      board.fill_square("Rd5",pieces[:white_rook])
     end
 
     context "when is a valid ordinary move" do
@@ -43,7 +43,7 @@ describe "MoveRook" do
     context "when is a valid capture move" do
 
       it "allows the rook piece to capture the opponent piece" do
-        board.update_square("Rd6",pieces[:black_rook])
+        board.fill_square("Rd6",pieces[:black_rook])
         expect(move_rook.move(board.get_piece("Rd5"),"Rd5","Rd6")).to eq(true)
         expect(board.get_piece("Rd5")).to be_nil
         expect(board.get_piece("Rd6")).to eq(pieces[:white_rook])
@@ -56,7 +56,7 @@ describe "MoveRook" do
       context "when the destiny position has an ally piece" do
 
         it "doesn't allows the moves the rook piece to the destiny position" do
-          board.update_square("Rd6",pieces[:white_pawn])
+          board.fill_square("Rd6",pieces[:white_pawn])
           expect(move_rook.move(board.get_piece("Rd5"),"Rd5","Rd6")).to eq(false)
           expect(board.get_piece("Rd5")).to eq(pieces[:white_rook])
           expect(board.get_piece("Rd6")).to eq(pieces[:white_pawn])

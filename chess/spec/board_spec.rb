@@ -77,9 +77,9 @@ describe Board do
     end
   end
 
-  describe '#update_square' do
+  describe '#fill_square' do
     it "changes the value of a square" do
-      board.update_square("Pb3",pieces[:black_pawn])
+      board.fill_square("Pb3",pieces[:black_pawn])
       expect(board.get_piece("Pb3")).to_not be_nil
     end
   end
