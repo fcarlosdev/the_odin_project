@@ -22,7 +22,7 @@ describe "King" do
 
   describe '#valid_move?' do
 
-    context "when is a valid move?" do
+    context "when is a valid ordinary move?" do
       it "validates the move" do
         expect(piece.valid_move?("Ke1","Ke2")).to eq(true)
         expect(piece.valid_move?("Ke1","Kf1")).to eq(true)

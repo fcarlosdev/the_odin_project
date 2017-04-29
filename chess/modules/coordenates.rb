@@ -14,22 +14,24 @@ module Coordenates
   end
 
   def squares_at_side_of(from)
-    xy = map_to_axis(from)
-    on_range?(xy) ? [-1,1].map {|v| map_to_position([xy[0],(xy[1]+v)]) } : []
+    on_range?(map_to_axis(from)) ? [-1,1].map {|v| move_by(v,from) } : []
   end
 
   def square_at_right_side(from)
-    xy = map_to_axis(from)
-    on_range?(xy) ? map_to_position([xy[0],(xy[1]+1)]) : []
+    on_range?(map_to_axis(from)) ? move_by(1,from) : []
   end
 
   def square_at_left_side(from)
-    xy = map_to_axis(from)
-    on_range?(xy) ? map_to_position([xy[0],(xy[1]-1)]) : []
+    on_range?(map_to_axis(from)) ? move_by(-1,from) : []
   end
 
   def on_range?(axis)
     (0..7).include?(axis[0]) && (0..7).include?(axis[1])
+  end
+
+  def move_by(number,from)
+    xy = map_to_axis(from)
+    map_to_position([xy[0],(xy[1]+number)])
   end
 
 

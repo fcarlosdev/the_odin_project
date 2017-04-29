@@ -12,7 +12,7 @@ class King < Piece
 
   private
 
-  def default_coordinates
+  def default_coordinates    
     get_coordinates_from(cardinal_and_ordinal)
   end
 

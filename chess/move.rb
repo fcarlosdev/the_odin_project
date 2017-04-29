@@ -29,7 +29,4 @@ class Move
       board.get_piece(at_position).color != piece.color
     end
 
-    # def can_jump_pieces?
-
-
 end
