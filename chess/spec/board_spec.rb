@@ -1,4 +1,4 @@
-require './board.rb'
+require './lib/board.rb'
 require 'colorize'
 
 describe Board do
@@ -38,41 +38,26 @@ describe Board do
     it "Draws a board" do
       lines = columns = 8
       expect(board).to receive(:draw_board).with(no_args).exactly(1).times
-      expect(board.get_square(0,4).color).to eq(pieces[:black_king].color)
-      expect(board.get_square(0,4).type).to eq(pieces[:black_king].type)
-      expect(board.get_square(1,2).type).to eq(pieces[:black_pawn].type)
-      expect(board.get_square(1,7).type).to eq(pieces[:black_pawn].type)
-      expect(board.get_square(6,7).type).to eq(pieces[:black_pawn].type)
+      expect(board.squares[0][4].color).to eq(pieces[:black_king].color)
+      expect(board.squares[0][4].type).to eq(pieces[:black_king].type)
+      expect(board.squares[1][2].type).to eq(pieces[:black_pawn].type)
+      expect(board.squares[1][7].type).to eq(pieces[:black_pawn].type)
+      expect(board.squares[6][7].type).to eq(pieces[:black_pawn].type)
       board.draw_board
     end
   end
 
-  describe '#get_square' do
-
-    context "when is given a valid location" do
-      it "returns the value of the square" do
-        expect(board.get_square(0,4)).to_not be_nil
-      end
-    end
-
-    context "when is given an invalid location" do
-      it "return nil" do
-        expect(board.get_square(nil,4)).to be_nil
-      end
-    end
-  end
-
-  describe '#get_piece' do
+  describe '#value_from' do
 
     context "when is given a valid location" do
       it "returns the piece on square" do
-        expect(board.get_piece("Pa2")).to_not be_nil
+        expect(board.value_from("Pa2")).to_not be_nil
       end
     end
 
     context "when is given an invalid position" do
       it "returns nil" do
-        expect(board.get_piece("Pl2")).to be_nil
+        expect(board.value_from("Pl2")).to be_nil
       end
     end
   end
@@ -80,7 +65,7 @@ describe Board do
   describe '#fill_square' do
     it "changes the value of a square" do
       board.fill_square("Pb3",pieces[:black_pawn])
-      expect(board.get_piece("Pb3")).to_not be_nil
+      expect(board.value_from("Pb3")).to_not be_nil
     end
   end
 

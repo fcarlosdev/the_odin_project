@@ -1,4 +1,4 @@
-require './piece.rb'
+require_relative 'piece'
 
 class Bishop < Piece
 
@@ -32,6 +32,5 @@ class Bishop < Piece
   def get_image
     (color == "white") ? "\u2657" : "\u265D"
   end
-
 
 end

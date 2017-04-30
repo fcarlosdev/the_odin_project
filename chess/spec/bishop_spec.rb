@@ -1,4 +1,4 @@
-require './bishop.rb'
+require './lib/bishop'
 
 describe "Bishop" do
 

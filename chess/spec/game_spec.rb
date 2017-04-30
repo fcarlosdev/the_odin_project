@@ -1,14 +1,14 @@
-require "./game.rb"
-require "./board.rb"
-require "./player.rb"
-require "./modules/pieces.rb"
+require "./lib/game.rb"
+require "./lib/board.rb"
+require "./lib/player.rb"
+require "./lib/pieces.rb"
 
 describe "Game" do
 
   include Pieces
 
+  let(:board) {Board.new(8,8)}
   let(:game) {Game.new(Board.new(8,8))}
-  let(:black_pawn) {Pawn.new("black", :pawn)}
 
   describe '#new' do
     it "Creates a new game" do
@@ -17,10 +17,20 @@ describe "Game" do
     end
   end
 
-  describe '#move_piece' do
-    it "moves the piece" do
-      expect(game.move_piece("Pa2","Pa3")).to eq(true)
+  describe '#make_move' do
+
+    context "when the piece is a pawn" do
+
+      context "when is a forward move of a pawn to empty square" do
+        it "moves the pawn to the destiny given position" do
+          expect(game.make_move(board.value_from("Pa2"),"Pa2","Pa3")).to eq(true)
+          expect(board.value_from("Pa2")).to be_nil
+        end
+      end
+
+
     end
+
   end
 
 end

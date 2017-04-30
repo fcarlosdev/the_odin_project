@@ -1,6 +1,6 @@
-require "./move_knight.rb"
-require "./board.rb"
-require "./modules/pieces.rb"
+require "./lib/move_knight.rb"
+require "./lib/board.rb"
+require "./lib/pieces.rb"
 
 describe "Moveknight" do
 
@@ -31,9 +31,9 @@ describe "Moveknight" do
     context "when is a valid ordinary move" do
       it "moves the knight piece to the destiny position" do
         expect(move_knight.move(pieces[:white_knight],"Nd4","Ne6")).to eq(true)
-        expect(board.get_piece("Nd4")).to be_nil
-        expect(board.get_piece("Ne6")).to_not be_nil
-        expect(board.get_piece("Ne6")).to eq(pieces[:white_knight])
+        expect(board.value_from("Nd4")).to be_nil
+        expect(board.value_from("Ne6")).to_not be_nil
+        expect(board.value_from("Ne6")).to eq(pieces[:white_knight])
       end
     end
 
@@ -41,17 +41,17 @@ describe "Moveknight" do
       it "allows the knight piece to capture the opponent piece" do
         board.fill_square("Ne6",pieces[:black_knight])
         expect(move_knight.move(pieces[:white_knight],"Nd4","Ne6")).to eq(true)
-        expect(board.get_piece("Nd4")).to be_nil
-        expect(board.get_piece("Ne6")).to_not be_nil
-        expect(board.get_piece("Ne6")).to eq(pieces[:white_knight])
+        expect(board.value_from("Nd4")).to be_nil
+        expect(board.value_from("Ne6")).to_not be_nil
+        expect(board.value_from("Ne6")).to eq(pieces[:white_knight])
       end
     end
 
     context "when is an invalid ordinary move" do
       it "doesn't moves the knight piece to the destiny position" do
         expect(move_knight.move(pieces[:white_knight],"Nd4","Nd6")).to eq(false)
-        expect(board.get_piece("Nd4")).to_not be_nil
-        expect(board.get_piece("Nd6")).to be_nil
+        expect(board.value_from("Nd4")).to_not be_nil
+        expect(board.value_from("Nd6")).to be_nil
       end
     end
 
@@ -59,8 +59,8 @@ describe "Moveknight" do
       it "doesn't allows the knight piece to capture the opponent piece" do
         board.fill_square("Ne6",pieces[:white_pawn])
         expect(move_knight.move(pieces[:white_knight],"Nd4","Ne6")).to eq(false)
-        expect(board.get_piece("Nd4")).to eq(pieces[:white_knight])
-        expect(board.get_piece("Ne6")).to eq(pieces[:white_pawn])
+        expect(board.value_from("Nd4")).to eq(pieces[:white_knight])
+        expect(board.value_from("Ne6")).to eq(pieces[:white_pawn])
       end
     end
 

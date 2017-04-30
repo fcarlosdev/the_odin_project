@@ -1,6 +1,6 @@
 # $LOAD_PATH << '.'
 require './player.rb'
-require './board.rb'
+require './lib/board.rb'
 
 class Game
 

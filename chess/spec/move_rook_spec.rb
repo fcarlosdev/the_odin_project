@@ -1,6 +1,6 @@
-require "./move_rook.rb"
-require "./board.rb"
-require "./modules/pieces.rb"
+require "./lib/move_rook.rb"
+require "./lib/board.rb"
+require "./lib/pieces.rb"
 
 describe "MoveRook" do
 
@@ -33,9 +33,9 @@ describe "MoveRook" do
     context "when is a valid ordinary move" do
 
       it "moves the rook piece to the destiny given position" do
-        expect(move_rook.move(board.get_piece("Rd5"),"Rd5","Rd6")).to eq(true)
-        expect(board.get_piece("Rd5")).to be_nil
-        expect(board.get_piece("Rd6")).to_not be_nil
+        expect(move_rook.move(board.value_from("Rd5"),"Rd5","Rd6")).to eq(true)
+        expect(board.value_from("Rd5")).to be_nil
+        expect(board.value_from("Rd6")).to_not be_nil
       end
 
     end
@@ -44,9 +44,9 @@ describe "MoveRook" do
 
       it "allows the rook piece to capture the opponent piece" do
         board.fill_square("Rd6",pieces[:black_rook])
-        expect(move_rook.move(board.get_piece("Rd5"),"Rd5","Rd6")).to eq(true)
-        expect(board.get_piece("Rd5")).to be_nil
-        expect(board.get_piece("Rd6")).to eq(pieces[:white_rook])
+        expect(move_rook.move(board.value_from("Rd5"),"Rd5","Rd6")).to eq(true)
+        expect(board.value_from("Rd5")).to be_nil
+        expect(board.value_from("Rd6")).to eq(pieces[:white_rook])
       end
 
     end
@@ -57,9 +57,9 @@ describe "MoveRook" do
 
         it "doesn't allows the moves the rook piece to the destiny position" do
           board.fill_square("Rd6",pieces[:white_pawn])
-          expect(move_rook.move(board.get_piece("Rd5"),"Rd5","Rd6")).to eq(false)
-          expect(board.get_piece("Rd5")).to eq(pieces[:white_rook])
-          expect(board.get_piece("Rd6")).to eq(pieces[:white_pawn])
+          expect(move_rook.move(board.value_from("Rd5"),"Rd5","Rd6")).to eq(false)
+          expect(board.value_from("Rd5")).to eq(pieces[:white_rook])
+          expect(board.value_from("Rd6")).to eq(pieces[:white_pawn])
         end
 
       end
@@ -67,7 +67,7 @@ describe "MoveRook" do
       context "when is not possible move" do
 
         it "doesn't allows the moves the rook piece to the destiny position" do
-          expect(move_rook.move(board.get_piece("Rd5"),"Rd5","Rc6")).to eq(false)
+          expect(move_rook.move(board.value_from("Rd5"),"Rd5","Rc6")).to eq(false)
         end
       end
 

@@ -1,6 +1,6 @@
-require "./move_queen.rb"
-require "./board.rb"
-require "./modules/pieces.rb"
+require "./lib/move_queen.rb"
+require "./lib/board.rb"
+require "./lib/pieces.rb"
 
 describe "MoveQueen" do
 
@@ -31,9 +31,9 @@ describe "MoveQueen" do
     context "when is a valid ordinary move" do
       it "moves the queen piece to the destiny position" do
         expect(move_queen.move(pieces[:white_queen],"Qd4","Qf6")).to eq(true)
-        expect(board.get_piece("Qd4")).to be_nil
-        expect(board.get_piece("Qf6")).to_not be_nil
-        expect(board.get_piece("Qf6")).to eq(pieces[:white_queen])
+        expect(board.value_from("Qd4")).to be_nil
+        expect(board.value_from("Qf6")).to_not be_nil
+        expect(board.value_from("Qf6")).to eq(pieces[:white_queen])
       end
     end
 
@@ -41,17 +41,17 @@ describe "MoveQueen" do
       it "allows the queen piece to capture the opponent piece" do
         board.fill_square("Qf6",pieces[:black_queen])
         expect(move_queen.move(pieces[:white_queen],"Qd4","Qf6")).to eq(true)
-        expect(board.get_piece("Qd4")).to be_nil
-        expect(board.get_piece("Qf6")).to_not be_nil
-        expect(board.get_piece("Qf6")).to eq(pieces[:white_queen])
+        expect(board.value_from("Qd4")).to be_nil
+        expect(board.value_from("Qf6")).to_not be_nil
+        expect(board.value_from("Qf6")).to eq(pieces[:white_queen])
       end
     end
 
     context "when is an invalid ordinary move" do
       it "doesn't moves the queen piece to the destiny position" do
         expect(move_queen.move(pieces[:white_queen],"Qd4","Qe6")).to eq(false)
-        expect(board.get_piece("Qd4")).to_not be_nil
-        expect(board.get_piece("Qe6")).to be_nil
+        expect(board.value_from("Qd4")).to_not be_nil
+        expect(board.value_from("Qe6")).to be_nil
       end
     end
 
@@ -59,8 +59,8 @@ describe "MoveQueen" do
       it "doesn't allows the queen piece to capture the opponent piece" do
         board.fill_square("Qf6",pieces[:white_pawn])
         expect(move_queen.move(pieces[:white_queen],"Qd4","Qf6")).to eq(false)
-        expect(board.get_piece("Qd4")).to eq(pieces[:white_queen])
-        expect(board.get_piece("Qf6")).to eq(pieces[:white_pawn])
+        expect(board.value_from("Qd4")).to eq(pieces[:white_queen])
+        expect(board.value_from("Qf6")).to eq(pieces[:white_pawn])
       end
     end
 

@@ -1,4 +1,4 @@
-require "./modules/pieces"
+require_relative "pieces"
 require "colorize"
 
 class Board
@@ -21,12 +21,8 @@ class Board
     draw_squares(@bg_colors[0])
   end
 
-  def get_square(row,column)
-    (row != nil && column != nil) ? squares[row][column] : nil
-  end
-
-  def get_piece(from)
-    square = map_to_axis(from)
+  def value_from(position)
+    square = map_to_axis(position)
     squares[square[0]][square[1]]
   end
 
@@ -36,6 +32,10 @@ class Board
   end
 
   private
+
+  def get_square(row,column)
+    (row != nil && column != nil) ? squares[row][column] : nil
+  end
 
   def draw_squares(bg_color)
     rows.times do |row|
@@ -94,5 +94,5 @@ class Board
     squares[7][6] = create_piece(:white_knight)
     squares[7][7] = create_piece(:white_rook)
   end
-
+  
 end

@@ -1,4 +1,4 @@
-require "./move.rb"
+require_relative "move"
 
 class MoveKing < Move
 
@@ -30,7 +30,7 @@ class MoveKing < Move
       rook_from = rook_position(from,to)
       rook_to = move_rook_to(from,to)
       if first_move?(from) && !empty_square?(rook_from) && first_move?(rook_from)
-        update_position_of(board.get_piece(rook_from),rook_from,rook_to)
+        update_position_of(board.value_from(rook_from),rook_from,rook_to)
         return true
       end
     end
@@ -42,7 +42,7 @@ class MoveKing < Move
   end
 
   def first_move?(from)
-    board.get_piece(from).first_move
+    board.value_from(from).first_move
   end
 
   def rook_position(from,to)

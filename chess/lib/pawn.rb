@@ -1,4 +1,4 @@
-require "./piece.rb"
+require_relative "piece"
 
 class Pawn < Piece
 

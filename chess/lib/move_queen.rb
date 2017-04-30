@@ -1,6 +1,6 @@
-require "./move.rb"
+require_relative "move"
 
-class MoveBishop < Move
+class MoveQueen < Move
 
   def move(piece,from,to)
     if ordinary_move?(piece,from,to) || capture_move?(piece,from,to)

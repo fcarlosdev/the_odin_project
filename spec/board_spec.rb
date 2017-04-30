@@ -1,4 +1,4 @@
-require "./board.rb"
+require "./lib/board.rb"
 require "./cell.rb"
 
 describe "Board" do

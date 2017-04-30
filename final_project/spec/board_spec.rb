@@ -1,4 +1,4 @@
-require "./board.rb"
+require "./lib/board.rb"
 require "./pieces_helper.rb"
 
 describe "Board" do
@@ -74,7 +74,7 @@ describe "Board" do
 
   describe "#get_piece" do
     it "returns a piece on a given position" do
-      expect(board.get_piece("Pf2")).to eq board.cells[6][5]
+      expect(board.value_from("Pf2")).to eq board.cells[6][5]
     end
   end
 

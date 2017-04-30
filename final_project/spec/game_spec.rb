@@ -1,5 +1,5 @@
 require './game.rb'
-require './board.rb'
+require './lib/board.rb'
 require './player.rb'
 require './pieces.rb'
 

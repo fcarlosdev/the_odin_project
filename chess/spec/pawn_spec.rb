@@ -1,4 +1,4 @@
-require "./pawn.rb"
+require "./lib/pawn.rb"
 
 describe "Pawn" do
 

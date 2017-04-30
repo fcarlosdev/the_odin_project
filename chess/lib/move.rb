@@ -1,5 +1,5 @@
-require "./modules/coordenates.rb"
-require "./modules/distance.rb"
+require_relative "coordenates"
+require_relative "distance"
 
 class Move
 
@@ -22,11 +22,11 @@ class Move
     end
 
     def empty_square?(at)
-      ["",nil].include?(board.get_piece(at))
+      ["",nil].include?(board.value_from(at))
     end
 
     def opponent_of?(piece,at_position)
-      board.get_piece(at_position).color != piece.color
+      board.value_from(at_position).color != piece.color
     end
 
 end

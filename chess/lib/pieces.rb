@@ -1,12 +1,11 @@
-require "./rook.rb"
-require "./knight.rb"
-require "./bishop.rb"
-require "./queen.rb"
-require "./king.rb"
-require "./pawn.rb"
-require "./modules/mapper.rb"
-require "./modules/directions.rb"
-
+require_relative "rook"
+require_relative "knight"
+require_relative "bishop"
+require_relative "queen"
+require_relative "king"
+require_relative "pawn"
+require_relative "mapper"
+require_relative "directions"
 
 module Pieces
 

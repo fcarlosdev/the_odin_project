@@ -1,5 +1,5 @@
-require './piece.rb'
-require './king.rb'
+require './lib/piece.rb'
+require './lib/king.rb'
 
 describe "Piece" do
 

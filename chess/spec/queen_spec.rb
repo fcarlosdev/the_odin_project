@@ -1,4 +1,4 @@
-require './queen.rb'
+require './lib/queen.rb'
 
 describe "Queen" do
 

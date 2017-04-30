@@ -1,4 +1,4 @@
-require "./knight.rb"
+require "./lib/knight.rb"
 
 describe "Knight" do
 

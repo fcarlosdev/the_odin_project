@@ -1,6 +1,6 @@
-require "./move_king.rb"
-require "./board.rb"
-require "./modules/pieces.rb"
+require "./lib/move_king.rb"
+require "./lib/board.rb"
+require "./lib/pieces.rb"
 
 describe "MoveKing" do
 
@@ -35,8 +35,8 @@ describe "MoveKing" do
 
          it "moves the king piece to the given position" do
            expect(move_king.move(pieces[:white_king],"Kd4", "Kd5")).to eq(true)
-           expect(board.get_piece("Kd4")).to be_nil
-           expect(board.get_piece("Kd5")).to_not be_nil
+           expect(board.value_from("Kd4")).to be_nil
+           expect(board.value_from("Kd5")).to_not be_nil
          end
 
        end
@@ -56,7 +56,7 @@ describe "MoveKing" do
 
       context "when is a not possible move to the king piece" do
         it "doesn't moves the king piece to the destiny position" do
-          expect(move_king.move(board.get_piece("Kd4"),"Kd4","Kd7")).to eq(false)
+          expect(move_king.move(board.value_from("Kd4"),"Kd4","Kd7")).to eq(false)
         end
       end
 
@@ -64,9 +64,9 @@ describe "MoveKing" do
 
         it "doesn't moves the king piece to the destiny position" do
           board.fill_square("Kd5",pieces[:white_pawn])
-          expect(move_king.move(board.get_piece("Kd4"),"Kd4","Kd5")).to eq(false)
-          expect(board.get_piece("Kd4")).to eq(pieces[:white_king])
-          expect(board.get_piece("Kd5")).to eq(pieces[:white_pawn])
+          expect(move_king.move(board.value_from("Kd4"),"Kd4","Kd5")).to eq(false)
+          expect(board.value_from("Kd4")).to eq(pieces[:white_king])
+          expect(board.value_from("Kd5")).to eq(pieces[:white_pawn])
         end
 
       end
@@ -77,11 +77,11 @@ describe "MoveKing" do
       it "moves the king pice to the given position" do
         board.fill_square("Kg1",nil)
         board.fill_square("Ke1",pieces[:white_king])
-        expect(move_king.move(board.get_piece("Ke1"),"Ke1","Kg1")).to eq(true)
-        expect(board.get_piece("Kg1")).to eq(pieces[:white_king])
-        expect(board.get_piece("Ke1")).to eq(nil)
-        expect(board.get_piece("Rh1")).to eq(nil)
-        expect(board.get_piece("Rf1")).to eq(pieces[:white_rook])
+        expect(move_king.move(board.value_from("Ke1"),"Ke1","Kg1")).to eq(true)
+        expect(board.value_from("Kg1")).to eq(pieces[:white_king])
+        expect(board.value_from("Ke1")).to eq(nil)
+        expect(board.value_from("Rh1")).to eq(nil)
+        expect(board.value_from("Rf1")).to eq(pieces[:white_rook])
       end
     end
 
@@ -90,9 +90,9 @@ describe "MoveKing" do
         board.fill_square("Kg1",nil)
         board.fill_square("Ke1",pieces[:white_king])
         board.fill_square("Rh1",nil)
-        expect(move_king.move(board.get_piece("Ke1"),"Ke1","Kg1")).to eq(false)
-        expect(board.get_piece("Kg1")).to be_nil
-        expect(board.get_piece("Ke1")).to eq(pieces[:white_king])
+        expect(move_king.move(board.value_from("Ke1"),"Ke1","Kg1")).to eq(false)
+        expect(board.value_from("Kg1")).to be_nil
+        expect(board.value_from("Ke1")).to eq(pieces[:white_king])
       end
     end
   end

@@ -1,6 +1,6 @@
 require './player.rb'
-require './piece.rb'
-require './board.rb'
+require_relative "piece"
+require './lib/board.rb'
 
 describe "Player" do
 

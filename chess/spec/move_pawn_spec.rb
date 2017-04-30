@@ -1,6 +1,6 @@
-require "./move_pawn.rb"
-require "./board.rb"
-require "./modules/pieces.rb"
+require "./lib/move_pawn.rb"
+require "./lib/board.rb"
+require "./lib/pieces.rb"
 
 describe "MovePawn" do
 
@@ -31,8 +31,8 @@ describe "MovePawn" do
     context "when is a valid ordinary move" do
       it "moves the pawn piece to the destiny position" do
         expect(move_pawn.move(pieces[:white_pawn],"Pf5", "Pf6")).to eq(true)
-        expect(board.get_piece("Pf5")).to be_nil
-        expect(board.get_piece("Pf6")).to eq(pieces[:white_pawn])
+        expect(board.value_from("Pf5")).to be_nil
+        expect(board.value_from("Pf6")).to eq(pieces[:white_pawn])
       end
     end
 
@@ -40,8 +40,8 @@ describe "MovePawn" do
       it "allows to the pawn piece to capture opponent piece" do
         board.fill_square("Pg6",pieces[:black_pawn])
         expect(move_pawn.move(pieces[:white_pawn],"Pf5", "Pg6")).to eq(true)
-        expect(board.get_piece("Pf5")).to be_nil
-        expect(board.get_piece("Pg6")).to eq(pieces[:white_pawn])
+        expect(board.value_from("Pf5")).to be_nil
+        expect(board.value_from("Pg6")).to eq(pieces[:white_pawn])
       end
     end
 
@@ -87,19 +87,19 @@ describe "MovePawn" do
     context "when is a valid en passant move" do
       it "allows the pawn piece to capture the opponent piece" do
         board.fill_square("Pg7",pieces[:black_pawn])
-        move_pawn.move(board.get_piece("Pg7"),"Pg7","Pg5")
+        move_pawn.move(board.value_from("Pg7"),"Pg7","Pg5")
         expect(move_pawn.move(pieces[:white_pawn],"Pf5","Pg6")).to eq(true)
-        expect(board.get_piece("Pf5")).to be_nil
-        expect(board.get_piece("Pg6")).to_not be_nil
-        expect(board.get_piece("Pg5")).to be_nil
+        expect(board.value_from("Pf5")).to be_nil
+        expect(board.value_from("Pg6")).to_not be_nil
+        expect(board.value_from("Pg5")).to be_nil
       end
     end
 
     context "when lost the chance of en passant move" do
       it "doesn't allows the pawn piece to capture the opponent piece" do
         board.fill_square("Pg7",pieces[:black_pawn])
-        move_pawn.move(board.get_piece("Pg7"),"Pg7","Pg5")
-        move_pawn.move(board.get_piece("Pa2"),"Pa2","Pa3")
+        move_pawn.move(board.value_from("Pg7"),"Pg7","Pg5")
+        move_pawn.move(board.value_from("Pa2"),"Pa2","Pa3")
         expect(move_pawn.move(pieces[:white_pawn],"Pf5","Pg6")).to eq(false)
       end
     end

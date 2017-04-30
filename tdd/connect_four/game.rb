@@ -1,4 +1,4 @@
-require "./board.rb"
+require "./lib/board.rb"
 require "./player.rb"
 require "./piece.rb"
 require "./cell.rb"

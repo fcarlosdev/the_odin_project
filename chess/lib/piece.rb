@@ -1,6 +1,6 @@
-require "./modules/directions.rb"
-require "./modules/coordenates.rb"
-require "./modules/distance.rb"
+require_relative "directions"
+require_relative "coordenates"
+require_relative "distance"
 
 class Piece
 

@@ -1,4 +1,4 @@
-require './board.rb'
+require './lib/board.rb'
 require './player.rb'
 
 class Game
@@ -98,7 +98,7 @@ class Game
   end
 
   def piece_on(position)
-    board.get_piece(position)
+    board.value_from(position)
   end
 
   def empty_cell?(position=nil,piece=nil)

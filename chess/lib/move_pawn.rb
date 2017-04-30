@@ -1,4 +1,4 @@
-require "./move.rb"
+require_relative "move"
 
 class MovePawn < Move
 
@@ -52,7 +52,7 @@ class MovePawn < Move
   end
 
   def opponent_at(side,from)
-    board.get_piece(prefix_position_with('P',select_square(side,from)[0]))
+    board.value_from(prefix_position_with('P',select_square(side,from)[0]))
   end
 
   def select_square(at_side,from)
@@ -68,7 +68,7 @@ class MovePawn < Move
 
   def enable_en_passant_to_opponents(from_piece,at)
     squares_at_side_of(at).each do |s|
-      opponent = board.get_piece(prefix_position_with('P',s))
+      opponent = board.value_from(prefix_position_with('P',s))
       if (!opponent.nil? && opponent.color != from_piece.color)
         opponent.en_passant_allowed = true
       end

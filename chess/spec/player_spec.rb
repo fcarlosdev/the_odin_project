@@ -1,4 +1,4 @@
-require './player.rb'
+require './lib/player.rb'
 
 describe "Player" do
 

@@ -1,4 +1,4 @@
-require './modules/mapper.rb'
+require_relative 'mapper'
 
 module Coordenates
 

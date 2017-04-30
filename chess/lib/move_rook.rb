@@ -1,4 +1,4 @@
-require "./move.rb"
+require_relative "move"
 
 class MoveRook < Move
 

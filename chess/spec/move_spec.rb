@@ -1,6 +1,6 @@
-require "./move.rb"
-require "./board.rb"
-require "./modules/pieces.rb"
+require "./lib/move.rb"
+require "./lib/board.rb"
+require "./lib/pieces.rb"
 
 describe "MovePiece" do
 
@@ -25,8 +25,8 @@ describe "MovePiece" do
   describe '#update_position_of' do
     it "updates the givens positions on the board" do
       move.update_position_of(pieces[:white_pawn],"Pa2","Pa3")
-      expect(board.get_piece("Pa2")).to be_nil
-      expect(board.get_piece("Pa3")).to_not be_nil
+      expect(board.value_from("Pa2")).to be_nil
+      expect(board.value_from("Pa3")).to_not be_nil
     end
   end
 
