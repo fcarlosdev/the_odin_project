@@ -1,6 +1,6 @@
-require "./lib/move_queen.rb"
+require "./lib/moves/move_queen.rb"
 require "./lib/board.rb"
-require "./lib/pieces.rb"
+require "./lib/helpers/pieces.rb"
 
 describe "MoveQueen" do
 

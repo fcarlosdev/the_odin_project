@@ -1,15 +1,11 @@
-require_relative "rook"
-require_relative "knight"
-require_relative "bishop"
-require_relative "queen"
-require_relative "king"
-require_relative "pawn"
-require_relative "mapper"
-require_relative "directions"
+require './lib/pieces/rook'
+require './lib/pieces/knight'
+require './lib/pieces/bishop'
+require './lib/pieces/queen'
+require './lib/pieces/king'
+require './lib/pieces/pawn'
 
 module Pieces
-
-  include Mapper
 
   LIST_OF_PIECES = {
     white_pawn: Pawn.new("white",:pawn),

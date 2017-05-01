@@ -1,6 +1,6 @@
-require "./lib/move_bishop.rb"
+require "./lib/moves/move_bishop.rb"
+require "./lib/helpers/pieces.rb"
 require "./lib/board.rb"
-require "./lib/pieces.rb"
 
 describe "MoveBishop" do
 

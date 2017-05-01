@@ -1,4 +1,4 @@
-require "./lib/king.rb"
+require "./lib/pieces/king.rb"
 
 describe "King" do
 

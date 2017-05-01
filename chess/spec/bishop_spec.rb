@@ -1,4 +1,4 @@
-require './lib/bishop'
+require './lib/pieces/bishop'
 
 describe "Bishop" do
 

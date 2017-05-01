@@ -1,5 +1,5 @@
-require_relative "coordenates"
-require_relative "distance"
+require "./lib/helpers/coordenates"
+require "./lib/helpers/distance"
 
 class Move
 

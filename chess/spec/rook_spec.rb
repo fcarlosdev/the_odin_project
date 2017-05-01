@@ -1,4 +1,4 @@
-require "./lib/rook.rb"
+require "./lib/pieces/rook.rb"
 
 describe "Rook" do
 

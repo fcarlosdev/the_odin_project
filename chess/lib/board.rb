@@ -1,9 +1,11 @@
-require_relative "pieces"
 require "colorize"
+require_relative "helpers/pieces"
+require_relative "helpers/mapper"
 
 class Board
 
   include Pieces
+  include Mapper
 
   EMPTY_STRING = ""
 
@@ -94,5 +96,8 @@ class Board
     squares[7][6] = create_piece(:white_knight)
     squares[7][7] = create_piece(:white_rook)
   end
-  
+
 end
+
+b = Board.new(8,8)
+b.value_from("Pa2")

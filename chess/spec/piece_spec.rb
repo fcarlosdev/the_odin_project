@@ -1,9 +1,11 @@
-require './lib/piece.rb'
-require './lib/king.rb'
+require './lib/pieces/piece.rb'
+require './lib/helpers/pieces.rb'
 
 describe "Piece" do
 
-  let(:king) {King.new("white",:king)}
+  include Pieces
+
+  let(:king) {get_piece(:white_king)}
 
   describe '#new' do
     it "creates a new instance of piece" do

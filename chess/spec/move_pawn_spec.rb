@@ -1,6 +1,6 @@
-require "./lib/move_pawn.rb"
+require "./lib/moves/move_pawn.rb"
 require "./lib/board.rb"
-require "./lib/pieces.rb"
+require "./lib/helpers/pieces.rb"
 
 describe "MovePawn" do
 

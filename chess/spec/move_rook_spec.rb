@@ -1,6 +1,6 @@
-require "./lib/move_rook.rb"
+require "./lib/moves/move_rook.rb"
 require "./lib/board.rb"
-require "./lib/pieces.rb"
+require "./lib/helpers/pieces.rb"
 
 describe "MoveRook" do
 

@@ -6,10 +6,11 @@ require_relative "move_queen"
 require_relative "move_rook"
 require_relative "move_knight"
 
-class Movement
+class Movements
 
   attr_reader :move_pawn, :move_king,   :move_rook,
-              :move_queen,:move_bishop, :move_knight
+              :move_queen,:move_bishop, :move_knight,
+              :movements
   def initialize(board)
     @move_pawn   = MovePawn.new(board)
     @move_king   = MoveKing.new(board)
@@ -17,6 +18,20 @@ class Movement
     @move_queen  = MoveQueen.new(board)
     @move_bishop = MoveBishop.new(board)
     @move_knight = Moveknight.new(board)
+    @movements   = set_movements
+  end
+
+  def move(piece,from,to)
+    movements[piece.type].move(piece,from,to)
+  end
+
+  private
+
+  def set_movements
+    {
+      pawn: @move_pawn,  king:   @move_king,   queen:  @move_rook,
+      rook: @move_queen, bishop: @move_bishop, kinght: @move_knight
+    }
   end
 
 end
