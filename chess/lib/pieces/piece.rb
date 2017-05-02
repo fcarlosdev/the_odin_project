@@ -35,7 +35,7 @@ class Piece
   private
 
   def generate_moves(from)
-    map_to_positions(calculate_moves(from,coordinates))
+    generate_positions(from,coordinates)
   end
 
 end

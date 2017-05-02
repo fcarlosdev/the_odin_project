@@ -15,8 +15,19 @@ class Game
     @movements = Movements.new(board)
   end
 
+  def start
+    system('clear')
+    display_board
+  end
+
   def make_move(piece,from,to)
     movements.move(piece,from,to)
+  end
+
+  private
+
+  def display_board
+    board.draw_board
   end
 
 end

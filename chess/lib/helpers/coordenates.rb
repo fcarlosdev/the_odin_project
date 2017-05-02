@@ -34,5 +34,8 @@ module Coordenates
     map_to_position([xy[0],(xy[1]+number)])
   end
 
+  def generate_positions(from,coordinates)
+    map_to_positions(calculate_moves(from,coordinates))
+  end
 
 end

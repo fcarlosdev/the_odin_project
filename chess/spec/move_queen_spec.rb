@@ -64,8 +64,13 @@ describe "MoveQueen" do
       end
     end
 
+    context "when there is an piece between the origin and destiny positions" do
+      it "doesn't allows the moves the queen piece to the destiny position" do
+        board.fill_square("Qd6",pieces[:white_pawn])
+        expect(move_queen.move(board.value_from("Qd4"),"Qd4","Qd7")).to eq(false)
+      end
+    end
+
   end
-
-
 
 end

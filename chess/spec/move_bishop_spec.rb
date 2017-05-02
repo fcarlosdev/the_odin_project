@@ -64,6 +64,14 @@ describe "MoveBishop" do
       end
     end
 
+    context "when there is an piece between the origin and destiiny positions" do
+      it "doesn't allows the moves the bishop piece to the destiny position" do
+        board.fill_square("Bd6",pieces[:white_pawn])
+        expect(move_bishop.move(board.value_from("Bd5"),"Bd5","Bd8")).to eq(false)
+      end
+    end
+
+
   end
 
 end

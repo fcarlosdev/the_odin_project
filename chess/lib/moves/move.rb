@@ -1,10 +1,12 @@
 require "./lib/helpers/coordenates"
 require "./lib/helpers/distance"
+require "./lib/helpers/directions"
 
 class Move
 
     include Coordenates
     include Distance
+    include Directions
 
     attr_reader :board
 
@@ -28,5 +30,28 @@ class Move
     def opponent_of?(piece,at_position)
       board.value_from(at_position).color != piece.color
     end
+
+    def has_piece_between?(piece,from,to)
+      if piece_type?(piece.type) && (calc_distance(from,to).abs > 1)
+        return any_position_filled?(positions_between(from,to))
+      end
+      false
+    end
+
+    def any_position_filled?(positions)
+      positions.any? {|cell| !empty_square?(cell)}
+    end
+
+    def positions_between(from,to)
+      positions = (from < to) ? (from..to) : (to..from)
+      positions.select {|ps| ![from,to].include?(ps)}
+    end
+
+    private
+
+    def piece_type?(type)
+      [:rook,:bishop,:queen].include?(type)
+    end
+
 
 end

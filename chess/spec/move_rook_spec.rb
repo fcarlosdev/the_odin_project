@@ -69,6 +69,21 @@ describe "MoveRook" do
         it "doesn't allows the moves the rook piece to the destiny position" do
           expect(move_rook.move(board.value_from("Rd5"),"Rd5","Rc6")).to eq(false)
         end
+
+      end
+
+      context "when there is an piece between the origin and destiiny positions" do
+
+        it "doesn't allows the moves the rook piece to the destiny position" do
+          board.fill_square("Pd7",pieces[:white_pawn])
+          board.fill_square("Pd4",nil)
+          board.fill_square("Pd3",nil)
+          board.fill_square("Pd2",pieces[:white_pawn])
+          board.fill_square("Pd1",nil)
+          expect(move_rook.move(board.value_from("Rd5"),"Rd5","Rd8")).to eq(false)
+          expect(move_rook.move(board.value_from("Rd5"),"Rd5","Rd1")).to eq(false)
+        end
+
       end
 
     end

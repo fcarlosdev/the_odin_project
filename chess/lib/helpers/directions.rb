@@ -65,7 +65,7 @@ module Directions
   end
 
   def get_northeast_coordinates(from_rank)
-    (0..from_rank-1).map {|i| [DIRECTIONS[:NE][0]-i, DIRECTIONS[:NE][1]+i]}    
+    (0..from_rank-1).map {|i| [DIRECTIONS[:NE][0]-i, DIRECTIONS[:NE][1]+i]}
   end
 
 end

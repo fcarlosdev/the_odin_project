@@ -5,8 +5,13 @@ require_relative "move_king"
 require_relative "move_queen"
 require_relative "move_rook"
 require_relative "move_knight"
+# require "./lib/helpers/distance"
+# require "./lib/helpers/mapper"
 
 class Movements
+
+  # include Distance
+  # include Mapper
 
   attr_reader :move_pawn, :move_king,   :move_rook,
               :move_queen,:move_bishop, :move_knight,
@@ -33,5 +38,19 @@ class Movements
       rook: @move_queen, bishop: @move_bishop, kinght: @move_knight
     }
   end
+
+  def has_piece_between?(from,to)
+    (calc_distance(from,to).abs > 1) ? !all_positions_empty?(from,to) : false
+  end
+
+  def all_positions_empty?(from,to)
+    positions_between(from,to).all? {|cell| empty_square?(cell)}
+  end
+
+  def positions_between(from,to)
+    positions = (from < to) ? (from..to) : (to..from)
+    positions.select {|ps| ![from,to].include?(ps)}
+  end
+
 
 end

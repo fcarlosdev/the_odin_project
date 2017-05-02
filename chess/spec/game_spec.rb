@@ -22,24 +22,27 @@ describe "Game" do
     end
   end
 
+  describe '#start' do
+    subject(:start_game) {game.start}
+    it "shows the board" do
+      allow(game).to receive(:display_board).and_return(board)
+    end
+  end
+
   describe '#make_move' do
 
-    context "when the piece is a pawn" do
+    context "when is a valid move" do
 
-      context "when is a forward move of a pawn to empty square" do
-
-        it "moves the pawn to the destiny given position" do
-          move = new_from_to(board.value_from("Pa2"), "Pa2", "Pa3")
-          expect(game.make_move(move.piece,move.from,move.to)).to eq(true)
-          expect(board.value_from(move.from)).to be_nil
-          expect(board.value_from(move.to)).to eq(move.piece)
-        end
-
+      it "moves the given piece to the destiny given position" do
+        move = new_from_to(board.value_from("Pa2"), "Pa2", "Pa3")
+        expect(game.make_move(move.piece,move.from,move.to)).to eq(true)
+        expect(board.value_from(move.from)).to be_nil
+        expect(board.value_from(move.to)).to eq(move.piece)
       end
-
 
     end
 
+    # context "when "
   end
 
 end

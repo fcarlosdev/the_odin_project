@@ -3,7 +3,7 @@ require_relative "move"
 class MoveBishop < Move
 
   def move(piece,from,to)
-    if ordinary_move?(piece,from,to) || capture_move?(piece,from,to)
+    if !has_piece_between?(piece,from,to) && can_move_piece?(piece,from,to)
       update_position_of(piece,from,to)
       return true
     end
@@ -23,5 +23,10 @@ class MoveBishop < Move
   def valid_move?(piece,from,to)
     piece.valid_move?(from,to)
   end
+
+  def can_move_piece?(piece,from,to)
+    ordinary_move?(piece,from,to) || capture_move?(piece,from,to)
+  end
+
 
 end
