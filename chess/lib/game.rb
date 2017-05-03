@@ -8,26 +8,32 @@ class Game
   include Pieces
   include Mapper
 
-  attr_reader :board, :movements
+  attr_reader :board, :players, :current_player, :movements
 
-  def initialize(board)
+  def initialize(board,players)
     @board     = board
+    @players   = players
     @movements = Movements.new(board)
+    @current_player = @players.find {|player| player.color_of_piece.eql?("white")}
   end
 
   def start
-    system('clear')
+    clear_screen
     display_board
   end
 
-  def make_move(piece,from,to)
-    movements.move(piece,from,to)
+  def move(piece,from,to)
+    (piece.color.eql?(current_player.color_of_piece)) && movements.move(piece,from,to)
   end
 
   private
 
   def display_board
     board.draw_board
+  end
+
+  def clear_screen
+    system('clear')
   end
 
 end

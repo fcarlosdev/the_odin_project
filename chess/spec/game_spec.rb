@@ -8,8 +8,14 @@ describe "Game" do
   include Pieces
 
   let(:board) {Board.new(8,8)}
-  let(:game) {Game.new(board)}
-  let(:from_to) {Struct.new(:piece, :from, :to)}
+  let(:players) {
+    [Player.new("Player1","white"), Player.new("Player2","black")]
+  }
+  let(:game) {Game.new(board,players)}
+
+  let(:positions) {
+    {pa2: "Pa2", pa3: "Pa3"}
+  }
 
   def new_from_to(piece,from,to)
     from_to.new(piece,from,to)
@@ -19,30 +25,36 @@ describe "Game" do
     it "Creates a new game" do
       expect(game).to be_instance_of(Game)
       expect(game.board).to_not be_nil
+      expect(game.current_player).to eq(players[0])
     end
   end
 
   describe '#start' do
+
     subject(:start_game) {game.start}
-    it "shows the board" do
+
+    it "starts the game" do
+      allow(game).to receive(:clear_screen)
       allow(game).to receive(:display_board).and_return(board)
+      subject
     end
   end
 
-  describe '#make_move' do
+  describe '#move' do
 
     context "when is a valid move" do
 
+      context "when the "
       it "moves the given piece to the destiny given position" do
-        move = new_from_to(board.value_from("Pa2"), "Pa2", "Pa3")
-        expect(game.make_move(move.piece,move.from,move.to)).to eq(true)
-        expect(board.value_from(move.from)).to be_nil
-        expect(board.value_from(move.to)).to eq(move.piece)
+        piece = board.value_from(positions[:pa2])
+
+        expect(game.move(piece, positions[:pa2], positions[:pa3])).to eq(true)
+        expect(board.value_from(positions[:pa2])).to be_nil
+        expect(board.value_from(positions[:pa3])).to eq(piece)
       end
 
     end
 
-    # context "when "
   end
 
 end
