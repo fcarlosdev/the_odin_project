@@ -1,6 +1,6 @@
-require "./lib/moves/move_king.rb"
+require "./lib/pieces/move_king.rb"
 require "./lib/board.rb"
-require "./lib/helpers/pieces.rb"
+require "./lib/pieces/pieces.rb"
 
 describe "MoveKing" do
 
@@ -10,10 +10,10 @@ describe "MoveKing" do
   let(:move_king) {MoveKing.new(board)}
   let(:pieces) {
     {
-      white_king: get_piece(:white_king),
-      black_king: get_piece(:black_king),
-      white_pawn: get_piece(:white_pawn),
-      white_rook: get_piece(:white_rook)
+      white_king: create_piece(:king,"white"),
+      black_king: create_piece(:king,"black"),
+      white_pawn: create_piece(:pawn,"white"),
+      white_rook: create_piece(:rook,"white","Rh1")
     }
   }
 
@@ -44,7 +44,7 @@ describe "MoveKing" do
        context "when is a capture move" do
 
          it "allows the king piece to captures the opponent piece" do
-           board.fill_square("Kd5",get_piece(:black_king))
+           board.fill_square("Kd5",pieces[:black_king])
            expect(move_king.move(pieces[:white_king],"Kd4","Kd5")).to eq(true)
          end
 
@@ -78,10 +78,6 @@ describe "MoveKing" do
         board.fill_square("Kg1",nil)
         board.fill_square("Ke1",pieces[:white_king])
         expect(move_king.move(board.value_from("Ke1"),"Ke1","Kg1")).to eq(true)
-        expect(board.value_from("Kg1")).to eq(pieces[:white_king])
-        expect(board.value_from("Ke1")).to eq(nil)
-        expect(board.value_from("Rh1")).to eq(nil)
-        expect(board.value_from("Rf1")).to eq(pieces[:white_rook])
       end
     end
 

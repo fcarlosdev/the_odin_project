@@ -1,5 +1,5 @@
-require "./lib/moves/move_bishop.rb"
-require "./lib/helpers/pieces.rb"
+require "./lib/pieces/move_bishop.rb"
+require "./lib/pieces/pieces.rb"
 require "./lib/board.rb"
 
 describe "MoveBishop" do
@@ -10,9 +10,9 @@ describe "MoveBishop" do
   let(:move_bishop) {MoveBishop.new(board)}
   let(:pieces) {
     {
-      white_bishop: get_piece(:white_bishop),
-      black_bishop: get_piece(:black_bishop),
-      white_pawn: get_piece(:white_pawn)
+      white_bishop: create_piece(:bishop,"white"),
+      black_bishop: create_piece(:bishop,"black"),
+      white_pawn:   create_piece(:pawn,"white")
     }
   }
 

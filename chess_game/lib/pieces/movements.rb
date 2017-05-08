@@ -5,13 +5,8 @@ require_relative "move_king"
 require_relative "move_queen"
 require_relative "move_rook"
 require_relative "move_knight"
-# require "./lib/helpers/distance"
-# require "./lib/helpers/mapper"
 
 class Movements
-
-  # include Distance
-  # include Mapper
 
   attr_reader :move_pawn, :move_king,   :move_rook,
               :move_queen,:move_bishop, :move_knight,

@@ -1,6 +1,6 @@
-require "./lib/moves/move_pawn.rb"
+require "./lib/pieces/move_pawn.rb"
 require "./lib/board.rb"
-require "./lib/helpers/pieces.rb"
+require "./lib/pieces/pieces.rb"
 
 describe "MovePawn" do
 
@@ -10,9 +10,9 @@ describe "MovePawn" do
   let(:move_pawn) {MovePawn.new(board)}
   let(:pieces) {
     {
-      white_pawn: get_piece(:white_pawn),
-      black_pawn: get_piece(:black_pawn),
-      white_rook: get_piece(:white_rook)
+      white_pawn: create_piece(:pawn,"white","Pf5"),
+      black_pawn: create_piece(:pawn,"black"),
+      white_rook: create_piece(:rook,"white")
     }
   }
 
@@ -33,6 +33,7 @@ describe "MovePawn" do
         expect(move_pawn.move(pieces[:white_pawn],"Pf5", "Pf6")).to eq(true)
         expect(board.value_from("Pf5")).to be_nil
         expect(board.value_from("Pf6")).to eq(pieces[:white_pawn])
+        expect(pieces[:white_pawn].current_position).to eq("Pf6")
       end
     end
 
@@ -42,6 +43,7 @@ describe "MovePawn" do
         expect(move_pawn.move(pieces[:white_pawn],"Pf5", "Pg6")).to eq(true)
         expect(board.value_from("Pf5")).to be_nil
         expect(board.value_from("Pg6")).to eq(pieces[:white_pawn])
+        expect(pieces[:white_pawn].current_position).to eq("Pg6")
       end
     end
 
@@ -51,6 +53,7 @@ describe "MovePawn" do
         it "doesn't moves the pawn piece to the destiny position" do
           board.fill_square("Pf6",pieces[:white_rook])
           expect(move_pawn.move(pieces[:white_pawn],"Pf5", "Pf6")).to eq(false)
+          expect(pieces[:white_pawn].current_position).to eq("Pf5")
         end
       end
 

@@ -1,6 +1,6 @@
-require "./lib/helpers/coordenates"
-require "./lib/helpers/distance"
-require "./lib/helpers/directions"
+require_relative "coordenates"
+require_relative "distance"
+require_relative "directions"
 
 class Move
 
@@ -45,6 +45,10 @@ class Move
     def positions_between(from,to)
       positions = (from < to) ? (from..to) : (to..from)
       positions.select {|ps| ![from,to].include?(ps)}
+    end
+
+    def update_position(piece,new_position)
+      piece.current_position = new_position
     end
 
     private

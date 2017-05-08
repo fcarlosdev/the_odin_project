@@ -1,6 +1,6 @@
-require "./lib/moves/move.rb"
+require "./lib/pieces/move.rb"
 require "./lib/board.rb"
-require "./lib/helpers/pieces.rb"
+require "./lib/pieces/pieces.rb"
 
 describe "MovePiece" do
 
@@ -10,9 +10,9 @@ describe "MovePiece" do
   let(:move) {Move.new(board)}
   let(:pieces) {
     {
-      white_pawn: get_piece(:white_pawn),
-      black_pawn: get_piece(:black_pawn),
-      white_rook: get_piece(:white_rook)
+      white_pawn: create_piece(:pawn,"white"),
+      black_pawn: create_piece(:pawn,"black"),
+      white_rook: create_piece(:rook,"white")
     }
   }
 

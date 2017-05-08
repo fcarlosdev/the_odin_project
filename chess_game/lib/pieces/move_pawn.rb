@@ -6,7 +6,8 @@ class MovePawn < Move
     if right_direction?(piece,from,to) && can_move?(piece,from,to)
       update_position_of(piece,from,to)
       set_moved_by(piece,from,to)
-      piece.en_passant_allowed = false
+      disable_en_passant(piece)
+      update_position(piece,to)
       return true
     end
     false
@@ -77,6 +78,16 @@ class MovePawn < Move
 
   def update_squares_en_passant_move(piece,from,to)
     board.fill_square(prefix_position_with('P',select_square(to,from)[0]),nil)
+  end
+
+  def disable_en_passant(piece)
+    board.squares.each do |row|
+      row.each do |square|
+        if square != nil && square.type == piece.type && square.color == piece.color
+          square.en_passant_allowed = false
+        end
+      end
+    end
   end
 
 end

@@ -4,33 +4,18 @@ require 'colorize'
 describe Board do
 
   let(:board) {Board.new(8,8)}
-  let(:squares) {
-    [
-      [nil, nil, nil, nil, nil, nil, nil, nil],
-      [nil, nil, nil, nil, nil, nil, nil, nil],
-      [nil, nil, nil, nil, nil, nil, nil, nil],
-      [nil, nil, nil, nil, nil, nil, nil, nil],
-      [nil, nil, nil, nil, nil, nil, nil, nil],
-      [nil, nil, nil, nil, nil, nil, nil, nil],
-      [nil, nil, nil, nil, nil, nil, nil, nil],
-      [nil, nil, nil, nil, nil, nil, nil, nil]
-    ]
-  }
-
   let(:pieces) {
     {
-      black_king:King.new("black", :king),
-      white_king:King.new("white", :king),
-      black_pawn:Pawn.new("black", :pawn),
-      white_pawn:Pawn.new("white", :pawn)
+      black_king:board.value_from("Ke8"),
+      white_king:board.value_from("Ke1"),
+      black_pawn:board.value_from("Pa7"),
+      white_pawn:board.value_from("Pa2")
     }
   }
 
   describe '#new' do
     it "Creates a new board" do
       expect(board).to be_instance_of(Board)
-      expect(board.squares.length).to eql(8)
-      expect(squares.all?{|line| line.length == 8}).to eql(true)
     end
   end
 

@@ -1,6 +1,6 @@
-require "./lib/helpers/directions"
-require "./lib/helpers/coordenates"
-require "./lib/helpers/distance"
+require_relative "directions"
+require_relative "coordenates"
+require_relative "distance"
 
 class Piece
 
@@ -8,15 +8,17 @@ class Piece
   include Coordenates
   include Distance
 
-  attr_reader :color, :type, :image, :coordinates, :moved_by, :first_move
+  attr_reader :color, :type, :image, :coordinates, :moved_by, :first_move,
+              :current_position
 
-  def initialize(color, type)
+  def initialize(color, type, current_position="")
     @color = color
     @type = type
     @image = get_image
     @coordinates = default_coordinates
     @moved_by = 0
     @first_move = true
+    @current_position = current_position
     post_initialize
   end
 
@@ -30,6 +32,10 @@ class Piece
 
   def first_move=(status)
     @first_move = status
+  end
+
+  def current_position=(new_position)
+    @current_position = new_position
   end
 
   private

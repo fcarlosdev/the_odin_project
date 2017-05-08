@@ -1,6 +1,6 @@
-require "./lib/moves/move_knight.rb"
+require "./lib/pieces/move_knight.rb"
 require "./lib/board.rb"
-require "./lib/helpers/pieces.rb"
+require "./lib/pieces/pieces.rb"
 
 describe "Moveknight" do
 
@@ -10,9 +10,9 @@ describe "Moveknight" do
   let(:move_knight) {Moveknight.new(board)}
   let(:pieces) {
     {
-      white_knight: get_piece(:white_knight),
-      black_knight: get_piece(:black_knight),
-      white_pawn: get_piece(:white_pawn)
+      white_knight: create_piece(:knight,"white"),
+      black_knight: create_piece(:knight,"black"),
+      white_pawn: create_piece(:pawn,"white")
     }
   }
 

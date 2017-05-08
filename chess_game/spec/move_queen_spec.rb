@@ -1,6 +1,6 @@
-require "./lib/moves/move_queen.rb"
+require "./lib/pieces/move_queen.rb"
 require "./lib/board.rb"
-require "./lib/helpers/pieces.rb"
+require "./lib/pieces/pieces.rb"
 
 describe "MoveQueen" do
 
@@ -10,9 +10,9 @@ describe "MoveQueen" do
   let(:move_queen) {MoveQueen.new(board)}
   let(:pieces) {
     {
-      white_queen: get_piece(:white_queen),
-      black_queen: get_piece(:black_queen),
-      white_pawn: get_piece(:white_pawn)
+      white_queen: create_piece(:queen,"white"),
+      black_queen: create_piece(:queen,"black"),
+      white_pawn: create_piece(:pawn,"white")
     }
   }
 
