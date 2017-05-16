@@ -7,7 +7,7 @@ class MovePawn < Move
       update_position_of(piece,from,to)
       set_moved_by(piece,from,to)
       disable_en_passant(piece)
-      update_position(piece,to)
+      update_current_position(piece,to)
       return true
     end
     false

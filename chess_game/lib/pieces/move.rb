@@ -47,7 +47,7 @@ class Move
       positions.select {|ps| ![from,to].include?(ps)}
     end
 
-    def update_position(piece,new_position)
+    def update_current_position(piece,new_position)
       piece.current_position = new_position
     end
 

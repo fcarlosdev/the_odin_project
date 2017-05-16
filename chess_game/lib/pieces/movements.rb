@@ -22,6 +22,7 @@ class Movements
   end
 
   def move(piece,from,to)
+    puts "Piece = #{piece.inspect}"
     movements[piece.type].move(piece,from,to)
   end
 
@@ -34,7 +35,7 @@ class Movements
   def set_movements
     {
       pawn:  @move_pawn,  king:   @move_king,   rook:   @move_rook,
-      queen: @move_queen, bishop: @move_bishop, kinght: @move_knight
+      queen: @move_queen, bishop: @move_bishop, knight: @move_knight
     }
   end
 

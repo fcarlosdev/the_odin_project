@@ -5,6 +5,7 @@ class MoveRook < Move
   def move(piece,from,to)
     if can_move?(piece,from,to)
       update_position_of(piece,from,to)
+      update_current_position(piece,to)
       return true
     end
     false

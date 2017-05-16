@@ -50,8 +50,4 @@ class MoveQueen < Move
     positions << generate_positions(from,get_northeast_coordinates(from_coordinates[0]))
   end
 
-  def update_current_position(piece,to)
-    piece.current_position = to
-  end
-
 end
