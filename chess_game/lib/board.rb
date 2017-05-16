@@ -41,13 +41,13 @@ class Board
 
   def game_over?(king_piece,movements)
     return "checkmate" if checkmate?(king_piece,movements)
-    return "draw" if draw?
+    # return "draw" if draw?
   end
 
   private
 
   def checkmate?(king_piece,movements)
-    return "checkmate" if king_in_checkmate?(remove_nils_squares,king_piece,movements)
+    king_in_checkmate?(remove_nils_squares,king_piece,movements)
   end
 
   def draw?

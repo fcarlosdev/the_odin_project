@@ -34,15 +34,16 @@ module Pieces
     possible_moves(piece).select {|m| movements.valid_move?(piece,piece.current_position,m)}
   end
 
-  def king_in_checkmate?(pieces,king_piece,movements)
-    valid_moves = valid_moves_of(king_piece,movements)
-    pieces.each do |piece|
-      return (piece.color != king_piece.color) ? !king_has_escape_move?(king_piece,piece,valid_moves) : false
-    end
+  def king_in_checkmate?(pieces,king,movements)
+    opponents_of(king,pieces).any?{|piece| king_has_no_escape_move?(piece,valid_moves_of(king,movements))}
   end
 
-  def king_has_escape_move?(king_piece,piece,valid_moves_of_king)
-    capture_moves(piece).any? {|m| valid_moves_of_king.all?{|v| v[1..2] == m[1..2]}}
+  def king_has_no_escape_move?(piece,moves_of_king)
+    moves_of_king.length > 0 && moves_of_king.all?{|m| capture_moves(piece).any?{|c| c[1..2] == m[1..2]}}
+  end
+
+  def opponents_of(king,pieces)
+    pieces.select {|piece| piece.color != king.color}
   end
 
 

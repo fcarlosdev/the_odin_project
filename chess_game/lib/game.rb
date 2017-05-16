@@ -21,7 +21,7 @@ class Game
   def play
     loop do
       take_turn
-      break if game_over? == "checkmate"
+      break if game_over?
       switch_players
     end
     end_of_match_actions
@@ -36,7 +36,7 @@ class Game
   end
 
   def game_over?
-    board.checkmate?(board.value_from(opponent_king_at),movements)
+    board.game_over?(board.value_from(opponent_king_at),movements)
   end
 
   def end_of_match_actions
@@ -47,9 +47,9 @@ class Game
 
   def display_message
     if game_over? == "checkmate"
-      "The player #{current_player.name} winning the game!"
+      puts "The player #{current_player.name} winning the game!"
     elsif game_over? == "draw"
-      "It's a Draw"
+      puts "It's a Draw"
     end
   end
 
@@ -67,7 +67,7 @@ class Game
     print "Piece from position Ex.:(Pawn on a2 enter Pa2):"
     origin = gets.chomp
     piece = board.value_from(origin)
-    print "Move piece #{piece.type} to position Ex.:(Pawn to a3 enter Pa3): "
+    print "Move piece #{piece.type} to position Ex.:(Pawn to a3 enter Pa3):"
     destiny = gets.chomp
     {piece: piece, from: origin, to: destiny}
   end
@@ -98,5 +98,5 @@ class Game
 
 end
 
-# g = Game.new(Board.new(8,8), [Player.new("player1","white"), Player.new("player2","black")])
-# g.play
+g = Game.new(Board.new(8,8), [Player.new("player1","white"), Player.new("player2","black")])
+g.play

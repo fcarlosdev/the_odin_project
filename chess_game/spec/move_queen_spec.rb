@@ -34,6 +34,7 @@ describe "MoveQueen" do
         expect(board.value_from("Qd4")).to be_nil
         expect(board.value_from("Qf6")).to_not be_nil
         expect(board.value_from("Qf6")).to eq(pieces[:white_queen])
+        expect(board.value_from("Qf6").current_position).to eq("Qf6")
       end
     end
 

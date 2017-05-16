@@ -5,6 +5,7 @@ class MoveQueen < Move
   def move(piece,from,to)
     if can_move?(piece,from,to)
       update_position_of(piece,from,to)
+      update_current_position(piece,to)
       return true
     end
     return false
@@ -47,6 +48,10 @@ class MoveQueen < Move
     positions << generate_positions(from,get_southeast_coordinates(from_coordinates[0]))
     positions << generate_positions(from,get_southwest_coordinates(from_coordinates[1]))
     positions << generate_positions(from,get_northeast_coordinates(from_coordinates[0]))
+  end
+
+  def update_current_position(piece,to)
+    piece.current_position = to
   end
 
 end
