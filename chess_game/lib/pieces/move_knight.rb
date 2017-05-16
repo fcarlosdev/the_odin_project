@@ -3,11 +3,15 @@ require_relative "move"
 class Moveknight < Move
 
   def move(piece,from,to)
-    if ordinary_move?(piece,from,to) || capture_move?(piece,from,to)
+    if can_move?(piece,from,to)
       update_position_of(piece,from,to)
       return true
     end
     false
+  end
+
+  def can_move?(piece,from,to)
+    ordinary_move?(piece,from,to) || capture_move?(piece,from,to)
   end
 
   private

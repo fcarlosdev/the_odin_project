@@ -10,6 +10,10 @@ class Bishop < Piece
     possible_moves(from).include?(to)
   end
 
+  def capture_moves(from)
+    possible_moves(from)
+  end
+
   private
 
   def default_coordinates

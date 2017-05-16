@@ -3,19 +3,24 @@ require_relative "move"
 class MoveQueen < Move
 
   def move(piece,from,to)
-    if !has_piece_between?(piece,from,to) && can_move?(piece,from,to)
+    if can_move?(piece,from,to)
       update_position_of(piece,from,to)
       return true
     end
-    false
+    return false
   end
+
+  def can_move?(piece,from,to)
+    !has_piece_between?(piece,from,to) &&
+    (ordinary_move?(piece,from,to) || capture_move?(piece,from,to))
+  end
+
+  private
 
   def has_piece_between?(piece,from,to)
     diagonals = diagonals_between(from,to)
     (!diagonals.empty?) ? any_position_filled?(diagonals) : super(piece,from,to)
   end
-
-  private
 
   def ordinary_move?(piece,from,to)
     valid_move?(piece,from,to) && empty_square?(to)
@@ -29,9 +34,6 @@ class MoveQueen < Move
     piece.valid_move?(from,to)
   end
 
-  def can_move?(piece,from,to)
-    ordinary_move?(piece,from,to) || capture_move?(piece,from,to)
-  end
 
   def diagonals_between(from,to)
     positions = diagonal_positions(from).select {|ps| ps.include?(to[1..2])}
@@ -46,9 +48,5 @@ class MoveQueen < Move
     positions << generate_positions(from,get_southwest_coordinates(from_coordinates[1]))
     positions << generate_positions(from,get_northeast_coordinates(from_coordinates[0]))
   end
-
-  # def free_way?(squares,from,to)
-  #   (squares.length > 0) && !any_position_filled?(squares)
-  # end
 
 end

@@ -3,11 +3,15 @@ require_relative "move"
 class MoveBishop < Move
 
   def move(piece,from,to)
-    if !has_piece_between?(piece,from,to) && can_move_piece?(piece,from,to)
+    if can_move?(piece,from,to)
       update_position_of(piece,from,to)
       return true
     end
     false
+  end
+
+  def can_move?(piece,from,to)
+    !has_piece_between?(piece,from,to) && can_move_piece?(piece,from,to)
   end
 
   private

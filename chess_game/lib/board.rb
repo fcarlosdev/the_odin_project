@@ -21,6 +21,7 @@ class Board
 
   def draw_board
     draw_squares(@bg_colors[0])
+    show_bottom_letters
   end
 
   def value_from(position)
@@ -33,7 +34,25 @@ class Board
     squares[at_xy[0]][at_xy[1]] = value
   end
 
+  def position_from(piece_type, from_color)
+    piece_found = remove_nils_squares.select {|piece| piece.type == piece_type && piece.color == from_color}
+    piece_found[0].current_position if piece_found.length > 0
+  end
+
+  def game_over?(king_piece,movements)
+    return "checkmate" if checkmate?(king_piece,movements)
+    return "draw" if draw?
+  end
+
   private
+
+  def checkmate?(king_piece,movements)
+    return "checkmate" if king_in_checkmate?(remove_nils_squares,king_piece,movements)
+  end
+
+  def draw?
+    "draw"
+  end
 
   def draw_squares(bg_color)
     rows.times do |row|
@@ -72,6 +91,14 @@ class Board
 
   def create_squares(row,columns)
     @squares = Array.new(rows) {Array.new(columns)}
+  end
+
+  def show_bottom_letters
+    puts "".center(6)+(97.chr..(97+7).chr).to_a.join("".center(7))
+  end
+
+  def remove_nils_squares
+    squares.map {|cells| cells.compact }.flatten
   end
 
   def load_pieces

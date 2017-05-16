@@ -9,31 +9,22 @@ class Game
   include Pieces
   include Mapper
 
-  attr_reader :board, :players, :current_player, :movements, :status
+  attr_reader :board, :players, :current_player, :movements
 
   def initialize(board,players)
-    @board     = board
-    @players   = players
-    @movements = set_movement
+    @board          = board
+    @players        = players
+    @movements      = create_movements(board)
     @current_player = default_player
-    @status = 'playing'
   end
 
   def play
     loop do
       take_turn
-      break if game_over?
+      break if game_over? == "checkmate"
       switch_players
     end
     end_of_match_actions
-  end
-
-  def move(piece,from,to)
-    (piece.color.eql?(current_player.color_of_piece)) && movements.move(piece,from,to)
-  end
-
-  def status=(new_status)
-    @status = new_status
   end
 
   private
@@ -45,14 +36,7 @@ class Game
   end
 
   def game_over?
-    # TODO: Implementing checking to see if occorred a checkmate
-    if status == "checkmate"
-      return "checkmate"
-    elsif status == "draw"
-      return "draw"
-    else
-      return "playing"
-    end
+    board.checkmate?(board.value_from(opponent_king_at),movements)
   end
 
   def end_of_match_actions
@@ -74,6 +58,10 @@ class Game
     move(args[:piece],args[:from],args[:to])
   end
 
+  def move(piece,from,to)
+    (piece.color.eql?(@current_player.color_of_piece)) && movements.move(piece,from,to)
+  end
+
   def enter_move
     puts "Make a move player #{current_player.name}"
     print "Piece from position Ex.:(Pawn on a2 enter Pa2):"
@@ -85,7 +73,7 @@ class Game
   end
 
   def switch_players
-    @current_player = players.find {|p| p if current_player != p }
+    @current_player = players.find {|player| player != @current_player }
   end
 
   def display_board
@@ -96,12 +84,16 @@ class Game
     system('clear')
   end
 
-  def set_movement
-    Movements.new(@board)
-  end
-
   def default_player
     @players.find {|player| player.color_of_piece.eql?("white")}
+  end
+
+  def opposite_color
+    @current_player.color_of_piece == "white" ? "black" : "white"
+  end
+
+  def opponent_king_at
+    board.position_from(:king, opposite_color)
   end
 
 end

@@ -38,6 +38,10 @@ class Piece
     @current_position = new_position
   end
 
+  def capture_moves(from)
+    raise NotImplementedError, "This #{self.class} cannot respond to:"
+  end
+
   private
 
   def generate_moves(from)

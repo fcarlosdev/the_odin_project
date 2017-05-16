@@ -29,6 +29,14 @@ class Pawn < Piece
     @en_passant_allowed = allowed
   end
 
+  def capture_moves
+    possible_moves(@curren_position)
+  end
+
+  def capture_moves(from)
+    map_to_positions(calculate_moves(from,diagonals_coordinates)).map {|l| "P"+l}
+  end
+
   private
 
   def default_coordinates
@@ -50,10 +58,6 @@ class Pawn < Piece
 
   def get_moves_by_two_squares(from)
     coordinates.map {|v| [v[0],v[1]] + [v[0]+v[0],v[1]]}.flatten.each_slice(2).to_a
-  end
-
-  def capture_moves(from)
-    map_to_positions(calculate_moves(from,diagonals_coordinates)).map {|l| "P"+l}
   end
 
   def diagonals_coordinates

@@ -25,12 +25,16 @@ class Movements
     movements[piece.type].move(piece,from,to)
   end
 
+  def valid_move?(piece,from,to)
+    movements[piece.type].can_move?(piece,from,to)
+  end
+
   private
 
   def set_movements
     {
-      pawn: @move_pawn,  king:   @move_king,   queen:  @move_rook,
-      rook: @move_queen, bishop: @move_bishop, kinght: @move_knight
+      pawn:  @move_pawn,  king:   @move_king,   rook:   @move_rook,
+      queen: @move_queen, bishop: @move_bishop, kinght: @move_knight
     }
   end
 

@@ -35,7 +35,7 @@ class Move
       if piece_type?(piece.type) && (calc_distance(from,to).abs > 1)
         return any_position_filled?(positions_between(from,to))
       end
-      false
+      return false
     end
 
     def any_position_filled?(positions)

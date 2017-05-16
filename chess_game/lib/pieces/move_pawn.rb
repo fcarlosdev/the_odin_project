@@ -13,11 +13,11 @@ class MovePawn < Move
     false
   end
 
-  private
-
   def can_move?(piece,from,to)
     ordinary_move?(piece,from,to) || capture_move?(piece,from,to) || en_passant_move?(piece,from,to)
   end
+
+  private
 
   def ordinary_move?(piece,from,to)
     piece.valid_move?(from,to) && empty_square?(to) && !piece.capture_move?(from,to)
@@ -67,10 +67,11 @@ class MovePawn < Move
     end
   end
 
-  def enable_en_passant_to_opponents(from_piece,at)
-    squares_at_side_of(at).each do |s|
+  def enable_en_passant_to_opponents(from_piece,square)
+    squares_at_side_of(square).each do |s|
       opponent = board.value_from(prefix_position_with('P',s))
-      if (!opponent.nil? && opponent.color != from_piece.color)
+      if (!opponent.nil? && opponent.color != from_piece.color &&
+           opponent.type == :pawn)
         opponent.en_passant_allowed = true
       end
     end

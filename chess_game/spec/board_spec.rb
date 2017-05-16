@@ -1,9 +1,11 @@
 require './lib/board.rb'
+require './lib/pieces/movements.rb'
 require 'colorize'
 
 describe Board do
 
   let(:board) {Board.new(8,8)}
+  let(:movements) {Movements.new(board)}
   let(:pieces) {
     {
       black_king:board.value_from("Ke8"),
@@ -12,6 +14,12 @@ describe Board do
       white_pawn:board.value_from("Pa2")
     }
   }
+
+  def move_piece(from,to)
+    board.fill_square(to,board.value_from(from))
+    board.fill_square(from,nil)
+    board.value_from(to).current_position = to
+  end
 
   describe '#new' do
     it "Creates a new board" do
@@ -52,6 +60,33 @@ describe Board do
       board.fill_square("Pb3",pieces[:black_pawn])
       expect(board.value_from("Pb3")).to_not be_nil
     end
+  end
+
+  describe '#position_from' do
+    it "returns the position of a type of pice" do
+      expect(board.position_from(:king,"white")).to eq("Ke1")
+    end
+
+    it "returns nil when doesn't find the piece" do
+      expect(board.position_from(:ace,"white")).to eq(nil)
+    end
+  end
+
+  describe '#game_over?' do
+
+    it "returns checkmate when there is a checkmate move" do
+      move_piece("Pf2","Pf3")
+      move_piece("Pe7","Pe5")
+      move_piece("Pg2","Pg4")
+      move_piece("Qd8","Qh4")
+      expect(board.game_over?(pieces[:white_king],movements)).to eq("checkmate")
+    end
+
+    it "returns draw when there is a draw" do
+      allow(board).to receive(:game_over?).with(pieces[:black_pawn],nil).and_return("draw")
+      expect(board.game_over?(pieces[:black_pawn],nil)).to eq("draw")
+    end
+
   end
 
 end

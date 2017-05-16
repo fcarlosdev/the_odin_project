@@ -6,12 +6,16 @@ class MoveKing < Move
   ROOK_POSITIONS = ["Ra1","Ra7", "Rh1", "Rh7"]
 
   def move(piece,from,to)
-    if ordinary_move?(piece,from,to) ||  capture_move?(piece,from,to) ||
-       castling_move?(piece,from,to)
+    if can_move?(piece,from,to)
       update_position_of(piece,from,to)
       return true
     end
     false
+  end
+
+  def can_move?(piece,from,to)
+    ordinary_move?(piece,from,to) || capture_move?(piece,from,to) ||
+    castling_move?(piece,from,to)
   end
 
   private

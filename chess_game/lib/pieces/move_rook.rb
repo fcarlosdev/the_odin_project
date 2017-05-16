@@ -3,11 +3,16 @@ require_relative "move"
 class MoveRook < Move
 
   def move(piece,from,to)
-    if !has_piece_between?(piece,from,to) && can_move?(piece,from,to)
+    if can_move?(piece,from,to)
       update_position_of(piece,from,to)
       return true
     end
     false
+  end
+
+  def can_move?(piece,from,to)
+    !has_piece_between?(piece,from,to) &&
+     ((ordinary_move?(piece,from,to) || capture_move?(piece,from,to)))
   end
 
   private
@@ -18,10 +23,6 @@ class MoveRook < Move
 
   def capture_move?(piece,from,to)
     piece.valid_move?(from,to) && !empty_square?(to) && opponent_of?(piece,to)
-  end
-
-  def can_move?(piece,from,to)
-    (ordinary_move?(piece,from,to) || capture_move?(piece,from,to))
   end
 
 end

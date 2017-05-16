@@ -89,7 +89,6 @@ describe "MovePawn" do
 
     context "when is a valid en passant move" do
       it "allows the pawn piece to capture the opponent piece" do
-        board.fill_square("Pg7",pieces[:black_pawn])
         move_pawn.move(board.value_from("Pg7"),"Pg7","Pg5")
         expect(move_pawn.move(pieces[:white_pawn],"Pf5","Pg6")).to eq(true)
         expect(board.value_from("Pf5")).to be_nil
@@ -100,7 +99,6 @@ describe "MovePawn" do
 
     context "when lost the chance of en passant move" do
       it "doesn't allows the pawn piece to capture the opponent piece" do
-        board.fill_square("Pg7",pieces[:black_pawn])
         move_pawn.move(board.value_from("Pg7"),"Pg7","Pg5")
         move_pawn.move(board.value_from("Pa2"),"Pa2","Pa3")
         expect(move_pawn.move(pieces[:white_pawn],"Pf5","Pg6")).to eq(false)

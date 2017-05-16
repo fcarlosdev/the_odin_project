@@ -10,10 +10,14 @@ class Queen < Piece
     possible_moves(from).include?(to)
   end
 
+  def capture_moves(from)
+    possible_moves(from)
+  end
+
   private
 
   def default_coordinates
-    get_coordinates_from(cardinal_and_ordinal)
+    get_coordinates_from(cardinal + intercardinal + secondary)
   end
 
   def generate_moves(from)
