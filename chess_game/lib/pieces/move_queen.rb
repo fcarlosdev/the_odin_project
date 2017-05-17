@@ -19,7 +19,7 @@ class MoveQueen < Move
   private
 
   def has_piece_between?(piece,from,to)
-    diagonals = diagonals_between(from,to)
+    diagonals = perfix_positions_with("Q",diagonals_between(from,to))
     (!diagonals.empty?) ? any_position_filled?(diagonals) : super(piece,from,to)
   end
 
@@ -33,21 +33,6 @@ class MoveQueen < Move
 
   def valid_move?(piece,from,to)
     piece.valid_move?(from,to)
-  end
-
-
-  def diagonals_between(from,to)
-    positions = diagonal_positions(from).select {|ps| ps.include?(to[1..2])}
-    perfix_positions_with("Q",positions.flatten.select {|v| v < to[1..2]})
-  end
-
-  def diagonal_positions(from)
-    from_coordinates = map_to_axis(from)
-    positions = []
-    positions << generate_positions(from,get_northwest_coordinates(from_coordinates[0]))
-    positions << generate_positions(from,get_southeast_coordinates(from_coordinates[0]))
-    positions << generate_positions(from,get_southwest_coordinates(from_coordinates[1]))
-    positions << generate_positions(from,get_northeast_coordinates(from_coordinates[0]))
   end
 
 end

@@ -37,6 +37,15 @@ describe "MoveBishop" do
       end
     end
 
+    context "when is a valid ordinary move through varios squares" do
+      it "moves the bishop through the squares till the destiny position" do
+        board.fill_square("Pe7",nil)
+        expect(move_bishop.move(board.value_from("Bf8"),"Bf8","Bc5")).to eq(true)
+        expect(board.value_from("Bf8")).to be_nil
+        expect(board.value_from("Bc5")).to_not be_nil
+      end
+    end
+
     context "when is a capture valid move" do
       it "allows the bishop piece to capture opponent piece" do
         board.fill_square("Be6",pieces[:black_bishop])
@@ -70,7 +79,6 @@ describe "MoveBishop" do
         expect(move_bishop.move(board.value_from("Bd5"),"Bd5","Bd8")).to eq(false)
       end
     end
-
 
   end
 

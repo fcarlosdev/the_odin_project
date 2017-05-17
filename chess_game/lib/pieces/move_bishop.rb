@@ -17,6 +17,11 @@ class MoveBishop < Move
 
   private
 
+  def has_piece_between?(piece,from,to)
+    diagonals = perfix_positions_with("B",diagonals_between(from,to))
+    (!diagonals.empty?) ? any_position_filled?(diagonals) : super(piece,from,to)
+  end
+
   def ordinary_move?(piece,from,to)
     valid_move?(piece,from,to) && empty_square?(to)
   end
@@ -32,6 +37,5 @@ class MoveBishop < Move
   def can_move_piece?(piece,from,to)
     ordinary_move?(piece,from,to) || capture_move?(piece,from,to)
   end
-
 
 end

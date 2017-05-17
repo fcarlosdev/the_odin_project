@@ -1,12 +1,14 @@
 require_relative "coordenates"
 require_relative "distance"
 require_relative "directions"
+require_relative "diagonals"
 
 class Move
 
     include Coordenates
     include Distance
     include Directions
+    include Diagonals
 
     attr_reader :board
 
