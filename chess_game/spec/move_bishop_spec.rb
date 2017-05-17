@@ -40,6 +40,7 @@ describe "MoveBishop" do
     context "when is a valid ordinary move through varios squares" do
       it "moves the bishop through the squares till the destiny position" do
         board.fill_square("Pe7",nil)
+        board.fill_square("Pa3",board.value_from("Pa2"))
         expect(move_bishop.move(board.value_from("Bf8"),"Bf8","Bc5")).to eq(true)
         expect(board.value_from("Bf8")).to be_nil
         expect(board.value_from("Bc5")).to_not be_nil

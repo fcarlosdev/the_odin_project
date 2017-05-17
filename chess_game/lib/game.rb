@@ -47,9 +47,9 @@ class Game
 
   def display_message
     if game_over? == "checkmate"
-      puts "The player #{current_player.name} winning the game!"
+      p "The player #{current_player.name} winning the game!"
     elsif game_over? == "draw"
-      puts "It's a Draw"
+      p "It's a Draw"
     end
   end
 
@@ -98,5 +98,5 @@ class Game
 
 end
 
-g = Game.new(Board.new(8,8), [Player.new("player1","white"), Player.new("player2","black")])
-g.play
+# g = Game.new(Board.new(8,8), [Player.new("player1","white"), Player.new("player2","black")])
+# g.play

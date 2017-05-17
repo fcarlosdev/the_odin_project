@@ -20,7 +20,7 @@ class MoveQueen < Move
 
   def has_piece_between?(piece,from,to)
     diagonals = perfix_positions_with("Q",diagonals_between(from,to))
-    (!diagonals.empty?) ? any_position_filled?(diagonals) : super(piece,from,to)
+    moved_diagonally?(piece,from,to) ? any_position_filled?(diagonals) : super(piece,from,to)
   end
 
   def ordinary_move?(piece,from,to)
@@ -33,6 +33,10 @@ class MoveQueen < Move
 
   def valid_move?(piece,from,to)
     piece.valid_move?(from,to)
+  end
+
+  def moved_diagonally?(piece,from,to)
+    calc_distance(from,to).abs > 1 && (!diagonals_between(from,to).empty?)
   end
 
 end

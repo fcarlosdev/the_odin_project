@@ -5,7 +5,8 @@ module Diagonals
   include Coordenates
 
   def diagonals_between(from,to)
-    diagonals(from).select {|ps| ps.include?(to[1..2])}.flatten.select {|v| v < to[1..2]}
+    positions = diagonals(from).select {|ps| ps.include?(to[1..2])}.flatten
+    select_from(positions,from[1..2],to[1..2])
   end
 
   def diagonals(from)
@@ -15,6 +16,14 @@ module Diagonals
     positions << generate_positions(from,get_southeast_coordinates(from_coordinates[0]))
     positions << generate_positions(from,get_southwest_coordinates(from_coordinates[1]))
     positions << generate_positions(from,get_northeast_coordinates(from_coordinates[0]))
+  end
+
+  def select_from(positions,from,to)
+    positions.select {|v| range(from,to).include?(v) && v != to}
+  end
+
+  def range(from,to)
+    (from < to) ? (from..to) : (to..from)
   end
 
 end

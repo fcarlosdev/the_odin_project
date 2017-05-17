@@ -22,7 +22,6 @@ class Movements
   end
 
   def move(piece,from,to)
-    puts "Piece = #{piece.inspect}"
     movements[piece.type].move(piece,from,to)
   end
 
