@@ -39,15 +39,37 @@ class Board
     piece_found[0].current_position if piece_found.length > 0
   end
 
-  def game_over?(king_piece,movements)
-    return "checkmate" if checkmate?(king_piece,movements)
+  def game_over?(king,movements)
+    return "checkmate" if checkmate?(king,movements)
     # return "draw" if draw?
+  end
+
+  def select_filled_squares
+    selected_squares = []
+    squares.each do |squares|
+      squares.each do |square|
+        selected_squares << square if !square.nil?
+      end
+    end
+    selected_squares
   end
 
   private
 
-  def checkmate?(king_piece,movements)
-    king_in_checkmate?(remove_nils_squares,king_piece,movements)
+  def checkmate?(king,movements)
+    king_moves = valid_moves(king,movements)
+    pieces = {}
+    select_filled_squares.each do |piece|
+      if piece.color != king.color
+        values = king_moves.select {|m| m if capture_moves(piece).any?{|k| m[1..2] == k[1..2]}}.flatten.uniq
+        if (pieces[piece.type] == nil)
+          pieces[piece.type] = values
+        else
+          pieces[piece.type] = (pieces[piece.type] + values).uniq
+        end
+      end
+    end
+    !king_moves.empty? && king_moves.all?{|k| pieces.values.flatten.uniq.include?(k)}
   end
 
   def draw?

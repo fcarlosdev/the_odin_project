@@ -18,11 +18,8 @@ class MoveBishop < Move
   private
 
   def has_piece_between?(piece,from,to)
-    if calc_distance(from,to).abs > 1
-      diagonals = perfix_positions_with("B",diagonals_between(from,to))
-      (!diagonals.empty?) ? any_position_filled?(diagonals) : super(piece,from,to)
-    end
-    false
+    diagonals = perfix_positions_with("B",diagonals_between(from,to))
+    (!diagonals.empty?) ? any_position_filled?(diagonals) : super(piece,from,to)
   end
 
   def ordinary_move?(piece,from,to)

@@ -14,7 +14,7 @@ class Pawn < Piece
   end
 
   def valid_move?(from,to)
-    possible_moves(from).include?(to)
+    can_move?(from,to) && possible_moves(from).include?(to)
   end
 
   def capture_move?(from,to)
@@ -49,11 +49,7 @@ class Pawn < Piece
   end
 
   def coordinates_for_two_squares(from)
-    if (first_move)
-      @coordinates = get_moves_by_two_squares(from)
-    else
-      @first_move = false
-    end
+    @coordinates = get_moves_by_two_squares(from)
   end
 
   def get_moves_by_two_squares(from)
@@ -78,6 +74,10 @@ class Pawn < Piece
 
   def set_en_passant
     @en_passant_allowed = false
+  end
+
+  def can_move?(from,to)
+    (rank_distance(from,to) == 1 || (rank_distance(from,to) == 2 && @number_of_moves == 0 ))
   end
 
 

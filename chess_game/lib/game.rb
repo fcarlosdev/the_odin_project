@@ -20,9 +20,13 @@ class Game
 
   def play
     loop do
-      take_turn
-      break if game_over?
-      switch_players
+      if take_turn
+        break if game_over?
+        switch_players
+      else
+        puts "Invalid move, try again!"
+        redo
+      end
     end
     end_of_match_actions
   end
@@ -98,5 +102,5 @@ class Game
 
 end
 
-# g = Game.new(Board.new(8,8), [Player.new("player1","white"), Player.new("player2","black")])
-# g.play
+g = Game.new(Board.new(8,8), [Player.new("player1","white"), Player.new("player2","black")])
+g.play

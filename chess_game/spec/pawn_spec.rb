@@ -47,7 +47,7 @@ describe "Pawn" do
       end
 
       it "invalidates when move by two squares and no first move" do
-        pawn.first_move = false
+        pawn.update_number_of_moves
         expect(pawn.valid_move?("Pa2","Pa4")).to eq(false)
       end
     end

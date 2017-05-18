@@ -11,6 +11,7 @@ describe "MovePawn" do
   let(:pieces) {
     {
       white_pawn: create_piece(:pawn,"white","Pf5"),
+      white_pawn_2: create_piece(:pawn,"white","Ph2"),
       black_pawn: create_piece(:pawn,"black"),
       white_rook: create_piece(:rook,"white")
     }
@@ -87,25 +88,41 @@ describe "MovePawn" do
 
     end
 
-    context "when is a valid en passant move" do
-      it "allows the pawn piece to capture the opponent piece" do
-        move_pawn.move(board.value_from("Pg7"),"Pg7","Pg5")
-        expect(move_pawn.move(pieces[:white_pawn],"Pf5","Pg6")).to eq(true)
-        expect(board.value_from("Pf5")).to be_nil
-        expect(board.value_from("Pg6")).to_not be_nil
-        expect(board.value_from("Pg5")).to be_nil
+    describe '#en_passant_move?' do
+
+      context "when is en passant move" do
+
+        context "when a piece make the en passant move" do
+          it "allows the piece to make en passant move" do
+            pieces[:white_pawn].current_position = "Pf5"
+            black_pawn = board.value_from("Pg7")
+            move_pawn.move(black_pawn,"Pg7","Pg5")
+            expect(move_pawn.move(pieces[:white_pawn],"Pf5","Pg6")).to eq(true)
+            expect(board.value_from("Pf5")).to be_nil
+            expect(board.value_from("Pg6")).to_not be_nil
+            expect(board.value_from("Pg5")).to be_nil
+          end
+        end
+
+        context "when a piece with en passant move do not it" do
+
+          it "to be not allowed make an en passant move to next move" do
+            pieces[:white_pawn_2].current_position = "Ph2"
+
+            pieces[:white_pawn].current_position = "Pf5"
+            black_pawn = board.value_from("Pg7")
+            move_pawn.move(black_pawn,"Pg7","Pg5")
+            move_pawn.move(pieces[:white_pawn_2],"Ph2","Ph3")
+            expect(pieces[:white_pawn].en_passant_allowed).to eq(false)
+          end
+
+         end
+
       end
+
     end
 
-    context "when lost the chance of en passant move" do
-      it "doesn't allows the pawn piece to capture the opponent piece" do
-        move_pawn.move(board.value_from("Pg7"),"Pg7","Pg5")
-        move_pawn.move(board.value_from("Pa2"),"Pa2","Pa3")
-        expect(move_pawn.move(pieces[:white_pawn],"Pf5","Pg6")).to eq(false)
-      end
-    end
 
   end
-
 
 end

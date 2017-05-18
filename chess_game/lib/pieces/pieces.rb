@@ -30,16 +30,8 @@ module Pieces
     piece.capture_moves(from)
   end
 
-  def valid_moves_of(piece,movements)
+  def valid_moves(piece,movements)
     possible_moves(piece).select {|m| movements.valid_move?(piece,piece.current_position,m)}
-  end
-
-  def king_in_checkmate?(pieces,king,movements)
-    opponents_of(king,pieces).any?{|piece| king_has_no_escape_move?(piece,valid_moves_of(king,movements))}
-  end
-
-  def king_has_no_escape_move?(piece,moves_of_king)
-    moves_of_king.length > 0 && moves_of_king.all?{|m| capture_moves(piece).any?{|c| c[1..2] == m[1..2]}}
   end
 
   def opponents_of(king,pieces)

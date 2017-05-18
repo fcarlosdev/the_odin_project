@@ -5,9 +5,9 @@ class MovePawn < Move
   def move(piece,from,to)
     if right_direction?(piece,from,to) && can_move?(piece,from,to)
       update_position_of(piece,from,to)
-      set_moved_by(piece,from,to)
-      disable_en_passant(piece)
       update_current_position(piece,to)
+      switch_en_passant_status(piece,from,to)
+      update_number_of_moves(piece)
       return true
     end
     false
@@ -28,16 +28,14 @@ class MovePawn < Move
   end
 
   def en_passant_move?(piece,from,to)
-    if piece.en_passant_allowed && en_passant_ok?(piece,from,to,opponent_at(to,from))
-      update_squares_en_passant_move(piece,from,to)
+    if piece.en_passant_allowed
+      # opponent = pices_at_files(from).select {|piece| piece.current_position[1] == to[1]}
+      # board.fill_square(opponent[0].current_position,nil)
+      update_en_passant_position(from,to)
+      update_en_passant_status([piece],false)
       return true
     end
-    false
-  end
-
-  def en_passant_ok?(piece,from,to,opponent)
-    opponent != nil && opponent.first_move &&
-        opponent.moved_by == 2 && piece.capture_move?(from,to)
+    return false
   end
 
   def right_direction?(piece,from,to)
@@ -52,43 +50,43 @@ class MovePawn < Move
     calc_distance(from,to) < 0 && piece.move_direction.eql?(:SOUTH)
   end
 
-  def opponent_at(side,from)
-    board.value_from(prefix_position_with('P',select_square(side,from)[0]))
-  end
-
-  def select_square(at_side,from)
-    squares_at_side_of(from).select {|s| s[0] == at_side[1] }
-  end
-
-  def set_moved_by(piece,from,to)
-    piece.moved_by = rank_distance(from,to)
-    if (piece.moved_by == 2 && piece.first_move)
-      enable_en_passant_to_opponents(piece,to)
-    end
-  end
-
-  def enable_en_passant_to_opponents(from_piece,square)
-    squares_at_side_of(square).each do |s|
-      opponent = board.value_from(prefix_position_with('P',s))
-      if (!opponent.nil? && opponent.color != from_piece.color &&
-           opponent.type == :pawn)
-        opponent.en_passant_allowed = true
-      end
-    end
-  end
-
-  def update_squares_en_passant_move(piece,from,to)
-    board.fill_square(prefix_position_with('P',select_square(to,from)[0]),nil)
-  end
-
-  def disable_en_passant(piece)
-    board.squares.each do |row|
-      row.each do |square|
-        if square != nil && square.type == piece.type && square.color == piece.color
-          square.en_passant_allowed = false
+  def switch_en_passant_status(piece,from,to)
+    if piece.number_of_moves == 0 && calc_distance(from,to).abs == 2
+      update_en_passant_status(pices_at_files(to),true)
+    else
+      board.select_filled_squares.each do |ally|
+        if ally.color == piece.color && ally.type == :pawn
+          update_en_passant_status([ally],false)
         end
       end
     end
+  end
+
+  # def disable_en_passant_move(to_piece_opponents)
+  # end
+
+  def update_en_passant_status(to_pieces,enable)
+    to_pieces.each {|piece| piece.en_passant_allowed = enable if !piece.nil?}
+  end
+
+  def pices_at_files(from)
+    side_files(from).map {|square| board.value_from(square)}.compact
+  end
+
+  def side_files(from)
+    perfix_positions_with("P",squares_at_side_of(from))
+  end
+
+  def update_number_of_moves(piece)
+    piece.update_number_of_moves
+  end
+
+  def update_en_passant_position(from,to)
+    board.fill_square(get_piece_on_same_file(from,to)[0].current_position,nil)
+  end
+
+  def get_piece_on_same_file(from,to)
+    pices_at_files(from).select {|piece| piece.current_position[1] == to[1]}
   end
 
 end
