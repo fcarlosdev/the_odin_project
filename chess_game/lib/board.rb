@@ -58,18 +58,29 @@ class Board
 
   def checkmate?(king,movements)
     king_moves = valid_moves(king,movements)
-    pieces = {}
-    select_filled_squares.each do |piece|
-      if piece.color != king.color
-        values = king_moves.select {|m| m if capture_moves(piece).any?{|k| m[1..2] == k[1..2]}}.flatten.uniq
-        if (pieces[piece.type] == nil)
-          pieces[piece.type] = values
-        else
-          pieces[piece.type] = (pieces[piece.type] + values).uniq
+    opponents = select_filled_squares.select {|piece|
+      piece.color != king.color && capture_moves(piece).any?{|v| king_moves.any?{|k| k[1..2] == v[1..2]}}
+    }
+    h_opponents = {}
+    opponents.each do |o|
+      king_moves.each do |m|
+        tmp_positions = o.get_moves_with(m,o.current_position).flatten
+        if !tmp_positions.empty?
+          h_opponents[o] = h_opponents[o] == nil ? tmp_positions : (h_opponents[o] += tmp_positions)
         end
       end
     end
-    !king_moves.empty? && king_moves.all?{|k| pieces.values.flatten.uniq.include?(k)}
+    moves = h_opponents.map{|op| op[1]}.flatten.uniq
+    no_save_move = false
+    king_on_capture_move = false
+    h_opponents.each do |op|
+      no_save_move = king_moves.all?{|m| moves.any?{|km| m[1..2] == km[1..2]}}
+      moves.each do |ps|
+        break if king_on_capture_move = (king == value_from(ps))
+      end
+      break if no_save_move && king_on_capture_move
+    end
+    no_save_move && king_on_capture_move
   end
 
   def draw?

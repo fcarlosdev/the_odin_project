@@ -14,6 +14,10 @@ class King < Piece
     possible_moves(from)
   end
 
+  def get_moves_with(position,from)
+    capture_moves(from).select {|move| move[1..2] == position[1..2]}
+  end
+
   private
 
   def default_coordinates
