@@ -38,4 +38,8 @@ module Pieces
     movements.valid_move?(piece,piece.current_position,move)
   end
 
+  def opponent_from(king,ammong_pieces)
+    ammong_pieces.select {|piece| piece.color != king.color}
+  end
+
 end
