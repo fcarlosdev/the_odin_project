@@ -7,7 +7,7 @@ class Board
 
   include Pieces
   include Mapper
-  include CheckmateMove
+  # include CheckmateMove
 
   EMPTY_STRING = ""
 
@@ -59,7 +59,8 @@ class Board
   private
 
   def checkmate?(king,movements)
-    checkmate_move?(king,opponents_from(king,squares_with_pieces),self,movements)
+    opponentes = opponents_from(king,squares_with_pieces)
+    CheckmateMove.new(opponentes,self,movements).checkmate_happened?(king)
   end
 
   def draw?
