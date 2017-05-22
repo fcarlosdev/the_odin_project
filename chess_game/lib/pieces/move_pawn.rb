@@ -54,7 +54,7 @@ class MovePawn < Move
     if piece.number_of_moves == 0 && calc_distance(from,to).abs == 2
       update_en_passant_status(pices_at_files(to),true)
     else
-      board.select_filled_squares.each do |ally|
+      board.squares_with_pieces.each do |ally|
         if ally.color == piece.color && ally.type == :pawn
           update_en_passant_status([ally],false)
         end

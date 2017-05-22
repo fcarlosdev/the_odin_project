@@ -59,8 +59,7 @@ class Board
   private
 
   def checkmate?(king,movements)
-    opponents = opponent_from(king,squares_with_pieces)
-    checkmate_move?(king,valid_moves(king,movements),opponents,self)
+    checkmate_move?(king,opponents_from(king,squares_with_pieces),self,movements)
   end
 
   def draw?
@@ -153,6 +152,3 @@ class Board
   end
 
 end
-
-# b = Board.new(8,8)
-# b.value_from("Pa2")

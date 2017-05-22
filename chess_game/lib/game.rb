@@ -102,5 +102,5 @@ class Game
 
 end
 
-g = Game.new(Board.new(8,8), [Player.new("player1","white"), Player.new("player2","black")])
-g.play
+# g = Game.new(Board.new(8,8), [Player.new("player1","white"), Player.new("player2","black")])
+# g.play

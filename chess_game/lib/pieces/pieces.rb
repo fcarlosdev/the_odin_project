@@ -34,11 +34,11 @@ module Pieces
     possible_moves(piece).select {|m| movements.valid_move?(piece,piece.current_position,m)}
   end
 
-  def valid_move?(piece,movements,move)
+  def valid_move?(piece,move,movements)
     movements.valid_move?(piece,piece.current_position,move)
   end
 
-  def opponent_from(king,ammong_pieces)
+  def opponents_from(king,ammong_pieces)
     ammong_pieces.select {|piece| piece.color != king.color}
   end
 
