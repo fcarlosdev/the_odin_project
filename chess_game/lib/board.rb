@@ -43,28 +43,38 @@ class Board
 
   def game_over?(king,movements)
     return "checkmate" if checkmate?(king,movements)
-    # return "draw" if draw?
+    return "draw" if draw?(king,movements)
+    return "playing"
   end
 
   def squares_with_pieces
-    selected_squares = []
-    squares.each do |squares|
-      squares.each do |square|
-        selected_squares << square if !square.nil?
+    squares.each_with_object([]) do |rows, values|
+      rows.each do |piece|
+        values << piece if piece != nil
       end
     end
-    selected_squares
   end
 
   private
 
   def checkmate?(king,movements)
-    opponentes = opponents_from(king,squares_with_pieces)
-    CheckmateMove.new(opponentes,self,movements).checkmate_happened?(king)
+    opponents = opponents_from(king,squares_with_pieces)
+    CheckmateMove.new(opponents,self,movements).checkmate_happened?(king)
   end
 
-  def draw?
-    "draw"
+  def draw?(king,movements)
+    king_moves = valid_moves(king,movements)
+    opponents = opponents_from(king,squares_with_pieces)
+    opponent_moves = opponents.each_with_object({}) do |opponent,group|
+      group[opponent] = king_moves.each{|m| opponent.get_moves_with(m,opponent.current_position)}
+    end
+
+    no_allies = (squares_with_pieces - [king]).all?{|piece| piece.color != king.color}
+    not_in_check = opponent_moves.all?{|moves| moves[1].all?{|move| value_from(move) != king} }
+    any_move_checkmate = opponent_moves.all?{|moves| moves[1] == king_moves}
+
+    no_allies && not_in_check && any_move_checkmate
+
   end
 
   def draw_squares(bg_color)
