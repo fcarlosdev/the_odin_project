@@ -11,8 +11,8 @@ class Game
 
   attr_reader :board, :players, :current_player, :movements
 
-  def initialize(board,players)
-    @board          = board
+  def initialize(players)
+    @board          = Board.new(8,8)
     @players        = players
     @movements      = create_movements(board)
     @current_player = default_player
@@ -20,13 +20,9 @@ class Game
 
   def play
     loop do
-      if take_turn
-        break if game_over?
-        switch_players
-      else
-        puts "Invalid move, try again!"
-        redo
-      end
+      take_turn
+      break if game_over?
+      switch_players
     end
     end_of_match_actions
   end
@@ -76,6 +72,12 @@ class Game
     {piece: piece, from: origin, to: destiny}
   end
 
+  # def entered_invalid?(value)
+  #   ["P","B", "Q", "N", "K", "R"].include?(value) &&
+  #   ("a".."h").include?(value.lowcase) &&
+  #   ("1".."8").include?(value)
+  # end
+
   def switch_players
     @current_player = players.find {|player| player != @current_player }
   end
@@ -101,6 +103,3 @@ class Game
   end
 
 end
-
-# g = Game.new(Board.new(8,8), [Player.new("player1","white"), Player.new("player2","black")])
-# g.play
