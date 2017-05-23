@@ -2,12 +2,12 @@ require "colorize"
 require_relative "pieces/pieces"
 require_relative "pieces/mapper"
 require_relative "pieces/checkmate_move"
+require_relative "pieces/draw_move"
 
 class Board
 
   include Pieces
   include Mapper
-  # include CheckmateMove
 
   EMPTY_STRING = ""
 
@@ -63,18 +63,8 @@ class Board
   end
 
   def draw?(king,movements)
-    king_moves = valid_moves(king,movements)
     opponents = opponents_from(king,squares_with_pieces)
-    opponent_moves = opponents.each_with_object({}) do |opponent,group|
-      group[opponent] = king_moves.each{|m| opponent.get_moves_with(m,opponent.current_position)}
-    end
-
-    no_allies = (squares_with_pieces - [king]).all?{|piece| piece.color != king.color}
-    not_in_check = opponent_moves.all?{|moves| moves[1].all?{|move| value_from(move) != king} }
-    any_move_checkmate = opponent_moves.all?{|moves| moves[1] == king_moves}
-
-    no_allies && not_in_check && any_move_checkmate
-
+    DrawMove.new(opponents,self,movements,squares_with_pieces).draw_happened?(king)
   end
 
   def draw_squares(bg_color)

@@ -42,4 +42,8 @@ module Pieces
     ammong_pieces.select {|piece| piece.color != king.color}
   end
 
+  def get_piece(type,of_color,from_pieces)
+    from_pieces.select{|piece| piece.type == type && piece.color == of_color}
+  end
+
 end

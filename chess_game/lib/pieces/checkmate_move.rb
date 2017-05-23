@@ -1,16 +1,6 @@
-require_relative "pieces"
+require_relative "end_game_moves"
 
-class CheckmateMove
-
-  include Pieces
-
-  attr_reader :opponents, :board, :movements, :king_moves, :opponents_moves
-
-  def initialize(opponents,board,movements)
-    @opponents = opponents
-    @board     = board
-    @movements = movements
-  end
+class CheckmateMove < EndGameMoves
 
   def checkmate_happened?(king)
     others_intializations(king)
