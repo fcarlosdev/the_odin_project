@@ -178,22 +178,40 @@ describe Board do
   end
 
   context "when not occur an end game situation" do
-    it "continues with the game" do
-      move_piece("Pf2","Pf3")
-      move_piece("Pe7","Pe5")
-      move_piece("Pd2","Pd3")
-      move_piece("Bf8","Bc5")
-      expect(board.game_over?(pieces[:white_king],movements)).to eq("playing")
+    context "when king not in check" do
+      it "continues with the game" do
+        move_piece("Pf2","Pf3")
+        move_piece("Pe7","Pe5")
+        move_piece("Pd2","Pd3")
+        move_piece("Bf8","Bc5")
+        expect(board.game_over?(pieces[:white_king],movements)).to eq("playing")
+      end
     end
 
-    it "returns checkmate when there is a checkmate after six moves" do
-      move_piece("Pf2","Pf3")
-      move_piece("Pe7","Pe5")
-      move_piece("Pd2","Pd3")
-      move_piece("Bf8","Bc5")
-      move_piece("Pg2","Pg4")
-      move_piece("Qd8","Qh4")
-      expect(board.game_over?(pieces[:white_king],movements)).to eq("playing")
+    context "when king in check but has a escape move" do
+      it "continues with the game" do
+        move_piece("Pf2","Pf3")
+        move_piece("Pe7","Pe5")
+        move_piece("Pd2","Pd3")
+        move_piece("Bf8","Bc5")
+        move_piece("Pg2","Pg4")
+        move_piece("Qd8","Qh4")
+        expect(board.game_over?(pieces[:white_king],movements)).to eq("playing")
+      end
+    end
+  end
+
+  describe '#check?' do
+    context "when the king is in check" do
+      it "indicates that it is a check situation" do
+        move_piece("Pf2","Pf3")
+        move_piece("Pe7","Pe5")
+        move_piece("Pd2","Pd3")
+        move_piece("Bf8","Bc5")
+        move_piece("Pg2","Pg4")
+        move_piece("Qd8","Qh4")
+        expect(board.check?(pieces[:white_king],movements)).to eq(true)
+      end
     end
   end
 

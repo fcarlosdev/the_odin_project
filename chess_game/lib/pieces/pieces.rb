@@ -38,12 +38,16 @@ module Pieces
     movements.valid_move?(piece,piece.current_position,move)
   end
 
-  def opponents_from(king,ammong_pieces)
-    ammong_pieces.select {|piece| piece.color != king.color}
+  def opponents_from(piece,ammong_pieces)
+    ammong_pieces.select {|a_piece| a_piece.color != piece.color}
   end
 
   def get_piece(type,of_color,from_pieces)
     from_pieces.select{|piece| piece.type == type && piece.color == of_color}
+  end
+
+  def allies_from(piece,ammong_pieces)
+    ammong_pieces.select {|a_piece| a_piece.color == piece.color}
   end
 
 end

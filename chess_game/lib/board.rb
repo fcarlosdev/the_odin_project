@@ -55,6 +55,11 @@ class Board
     end
   end
 
+  def check?(king,movements)
+    moves = opponents_from(king,squares_with_pieces).map{|opponent| valid_moves(opponent,movements)}.flatten
+    moves.any?{|move| move[1..2] == king.current_position[1..2]}
+  end
+
   private
 
   def checkmate?(king,movements)
@@ -63,8 +68,10 @@ class Board
   end
 
   def draw?(king,movements)
-    opponents = opponents_from(king,squares_with_pieces)
-    DrawMove.new(opponents,self,movements,squares_with_pieces).draw_happened?(king)
+    if !check?(king,movements)
+      opponents = opponents_from(king,squares_with_pieces)
+      DrawMove.new(opponents,self,movements,squares_with_pieces).draw_happened?(king)
+    end
   end
 
   def draw_squares(bg_color)

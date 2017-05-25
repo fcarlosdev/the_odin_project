@@ -28,9 +28,7 @@ class MovePawn < Move
   end
 
   def en_passant_move?(piece,from,to)
-    if piece.en_passant_allowed
-      # opponent = pices_at_files(from).select {|piece| piece.current_position[1] == to[1]}
-      # board.fill_square(opponent[0].current_position,nil)
+    if piece.type == :pawn && piece.en_passant_allowed
       update_en_passant_position(from,to)
       update_en_passant_status([piece],false)
       return true
@@ -62,11 +60,8 @@ class MovePawn < Move
     end
   end
 
-  # def disable_en_passant_move(to_piece_opponents)
-  # end
-
   def update_en_passant_status(to_pieces,enable)
-    to_pieces.each {|piece| piece.en_passant_allowed = enable if !piece.nil?}
+    to_pieces.each {|piece| piece.en_passant_allowed = enable if !piece.nil? && piece.type == :pawn}
   end
 
   def pices_at_files(from)
