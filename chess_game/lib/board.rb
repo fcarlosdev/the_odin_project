@@ -1,8 +1,6 @@
 require "colorize"
 require_relative "pieces/pieces"
 require_relative "pieces/mapper"
-require_relative "pieces/checkmate_move"
-require_relative "pieces/draw_move"
 
 class Board
 
@@ -43,7 +41,7 @@ class Board
 
   def game_over?(king,movements)
     return "checkmate" if checkmate?(king,movements)
-    return "draw" if draw?(king,movements)
+    # return "draw" if draw?(king,movements)
     return "playing"
   end
 
@@ -55,24 +53,31 @@ class Board
     end
   end
 
-  def check?(king,movements)
-    moves = opponents_from(king,squares_with_pieces).map{|opponent| valid_moves(opponent,movements)}.flatten
-    moves.any?{|move| move[1..2] == king.current_position[1..2]}
+  def check?(king)
+    opponents_moves(king).any?{|move| move[1].any?{|value| value[1..2] == king.current_position[1..2]}}
+  end
+
+  def opponents_moves(king)
+    opponents_from(king,squares_with_pieces).each_with_object({}).each do |opponent, moves|
+      opponents_moves = opponent.possible_moves(opponent.current_position).flatten.uniq
+      moves[opponent] =  opponents_moves if !opponents_moves.empty?
+    end
+  end
+
+  def checkmate?(king,movements)
+    check?(king) && !has_legal_move?(king,movements)
+  end
+
+  def has_legal_move?(king,movements)
+    valid_moves(king,movements).each_with_object({}) do |move,group|
+      opponents_moves(king).each do |om|
+        capturable_move = valid_capture_move?(om[0],om[0].type[0].upcase+move[1..2],movements)
+        group[move] = (group[move] == nil) ? [capturable_move] : (group[move] += [capturable_move])
+      end
+    end.any?{|arr| arr[1].all?{|value| value == false}}
   end
 
   private
-
-  def checkmate?(king,movements)
-    opponents = opponents_from(king,squares_with_pieces)
-    CheckmateMove.new(opponents,self,movements).checkmate_happened?(king)
-  end
-
-  def draw?(king,movements)
-    if !check?(king,movements)
-      opponents = opponents_from(king,squares_with_pieces)
-      DrawMove.new(opponents,self,movements,squares_with_pieces).draw_happened?(king)
-    end
-  end
 
   def draw_squares(bg_color)
     rows.times do |row|

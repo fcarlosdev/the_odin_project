@@ -50,4 +50,8 @@ module Pieces
     ammong_pieces.select {|a_piece| a_piece.color == piece.color}
   end
 
+  def valid_capture_move?(piece,to,movements)    
+    valid_move?(piece,to,movements)
+  end
+
 end

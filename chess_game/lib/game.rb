@@ -21,7 +21,7 @@ class Game
   def play
     loop do
       take_turn
-      break if game_over?
+      break if game_over? == "checkmate"
       switch_players
     end
     end_of_match_actions
@@ -59,7 +59,9 @@ class Game
   end
 
   def move(piece,from,to)
-    (piece.color.eql?(@current_player.color_of_piece)) && movements.move(piece,from,to)
+    result = (piece.color.eql?(@current_player.color_of_piece)) && movements.move(piece,from,to)
+    puts "Move piece = #{result}"
+    result
   end
 
   def enter_move
@@ -72,14 +74,11 @@ class Game
     {piece: piece, from: origin, to: destiny}
   end
 
-  # def entered_invalid?(value)
-  #   ["P","B", "Q", "N", "K", "R"].include?(value) &&
-  #   ("a".."h").include?(value.lowcase) &&
-  #   ("1".."8").include?(value)
-  # end
-
   def switch_players
+    puts "Current player = #{@current_player.inspect} (Before)"
     @current_player = players.find {|player| player != @current_player }
+    puts "Current player = #{@current_player.inspect} (After)"
+    @current_player
   end
 
   def display_board

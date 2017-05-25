@@ -28,7 +28,7 @@ class MovePawn < Move
   end
 
   def en_passant_move?(piece,from,to)
-    if piece.type == :pawn && piece.en_passant_allowed
+    if piece.en_passant_allowed
       update_en_passant_position(from,to)
       update_en_passant_status([piece],false)
       return true
@@ -53,7 +53,7 @@ class MovePawn < Move
       update_en_passant_status(pices_at_files(to),true)
     else
       board.squares_with_pieces.each do |ally|
-        if ally.color == piece.color && ally.type == :pawn
+        if ally.color == piece.color
           update_en_passant_status([ally],false)
         end
       end
@@ -61,7 +61,8 @@ class MovePawn < Move
   end
 
   def update_en_passant_status(to_pieces,enable)
-    to_pieces.each {|piece| piece.en_passant_allowed = enable if !piece.nil? && piece.type == :pawn}
+    pieces = to_pieces.select{|piece| piece.type == :pawn}
+    pieces.each {|piece| piece.en_passant_allowed = enable if !piece.nil?}
   end
 
   def pices_at_files(from)

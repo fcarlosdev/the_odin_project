@@ -34,7 +34,6 @@ describe Board do
     end
   end
 
-
   describe '#new' do
     it "Creates a new board" do
       expect(board).to be_instance_of(Board)
@@ -86,11 +85,23 @@ describe Board do
     end
   end
 
+  describe '#check?' do
+    context "when the king is in check" do
+      it "indicates that it is a check situation" do
+        move_piece("Pf2","Pf3")
+        move_piece("Pe7","Pe5")
+        move_piece("Pd2","Pd3")
+        move_piece("Bf8","Bc5")
+        move_piece("Pg2","Pg4")
+        move_piece("Qd8","Qh4")
+        expect(board.check?(pieces[:white_king])).to eq(true)
+      end
+    end
+  end
+
   describe '#game_over?' do
 
-    context "when occur an end game situation" do
-
-       context "when is a checkmate situation" do
+     context "when is a checkmate situation" do
 
         it "returns checkmate when there is a checkmate after four moves" do
           move_piece("Pf2","Pf3")
@@ -110,71 +121,67 @@ describe Board do
           expect(board.game_over?(board.value_from("Kh1"),movements)).to eq("checkmate")
         end
 
-      end
-
-      context "when is a draw situation" do
-
-        context "when occurr a stalemate" do
-          context "when black king is in a8 and white pawn in a7 and white king in a6" do
-            it "returns draw status" do
-              clean_squares
-              board.fill_square("Ka8",create_piece(:king,"black","Ka8"))
-              board.fill_square("Pa7",create_piece(:pawn,"white","Pa7"))
-              board.fill_square("Ka6",create_piece(:king,"white","Ka6"))
-              expect(board.game_over?(board.value_from("Ka8"),movements)).to eq("draw")
-            end
-          end
-          context "when black king in a5 and white queen and king on c6 and c4 respectively" do
-            it "returns draw status" do
-              clean_squares
-              board.fill_square("Ka5",create_piece(:king,"black","Ka5"))
-              board.fill_square("Qc6",create_piece(:queen,"white","Qc6"))
-              board.fill_square("Kc4",create_piece(:king,"white","Kc4"))
-              expect(board.game_over?(board.value_from("Ka5"),movements)).to eq("draw")
-            end
-          end
-          context "when black king in h8 and white queen and king on g6 and f7 respectively" do
-            it "returns draw status" do
-              clean_squares
-              board.fill_square("Kh8",create_piece(:king,"black","Kh8"))
-              board.fill_square("Qg6",create_piece(:queen,"white","Qg6"))
-              board.fill_square("Kf7",create_piece(:king,"white","Kf7"))
-              expect(board.game_over?(board.value_from("Kh8"),movements)).to eq("draw")
-            end
-          end
-          context "when white king in a1 and has no valid move" do
-            it "returns draw status" do
-              clean_squares
-              board.fill_square("Ka3",create_piece(:king,"black","Ka3"))
-              board.fill_square("Pa2",create_piece(:pawn,"black","Pa3"))
-              board.fill_square("Nc3",create_piece(:knight,"white","Nc3"))
-              board.fill_square("Pc2",create_piece(:pawn,"white","Pc2"))
-              board.fill_square("Nc1",create_piece(:knight,"white","Nc1"))
-              board.fill_square("Pd3",create_piece(:pawn,"white","Pd3"))
-              board.fill_square("Bd4",create_piece(:bishop,"black","Bd4"))
-              board.fill_square("Rg1",create_piece(:rook,"black","Rg1"))
-              board.fill_square("Ka1",create_piece(:king,"white","Ka1"))
-              expect(board.game_over?(board.value_from("Ka1"),movements)).to eq("draw")
-            end
-          end
-        end
-
-        context "when there is impossibility of checkmate" do
-          context "when there are not enough pieces on the board to force a checkmate" do
-            it "returns draw status" do
-              clean_squares
-              board.fill_square("Bc7",create_piece(:bishop,"black","Bc7"))
-              board.fill_square("Kf7",create_piece(:king,"black","Kf7"))
-              board.fill_square("Kg4",create_piece(:king,"white","Kg4"))
-              expect(board.game_over?(board.value_from("Kg4"),movements)).to eq("draw")
-            end
-          end
-        end
-
-      end
-
     end
-
+  #
+  #     context "when is a draw situation" do
+  #
+  #       context "when occurr a stalemate" do
+  #         context "when black king is in a8 and white pawn in a7 and white king in a6" do
+  #           it "returns draw status" do
+  #             clean_squares
+  #             board.fill_square("Ka8",create_piece(:king,"black","Ka8"))
+  #             board.fill_square("Pa7",create_piece(:pawn,"white","Pa7"))
+  #             board.fill_square("Ka6",create_piece(:king,"white","Ka6"))
+  #             expect(board.game_over?(board.value_from("Ka8"),movements)).to eq("draw")
+  #           end
+  #         end
+  #         context "when black king in a5 and white queen and king on c6 and c4 respectively" do
+  #           it "returns draw status" do
+  #             clean_squares
+  #             board.fill_square("Ka5",create_piece(:king,"black","Ka5"))
+  #             board.fill_square("Qc6",create_piece(:queen,"white","Qc6"))
+  #             board.fill_square("Kc4",create_piece(:king,"white","Kc4"))
+  #             expect(board.game_over?(board.value_from("Ka5"),movements)).to eq("draw")
+  #           end
+  #         end
+  #         context "when black king in h8 and white queen and king on g6 and f7 respectively" do
+  #           it "returns draw status" do
+  #             clean_squares
+  #             board.fill_square("Kh8",create_piece(:king,"black","Kh8"))
+  #             board.fill_square("Qg6",create_piece(:queen,"white","Qg6"))
+  #             board.fill_square("Kf7",create_piece(:king,"white","Kf7"))
+  #             expect(board.game_over?(board.value_from("Kh8"),movements)).to eq("draw")
+  #           end
+  #         end
+  #         context "when white king in a1 and has no valid move" do
+  #           it "returns draw status" do
+  #             clean_squares
+  #             board.fill_square("Ka3",create_piece(:king,"black","Ka3"))
+  #             board.fill_square("Pa2",create_piece(:pawn,"black","Pa3"))
+  #             board.fill_square("Nc3",create_piece(:knight,"white","Nc3"))
+  #             board.fill_square("Pc2",create_piece(:pawn,"white","Pc2"))
+  #             board.fill_square("Nc1",create_piece(:knight,"white","Nc1"))
+  #             board.fill_square("Pd3",create_piece(:pawn,"white","Pd3"))
+  #             board.fill_square("Bd4",create_piece(:bishop,"black","Bd4"))
+  #             board.fill_square("Rg1",create_piece(:rook,"black","Rg1"))
+  #             board.fill_square("Ka1",create_piece(:king,"white","Ka1"))
+  #             expect(board.game_over?(board.value_from("Ka1"),movements)).to eq("draw")
+  #           end
+  #         end
+  #       end
+  #
+  #       context "when there is impossibility of checkmate" do
+  #         context "when there are not enough pieces on the board to force a checkmate" do
+  #           it "returns draw status" do
+  #             clean_squares
+  #             board.fill_square("Bc7",create_piece(:bishop,"black","Bc7"))
+  #             board.fill_square("Kf7",create_piece(:king,"black","Kf7"))
+  #             board.fill_square("Kg4",create_piece(:king,"white","Kg4"))
+  #             expect(board.game_over?(board.value_from("Kg4"),movements)).to eq("draw")
+  #           end
+  #         end
+  #       end
+  #
   end
 
   context "when not occur an end game situation" do
@@ -197,20 +204,6 @@ describe Board do
         move_piece("Pg2","Pg4")
         move_piece("Qd8","Qh4")
         expect(board.game_over?(pieces[:white_king],movements)).to eq("playing")
-      end
-    end
-  end
-
-  describe '#check?' do
-    context "when the king is in check" do
-      it "indicates that it is a check situation" do
-        move_piece("Pf2","Pf3")
-        move_piece("Pe7","Pe5")
-        move_piece("Pd2","Pd3")
-        move_piece("Bf8","Bc5")
-        move_piece("Pg2","Pg4")
-        move_piece("Qd8","Qh4")
-        expect(board.check?(pieces[:white_king],movements)).to eq(true)
       end
     end
   end

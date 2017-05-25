@@ -25,7 +25,7 @@ option = gets.chomp
 
 case option.to_i
 when 1
-  g = Game.new([Player.new("Francisco","white"), Player.new("Luisa","white")])
+  g = Game.new([Player.new("Francisco","white"), Player.new("Luisa","black")])
   g.play
 when 2
   puts "Not implemented yet"
