@@ -5,8 +5,11 @@ require_relative "move_king"
 require_relative "move_queen"
 require_relative "move_rook"
 require_relative "move_knight"
+require_relative "distance"
 
 class Movements
+
+  include Distance
 
   attr_reader :move_pawn, :move_king,   :move_rook,
               :move_queen,:move_bishop, :move_knight,
@@ -29,6 +32,10 @@ class Movements
     movements[piece.type].can_move?(piece,from,to)
   end
 
+  def piece_between?(from,to)
+    has_piece_between?(from,to)
+  end
+
   private
 
   def set_movements
@@ -43,7 +50,7 @@ class Movements
   end
 
   def all_positions_empty?(from,to)
-    positions_between(from,to).all? {|cell| empty_square?(cell)}
+    positions_between(from,to).all? {|cell| cell == nil}
   end
 
   def positions_between(from,to)

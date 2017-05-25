@@ -30,13 +30,14 @@ class MoveKing < Move
   end
 
   def castling_move?(piece,from,to)
-
     if moved_two_squares?(from,to)
       rook_from = rook_position(from,to)
-      rook_to = move_rook_to(from,to)
-      if first_move?(from) && !empty_square?(rook_from) && first_move?(rook_from)
-        update_position_of(board.value_from(rook_from),rook_from,rook_to)
-        return true
+      if (rook_from != nil)
+        rook_to = move_rook_to(from,to)
+        if first_move?(from) && !empty_square?(rook_from) && first_move?(rook_from)
+          update_position_of(board.value_from(rook_from),rook_from,rook_to)
+          return true
+        end
       end
     end
     false

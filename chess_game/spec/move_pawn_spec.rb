@@ -122,7 +122,6 @@ describe "MovePawn" do
 
     end
 
-
   end
 
 end
