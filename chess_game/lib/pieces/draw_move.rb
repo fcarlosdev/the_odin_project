@@ -4,6 +4,30 @@ class DrawMove < EndGameMoves
 
   def draw_happened?(king)
     others_intializations(king)
+
+    # allies_pieces = pieces.select{|piece| (piece.type != :king && piece.color == king.color)}
+    # puts "Allies pieces from #{king}"
+    # allies_pieces.each do |ally|
+    #   moves = valid_moves(ally,movements).uniq
+    #   puts "Moves = #{moves}"
+    #   puts "#{ally.type} (Valid moves) => #{moves.empty?}"
+    # end
+
+    # no_moves = allies_pieces.all?{|piece| valid_moves(piece,movements).uniq.empty?}
+
+    # enemies = opponents_from(king,pieces)
+    # puts "Enemies = #{enemies}"
+    # enemies.each do |enemy|
+    #   moves = valid_moves(enemy,movements)
+    #   puts "Enemy #{enemy.type} => #{moves}"
+    # end
+
+    # any_attack_move = enemies.any?{|enemy| valid_moves(enemy,movements).uniq.any?{|move| move[1..2] == king.current_position[1..2]}}
+    # puts "Any attack = #{any_attack_move}"
+
+    # puts "No moves = #{no_moves}"
+    # no_moves && !any_attack_move
+
     stalemate?(king)
   end
 
@@ -14,12 +38,13 @@ class DrawMove < EndGameMoves
 
     # Here the case of draw when there is no sufficient pieces on the board.
     count_black = 0
-    board.squares_with_pieces.each do |piece|
+    pieces.each do |piece|
       count_black += 1 if piece.color == "black"
     end
 
+
     count_white = 0
-    board.squares_with_pieces.each do |piece|
+    pieces.each do |piece|
       count_white += 1 if piece.color == "white"
     end
 
@@ -58,7 +83,7 @@ class DrawMove < EndGameMoves
               legal_moves[to[1..2]] = can_move
             end
             board.fill_square(to,tmp_piece)
-            break if can_move = true
+            break if can_move == true
           end
         end
       end
