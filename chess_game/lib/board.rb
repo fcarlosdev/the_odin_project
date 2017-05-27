@@ -9,7 +9,7 @@ class Board
 
   EMPTY_STRING = ""
 
-  attr_reader :squares, :rows, :columns
+  attr_reader :squares, :rows, :columns, :moves_opponents
 
   def initialize(rows,columns)
     @rows = rows
@@ -40,8 +40,9 @@ class Board
   end
 
   def game_over?(king,movements)
+    @moves_opponents = opponents_moves(king)
     return "checkmate" if checkmate?(king,movements)
-    # return "draw" if draw?(king,movements)
+    return "draw" if draw?(king,movements)
     return "playing"
   end
 
@@ -53,8 +54,10 @@ class Board
     end
   end
 
-  def check?(king)
-    opponents_moves(king).any?{|move| move[1].any?{|value| value[1..2] == king.current_position[1..2]}}
+  #TODO Remove the movements let it global/instance variable
+  def check?(king,movements)
+    attackers = extract_attackers_of(king)
+    king_attacked?(attack_positions(attackers),king) && all_attackers_moves_valid?(attackers,movements)
   end
 
   def opponents_moves(king)
@@ -65,16 +68,10 @@ class Board
   end
 
   def checkmate?(king,movements)
-    check?(king) && !has_legal_move?(king,movements)
+    check?(king,movements)
   end
 
-  def has_legal_move?(king,movements)
-    valid_moves(king,movements).each_with_object({}) do |move,group|
-      opponents_moves(king).each do |om|
-        capturable_move = valid_capture_move?(om[0],om[0].type[0].upcase+move[1..2],movements)
-        group[move] = (group[move] == nil) ? [capturable_move] : (group[move] += [capturable_move])
-      end
-    end.any?{|arr| arr[1].all?{|value| value == false}}
+  def draw?(king,movements)
   end
 
   private
@@ -163,5 +160,28 @@ class Board
     squares[7][6] = create_piece(:knight,"white" ,"Ng1")
     squares[7][7] = create_piece(:rook,  "white" ,"Rh1")
   end
+
+  #Check? Auxiliars methods
+  def king_attacked?(at_positions,king)
+    at_positions.any?{|move| move[1..2] == king.current_position[1..2]}
+  end
+
+  def all_attackers_moves_valid?(attackers,movements)
+    attackers.all?{|attacker| attacker[1].all?{|move| valid_move?(attacker[0],move,movements)}}
+  end
+
+  def attack_positions(from_opponents)
+    from_opponents.map{|opponent| opponent[0].possible_moves(opponent[0].current_position)}.flatten
+  end
+
+  def extract_attackers_of(piece)
+    to = piece.current_position
+    opponents_from(piece,squares_with_pieces).each_with_object({}) do |opponent,group|
+      moves = opponent.get_moves_with(to,opponent.current_position).flatten
+      group[opponent] = moves.select{|move| move[1..2] <= to[1..2]} if !moves.empty?
+    end
+  end
+  #End of check? Auxiliars methods
+
 
 end

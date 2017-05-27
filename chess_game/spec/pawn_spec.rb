@@ -18,6 +18,7 @@ describe "Pawn" do
     it "calculates the possible moves from given initial positon" do
       expect(pawn.possible_moves("Pa2")).to_not be_nil
       expect(pawn.possible_moves("Pa2")).to include("Pa3")
+      expect(pawn.possible_moves("Pa3")).to_not include("Pa2")
     end
   end
 
@@ -34,7 +35,7 @@ describe "Pawn" do
       context "when is a move forward two squares in the first move" do
         it "validates the move" do
           expect(pawn.valid_move?("Pa2","Pa4")).to eq(true)
-          expect(pawn.valid_move?("Pa7","Pa5")).to eq(true)
+          expect(black_pawn.valid_move?("Pa7","Pa5")).to eq(true)
         end
       end
 

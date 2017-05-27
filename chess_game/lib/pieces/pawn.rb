@@ -10,7 +10,7 @@ class Pawn < Piece
   end
 
   def possible_moves(from)
-    generate_moves(from).map {|move| "P"+move} + capture_moves(from)
+    filter_moves(from).map {|move| "P"+move} + capture_moves(from)
   end
 
   def valid_move?(from,to)
@@ -84,6 +84,21 @@ class Pawn < Piece
   def can_move?(from,to)
     (rank_distance(from,to) == 1 || (rank_distance(from,to) == 2 && @number_of_moves == 0 ))
   end
+
+  def filter_moves(from)
+    generate_moves(from).uniq.each_with_object([]) do |move,itens|
+      itens << move if valid_northward_move?(from,move) || valid_southward_move?(from,move)
+    end
+  end
+
+  def valid_northward_move?(from,to)
+    @move_direction == :NORTH && (from[2].to_i < to[1].to_i)
+  end
+
+  def valid_southward_move?(from,to)
+    @move_direction == :SOUTH && (from[2].to_i > to[1].to_i)
+  end
+
 
 
 end

@@ -20,4 +20,5 @@ module Distance
     [to[1].ord - from[1].ord,from[2].to_i - to[2].to_i]
   end
 
+
 end
