@@ -1,7 +1,7 @@
 module Mapper
 
   def map_to_axis(from_position)
-    [to_row(from_position[2].to_i),to_column(from_position[1].ord)]
+    [to_row(from_position[1].to_i),to_column(from_position[0].ord)]
   end
 
   def map_to_positions(from_axes)

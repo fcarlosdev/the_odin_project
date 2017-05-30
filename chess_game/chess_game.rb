@@ -1,4 +1,3 @@
-require_relative "lib/game"
 system('clear')
 print %q{
   +=======================================================================+
@@ -20,17 +19,3 @@ print %q{
   3 - Exit
 }
 print "choose one option:"
-
-option = gets.chomp
-
-case option.to_i
-when 1
-  g = Game.new([Player.new("Francisco","white"), Player.new("Luisa","black")])
-  g.play
-when 2
-  puts "Not implemented yet"
-when 3
-  exit
-else
-  print('It is not a valid option')
-end
