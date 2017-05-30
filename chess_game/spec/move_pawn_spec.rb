@@ -88,39 +88,39 @@ describe "MovePawn" do
 
     end
 
-    describe '#en_passant_move?' do
-
-      context "when is en passant move" do
-
-        context "when a piece make the en passant move" do
-          it "allows the piece to make en passant move" do
-            pieces[:white_pawn].current_position = "Pf5"
-            black_pawn = board.value_from("Pg7")
-            move_pawn.move(black_pawn,"Pg7","Pg5")
-            expect(move_pawn.move(pieces[:white_pawn],"Pf5","Pg6")).to eq(true)
-            expect(board.value_from("Pf5")).to be_nil
-            expect(board.value_from("Pg6")).to_not be_nil
-            expect(board.value_from("Pg5")).to be_nil
-          end
-        end
-
-        context "when a piece with en passant move do not it" do
-
-          it "to be not allowed make an en passant move to next move" do
-            pieces[:white_pawn_2].current_position = "Ph2"
-
-            pieces[:white_pawn].current_position = "Pf5"
-            black_pawn = board.value_from("Pg7")
-            move_pawn.move(black_pawn,"Pg7","Pg5")
-            move_pawn.move(pieces[:white_pawn_2],"Ph2","Ph3")
-            expect(pieces[:white_pawn].en_passant_allowed).to eq(false)
-          end
-
-         end
-
-      end
-
-    end
+    # describe '#en_passant_move?' do
+    #
+    #   context "when is en passant move" do
+    #
+    #     context "when a piece make the en passant move" do
+    #       it "allows the piece to make en passant move" do
+    #         pieces[:white_pawn].current_position = "Pf5"
+    #         black_pawn = board.value_from("Pg7")
+    #         move_pawn.move(black_pawn,"Pg7","Pg5")
+    #         expect(move_pawn.move(pieces[:white_pawn],"Pf5","Pg6")).to eq(true)
+    #         expect(board.value_from("Pf5")).to be_nil
+    #         expect(board.value_from("Pg6")).to_not be_nil
+    #         expect(board.value_from("Pg5")).to be_nil
+    #       end
+    #     end
+    #
+    #     context "when a piece with en passant move do not it" do
+    #
+    #       it "to be not allowed make an en passant move to next move" do
+    #         pieces[:white_pawn_2].current_position = "Ph2"
+    #
+    #         pieces[:white_pawn].current_position = "Pf5"
+    #         black_pawn = board.value_from("Pg7")
+    #         move_pawn.move(black_pawn,"Pg7","Pg5")
+    #         move_pawn.move(pieces[:white_pawn_2],"Ph2","Ph3")
+    #         expect(pieces[:white_pawn].en_passant_allowed).to eq(false)
+    #       end
+    #
+    #      end
+    #
+    #   end
+    #
+    # end
 
   end
 

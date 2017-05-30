@@ -73,24 +73,24 @@ describe "MoveKing" do
 
     end
 
-    context "when is a valid castling move" do
-      it "moves the king pice to the given position" do
-        board.fill_square("Kg1",nil)
-        board.fill_square("Ke1",pieces[:white_king])
-        expect(move_king.move(board.value_from("Ke1"),"Ke1","Kg1")).to eq(true)
-      end
-    end
+    # context "when is a valid castling move" do
+    #   it "moves the king pice to the given position" do
+    #     board.fill_square("Kg1",nil)
+    #     board.fill_square("Ke1",pieces[:white_king])
+    #     expect(move_king.move(board.value_from("Ke1"),"Ke1","Kg1")).to eq(true)
+    #   end
+    # end
 
-    context "when is an invalid castling move" do
-      it "moves the king pice to the given position" do
-        board.fill_square("Kg1",nil)
-        board.fill_square("Ke1",pieces[:white_king])
-        board.fill_square("Rh1",nil)
-        expect(move_king.move(board.value_from("Ke1"),"Ke1","Kg1")).to eq(false)
-        expect(board.value_from("Kg1")).to be_nil
-        expect(board.value_from("Ke1")).to eq(pieces[:white_king])
-      end
-    end
+    # context "when is an invalid castling move" do
+    #   it "moves the king pice to the given position" do
+    #     board.fill_square("Kg1",nil)
+    #     board.fill_square("Ke1",pieces[:white_king])
+    #     board.fill_square("Rh1",nil)
+    #     expect(move_king.move(board.value_from("Ke1"),"Ke1","Kg1")).to eq(false)
+    #     expect(board.value_from("Kg1")).to be_nil
+    #     expect(board.value_from("Ke1")).to eq(pieces[:white_king])
+    #   end
+    # end
   end
 
 end

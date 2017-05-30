@@ -35,8 +35,10 @@ class Game
     move_piece
   end
 
-  def game_over?
-    board.game_over?(board.value_from(opponent_king_at),movements)
+  def game_over?    
+    result = board.game_over?(board.value_from(opponent_king_at),movements)
+    puts "Result = #{result}"
+    result
   end
 
   def end_of_match_actions
@@ -59,9 +61,7 @@ class Game
   end
 
   def move(piece,from,to)
-    result = (piece.color.eql?(@current_player.color_of_piece)) && movements.move(piece,from,to)
-    puts "Move piece = #{result}"
-    result
+    (piece.color.eql?(@current_player.color_of_piece)) && movements.move(piece,from,to)
   end
 
   def enter_move
@@ -75,10 +75,7 @@ class Game
   end
 
   def switch_players
-    puts "Current player = #{@current_player.inspect} (Before)"
     @current_player = players.find {|player| player != @current_player }
-    puts "Current player = #{@current_player.inspect} (After)"
-    @current_player
   end
 
   def display_board
