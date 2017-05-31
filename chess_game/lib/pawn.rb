@@ -1,30 +1,21 @@
 require "./lib/piece"
-require "./lib/pieces"
 
 class Pawn < Piece
 
-   attr_reader :en_passant_status, :capture_moves
-
    def initialize(color,position)
      super(:pawn,color,position)
-     @image = Pieces.piece_icon(type,color)
-     @capture_moves = capture_moves
    end
 
    def possible_moves
-     generate_all_possible_moves
-   end
-
-   def capture_moves
-     generate_diagonal_moves.sort
+     (generate_forward_moves + generate_diagonal_moves).sort
    end
 
    def possible_forward_moves
-     generate_forward_moves
+     generate_forward_moves.sort
    end
 
-   def change_en_passant_status(status)
-     @en_passant_status = status
+   def capture_moves
+     generate_positions(diagonal_directions).sort
    end
 
    private
@@ -34,7 +25,8 @@ class Pawn < Piece
    end
 
    def generate_forward_moves
-     generate_positions(forward_directions)
+     generated_positions = generate_positions(forward_directions)
+     (moved == 0) ? add_position(generated_positions) : generated_positions
    end
 
    def generate_diagonal_moves
@@ -45,8 +37,10 @@ class Pawn < Piece
      map_to_positions(new_axes_moves(directions))
    end
 
-   def update_capture_moves
-     @capture_moves = capture_moves
+   def add_position(moves)
+     factor = (color == :white) ? 1 : -1
+     moves.push(moves.map{|move| move[0] + (move[1].to_i + factor).to_s})
+     moves.flatten
    end
 
    def new_axes_moves(directions)

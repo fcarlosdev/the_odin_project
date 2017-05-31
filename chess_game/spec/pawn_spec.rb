@@ -1,5 +1,6 @@
 require "pawn"
 
+
 describe "Pawn" do
 
   let(:position) {"b2"}

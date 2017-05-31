@@ -1,7 +1,12 @@
 require "colorize"
+require "./lib/piece"
 require "./lib/pawn"
+require "./lib/rook"
+require "./lib/bishop"
+require "./lib/queen"
+require "./lib/knight"
+require "./lib/king"
 require_relative "modules/mapper"
-require "./lib/pieces"
 
 class Board
 
@@ -20,6 +25,24 @@ class Board
     load_pieces
   end
 
+  def move_piece(piece,to)
+    valid_move = piece.possible_moves.include?(to)
+    to_empty_square = value_from(to).nil?
+    if valid_move && to_empty_square
+      change_piece_to(piece,piece.position,to)
+      return true
+    end
+    false
+  end
+
+  def change_piece_to(piece,from,to)
+    piece.position = to
+    fill_square(to,piece)
+    fill_square(from,nil)
+  end
+
+  # Board manipulation methods
+
   def draw_board
     draw_squares(@bg_colors[0])
     show_bottom_letters
@@ -35,20 +58,12 @@ class Board
     squares[at_xy[0]][at_xy[1]] = value
   end
 
-  # def position_from(piece_type, from_color)
-  #   piece_found = remove_nils_squares.select {|piece| piece.type == piece_type && piece.color == from_color}
-  #   piece_found[0].current_position if piece_found.length > 0
-  # end
-
-  # def board_pieces
-  #   squares.each_with_object([]) do |rows, values|
-  #     rows.each do |piece|
-  #       values << piece if piece != nil
-  #     end
-  #   end
-  # end
 
   private
+
+
+
+  # Methods to create  the board
 
   def draw_squares(bg_color)
     rows.times do |row|
@@ -98,62 +113,58 @@ class Board
   end
 
   def load_pieces
-    # squares[0][0] = create_piece(:rook,   :black, "Ra8")
-    # squares[0][1] = create_piece(:knight, :black, "Nb8")
-    # squares[0][2] = create_piece(:bishop, :black, "Bc8")
-    # squares[0][3] = create_piece(:queen,  :black, "Qd8")
-    # squares[0][4] = create_piece(:king,   :black, "Ke8")
-    # squares[0][5] = create_piece(:bishop, :black, "Bf8")
-    # squares[0][6] = create_piece(:knight, :black, "Ng8")
-    # squares[0][7] = create_piece(:rook,   :black, "Rh8")
+    squares[0][0] = Piece.create_piece(:rook,:black,"a8")
+    squares[0][1] = Piece.create_piece(:knight,:black,"b8")
+    squares[0][2] = Piece.create_piece(:bishop,:black,"c8")
+    squares[0][3] = Piece.create_piece(:queen,:black,"d8")
+    squares[0][4] = Piece.create_piece(:king,:black,"e8")
+    squares[0][5] = Piece.create_piece(:bishop,:black,"f8")
+    squares[0][6] = Piece.create_piece(:knight,:black,"g8")
+    squares[0][7] = Piece.create_piece(:rook,:black,"h8")
 
-    squares[1][0] = Pieces.create_piece(:pawn,:black,"a7")
-    squares[1][1] = Pieces.create_piece(:pawn,:black,"b7")
-    squares[1][2] = Pieces.create_piece(:pawn,:black,"c7")
-    squares[1][3] = Pieces.create_piece(:pawn,:black,"d7")
-    squares[1][4] = Pieces.create_piece(:pawn,:black,"e7")
-    squares[1][5] = Pieces.create_piece(:pawn,:black,"f7")
-    squares[1][6] = Pieces.create_piece(:pawn,:black,"g7")
-    squares[1][7] = Pieces.create_piece(:pawn,:black,"h7")
+    squares[1][0] = Piece.create_piece(:pawn,:black,"a7")
+    squares[1][1] = Piece.create_piece(:pawn,:black,"b7")
+    squares[1][2] = Piece.create_piece(:pawn,:black,"c7")
+    squares[1][3] = Piece.create_piece(:pawn,:black,"d7")
+    squares[1][4] = Piece.create_piece(:pawn,:black,"e7")
+    squares[1][5] = Piece.create_piece(:pawn,:black,"f7")
+    squares[1][6] = Piece.create_piece(:pawn,:black,"g7")
+    squares[1][7] = Piece.create_piece(:pawn,:black,"h7")
 
-    squares[6][0] = Pieces.create_piece(:pawn,:white,"a2")
-    squares[6][1] = Pieces.create_piece(:pawn,:white,"b2")
-    squares[6][2] = Pieces.create_piece(:pawn,:white,"c2")
-    squares[6][3] = Pieces.create_piece(:pawn,:white,"d2")
-    squares[6][4] = Pieces.create_piece(:pawn,:white,"e2")
-    squares[6][5] = Pieces.create_piece(:pawn,:white,"f2")
-    squares[6][6] = Pieces.create_piece(:pawn,:white,"g2")
-    squares[6][7] = Pieces.create_piece(:pawn,:white,"h2")
-    #
-    # squares[7][0] = create_piece(:rook,  :white ,"Ra1")
-    # squares[7][1] = create_piece(:knight,:white ,"Nb1")
-    # squares[7][2] = create_piece(:bishop,:white ,"Bc1")
-    # squares[7][3] = create_piece(:queen, :white ,"Qd1")
-    # squares[7][4] = create_piece(:king,  :white ,"Ke1")
-    # squares[7][5] = create_piece(:bishop,:white ,"Bf1")
-    # squares[7][6] = create_piece(:knight,:white ,"Ng1")
-    # squares[7][7] = create_piece(:rook,  :white ,"Rh1")
+    squares[6][0] = Piece.create_piece(:pawn,:white,"a2")
+    squares[6][1] = Piece.create_piece(:pawn,:white,"b2")
+    squares[6][2] = Piece.create_piece(:pawn,:white,"c2")
+    squares[6][3] = Piece.create_piece(:pawn,:white,"d2")
+    squares[6][4] = Piece.create_piece(:pawn,:white,"e2")
+    squares[6][5] = Piece.create_piece(:pawn,:white,"f2")
+    squares[6][6] = Piece.create_piece(:pawn,:white,"g2")
+    squares[6][7] = Piece.create_piece(:pawn,:white,"h2")
+
+    squares[7][0] = Piece.create_piece(:rook,:white,"a1")
+    squares[7][1] = Piece.create_piece(:knight,:white,"b1")
+    squares[7][2] = Piece.create_piece(:bishop,:white,"c1")
+    squares[7][3] = Piece.create_piece(:queen,:white,"d1")
+    squares[7][4] = Piece.create_piece(:king,:white,"e1")
+    squares[7][5] = Piece.create_piece(:bishop,:white,"f1")
+    squares[7][6] = Piece.create_piece(:knight,:white,"g1")
+    squares[7][7] = Piece.create_piece(:rook,:white,"h1")
   end
 
 end
 
-# system("clear")
-# b = Board.new
-# # b.fill_square("a3",b.value_from("b2"))
-# b.fill_square("a3",b.value_from("a7"))
-# pieces = Pieces.new(b)
-# piece_2 = b.value_from("b2")
-# pieces.move(piece_2,"b4")
-# b.draw_board
-#
-# print "Move Pa2 to Pa3"
-# from = gets.chomp
-# to   = gets.chomp
-#
-# piece = b.value_from(from)
-#
-# puts "Piece = #{piece.inspect}"
-# pieces.move(piece,to)
-# puts "Piece = #{piece.inspect}"
-# system("clear")
-# b.draw_board
+system("clear")
+b = Board.new
+b.draw_board
+op = "s"
+while op != "n" do
+  puts "Move a piece"
+  print "From:"
+  from = gets.chomp
+  print "To:"
+  to = gets.chomp
+  b.move_piece(b.value_from(from),to)
+  system("clear")
+  b.draw_board
+  print "Continue ? s/n :"
+  op = gets.chomp
+end
