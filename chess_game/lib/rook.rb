@@ -10,6 +10,10 @@ class Rook < Piece
     map_to_positions(valid_coordinates(position)).sort
   end
 
+  def capture_moves
+    possible_moves
+  end
+
   private
 
   def valid_coordinates(from)

@@ -10,6 +10,10 @@ class Knight < Piece
     generate_positions(secondary)
   end
 
+  def capture_moves
+    possible_moves
+  end
+
   private
 
   def generate_positions(directions)

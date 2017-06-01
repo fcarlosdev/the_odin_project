@@ -10,6 +10,10 @@ class King < Piece
     generate_positions(cardinal_and_ordinal)
   end
 
+  def capture_moves
+    possible_moves
+  end
+
   private
 
   def generate_positions(directions)

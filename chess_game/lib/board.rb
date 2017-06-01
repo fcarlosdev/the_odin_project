@@ -28,11 +28,22 @@ class Board
   def move_piece(piece,to)
     valid_move = piece.possible_moves.include?(to)
     to_empty_square = value_from(to).nil?
+    can_move_piece = false
     if valid_move && to_empty_square
-      change_piece_to(piece,piece.position,to)
-      return true
+      if piece.type != :pawn
+        can_move_piece = true
+      else
+        if !piece.en_passant_move
+          can_move_piece = !piece.capture_moves.include?(to)
+        else
+          can_move_piece == true
+        end
+      end
+    elsif valid_move && !to_empty_square && piece.capture_moves.include?(to)
+      can_move_piece = (value_from(to).color != piece.color)
     end
-    false
+    change_piece_to(piece,piece.position,to) if can_move_piece
+    can_move_piece
   end
 
   def change_piece_to(piece,from,to)
@@ -60,8 +71,6 @@ class Board
 
 
   private
-
-
 
   # Methods to create  the board
 

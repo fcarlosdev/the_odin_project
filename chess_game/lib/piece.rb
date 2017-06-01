@@ -44,6 +44,10 @@ class Piece
     @moved += 1
   end
 
+  def capture_moves
+    []
+  end
+
 
   private
 

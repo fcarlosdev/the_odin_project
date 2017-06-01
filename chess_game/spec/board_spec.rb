@@ -67,7 +67,7 @@ describe Board do
 
     context "when is a pawn piece" do
 
-      context "when is a valid move" do
+      context "when is a a valid forward move" do
         it "moves a piece to the new position" do
           moved = board.move_piece(white_pieces[:pawn],"a3")
           expect(moved).to eq(true)
@@ -75,17 +75,30 @@ describe Board do
         end
       end
 
-      context "when try to move to a position that is not a possible positon" do
+      context "when is a valid capture move" do
+        it "captures the opponent piece on the destiny square" do
+          board.fill_square("b3",black_pieces[:pawn])
+          expect(board.move_piece(white_pieces[:pawn],"b3")).to eq(true)
+        end
+      end
+
+      context "when is an invalid move to a position that is not possible move" do
         it "doesn't moves the piece to the new position" do
           expect(board.move_piece(white_pieces[:pawn],"b2")).to eq(false)
         end
       end
 
+      context "when is a capture move to an empty position and is not an en passant move" do
+        it "doesn't allows the capture move" do
+          expect(board.move_piece(white_pieces[:pawn],"b3")).to eq(false)
+        end
+      end
+
     end
 
-    context "when the piece is a rook" do
+    context "when is a rook piece" do
 
-      context "when is a valid move" do
+      context "when is a valid move to an empty position" do
         it "moves a piece to the new position" do
           board.fill_square("a2",nil)
           moved = board.move_piece(white_pieces[:rook],"a4")
@@ -94,7 +107,15 @@ describe Board do
         end
       end
 
-      context "when try to move to a position that is not a possible positon" do
+      context "when is a valid capture move" do
+        it "allows the capture move to occur" do
+          board.fill_square("a2",nil)
+          board.fill_square("a2",black_pieces[:rook])
+          expect(board.move_piece(white_pieces[:rook],"a2")).to eq(true)
+        end
+      end
+
+      context "when is an invalid move to a position that is not possible move" do
         it "doesn't moves the piece to the new position" do
           expect(board.move_piece(white_pieces[:rook],"b2")).to eq(false)
         end
@@ -102,9 +123,9 @@ describe Board do
 
     end
 
-    context "when the piece is a bishop" do
+    context "when is a bishop piece" do
 
-      context "when is a valid move" do
+      context "when is a valid move to an empty position" do
         it "moves a piece to the new position" do
           board.fill_square("d2",nil)
           moved = board.move_piece(white_pieces[:bishop],"f4")
@@ -113,7 +134,15 @@ describe Board do
         end
       end
 
-      context "when try to move to a position that is not a possible positon" do
+      context "when is a valid capture move" do
+        it "allows to the capture move occurr" do
+          board.fill_square("d4",nil)
+          board.fill_square("f4",black_pieces[:bishop])
+          expect(board.move_piece(white_pieces[:bishop],"f4")).to eq(true)
+        end
+      end
+
+      context "when is an invalid move to a position that is not possible move" do
         it "doesn't moves the piece to the new position" do
           expect(board.move_piece(white_pieces[:bishop],"c2")).to eq(false)
         end
@@ -121,9 +150,9 @@ describe Board do
 
     end
 
-    context "when the piece is a queen" do
+    context "when is a queen piece" do
 
-      context "when is a valid move" do
+      context "when is a valid move to an empty position" do
         it "moves a piece to the new position" do
           board.fill_square("d2",nil)
           moved = board.move_piece(white_pieces[:queen],"d4")
@@ -132,7 +161,15 @@ describe Board do
         end
       end
 
-      context "when try to move to a position that is not a possible positon" do
+      context "when is a valid capture move" do
+        it "allows to the capture move occurr" do
+          board.fill_square("d2",nil)
+          board.fill_square("d4",black_pieces[:queen])
+          expect(board.move_piece(white_pieces[:queen],"d4")).to eq(true)
+        end
+      end
+
+      context "when is an invalid move to a position that is not possible move" do
         it "doesn't moves the piece to the new position" do
           expect(board.move_piece(white_pieces[:queen],"e3")).to eq(false)
         end
@@ -140,9 +177,9 @@ describe Board do
 
     end
 
-    context "when the piece is a knight" do
+    context "when is a knight piece" do
 
-      context "when is a valid move" do
+      context "when is a valid move to an empty position" do
         it "moves a piece to the new position" do
           moved = board.move_piece(white_pieces[:knight],"c3")
           expect(moved).to eq(true)
@@ -150,7 +187,15 @@ describe Board do
         end
       end
 
-      context "when try to move to a position that is not a possible positon" do
+      context "when is a valid capture move" do
+        it "allows to the capture move occurr" do
+          board.fill_square("b2",nil)
+          board.fill_square("c3",black_pieces[:knight])
+          expect(board.move_piece(white_pieces[:knight],"c3")).to eq(true)
+        end
+      end
+
+      context "when is an invalid move to a position that is not possible move" do
         it "doesn't moves the piece to the new position" do
           expect(board.move_piece(white_pieces[:knight],"d3")).to eq(false)
         end
@@ -158,9 +203,9 @@ describe Board do
 
     end
 
-    context "when the piece is a king" do
+    context "when is a king piece" do
 
-      context "when is a valid move" do
+      context "when is a valid move to an empty position" do
         it "moves a piece to the new position" do
           board.fill_square("e2",nil)
           moved = board.move_piece(white_pieces[:king],"e2")
@@ -169,7 +214,15 @@ describe Board do
         end
       end
 
-      context "when try to move to a position that is not a possible positon" do
+      context "when is a valid capture move" do
+        it "allows to the capture move occurr" do
+          board.fill_square("e2",nil)
+          board.fill_square("e2",black_pieces[:king])
+          expect(board.move_piece(white_pieces[:king],"e2")).to eq(true)
+        end
+      end
+
+      context "when is an invalid move to a position that is not possible move" do
         it "doesn't moves the piece to the new position" do
           expect(board.move_piece(white_pieces[:king],"e3")).to eq(false)
         end
