@@ -41,12 +41,15 @@ class Board
         if !castling_move?(piece,piece.position,to)
           can_move_piece = true
         elsif free_way_castling?(piece.position,to) && rook_can_make_castling?(to)
+
           rook = rook_next(to)
           new_position = rook_new_position(rook.position,to)
-          fill_square(new_position,rook)
-          fill_square(rook.position,nil)
-          rook.position = new_position
-          can_move_piece = true
+          if free_way_castling?(rook.position,to)
+            fill_square(new_position,rook)
+            fill_square(rook.position,nil)
+            rook.position = new_position
+            can_move_piece = true
+          end
         end
 
       elsif piece.type == :pawn && !piece.capture_moves.include?(to) && en_passant_position[piece.position].nil?
@@ -67,43 +70,9 @@ class Board
     elsif valid_move && !to_empty_square && piece.capture_moves.include?(to)
       can_move_piece = (value_from(to).color != piece.color)
     end
-    
+
     change_piece_to(piece,piece.position,to) if can_move_piece
     can_move_piece
-  end
-
-
-  def free_way_castling?(from,to)
-    positions_between(from,to).all?{|position| value_from(position).nil?}
-  end
-
-  def positions_between(from,to)
-    displacements(from,to).each_with_object([]) do |d,positions|
-      new_position = (from[0].ord+d).chr + from[1]
-      positions << new_position if ![from,to].include?(new_position)
-    end
-  end
-
-  def displacements(from,to)
-    calc_distance(from,to) == 2 ? [1,2] : [-1,-2]
-  end
-
-  def rook_can_make_castling?(to)
-    rook = rook_next(to)
-    !rook.nil? && rook.moves == 0
-  end
-
-  def rook_next(to)
-    value_from(castling_rook_position(to))
-  end
-
-  def castling_rook_position(at)
-    ((at[0] == "g") ? "h" : "a").concat(at[1])
-  end
-
-  def rook_new_position(rook_at,next_to)
-    factor = (rook_at > next_to) ? -2 : 3
-    (rook_at[0].ord + factor).chr.concat(rook_at[1])
   end
 
   def change_piece_to(piece,from,to)
@@ -201,6 +170,46 @@ class Board
   def moving_two_square?(from,to)
     (-2..2).cover?(calc_distance(from,to))
   end
+
+  def free_way_castling?(from,to)
+    distance = calc_distance(from,to)
+    if distance <= 2
+      positions_between(from,to).all?{|position| value_from(position).nil?}
+    elsif distance == 3
+      position = (from[0] == "a") ? ("b"+from[1]) : ("g"+from[1])
+      value_from(position).nil?
+    end
+  end
+
+  def positions_between(from,to)
+    displacements(from,to).each_with_object([]) do |d,positions|
+      new_position = (from[0].ord+d).chr + from[1]
+      positions << new_position if ![from,to].include?(new_position)
+    end
+  end
+
+  def displacements(from,to)
+    calc_distance(from,to) == 2 ? [1,2] : [-1,-2]
+  end
+
+  def rook_can_make_castling?(to)
+    rook = rook_next(to)
+    !rook.nil? && rook.moves == 0
+  end
+
+  def rook_next(to)
+    value_from(castling_rook_position(to))
+  end
+
+  def castling_rook_position(at)
+    ((at[0] == "g") ? "h" : "a").concat(at[1])
+  end
+
+  def rook_new_position(rook_at,next_to)
+    factor = (rook_at > next_to) ? -2 : 3
+    (rook_at[0].ord + factor).chr.concat(rook_at[1])
+  end
+
   #End Castling Auxiliars methods
 
   # Board manipulation methods
@@ -220,9 +229,7 @@ class Board
     squares[at_xy[0]][at_xy[1]] = value
   end
 
-
   private
-
 
   def filled_squares
     squares.map{|square| square.select{|value| value if !value.nil?}}.flatten
@@ -316,22 +323,22 @@ class Board
 
 end
 
-# system("clear")
-# b = Board.new
-# b.draw_board
-# op = "s"
-# while op != "n" do
-#   puts "Move a piece"
-#   print "From:"
-#   from = gets.chomp
-#   print "To:"
-#   to = gets.chomp
-#   b.move_piece(b.value_from(from),to)
-#   system("clear")
-#   b.draw_board
-#   print "Continue ? s/n :"
-#   op = gets.chomp
-# end
+system("clear")
+b = Board.new
+b.draw_board
+op = "s"
+while op != "n" do
+  puts "Move a piece"
+  print "From:"
+  from = gets.chomp
+  print "To:"
+  to = gets.chomp
+  b.move_piece(b.value_from(from),to)
+  system("clear")
+  b.draw_board
+  print "Continue ? s/n :"
+  op = gets.chomp
+end
 
 # from_to_0 = [["f2","f4"], ["a7","a5"], ["f4","f5"], ["g7","g5"], ["f5","g6"]]
 # from_to_1 = [["f2","f4"], ["a7","a5"], ["f4","f5"], ["g7","g5"], ["b2","b4"], ["a5","b4"], ["f5","g6"]]

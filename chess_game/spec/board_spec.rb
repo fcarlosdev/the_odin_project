@@ -266,6 +266,7 @@ describe Board do
           it "allows to the king makes the castling move" do
             board.fill_square("d1",nil)
             board.fill_square("c1",nil)
+            board.fill_square("b1",nil)
             expect(board.move_piece(board.value_from("e1"),"c1")).to eq(true)
           end
         end
