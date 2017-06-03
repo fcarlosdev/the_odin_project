@@ -14,7 +14,8 @@ module Coordenates
   end
 
   def squares_at_side_of(from)
-    on_range?(map_to_axis(from)) ? [-1,1].map {|v| move_by(v,from) } : []
+    squares = on_range?(map_to_axis(from)) ? [-1,1].map {|v| move_by(v,from) } : []
+    select_right_position(squares)
   end
 
   def square_at_right_side(from)
@@ -37,5 +38,10 @@ module Coordenates
   def generate_positions(from,coordinates)
     map_to_positions(calculate_moves(from,coordinates))
   end
+
+  def select_right_position(squares)
+    squares.select{|s| ("a".."h").cover?(s[0]) && (0..7).cover?(s[1].to_i) }
+  end
+
 
 end

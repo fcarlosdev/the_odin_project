@@ -17,14 +17,14 @@ class Piece
                    }
 
 
-  attr_reader :color, :type, :position, :image, :moved
+  attr_reader :color, :type, :position, :image, :moves
 
   def initialize(type,color,position)
     @color    = color
     @type     = type
     @position = position
-    @image     = piece_icon(type,color)
-    @moved    = 0
+    @image    = piece_icon(type,color)
+    @moves    = 0
   end
 
   def self.create_piece(type,color,at)
@@ -41,7 +41,10 @@ class Piece
 
   def position=(new_position)
     @position = new_position
-    @moved += 1
+  end
+
+  def increment_moves
+    @moves += 1
   end
 
   def capture_moves

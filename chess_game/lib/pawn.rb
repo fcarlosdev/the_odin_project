@@ -33,7 +33,7 @@ class Pawn < Piece
 
    def generate_forward_moves
      generated_positions = generate_positions(forward_directions)
-     (moved == 0) ? add_position(generated_positions) : generated_positions
+     (moves == 0) ? add_position(generated_positions) : generated_positions
    end
 
    def generate_diagonal_moves

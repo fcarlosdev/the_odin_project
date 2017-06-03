@@ -7,6 +7,8 @@ require "./lib/queen"
 require "./lib/knight"
 require "./lib/king"
 require_relative "modules/mapper"
+require_relative "modules/coordenates"
+require_relative "modules/distance"
 
 class Board
 
@@ -14,13 +16,17 @@ class Board
   SIZE = 8
 
   include Mapper
+  include Coordenates
+  include Distance
 
-  attr_reader :squares, :rows, :columns
+  attr_reader :squares, :rows, :columns, :en_passant_position, :en_passant_chance
 
   def initialize
     @rows = SIZE
     @columns = SIZE
     @bg_colors  = [:light_white, :cyan]
+    @en_passant_position = {}
+    @en_passant_chance = 0
     create_squares(rows,columns)
     load_pieces
   end
@@ -29,25 +35,59 @@ class Board
     valid_move = piece.possible_moves.include?(to)
     to_empty_square = value_from(to).nil?
     can_move_piece = false
+
     if valid_move && to_empty_square
+
       if piece.type != :pawn
+
         can_move_piece = true
-      else
-        if !piece.en_passant_move
-          can_move_piece = !piece.capture_moves.include?(to)
+
+      elsif piece.type == :pawn && !piece.capture_moves.include?(to) &&
+            en_passant_position[piece.position].nil?
+
+        if piece.moves == 0 && calc_distance(piece.position,to).abs == 2 && en_passant_chance == 0
+          positions = squares_at_side_of(to).select{|square| !value_from(square).nil?}
+          attackers = positions.map{|position| value_from(position)}
+          if !attackers.empty?
+            @en_passant_position[positions[0]] = attackers.map{|attacker| attacker.capture_moves.select{|move| move[0] == to[0]}}[0]
+            @en_passant_chance += 1
+          end
         else
-          can_move_piece == true
+          squares.each do |square|
+            square.each do |ally|
+              if !ally.nil?
+                if en_passant_position[ally.position] !=nil
+                  en_passant_position.clear
+                  @en_passant_chance = 0
+                end
+              end
+            end
+          end
+        end
+        can_move_piece = true
+
+      elsif !en_passant_position[piece.position].nil?
+        attacked_position = en_passant_position[piece.position]
+        displacement = (attacked_position[0][0].ord - piece.position[0].ord)
+        opponent_at = (piece.position[0].ord+displacement).chr+piece.position[1]
+        if attacked_position[0][0] == opponent_at[0] && to[0] == opponent_at[0]
+          fill_square(opponent_at,nil)
+          @en_passant_position.clear
+          can_move_piece = true
         end
       end
+
     elsif valid_move && !to_empty_square && piece.capture_moves.include?(to)
       can_move_piece = (value_from(to).color != piece.color)
     end
+
     change_piece_to(piece,piece.position,to) if can_move_piece
     can_move_piece
   end
 
   def change_piece_to(piece,from,to)
     piece.position = to
+    piece.increment_moves
     fill_square(to,piece)
     fill_square(from,nil)
   end
@@ -161,19 +201,48 @@ class Board
 
 end
 
-system("clear")
-b = Board.new
-b.draw_board
-op = "s"
-while op != "n" do
-  puts "Move a piece"
-  print "From:"
-  from = gets.chomp
-  print "To:"
-  to = gets.chomp
-  b.move_piece(b.value_from(from),to)
-  system("clear")
-  b.draw_board
-  print "Continue ? s/n :"
-  op = gets.chomp
-end
+# system("clear")
+# b = Board.new
+# b.draw_board
+# op = "s"
+# while op != "n" do
+#   puts "Move a piece"
+#   print "From:"
+#   from = gets.chomp
+#   print "To:"
+#   to = gets.chomp
+#   b.move_piece(b.value_from(from),to)
+#   system("clear")
+#   b.draw_board
+#   print "Continue ? s/n :"
+#   op = gets.chomp
+# end
+
+# from_to_0 = [["f2","f4"], ["a7","a5"], ["f4","f5"], ["g7","g5"], ["f5","g6"]]
+# from_to_1 = [["f2","f4"], ["a7","a5"], ["f4","f5"], ["g7","g5"], ["b2","b4"], ["a5","b4"], ["f5","g6"]]
+# from_to_2 = [["f2","f4"], ["a7","a5"], ["f4","f5"], ["g7","g5"], ["a2","a3"], ["d7","d5"], ["c2","c3"], ["b7","b5"], ["f5","g6"]]
+# from_to_3 = [["f2","f4"], ["a7","a5"], ["f4","f5"], ["g7","g5"], ["a2","a3"], ["e7","e5"], ["f5","e6"]]
+# from_to_4 = [["f2","f4"], ["a7","a5"], ["f4","f5"], ["g7","g5"], ["a2","a3"], ["e7","e5"], ["f5","g6"]]
+# all_games = []
+# all_games << from_to_0
+# all_games << from_to_1
+# all_games << from_to_2
+# all_games << from_to_3
+# all_games << from_to_4
+#
+# all_games.each do |moves|
+#   system("clear")
+#   b = Board.new
+#   b.draw_board
+#   moves.each do |move|
+#     puts "Moves = #{move}"
+#     sleep(1)
+#     if b.move_piece(b.value_from(move[0]),move[1])
+#       system("clear")
+#       b.draw_board
+#     else
+#       puts "Invalid move from #{move[0]} to #{move[1]}"
+#     end
+#   end
+#   sleep(1)
+# end
