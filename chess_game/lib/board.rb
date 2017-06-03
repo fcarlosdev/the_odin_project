@@ -323,22 +323,22 @@ class Board
 
 end
 
-system("clear")
-b = Board.new
-b.draw_board
-op = "s"
-while op != "n" do
-  puts "Move a piece"
-  print "From:"
-  from = gets.chomp
-  print "To:"
-  to = gets.chomp
-  b.move_piece(b.value_from(from),to)
-  system("clear")
-  b.draw_board
-  print "Continue ? s/n :"
-  op = gets.chomp
-end
+# system("clear")
+# b = Board.new
+# b.draw_board
+# op = "s"
+# while op != "n" do
+#   puts "Move a piece"
+#   print "From:"
+#   from = gets.chomp
+#   print "To:"
+#   to = gets.chomp
+#   b.move_piece(b.value_from(from),to)
+#   system("clear")
+#   b.draw_board
+#   print "Continue ? s/n :"
+#   op = gets.chomp
+# end
 
 # from_to_0 = [["f2","f4"], ["a7","a5"], ["f4","f5"], ["g7","g5"], ["f5","g6"]]
 # from_to_1 = [["f2","f4"], ["a7","a5"], ["f4","f5"], ["g7","g5"], ["b2","b4"], ["a5","b4"], ["f5","g6"]]
