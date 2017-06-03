@@ -26,42 +26,42 @@ describe Board do
     }
   }
 
-  # describe '#new' do
-  #   it "Creates a new board" do
-  #     expect(board).to be_instance_of(Board)
-  #   end
-  # end
-  #
-  # describe '#draw_board' do
-  #   it "Draws a board" do
-  #     lines = columns = 8
-  #     expect(board).to receive(:draw_board).with(no_args).exactly(1).times
-  #     expect(board.squares[1][0].type).to eq(:pawn)
-  #     board.draw_board
-  #   end
-  # end
-  #
-  # describe '#value_from' do
-  #
-  #   context "when is given a valid location" do
-  #     it "returns the piece on square" do
-  #       expect(board.value_from("a2")).to_not be_nil
-  #     end
-  #   end
-  #
-  #   context "when is given an invalid position" do
-  #     it "returns nil" do
-  #       expect(board.value_from("l2")).to be_nil
-  #     end
-  #   end
-  # end
-  #
-  # describe '#fill_square' do
-  #   it "changes the value of a square" do
-  #     board.fill_square("b3",Piece.create_piece(:pawn,:white,"b3"))
-  #     expect(board.value_from("b3")).to_not be_nil
-  #   end
-  # end
+  describe '#new' do
+    it "Creates a new board" do
+      expect(board).to be_instance_of(Board)
+    end
+  end
+
+  describe '#draw_board' do
+    it "Draws a board" do
+      lines = columns = 8
+      expect(board).to receive(:draw_board).with(no_args).exactly(1).times
+      expect(board.squares[1][0].type).to eq(:pawn)
+      board.draw_board
+    end
+  end
+
+  describe '#value_from' do
+
+    context "when is given a valid location" do
+      it "returns the piece on square" do
+        expect(board.value_from("a2")).to_not be_nil
+      end
+    end
+
+    context "when is given an invalid position" do
+      it "returns nil" do
+        expect(board.value_from("l2")).to be_nil
+      end
+    end
+  end
+
+  describe '#fill_square' do
+    it "changes the value of a square" do
+      board.fill_square("b3",Piece.create_piece(:pawn,:white,"b3"))
+      expect(board.value_from("b3")).to_not be_nil
+    end
+  end
 
   describe '#move_piece' do
 
@@ -250,6 +250,55 @@ describe Board do
         it "doesn't moves the piece to the new position" do
           expect(board.move_piece(white_pieces[:king],"e3")).to eq(false)
         end
+      end
+
+      context "when is a valid castling move" do
+
+        context "when is a castling to king side" do
+          it "allows to the king makes the castling move" do
+            board.fill_square("f1",nil)
+            board.fill_square("g1",nil)
+            expect(board.move_piece(board.value_from("e1"),"g1")).to eq(true)
+          end
+        end
+
+        context "when is a castling to queen side" do
+          it "allows to the king makes the castling move" do
+            board.fill_square("d1",nil)
+            board.fill_square("c1",nil)
+            expect(board.move_piece(board.value_from("e1"),"c1")).to eq(true)
+          end
+        end
+
+      end
+
+      context "when is an invalid castling move" do
+
+        context "when there is a piece between the king and the rook" do
+          it "doesn't allow that the castling move to be done" do
+            board.fill_square("g1",nil)
+            expect(board.move_piece(board.value_from("e1"),"g1")).to eq(false)
+          end
+        end
+
+        context "when the rook already made a move" do
+          it "doesn't allow that the castling move to be done" do
+            board.fill_square("h2",nil)
+            board.move_piece(board.value_from("h1"),"h2")
+            board.move_piece(board.value_from("h2"),"h1")
+            expect(board.move_piece(board.value_from("e1"),"g1")).to eq(false)
+          end
+        end
+
+        context "when the king already made a move" do
+          it "doesn't allow that the castling move to be done" do
+            board.fill_square("e2",nil)
+            board.move_piece(board.value_from("e1"),"e2")
+            board.move_piece(board.value_from("e2"),"e1")
+            expect(board.move_piece(board.value_from("e1"),"g1")).to eq(false)
+          end
+        end
+
       end
 
     end

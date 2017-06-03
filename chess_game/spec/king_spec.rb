@@ -4,7 +4,7 @@ describe "King" do
 
   let(:piece) {King.new(:white,"f5")}
   let(:moves){
-    ["f6","g5","f4","e5","g6","g4","e4","e6"]
+    ["f6","g5","f4","e5","g6","g4","e4","e6","d5","h5"]
   }
 
   describe '#new' do

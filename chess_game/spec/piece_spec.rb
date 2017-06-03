@@ -35,6 +35,8 @@ describe "Piece" do
       expect(Piece.create_piece(:king,:white,position)).to be_instance_of(King)
     end
 
+    
+
   end
 
 end

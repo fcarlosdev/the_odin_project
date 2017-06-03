@@ -51,6 +51,9 @@ class Piece
     []
   end
 
+  def valid_move?(piece,to)
+    piece.possible_moves.include?(to)
+  end
 
   private
 

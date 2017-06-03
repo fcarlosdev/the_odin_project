@@ -17,11 +17,19 @@ class King < Piece
   private
 
   def generate_positions(directions)
-    map_to_positions(new_axes_moves(directions))
+    if (moves == 0)
+      map_to_positions(new_axes_moves(directions)) + castling_positions
+    else
+      map_to_positions(new_axes_moves(directions))
+    end
   end
 
   def new_axes_moves(directions)
     calculate_moves(position,get_coordinates_from(directions))
+  end
+
+  def castling_positions
+    [-2,2].map{|displacement| (position[0].ord + displacement).chr+position[1] }
   end
 
 

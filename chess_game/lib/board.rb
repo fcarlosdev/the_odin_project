@@ -32,57 +32,78 @@ class Board
   end
 
   def move_piece(piece,to)
-    valid_move = piece.possible_moves.include?(to)
+    valid_move = piece.valid_move?(piece,to)
     to_empty_square = value_from(to).nil?
     can_move_piece = false
-
     if valid_move && to_empty_square
-
       if piece.type != :pawn
 
-        can_move_piece = true
+        if !castling_move?(piece,piece.position,to)
+          can_move_piece = true
+        elsif free_way_castling?(piece.position,to) && rook_can_make_castling?(to)
+          rook = rook_next(to)
+          new_position = rook_new_position(rook.position,to)
+          fill_square(new_position,rook)
+          fill_square(rook.position,nil)
+          rook.position = new_position
+          can_move_piece = true
+        end
 
-      elsif piece.type == :pawn && !piece.capture_moves.include?(to) &&
-            en_passant_position[piece.position].nil?
+      elsif piece.type == :pawn && !piece.capture_moves.include?(to) && en_passant_position[piece.position].nil?
 
         if piece.moves == 0 && calc_distance(piece.position,to).abs == 2 && en_passant_chance == 0
-          positions = squares_at_side_of(to).select{|square| !value_from(square).nil?}
-          attackers = positions.map{|position| value_from(position)}
-          if !attackers.empty?
-            @en_passant_position[positions[0]] = attackers.map{|attacker| attacker.capture_moves.select{|move| move[0] == to[0]}}[0]
-            @en_passant_chance += 1
-          end
+          enable_en_passant_to(piece,to)
         else
-          squares.each do |square|
-            square.each do |ally|
-              if !ally.nil?
-                if en_passant_position[ally.position] !=nil
-                  en_passant_position.clear
-                  @en_passant_chance = 0
-                end
-              end
-            end
-          end
+          disable_en_passant(allies_from(piece))
         end
         can_move_piece = true
 
       elsif !en_passant_position[piece.position].nil?
-        attacked_position = en_passant_position[piece.position]
-        displacement = (attacked_position[0][0].ord - piece.position[0].ord)
-        opponent_at = (piece.position[0].ord+displacement).chr+piece.position[1]
-        if attacked_position[0][0] == opponent_at[0] && to[0] == opponent_at[0]
-          fill_square(opponent_at,nil)
-          @en_passant_position.clear
-          can_move_piece = true
-        end
+        attacked_position = attacked_en_passant_position(piece.position)
+        opponent_at       = en_passant_opponent(attacked_position[0][0],piece)
+        can_move_piece    = capture_en_passant_piece(attacked_position, to, opponent_at)
       end
 
     elsif valid_move && !to_empty_square && piece.capture_moves.include?(to)
       can_move_piece = (value_from(to).color != piece.color)
     end
-
+    
     change_piece_to(piece,piece.position,to) if can_move_piece
     can_move_piece
+  end
+
+
+  def free_way_castling?(from,to)
+    positions_between(from,to).all?{|position| value_from(position).nil?}
+  end
+
+  def positions_between(from,to)
+    displacements(from,to).each_with_object([]) do |d,positions|
+      new_position = (from[0].ord+d).chr + from[1]
+      positions << new_position if ![from,to].include?(new_position)
+    end
+  end
+
+  def displacements(from,to)
+    calc_distance(from,to) == 2 ? [1,2] : [-1,-2]
+  end
+
+  def rook_can_make_castling?(to)
+    rook = rook_next(to)
+    !rook.nil? && rook.moves == 0
+  end
+
+  def rook_next(to)
+    value_from(castling_rook_position(to))
+  end
+
+  def castling_rook_position(at)
+    ((at[0] == "g") ? "h" : "a").concat(at[1])
+  end
+
+  def rook_new_position(rook_at,next_to)
+    factor = (rook_at > next_to) ? -2 : 3
+    (rook_at[0].ord + factor).chr.concat(rook_at[1])
   end
 
   def change_piece_to(piece,from,to)
@@ -91,6 +112,96 @@ class Board
     fill_square(to,piece)
     fill_square(from,nil)
   end
+
+  #En passant move methodos
+
+  def capture_en_passant_piece(attacked_position,to,opponent_at)
+    if attacked_position[0][0] == opponent_at[0] && to[0] == opponent_at[0]
+      fill_square(opponent_at,nil)
+      @en_passant_position.clear
+      return true
+    end
+    return false
+  end
+
+  #Auxiliars Methods to capture en passant piece
+  def attacked_en_passant_position(position)
+    en_passant_position[position]
+  end
+
+  def en_passant_opponent(attacked_position,by_piece)
+    file = (by_piece.position[0].ord + calc_displacement(attacked_position,by_piece.position))
+    file.chr+by_piece.position[1]
+  end
+
+  def calc_displacement(attacked_position,piece_position)
+    (attacked_position.ord - piece_position[0].ord)
+  end
+  #end
+
+  def enable_en_passant_to(piece,at)
+    positions = sideway_squares(at)
+    opponents = extract_pieces(positions)
+    if !opponents.empty?
+      @en_passant_position[positions[0]] = select_en_passant_position(opponents,at)
+      @en_passant_chance += 1
+    end
+  end
+
+  #Auxiliars methods to enable en passant
+  def sideway_squares(from)
+    squares_at_side_of(from).select{|square| !value_from(square).nil?}
+  end
+
+  def extract_pieces(from_positions)
+    from_positions.map{|position| value_from(position)}
+  end
+
+  def select_en_passant_position(opponents,at_side_of)
+    opponents.map{|opponent| opponent.capture_moves.select{|move| move[0] == at_side_of[0]}}[0]
+  end
+
+  #End
+
+  def disable_en_passant(to_pieces)
+    to_pieces.each do |ally|
+      if !en_passant_position[ally.position].nil?
+        en_passant_position.clear
+        @en_passant_chance = 0
+      end
+    end
+  end
+
+  def allies_from(piece)
+    filled_squares.select{|ally| ally.color == piece.color}
+  end
+
+  #End en passant methods
+
+  #Castling Auxiliars methods
+  def castling_move?(piece,from,to)
+    is_castling = king_piece?(piece)
+    is_castling = is_castling && first_move?(piece)
+    is_castling = is_castling && moving_throug_same_rank?(from,to)
+    is_castling = is_castling && moving_two_square?(from,to)
+  end
+
+  def king_piece?(piece)
+    piece.type == :king
+  end
+
+  def first_move?(piece)
+    piece.moves == 0
+  end
+
+  def moving_throug_same_rank?(from,to)
+    from[1] == to[1]
+  end
+
+  def moving_two_square?(from,to)
+    (-2..2).cover?(calc_distance(from,to))
+  end
+  #End Castling Auxiliars methods
 
   # Board manipulation methods
 
@@ -112,6 +223,10 @@ class Board
 
   private
 
+
+  def filled_squares
+    squares.map{|square| square.select{|value| value if !value.nil?}}.flatten
+  end
   # Methods to create  the board
 
   def draw_squares(bg_color)
@@ -223,12 +338,14 @@ end
 # from_to_2 = [["f2","f4"], ["a7","a5"], ["f4","f5"], ["g7","g5"], ["a2","a3"], ["d7","d5"], ["c2","c3"], ["b7","b5"], ["f5","g6"]]
 # from_to_3 = [["f2","f4"], ["a7","a5"], ["f4","f5"], ["g7","g5"], ["a2","a3"], ["e7","e5"], ["f5","e6"]]
 # from_to_4 = [["f2","f4"], ["a7","a5"], ["f4","f5"], ["g7","g5"], ["a2","a3"], ["e7","e5"], ["f5","g6"]]
+# castling_move = [["f2","f4"],["g2","g4"],["f1","h3"],["g1","f3"],["e1","g1"]]
 # all_games = []
 # all_games << from_to_0
 # all_games << from_to_1
 # all_games << from_to_2
 # all_games << from_to_3
 # all_games << from_to_4
+# all_games << castling_move
 #
 # all_games.each do |moves|
 #   system("clear")
