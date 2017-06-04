@@ -19,14 +19,14 @@ class Board
   include Coordenates
   include Distance
 
-  attr_reader :squares, :rows, :columns, :en_passant_position, :en_passant_chance
+  attr_reader :squares, :rows, :columns, :promotion, :en_passant_position
 
   def initialize
-    @rows = SIZE
-    @columns = SIZE
-    @bg_colors  = [:light_white, :cyan]
-    @en_passant_position = {}
-    @en_passant_chance = 0
+    @rows      = SIZE
+    @columns   = SIZE
+    @bg_colors = [:light_white, :cyan]
+    @promotion = false
+    @en_passant_position = []
     create_squares(rows,columns)
     load_pieces
   end
@@ -34,8 +34,11 @@ class Board
   def move_piece(piece,to)
     valid_move = piece.valid_move?(piece,to)
     to_empty_square = value_from(to).nil?
+    capture_move = piece.capture_moves.include?(to)
     can_move_piece = false
+
     if valid_move && to_empty_square
+
       if piece.type != :pawn
 
         if !castling_move?(piece,piece.position,to)
@@ -52,26 +55,40 @@ class Board
           end
         end
 
-      elsif piece.type == :pawn && !piece.capture_moves.include?(to) && en_passant_position[piece.position].nil?
+      elsif piece.type == :pawn && [1,8].include?(to[1].to_i)
 
-        if piece.moves == 0 && calc_distance(piece.position,to).abs == 2 && en_passant_chance == 0
-          enable_en_passant_to(piece,to)
-        else
-          disable_en_passant(allies_from(piece))
-        end
+        @promotion = true
         can_move_piece = true
 
-      elsif !en_passant_position[piece.position].nil?
-        attacked_position = attacked_en_passant_position(piece.position)
-        opponent_at       = en_passant_opponent(attacked_position[0][0],piece)
-        can_move_piece    = capture_en_passant_piece(attacked_position, to, opponent_at)
+      elsif piece.type == :pawn && !capture_move && !en_passant_move?(piece,to)
+
+        @en_passant_position = select_filled_squares(to).flatten if enable_en_passant?(piece,to)
+        can_move_piece = true
+
+      elsif piece.type == :pawn && capture_move && en_passant_move?(piece,to)
+
+        opponent_at = select_filled_squares(piece.position)
+        fill_square(opponent_at[0],nil)
+        can_move_piece = true
+        @en_passant_position.clear
+
       end
 
-    elsif valid_move && !to_empty_square && piece.capture_moves.include?(to)
+    elsif valid_move && !to_empty_square && capture_move
+
       can_move_piece = (value_from(to).color != piece.color)
+      @en_passant_position.clear
+
     end
 
-    change_piece_to(piece,piece.position,to) if can_move_piece
+    if can_move_piece
+      if !promotion
+        change_piece_to(piece,piece.position,to)
+      else
+        puts "Promote the pawn to (Knight, Queen, Rook or Bishop)."
+        promote_piece(piece,to)
+      end
+    end
     can_move_piece
   end
 
@@ -82,70 +99,24 @@ class Board
     fill_square(from,nil)
   end
 
-  #En passant move methodos
-
-  def capture_en_passant_piece(attacked_position,to,opponent_at)
-    if attacked_position[0][0] == opponent_at[0] && to[0] == opponent_at[0]
-      fill_square(opponent_at,nil)
-      @en_passant_position.clear
-      return true
-    end
-    return false
+  #En passant Auxiliars methods
+  def en_passant_move?(piece,to)
+    en_passant_position.include?(piece.position) && any_opponent_at_sides?(piece.position,piece)
   end
 
-  #Auxiliars Methods to capture en passant piece
-  def attacked_en_passant_position(position)
-    en_passant_position[position]
+  def enable_en_passant?(piece,to)
+    first_move?(piece) && moving_two_square?(piece.position,to) && any_opponent_at_sides?(to,piece)
   end
 
-  def en_passant_opponent(attacked_position,by_piece)
-    file = (by_piece.position[0].ord + calc_displacement(attacked_position,by_piece.position))
-    file.chr+by_piece.position[1]
+  def any_opponent_at_sides?(to,piece)
+    select_filled_squares(to).any?{|square| value_from(square).color != piece.color}
   end
 
-  def calc_displacement(attacked_position,piece_position)
-    (attacked_position.ord - piece_position[0].ord)
+  def select_filled_squares(next_to)
+    squares_at_side_of(next_to).select{|square| !value_from(square).nil?}
   end
+
   #end
-
-  def enable_en_passant_to(piece,at)
-    positions = sideway_squares(at)
-    opponents = extract_pieces(positions)
-    if !opponents.empty?
-      @en_passant_position[positions[0]] = select_en_passant_position(opponents,at)
-      @en_passant_chance += 1
-    end
-  end
-
-  #Auxiliars methods to enable en passant
-  def sideway_squares(from)
-    squares_at_side_of(from).select{|square| !value_from(square).nil?}
-  end
-
-  def extract_pieces(from_positions)
-    from_positions.map{|position| value_from(position)}
-  end
-
-  def select_en_passant_position(opponents,at_side_of)
-    opponents.map{|opponent| opponent.capture_moves.select{|move| move[0] == at_side_of[0]}}[0]
-  end
-
-  #End
-
-  def disable_en_passant(to_pieces)
-    to_pieces.each do |ally|
-      if !en_passant_position[ally.position].nil?
-        en_passant_position.clear
-        @en_passant_chance = 0
-      end
-    end
-  end
-
-  def allies_from(piece)
-    filled_squares.select{|ally| ally.color == piece.color}
-  end
-
-  #End en passant methods
 
   #Castling Auxiliars methods
   def castling_move?(piece,from,to)
@@ -211,6 +182,36 @@ class Board
   end
 
   #End Castling Auxiliars methods
+
+  #Promotion
+  def promote_to
+    type = ""
+    loop do
+      print "Enter N to promote to Knight, Q to Queen, R to Rook or B to Bishop: "
+      type = gets.chomp.upcase
+      break if ["N","Q","R","B"].include?(type)
+      system("clear")
+      draw_board
+    end
+    type
+  end
+
+  def promote_piece(piece,at)
+    type = nil
+    case promote_to
+    when "N"
+      type = :knight
+    when "Q"
+      type = :queen
+    when "R"
+      type = :rook
+    when "B"
+      type = :bishop
+    end
+    promoved_piece = Piece.create_piece(type,piece.color,at)
+    fill_square(at,promoved_piece)
+    fill_square(piece.position,nil)
+  end
 
   # Board manipulation methods
 

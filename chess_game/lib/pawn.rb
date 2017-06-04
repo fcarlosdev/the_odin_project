@@ -2,6 +2,8 @@ require "./lib/piece"
 
 class Pawn < Piece
 
+  #  attr_reader :en_passant
+
    def initialize(color,position)
      super(:pawn,color,position)
    end
@@ -17,6 +19,10 @@ class Pawn < Piece
    def capture_moves
      generate_positions(diagonal_directions).sort
    end
+
+  #  def en_passant=(status)
+  #    @en_passant = status
+  #  end
 
    private
 
