@@ -14,6 +14,11 @@ class Rook < Piece
     possible_moves
   end
 
+  def get_positions_with(final_position)
+    positions = displacements(position).map{|d| generate_positions(position,d)}
+    positions.select{|positions| positions.include?(final_position)}
+  end
+
   private
 
   def valid_coordinates(from)
@@ -21,11 +26,18 @@ class Rook < Piece
   end
 
   def get_coordinates(from)
+    displacements(from).each_with_object([]) do |displacement,coordinates|
+      displacement.map{|coordinate| coordinates << coordinate}
+    end
+  end
+
+  def displacements(from)
     from_coordinates = map_to_axis(from)
-    get_north_coordinates(from_coordinates[0])+
-    get_south_coordinates(from_coordinates[0])+
-    get_east_coordinates(from_coordinates[1])+
-    get_west_coordinates(from_coordinates[1])
+    coordinates = []
+    coordinates << get_north_coordinates(from_coordinates[0])
+    coordinates << get_south_coordinates(from_coordinates[0])
+    coordinates << get_east_coordinates(from_coordinates[1])
+    coordinates << get_west_coordinates(from_coordinates[1])
   end
 
 end

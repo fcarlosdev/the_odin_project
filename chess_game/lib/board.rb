@@ -92,6 +92,17 @@ class Board
     can_move_piece
   end
 
+  def check?(king)
+    opponents = filled_squares.select{|piece| piece.color != king.color}
+    in_check = false
+    opponents.each do |opponent|
+      in_check = true if opponent.possible_moves.include?(king.position)      
+      opponent.get_positions_with(king.position)
+      break if in_check
+    end
+    in_check
+  end
+
   def change_piece_to(piece,from,to)
     piece.position = to
     piece.increment_moves

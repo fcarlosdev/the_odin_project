@@ -14,6 +14,11 @@ class King < Piece
     possible_moves
   end
 
+  def get_positions_with(final_position)
+    possible_moves
+  end
+
+
   private
 
   def generate_positions(directions)

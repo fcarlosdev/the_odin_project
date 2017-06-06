@@ -18,6 +18,10 @@ class Pawn < Piece
      generate_positions(diagonal_directions).sort
    end
 
+   def get_positions_with(final_position)
+     possible_moves
+   end
+
    private
 
    def generate_all_possible_moves
