@@ -1,6 +1,7 @@
 require 'board'
 require 'colorize'
 require 'piece'
+require 'player'
 
 describe Board do
 
@@ -25,6 +26,19 @@ describe Board do
       king: Piece.create_piece(:king,:black,"e8")
     }
   }
+
+  let(:players) {
+    {player1: Player.new("player1",:"white"),
+     player2: Player.new("playr2", :black)}
+  }
+
+  def clear_board
+    board.squares.each do |square|
+      square.each do |value|
+        board.fill_square(value.position,nil) if !value.nil?
+      end
+    end
+  end
 
   # describe '#new' do
   #   it "Creates a new board" do
@@ -322,26 +336,43 @@ describe Board do
   describe '#check' do
 
     context "when the king is under attack" do
-      it "indicates the situation to the owner player of the king" do
-        board.squares.each do |square|
-          square.each do |value|
-            if !value.nil?
-              board.fill_square(value.position,nil)
-            end
-          end
+
+      context "when there is no piece between the attacker and the king" do
+
+        it "indicates the situation to the owner player of the king" do
+          clear_board
+          board.fill_square("c6",black_pieces[:king])
+          black_pieces[:king].position = "c6"
+
+          board.fill_square("c2",white_pieces[:rook])
+          white_pieces[:rook].position = "c2"
+          board.fill_square("e1",white_pieces[:king])
+
+          expect(board.check?(players[:player1],black_pieces[:king])).to eq(true)
         end
 
+      end
+
+    end
+
+    context "when there is a piece between the attacker and the king" do
+
+      it "no indicates that the king is in check" do
+        clear_board
         board.fill_square("c6",black_pieces[:king])
         black_pieces[:king].position = "c6"
+        board.fill_square("c4",black_pieces[:pawn])
+        black_pieces[:pawn].position = "c4"
 
         board.fill_square("c2",white_pieces[:rook])
         white_pieces[:rook].position = "c2"
-
         board.fill_square("e1",white_pieces[:king])
 
-        expect(board.check?black_pieces[:king]).to eq(true)
+        expect(board.check?(players[:player1],black_pieces[:king])).to eq(false)
 
       end
+
     end
+
   end
 end

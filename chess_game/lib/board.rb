@@ -92,15 +92,22 @@ class Board
     can_move_piece
   end
 
-  def check?(king)
-    opponents = filled_squares.select{|piece| piece.color != king.color}
-    in_check = false
-    opponents.each do |opponent|
-      in_check = true if opponent.possible_moves.include?(king.position)      
-      opponent.get_positions_with(king.position)
-      break if in_check
+  def check?(attacker,king)
+    attackers = pieces_of(attacker).select{|piece| piece.possible_moves.include?(king.position)}
+    positions = []
+    attackers.each do |piece|
+      aux = piece.get_positions_with(king.position)[0]
+      aux.each do |position|
+        if position > piece.position && position < king.position
+          positions << position
+        end
+      end
     end
-    in_check
+    !attackers.empty? && positions.all?{|position| value_from(position).nil?}
+  end
+
+  def pieces_of(player)
+    filled_squares.select {|piece| piece.color == player.color}
   end
 
   def change_piece_to(piece,from,to)

@@ -19,7 +19,7 @@ class Pawn < Piece
    end
 
    def get_positions_with(final_position)
-     possible_moves
+     possible_moves.select{|position| position == final_position}
    end
 
    private
