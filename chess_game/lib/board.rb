@@ -32,9 +32,9 @@ class Board
   end
 
   def move_piece(piece,to)
-    valid_move = piece.valid_move?(piece,to)
+    valid_move = piece.valid_move?(to,self)
     to_empty_square = value_from(to).nil?
-    capture_move = piece.capture_moves.include?(to)
+    capture_move = piece.valid_capture_move?(to)
     can_move_piece = false
 
     if valid_move && to_empty_square
