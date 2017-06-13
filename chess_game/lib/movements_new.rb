@@ -1,12 +1,14 @@
 require_relative "modules/mapper"
 require_relative "modules/coordenates"
 require_relative "modules/directions"
+require_relative "modules/distance"
 
 class MovementsNew
 
   include Mapper
   include Coordenates
   include Directions
+  include Distance
 
   def possible_positions(from)
     map_to_positions(calculate_moves(from,get_coordinates(from)))
