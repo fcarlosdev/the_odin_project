@@ -64,6 +64,10 @@ class Board_New
     squares.map{|square| square.select{|value| value if !value.nil?}}.flatten
   end
 
+  def clear_square(at)
+    fill_square(at,nil)
+  end
+
   private
 
   def draw_squares(bg_color)

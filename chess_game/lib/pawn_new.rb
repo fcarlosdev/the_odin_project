@@ -14,6 +14,11 @@ class Pawn_New < Piece_New
     if forward_move?(to,chess_board) || capture_move?(to,chess_board)
       chess_board.move_piece(self,to)
       return true
+  elsif en_passant_move?(to,chess_board)
+      old_position = position
+      chess_board.move_piece(self,to)
+      chess_board.clear_square((to[0].concat(old_position[1])))
+      return true
     end
 
     false
@@ -26,8 +31,14 @@ class Pawn_New < Piece_New
   end
 
   def capture_move?(to,board)
-    diagonal_moves.include?(to) && has_opponent_at?(to,board) && move_by(to).abs == 1 
+    diagonal_moves.include?(to) && has_opponent_at?(to,board) && moved_by(to).abs == 1
   end
+
+  def en_passant_move?(to,board)
+    place = to[0].concat(position[1])
+    diagonal_moves.include?(to) && has_opponent_at?(place,board) && empty_position?(to,board)
+  end
+
 
   def free_way?(to,board)
     (path(to) - [position]).all?{|place| value_at(place,board).nil?}
@@ -38,10 +49,10 @@ class Pawn_New < Piece_New
   end
 
   def to_the_limit?(to)
-     move_by(to) <= max_displacement
+     moved_by(to) <= max_displacement
   end
 
-  def move_by(to)
+  def moved_by(to)
     calc_distance(position,to)
   end
 

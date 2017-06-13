@@ -7,26 +7,14 @@ require "./lib/diagonal_move"
 describe "Pawn_New" do
 
   let(:board) {Board_New.new}
-  let(:positions) {{b2: "b2", b3: "b3", b4: "b4", b6: "b6", b5: "b5",
-                    b7: "b7", c2: "c2", c3: "c3", c4: "c4"}}
+  let(:positions) {{b2: "b2", b3: "b3", b4: "b4", b6: "b6",
+                    b5: "b5", b7: "b7", c2: "c2", c3: "c3",
+                    c4: "c4", d3: "d3", d4: "d4"}}
   let(:pieces) {
     {white_pawn: Pawn_New.new(:white,positions[:b2]),
      white_pawn_2: Pawn_New.new(:white,positions[:b3]),
      black_pawn: Pawn_New.new(:black,positions[:b7])}
   }
-
-  def clear_board
-    board.squares.each do |square|
-      square.each do |value|
-        board.fill_square(value.position,nil) if !value.nil?
-      end
-    end
-  end
-
-  def initialize_board
-    board.fill_square(positions[:b2],pieces[:white_pawn])
-    board.fill_square(positions[:b7],pieces[:black_pawn])
-  end
 
   describe '#new' do
     it "creates a new instance of Pawn class" do
@@ -110,9 +98,18 @@ describe "Pawn_New" do
 
     end
 
-    # context "when is a en passant move" do
-    #
-    # end
+    context "when is an en passant move" do
+
+      context "when is valid en passant move" do
+        it "allows that the piece to make the move" do
+          board.fill_square(positions[:c2],pieces[:black_pawn])
+          expect(pieces[:white_pawn].move(positions[:c3],board)).to eq(true)
+          expect(board.value_from(positions[:c3])).to eq(pieces[:white_pawn])
+          expect(board.value_from(positions[:c2])).to be_nil
+        end
+      end
+
+    end
 
   end
 
