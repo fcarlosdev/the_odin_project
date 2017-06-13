@@ -7,10 +7,7 @@ describe "ForwardMove" do
   }
   let(:move) {ForwardMove.new}
   let(:from) {"a2"}
-  let(:positions) {
-    [["a3"],
-     ["a8","a7","a6","a5","a4","a3","a1"]]
-  }
+  let(:positions) {["a8","a7","a6","a5","a4","a3","a1"]}
 
   describe '#new' do
     it "creates a new instance of ForwardMove class" do
@@ -18,24 +15,10 @@ describe "ForwardMove" do
     end
   end
 
-  describe '#get_positions' do
-
-    context "when move by one position" do
-      it "generates the new positon from the given parameters" do
-        move_by = 1
-        expect(move.get_positions(from,directions[:N],move_by)).to eq(positions[0])
-      end
+  describe '#possible_positions' do
+    it "generates the possible positions from origin position" do
+      expect(move.possible_positions(from)).to eq(positions)
     end
-
-    context "when move more than one positin" do
-      it "generates the new positions from the given parameters" do
-        move_by = 8
-        expect(move.get_positions(from,directions[:N],move_by)).to eq(positions[1])
-      end
-
-    end
-
   end
-
 
 end

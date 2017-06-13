@@ -19,12 +19,13 @@ class Board_New
   include Coordenates
   include Distance
 
-  attr_reader :squares, :rows, :columns, :en_passant_position
+  attr_reader :squares, :rows, :columns, :en_passant_pieces
 
   def initialize
     @rows      = SIZE
     @columns   = SIZE
     @bg_colors = [:light_white, :cyan]
+    @en_passant_pieces = []
     create_squares(rows,columns)
     load_pieces
   end
@@ -34,6 +35,10 @@ class Board_New
     fill_square(piece.position,nil)
     piece.position = to
     piece.increment_moves
+  end
+
+  def en_passant_pieces=(pieces)
+    @en_passant_pieces = pieces
   end
 
   def draw_board
@@ -59,12 +64,7 @@ class Board_New
     squares.map{|square| square.select{|value| value if !value.nil?}}.flatten
   end
 
-  def select_beside_squares(to)
-  end
-
   private
-
-  # Methods to create  the board
 
   def draw_squares(bg_color)
     rows.times do |row|

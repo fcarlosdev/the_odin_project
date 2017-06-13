@@ -19,7 +19,7 @@ class Piece_New
 
   attr_reader :color, :type, :position, :image, :moves, :movements
 
-  def initialize(type,color,position,movements={})
+  def initialize(type,color,position)
     @color    = color
     @type     = type
     @position = position

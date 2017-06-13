@@ -1,6 +1,6 @@
 require 'board_new'
 require 'colorize'
-require 'piece'
+require 'piece_new'
 require 'player'
 
 describe Board_New do
@@ -8,22 +8,22 @@ describe Board_New do
   let(:board) {Board_New.new}
 
   let(:white_pieces) {
-    { pawn: Piece.create_piece(:pawn,:white,"a2"),
-      rook: Piece.create_piece(:rook,:white,"a1"),
-      bishop: Piece.create_piece(:bishop,:white,"c1"),
-      queen: Piece.create_piece(:queen,:white,"d1"),
-      knight: Piece.create_piece(:knight,:white,"b1"),
-      king: Piece.create_piece(:king,:white,"e1")
+    { pawn: Piece_New.create_piece(:pawn,:white,"a2"),
+      rook: Piece_New.create_piece(:rook,:white,"a1"),
+      bishop: Piece_New.create_piece(:bishop,:white,"c1"),
+      queen: Piece_New.create_piece(:queen,:white,"d1"),
+      knight: Piece_New.create_piece(:knight,:white,"b1"),
+      king: Piece_New.create_piece(:king,:white,"e1")
     }
   }
 
   let(:black_pieces) {
-    { pawn: Piece.create_piece(:pawn,:black,"a7"),
-      rook: Piece.create_piece(:rook,:black,"a8"),
-      bishop: Piece.create_piece(:bishop,:black,"c8"),
-      queen: Piece.create_piece(:queen,:black,"d8"),
-      knight: Piece.create_piece(:knight,:black,"b8"),
-      king: Piece.create_piece(:king,:black,"e8")
+    { pawn: Piece_New.create_piece(:pawn,:black,"a7"),
+      rook: Piece_New.create_piece(:rook,:black,"a8"),
+      bishop: Piece_New.create_piece(:bishop,:black,"c8"),
+      queen: Piece_New.create_piece(:queen,:black,"d8"),
+      knight: Piece_New.create_piece(:knight,:black,"b8"),
+      king: Piece_New.create_piece(:king,:black,"e8")
     }
   }
 
@@ -67,7 +67,7 @@ describe Board_New do
 
   describe '#fill_square' do
     it "changes the value of a square" do
-      board.fill_square("b3",Piece.create_piece(:pawn,:white,"b3"))
+      board.fill_square("b3",Piece_New.create_piece(:pawn,:white,"b3"))
       expect(board.value_from("b3")).to_not be_nil
     end
   end
