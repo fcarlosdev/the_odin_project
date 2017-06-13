@@ -14,13 +14,12 @@ class Pawn_New < Piece_New
     if forward_move?(to,chess_board) || capture_move?(to,chess_board)
       chess_board.move_piece(self,to)
       return true
-  elsif en_passant_move?(to,chess_board)
+    elsif en_passant_move?(to,chess_board)
       old_position = position
       chess_board.move_piece(self,to)
-      chess_board.clear_square((to[0].concat(old_position[1])))
+      chess_board.clear_square(side_position(to,position))
       return true
     end
-
     false
   end
 
@@ -35,10 +34,8 @@ class Pawn_New < Piece_New
   end
 
   def en_passant_move?(to,board)
-    place = to[0].concat(position[1])
-    diagonal_moves.include?(to) && has_opponent_at?(place,board) && empty_position?(to,board)
+    diagonal_moves.include?(to) && has_opponent_at?(side_position(to,position),board) && empty_position?(to,board)
   end
-
 
   def free_way?(to,board)
     (path(to) - [position]).all?{|place| value_at(place,board).nil?}
@@ -90,6 +87,10 @@ class Pawn_New < Piece_New
 
   def move_one_square
     (color == :white) ? 1 : -1
+  end
+
+  def side_position(from,to)
+    from[0].concat(to[1])
   end
 
 end
