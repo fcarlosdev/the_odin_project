@@ -184,9 +184,21 @@ class Board_New
 
 end
 
+# system("clear")
 # b = Board_New.new
 # b.draw_board
-# sleep(2)
-# b.value_from("a2").move("a5",b)
-# system("clear")
-# b.draw_board
+#
+# final = "n"
+#
+# while (final != "s")
+#   print "Move piece from: "
+#   from = gets.chomp
+#   print "Move to: "
+#   to = gets.chomp
+#   b.value_from(from).move(to,b)
+#   sleep(2)
+#   system("clear")
+#   b.draw_board
+#   print "End the game? (s/n): "
+#   final = gets.chomp
+# end

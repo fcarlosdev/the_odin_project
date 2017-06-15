@@ -16,7 +16,8 @@ class Pawn_New < Piece_New
     if forward_move?(to,chess_board) || capture_move?(to,chess_board)
       chess_board.move_piece(self,to)
       return true
-    elsif en_passant_move?(to,chess_board)
+    elsif en_passant_move?(to,chess_board) && en_passant
+      # puts "Piece = #{self.inspect}"
       old_position = position
       chess_board.move_piece(self,to)
       chess_board.clear_square(side_position(to,old_position))

@@ -110,6 +110,7 @@ describe "Pawn_New" do
       context "when is valid en passant move" do
         it "allows that the piece to make the move" do
           board.fill_square(positions[:c2],pieces[:black_pawn])
+          pieces[:white_pawn].en_passant = true
           expect(pieces[:white_pawn].move(positions[:c3],board)).to eq(true)
           expect(board.value_from(positions[:c3])).to eq(pieces[:white_pawn])
           expect(board.value_from(positions[:c2])).to be_nil
