@@ -35,10 +35,37 @@ class Board_New
     fill_square(piece.position,nil)
     piece.position = to
     piece.increment_moves
+    control_en_passant_moves(piece)
   end
 
-  def en_passant_pieces=(pieces)
-    @en_passant_pieces = pieces
+  def control_en_passant_moves(piece)
+    if en_passant_pieces.empty?
+      enable_en_passant_move(side_pieces(piece.position),piece)
+    else
+      disable_en_passant_move
+    end
+  end
+
+  def enable_en_passant_move(opponents,piece)
+    opponents.each do |opponent|
+      if is_opponent?(piece,opponent) && opponent.type == :pawn
+        @en_passant_pieces << opponent
+        opponent.en_passant = true
+      end
+    end
+  end
+
+  def disable_en_passant_move
+    en_passant_pieces.each {|piece| piece.en_passant = false}
+    @en_passant_pieces = []
+  end
+
+  def is_opponent?(to_piece,piece)
+    !piece.nil? && piece.color != to_piece.color
+  end
+
+  def side_pieces(to)
+    filled_squares.select{|piece| squares_at_side_of(to).include?(piece.position)}
   end
 
   def draw_board
@@ -158,4 +185,8 @@ class Board_New
 end
 
 # b = Board_New.new
+# b.draw_board
+# sleep(2)
+# b.value_from("a2").move("a5",b)
+# system("clear")
 # b.draw_board

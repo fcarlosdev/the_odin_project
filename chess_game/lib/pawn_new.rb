@@ -4,6 +4,8 @@ require "./lib/diagonal_move"
 
 class Pawn_New < Piece_New
 
+  attr_reader :en_passant
+
   def initialize(color,position)
     super(:pawn,color,position)
     post_intialize
@@ -17,10 +19,14 @@ class Pawn_New < Piece_New
     elsif en_passant_move?(to,chess_board)
       old_position = position
       chess_board.move_piece(self,to)
-      chess_board.clear_square(side_position(to,position))
+      chess_board.clear_square(side_position(to,old_position))
       return true
     end
     false
+  end
+
+  def en_passant=(new_status)
+    @en_passant = new_status
   end
 
   private
@@ -62,6 +68,7 @@ class Pawn_New < Piece_New
   end
 
   def post_intialize
+    @en_passant = false
     @movements = {forward: ForwardMove.new, diagonal: DiagonalMove.new}
   end
 

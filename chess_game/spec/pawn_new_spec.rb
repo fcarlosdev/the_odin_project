@@ -9,7 +9,7 @@ describe "Pawn_New" do
   let(:board) {Board_New.new}
   let(:positions) {{b2: "b2", b3: "b3", b4: "b4", b6: "b6",
                     b5: "b5", b7: "b7", c2: "c2", c3: "c3",
-                    c4: "c4", d3: "d3", d4: "d4"}}
+                    c4: "c4", c5: "c5", d3: "d3", d4: "d4"}}
   let(:pieces) {
     {white_pawn: Pawn_New.new(:white,positions[:b2]),
      white_pawn_2: Pawn_New.new(:white,positions[:b3]),
@@ -43,6 +43,13 @@ describe "Pawn_New" do
         it "doesn't moves the piece to the new position" do
           pieces[:white_pawn].increment_moves
           expect(pieces[:white_pawn].move(positions[:b4],board)).to eq(false)
+        end
+      end
+
+      context "when move more than two positions in the first move" do
+        it "doesn't moves the piece to the new position" do
+          pieces[:white_pawn].increment_moves
+          expect(pieces[:white_pawn].move(positions[:b5],board)).to eq(false)
         end
       end
 
@@ -106,6 +113,12 @@ describe "Pawn_New" do
           expect(pieces[:white_pawn].move(positions[:c3],board)).to eq(true)
           expect(board.value_from(positions[:c3])).to eq(pieces[:white_pawn])
           expect(board.value_from(positions[:c2])).to be_nil
+        end
+      end
+
+      context "when has no opponent piece at beside position" do
+        it "doesn't allows that the piece to make the move" do
+          expect(pieces[:white_pawn].move(positions[:c3],board)).to eq(false)
         end
       end
 

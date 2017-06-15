@@ -80,6 +80,25 @@ describe Board_New do
         expect(board.value_from("a3")).to_not be_nil
       end
     end
+
+    context "when a pawn move two squares and end nex to opponents pieces" do
+      it "enables en passant move to the opponents pieces" do
+        board.fill_square("b4",black_pieces[:pawn])
+        black_pieces[:pawn].position = "b4"
+        board.move_piece(white_pieces[:pawn],"a4")
+        expect(board.en_passant_pieces).to_not be_nil
+      end
+    end
+
+    context "when the en passant move is possible an is not made" do
+      it "disable all en passant moves to the allies pieces" do
+        board.fill_square("b4",black_pieces[:pawn])
+        black_pieces[:pawn].position = "b4"
+        board.move_piece(white_pieces[:pawn],"a4")
+        board.move_piece(black_pieces[:pawn],"b3")
+        expect(board.en_passant_pieces).to be_empty
+      end
+    end
   end
 
   describe '#empty_square?' do
