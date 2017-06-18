@@ -32,7 +32,7 @@ class Piece_New
     case type
     when :pawn   then Pawn_New.new(color,at)
     when :rook   then Rook_New.new(color,at)
-    when :bishop then Bishop.new(color,at)
+    when :bishop then Bishop_New.new(color,at)
     when :queen  then Queen.new(color,at)
     when :knight then Knight.new(color,at)
     when :king   then King.new(color,at)
