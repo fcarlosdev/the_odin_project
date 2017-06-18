@@ -1,11 +1,13 @@
 require "colorize"
 require "./lib/piece_new"
 require "./lib/pawn_new"
-require "./lib/rook"
+require "./lib/rook_new"
 require "./lib/bishop"
 require "./lib/queen"
 require "./lib/knight"
 require "./lib/king"
+require "./lib/move_pawn"
+require "./lib/move_rook"
 require_relative "modules/mapper"
 require_relative "modules/coordenates"
 require_relative "modules/distance"
@@ -35,7 +37,7 @@ class Board_New
     fill_square(piece.position,nil)
     piece.position = to
     piece.increment_moves
-    control_en_passant_moves(piece)
+    control_en_passant_moves(piece) if piece.type == :pawn
   end
 
   def control_en_passant_moves(piece)
@@ -189,14 +191,15 @@ end
 # b.draw_board
 #
 # final = "n"
-#
+# moves = { pawn: MovePawn.new(b), rook: MoveRook.new(b)}
 # while (final != "s")
 #   print "Move piece from: "
 #   from = gets.chomp
 #   print "Move to: "
 #   to = gets.chomp
-#   b.value_from(from).move(to,b)
-#   sleep(2)
+#   piece = b.value_from(from)
+#   moves[piece.type].move(piece,to)
+#   # sleep(2)
 #   system("clear")
 #   b.draw_board
 #   print "End the game? (s/n): "

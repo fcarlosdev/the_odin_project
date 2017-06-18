@@ -10,14 +10,22 @@ class MovementsNew
   include Directions
   include Distance
 
-  def possible_positions(from)
-    map_to_positions(calculate_moves(from,get_coordinates(from)))
+  def possible_positions(from,coordinates=[])
+    if coordinates.empty?
+      map_to_positions(calculate_moves(from,get_coordinates(from)))
+    else
+      map_to_positions(calculate_moves(from,coordinates))
+    end
   end
 
   def get_coordinates(from)
     displacements(from).each_with_object([]) do |displacement,coordinates|
       displacement.map{|coordinate| coordinates << coordinate}
     end
+  end
+
+  def displacements(from)
+    coordinates = []
   end
 
 end
