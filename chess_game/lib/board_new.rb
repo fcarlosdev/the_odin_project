@@ -4,11 +4,12 @@ require "./lib/pawn_new"
 require "./lib/rook_new"
 require "./lib/bishop_new"
 require "./lib/queen"
-require "./lib/knight"
+require "./lib/knight_new"
 require "./lib/king"
 require "./lib/move_pawn"
 require "./lib/move_rook"
 require "./lib/move_bishop"
+require "./lib/move_knight"
 require_relative "modules/mapper"
 require_relative "modules/coordenates"
 require_relative "modules/distance"
@@ -192,7 +193,8 @@ end
 # b.draw_board
 #
 # final = "n"
-# moves = { pawn: MovePawn.new(b), rook: MoveRook.new(b), bishop: MoveBishop.new(b)}
+# moves = { pawn: MovePawn.new(b), rook: MoveRook.new(b), bishop: MoveBishop.new(b),
+#           knight: MoveKnight.new(b)}
 # while (final != "s")
 #   print "Move piece from: "
 #   from = gets.chomp
