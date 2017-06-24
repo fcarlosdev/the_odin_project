@@ -1,27 +1,16 @@
 
 class MoveQueen
 
-  attr_reader :board, :diagonal_positions
+  attr_reader :board
 
   def initialize(board)
     @board = board
   end
 
   def move(piece,to)
+    can_move = ordinary_move?(piece,to) && !capture_move?(piece,to)
 
-    @diagonal_positions = piece.diagonal_moves
-
-    if piece.forward_moves.include?(to) && board.empty_square?(to) && free_way?(piece.position,to)
-      board.move_piece(piece,to)
-      return true
-    elsif piece.side_moves.include?(to) && board.empty_square?(to) && free_way?(piece.position,to)
-      board.move_piece(piece,to)
-      return true
-    elsif piece.diagonal_moves.include?(to) && board.empty_square?(to) && free_way?(piece.position,to)
-      board.move_piece(piece,to)
-      return true
-    elsif piece.forward_moves.include?(to) && !board.empty_square?(to) &&
-      (board.value_from(to).color != piece.color) && free_way?(piece.position,to)
+    if (ordinary_move?(piece,to) && !opponent_to?(piece,to)) || capture_move?(piece,to)
       board.move_piece(piece,to)
       return true
     end
@@ -30,36 +19,60 @@ class MoveQueen
 
   private
 
-  def possible_move?(piece,to)
-    piece.possibles.include?(to)
+  def ordinary_move?(piece,to)
+    forward_move?(piece,to) || side_move?(piece,to) || diagonal_move?(piece,to)
   end
 
-
-  def free_way?(from,to)
-    (way(from,to) - [from,to]).all?{|place| empty_place?(place)}
+  def forward_move?(piece,to)
+    piece.forward_move?(to) && free_way?(fd_path(piece,to))
   end
 
-  def way(from,to)
-    return forward_way(from,to) if (from[0] == to[0])
-    return side_way(from,to).map{|file| file.concat(to[1])} if (from[0] != to[0] && from[1] == to[1])
-    return diagonal_way(from,to) if (from[0] != to[0] && from[1] != to[1])
+  def side_move?(piece,to)
+    piece.side_move?(to) && free_way?(sd_path(piece,to))
   end
 
-  def forward_way(from,to)
-    (from < to) ? (from..to).to_a : (to..from).to_a
+  def diagonal_move?(piece,to)
+    piece.diagonal_move?(to) && free_way?(dg_path(piece,to))
   end
 
-  def side_way(from,to)
-    (from < to) ? (from[0]..to[0]).to_a : (to[0]..from[0]).to_a
+  def capture_move?(piece,to)
+    piece.possible_move?(to) && opponent_to?(piece,to) && free_caputure_path?(piece,to)
   end
 
-  def diagonal_way(from,to)
-    diagonal_positions.select{|place| (from < to) ? place > from : place < from}
+  def free_way?(path)
+    path.all?{|place| empty_place?(place)}
   end
 
+  def fd_path(piece,to)
+    inner_path(extract_path(piece.position,to,piece.forward_moves))
+  end
+
+  def sd_path(piece,to)
+    inner_path(extract_path(piece.position,to,piece.side_moves))
+  end
+
+  def dg_path(piece,to)
+    extract_path(piece.position,to,piece.diagonal_moves)
+  end
+
+  def extract_path(from,to,positions)
+    positions.select{|place| (from < to) ? (place > from && place < to): (place < from && place > to)}
+  end
+
+  def free_caputure_path?(piece,to)
+    free_way?(fd_path(piece,to)) || free_way?(sd_path(piece,to)) || free_way?(dg_path(piece,to))
+  end
+
+  def inner_path(path)
+    path.slice(1..path.length-2)
+  end
 
   def empty_place?(to)
     board.empty_square?(to)
+  end
+
+  def opponent_to?(piece,at)
+    !empty_place?(at) && board.value_from(at).color != piece.color
   end
 
 end
