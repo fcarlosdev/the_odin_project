@@ -38,7 +38,7 @@ class MoveQueen
   end
 
   def free_way?(path)
-    path.all?{|place| empty_place?(place)}
+    (!path.nil?) ? path.all?{|place| empty_place?(place)} : true
   end
 
   def fd_path(piece,to)
