@@ -20,4 +20,10 @@ describe "Rook_New" do
     end
   end
 
+  describe '#forward_moves' do
+    it "returns the possible forward moves to the rook piece" do
+      expect(piece.forward_moves).to eq(["a1", "a2", "a3", "a4", "a5", "a6", "a7", "a8"])
+    end
+  end
+
 end

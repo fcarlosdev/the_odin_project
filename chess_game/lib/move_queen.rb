@@ -62,7 +62,7 @@ class MoveQueen
   end
 
   def inner_path(path)
-    path.slice(1..path.length-2)
+    (path.length >= 2) ? path.slice(1..path.length-2) : path
   end
 
   def empty_place?(to)
