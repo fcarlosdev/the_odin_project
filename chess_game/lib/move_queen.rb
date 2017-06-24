@@ -8,8 +8,6 @@ class MoveQueen
   end
 
   def move(piece,to)
-    can_move = ordinary_move?(piece,to) && !capture_move?(piece,to)
-
     if (ordinary_move?(piece,to) && !opponent_to?(piece,to)) || capture_move?(piece,to)
       board.move_piece(piece,to)
       return true
