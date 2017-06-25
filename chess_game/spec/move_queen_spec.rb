@@ -58,17 +58,17 @@ describe "MoveQueen" do
       end
     end
 
-    # context "when is an invalid move" do
-    #   it "doesn't allows the queen to move to the new position" do
-    #     expect(move_queen.move(pieces[:white_queen],"i4")).to eq(false)
-    #   end
-    # end
-    #
-    # context "when there is a piece between the start positon and final position" do
-    #   it "doesn't allows the queen to move to the new position" do
-    #     expect(move_queen.move(pieces[:white_queen],"g4")).to eq(false)
-    #   end
-    # end
+    context "when is an invalid move" do
+      it "doesn't allows the queen to move to the new position" do
+        expect(move_queen.move(pieces[:white_queen],"i4")).to eq(false)
+      end
+    end
+
+    context "when there is a piece between the start positon and final position" do
+      it "doesn't allows the queen to move to the new position" do
+        expect(move_queen.move(pieces[:white_queen],"g4")).to eq(false)
+      end
+    end
 
   end
 

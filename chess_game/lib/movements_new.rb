@@ -2,6 +2,7 @@ require_relative "modules/mapper"
 require_relative "modules/coordenates"
 require_relative "modules/directions"
 require_relative "modules/distance"
+require "directions_new"
 
 class MovementsNew
 

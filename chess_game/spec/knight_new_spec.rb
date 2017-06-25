@@ -2,9 +2,9 @@ require "./lib/knight_new"
 
 describe "Knight_New" do
 
-  let(:piece) {Knight_New.new(:white,"b1")}
+  let(:piece) {Knight_New.new(:white,"d4")}
 
-  let(:moves){["a3","c3","d2"]}
+  let(:moves){["b3", "b5", "c2", "c6", "d4", "e2", "e6", "f3", "f5"]}
 
   describe '#new' do
     it "creates a new instance of Knight_New class" do

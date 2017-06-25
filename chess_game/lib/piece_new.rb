@@ -35,7 +35,7 @@ class Piece_New
     when :bishop then Bishop_New.new(color,at)
     when :queen  then Queen_New.new(color,at)
     when :knight then Knight_New.new(color,at)
-    when :king   then King.new(color,at)
+    when :king   then King_New.new(color,at)
     else nil
     end
   end

@@ -1,13 +1,13 @@
 require "./lib/piece_new"
-require "./lib/diagonal_move"
 require "./lib/forward_move"
+require "./lib/diagonal_move"
 require "./lib/side_move"
 require "./lib/directions_new"
 
-class Queen_New < Piece_New
+class King_New < Piece_New
 
   def initialize(color,position)
-    super(:queen,color,position)
+    super(:king_new,color,position)
   end
 
   def possible_move?(to)
@@ -15,7 +15,7 @@ class Queen_New < Piece_New
   end
 
   def possible_moves
-    to_positions(generate_directions(to_xy(position),Directions_New.cardinal_and_ordinal,7))
+    to_positions(generate_directions(to_xy(position),Directions_New.cardinal_and_ordinal,1))
   end
 
   def forward_move?(to)
@@ -23,7 +23,7 @@ class Queen_New < Piece_New
   end
 
   def forward_moves
-    to_positions(generate_directions(to_xy(position),Directions_New.north_south,7))
+    to_positions(generate_directions(to_xy(position),Directions_New.north_south,1))
   end
 
   def side_move?(to)
@@ -31,7 +31,9 @@ class Queen_New < Piece_New
   end
 
   def side_moves
-    to_positions(generate_directions(to_xy(position),Directions_New.east_west,7))
+    moves = to_positions(generate_directions(to_xy(position),Directions_New.east_west,1))
+    add_castling_moves(moves) if first_move?
+    moves
   end
 
   def diagonal_move?(to)
@@ -39,7 +41,7 @@ class Queen_New < Piece_New
   end
 
   def diagonal_moves
-    to_positions(generate_directions(to_xy(position),Directions_New.intercardinal,7))
+    to_positions(generate_directions(to_xy(position),Directions_New.intercardinal,1))
   end
 
   private
@@ -54,6 +56,14 @@ class Queen_New < Piece_New
 
   def new_coordinate(from,move_by,direction)
     Directions_New.generate_coordinates(from,move_by,direction)
+  end
+
+  def add_castling_moves(moves)
+    generate_castling_moves(moves).each {|cm| moves << cm if !moves.include?(cm) }
+  end
+
+  def generate_castling_moves(moves)
+    moves.map{|m| [-2,2].map{ |value| (m[0].ord + value).chr.concat(m[1]) } }.flatten
   end
 
   def to_xy(position)
