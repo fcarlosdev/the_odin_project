@@ -4,7 +4,7 @@ describe "Bishop" do
 
   let(:piece) {Bishop_New.new(:white,"d5")}
   let(:moves) {
-    ["a2","a8","b3","b7","c4","c6", "d5", "e4","e6","f3","f7","g2","g8","h1"]
+    ["a2","a8","b3","b7","c4","c6", "e4","e6","f3","f7","g2","g8","h1"]
   }
 
   describe '#new' do

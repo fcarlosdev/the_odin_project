@@ -19,23 +19,23 @@ describe "Piece_New" do
     end
 
     it "creates a new instance of the Rook class" do
-      expect(Piece_New.create_piece(:rook,:white,position)).to be_instance_of(Rook)
+      expect(Piece_New.create_piece(:rook,:white,position)).to be_instance_of(Rook_New)
     end
 
     it "creates a new instance of the Bishop class" do
-      expect(Piece_New.create_piece(:bishop,:white,position)).to be_instance_of(Bishop)
+      expect(Piece_New.create_piece(:bishop,:white,position)).to be_instance_of(Bishop_New)
     end
 
     it "creates a new instance of the Queen class" do
-      expect(Piece_New.create_piece(:queen,:white,position)).to be_instance_of(Queen)
+      expect(Piece_New.create_piece(:queen,:white,position)).to be_instance_of(Queen_New)
     end
 
     it "creates a new instance of the Knight class" do
-      expect(Piece_New.create_piece(:knight,:white,position)).to be_instance_of(Knight)
+      expect(Piece_New.create_piece(:knight,:white,position)).to be_instance_of(Knight_New)
     end
 
     it "creates a new instance of the King class" do
-      expect(Piece_New.create_piece(:king,:white,position)).to be_instance_of(King)
+      expect(Piece_New.create_piece(:king,:white,position)).to be_instance_of(King_New)
     end
 
   end

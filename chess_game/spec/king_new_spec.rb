@@ -3,7 +3,7 @@ require "./lib/king_new"
 describe "King_New" do
 
   let(:piece) {King_New.new(:white,"d5")}
-  let(:moves) {["c4", "c5", "c6", "d4", "d5", "d6", "e4", "e5", "e6"]}
+  let(:moves) {["c4", "c5", "c6", "d4", "d6", "e4", "e5", "e6"]}
 
   describe '#new' do
     it "creates a new instance of the King_New class" do

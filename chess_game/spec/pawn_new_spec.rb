@@ -8,7 +8,7 @@ describe "Pawn_New" do
 
   let(:board) {Board_New.new}
   let(:piece) { Pawn_New.new(:white,"b2") }
-  let(:moves){ ["a2", "b1", "b2", "b3", "c2"] }
+  let(:moves){ ["a3", "b3", "c3"] }
 
   describe '#new' do
     it "creates a new instance of Pawn class" do
@@ -21,5 +21,12 @@ describe "Pawn_New" do
       expect(piece.possible_moves).to eq(moves)
     end
   end
+
+  describe '#possible_move' do
+    it "confirms that the given position is a valid move" do
+      expect(piece.possible_move?(moves[1])).to eq(true)
+    end
+  end
+
 
 end

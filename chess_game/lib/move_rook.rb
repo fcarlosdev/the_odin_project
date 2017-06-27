@@ -25,7 +25,6 @@ class MoveRook
   end
 
   def forward_move?(piece,to)
-    puts "From #{piece.position}, To = #{to}"
     piece.forward_move?(to) && free_way?(fd_path(piece,to))
   end
 

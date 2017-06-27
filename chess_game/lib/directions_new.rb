@@ -18,7 +18,8 @@ class Directions_New
   @@wnw       = [ 2, -1]
 
   def self.generate_coordinates(from,max,axis)
-    remove_invalid((0..max).map{|i| [(i*axis[0])+from[0], (i*axis[1])+from[1]]})
+    # remove_invalid((0..max).map{|i| [(i*axis[0])+from[0], (i*axis[1])+from[1]]})
+    remove_invalid((1..max).map{|i| [(i*axis[0])+from[0], (i*axis[1])+from[1]]})
   end
 
   def self.all_directions
@@ -43,11 +44,19 @@ class Directions_New
   end
 
   def self.intercardinal
-    [@@northeast, @@southeast, @@southwest, @@northwest]
+    [@@northeast, @@northwest, @@southeast, @@southwest]
   end
 
   def self.cardinal_and_ordinal
    cardinal + intercardinal
+  end
+
+  def self.norwesteast
+    [north] + intercardinal[0..1]
+  end
+
+  def self.soutwesteast
+    [south] + intercardinal[2..3]
   end
 
   def self.north

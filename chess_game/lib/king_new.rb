@@ -15,7 +15,7 @@ class King_New < Piece_New
   end
 
   def possible_moves
-    to_positions(generate_directions(to_xy(position),Directions_New.cardinal_and_ordinal,1))
+    possible_positions(to_xy(position),Directions_New.cardinal_and_ordinal,1)
   end
 
   def forward_move?(to)
@@ -23,7 +23,7 @@ class King_New < Piece_New
   end
 
   def forward_moves
-    to_positions(generate_directions(to_xy(position),Directions_New.north_south,1))
+    possible_positions(to_xy(position),Directions_New.north_south,1)
   end
 
   def side_move?(to)
@@ -31,7 +31,7 @@ class King_New < Piece_New
   end
 
   def side_moves
-    moves = to_positions(generate_directions(to_xy(position),Directions_New.east_west,1))
+    moves = possible_positions(to_xy(position),Directions_New.east_west,1)
     add_castling_moves(moves) if first_move?
     moves
   end
@@ -41,22 +41,10 @@ class King_New < Piece_New
   end
 
   def diagonal_moves
-    to_positions(generate_directions(to_xy(position),Directions_New.intercardinal,1))
+    possible_positions(to_xy(position),Directions_New.intercardinal,1)
   end
 
   private
-
-  def to_positions(coordinates)
-    coordinates.map{|r| map_to_positions(r)}.flatten.uniq.sort
-  end
-
-  def generate_directions(from,directions,move_by)
-    directions.map{|d| new_coordinate(from,move_by,d)}
-  end
-
-  def new_coordinate(from,move_by,direction)
-    Directions_New.generate_coordinates(from,move_by,direction)
-  end
 
   def add_castling_moves(moves)
     generate_castling_moves(moves).each {|cm| moves << cm if !moves.include?(cm) }
@@ -66,8 +54,8 @@ class King_New < Piece_New
     moves.map{|m| [-2,2].map{ |value| (m[0].ord + value).chr.concat(m[1]) } }.flatten
   end
 
-  def to_xy(position)
-    map_to_axis(position)
-  end
+  # def to_xy(position)
+  #   map_to_axis(position)
+  # end
 
 end

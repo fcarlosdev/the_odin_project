@@ -1,13 +1,14 @@
 require_relative "modules/mapper"
 require_relative "modules/coordenates"
-require_relative "modules/directions"
+# require_relative "modules/directions"
 require_relative "modules/distance"
+require "./lib/directions_new"
 
 class Piece_New
 
   include Mapper
   include Coordenates
-  include Directions
+  # include Directions
   include Distance
 
   PIECES_IMAGES = { white: { king:   "\u2654", queen:  "\u2655", rook: "\u2656",
@@ -17,7 +18,7 @@ class Piece_New
                    }
 
 
-  attr_reader :color, :type, :position, :image, :moves, :movements
+  attr_reader :color, :type, :position, :image, :moves
 
   def initialize(type,color,position)
     @color    = color
@@ -25,7 +26,6 @@ class Piece_New
     @position = position
     @image    = piece_icon(type,color)
     @moves    = 0
-    @movements = movements
   end
 
   def self.create_piece(type,color,at)
@@ -38,10 +38,6 @@ class Piece_New
     when :king   then King_New.new(color,at)
     else nil
     end
-  end
-
-  def capture_moves
-    capture_moves
   end
 
   def position=(new_position)
@@ -62,5 +58,24 @@ class Piece_New
     PIECES_IMAGES[color][type]
   end
 
+  def possible_positions(from,directions,move_by)
+    to_positions(generate_directions(from,directions,move_by))
+  end
+
+  def generate_directions(from,directions,move_by)
+    directions.map{|d| new_coordinate(from,move_by,d)}
+  end
+
+  def new_coordinate(from,move_by,direction)
+    Directions_New.generate_coordinates(from,move_by,direction)
+  end
+
+  def to_positions(coordinates)
+    coordinates.map{|r| map_to_positions(r)}.flatten.uniq.sort
+  end
+
+  def to_xy(position)
+    map_to_axis(position)
+  end
 
 end

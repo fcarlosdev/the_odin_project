@@ -5,12 +5,12 @@ describe "Queen_New" do
 
   let(:piece) {Queen_New.new(:white,"d4")}
   let(:moves){
-    ["a1","a4","a7","b2","b4","b6","c3","c4","c5","d1","d2","d3","d4","d5",
+    ["a1","a4","a7","b2","b4","b6","c3","c4","c5","d1","d2","d3","d5",
       "d6","d7","d8","e3","e4","e5","f2","f4","f6","g1","g4","g7","h4","h8"]
   }
-  let(:fd_moves) {["d1", "d2", "d3", "d4", "d5", "d6", "d7", "d8"]}
-  let(:sd_moves) {["a4", "b4", "c4", "d4", "e4", "f4", "g4", "h4"]}
-  let(:dg_moves) {["a1", "a7", "b2", "b6", "c3", "c5", "d4", "e3",
+  let(:fd_moves) {["d1", "d2", "d3", "d5", "d6", "d7", "d8"]}
+  let(:sd_moves) {["a4", "b4", "c4", "e4", "f4", "g4", "h4"]}
+  let(:dg_moves) {["a1", "a7", "b2", "b6", "c3", "c5", "e3",
                    "e5", "f2", "f6", "g1", "g7", "h8"]}
 
   describe '#new' do
