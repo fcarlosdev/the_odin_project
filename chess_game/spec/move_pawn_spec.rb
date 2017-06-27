@@ -29,6 +29,22 @@ describe "MovePawn" do
         expect(board.value_from(positions[:b3])).to eq(pieces[:white_pawn])
       end
     end
+
+    context "when is a valid capture move" do
+      it "allows the pawn move to capture the opponent piece" do
+        board.fill_square(positions[:c3],pieces[:black_pawn])
+        expect(move_pawn.move(pieces[:white_pawn],positions[:c3])).to eq(true)
+        expect(board.value_from(positions[:c3])).to eq(pieces[:white_pawn])
+      end
+    end
+
+    context "when is a valid en passant move" do
+      it "allows the pawn piece to make the en passant move" do
+        board.fill_square(positions[:c2],pieces[:black_pawn])
+        expect(move_pawn.move(pieces[:white_pawn],positions[:c3])).to eq(true)
+        expect(board.value_from(positions[:c3])).to eq(pieces[:white_pawn])
+      end
+    end
   end
 
 end

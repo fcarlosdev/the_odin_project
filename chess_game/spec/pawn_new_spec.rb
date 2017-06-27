@@ -1,8 +1,5 @@
 require "pawn_new"
 require "board_new"
-require "./lib/forward_move"
-require "./lib/diagonal_move"
-
 
 describe "Pawn_New" do
 
