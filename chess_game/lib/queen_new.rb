@@ -1,7 +1,4 @@
 require "./lib/piece_new"
-require "./lib/diagonal_move"
-require "./lib/forward_move"
-require "./lib/side_move"
 require "./lib/directions_new"
 
 class Queen_New < Piece_New

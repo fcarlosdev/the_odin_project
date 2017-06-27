@@ -1,5 +1,4 @@
 require "./lib/piece_new"
-require "./lib/diagonal_move"
 
 class Bishop_New < Piece_New
 

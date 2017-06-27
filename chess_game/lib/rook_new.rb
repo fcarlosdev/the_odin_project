@@ -1,6 +1,4 @@
 require "./lib/piece_new"
-require "./lib/forward_move"
-require "./lib/side_move"
 require "./lib/directions_new"
 
 class Rook_New < Piece_New
