@@ -25,5 +25,16 @@ describe "Pawn_New" do
     end
   end
 
+  describe '#forward_move?' do
+    it "confirms that is a valid forward move" do
+      expect(piece.capture_move?("c3")).to eq(true)
+    end
+  end
+
+  describe '#capture_move?' do
+    it "confirms that is a valid capture move" do
+      expect(piece.forward_move?("b3")).to eq(true)
+    end
+  end
 
 end

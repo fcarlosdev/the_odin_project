@@ -15,6 +15,14 @@ class Pawn_New < Piece_New
     possible_positions(to_xy(position),move_direction,1)
   end
 
+  def forward_move?(to)
+    (position[0] == to[0] && position[1] != to[1])
+  end
+
+  def capture_move?(to)
+    (position[0] != to[0] && position[1] != to[1])
+  end
+
   private
 
   def move_direction
