@@ -4,7 +4,7 @@ require "./lib/directions_new"
 class King_New < Piece_New
 
   def initialize(color,position)
-    super(:king_new,color,position)
+    super(:king,color,position)
   end
 
   def possible_move?(to)

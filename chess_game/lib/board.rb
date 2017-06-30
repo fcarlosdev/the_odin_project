@@ -342,9 +342,9 @@ class Board
 
 end
 
-# system("clear")
-# b = Board.new
-# b.draw_board
+system("clear")
+b = Board.new
+b.draw_board
 # op = "s"
 # while op != "n" do
 #   puts "Move a piece"

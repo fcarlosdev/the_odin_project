@@ -23,13 +23,12 @@ class Board_New
   include Coordenates
   include Distance
 
-  attr_reader :squares, :rows, :columns, :en_passant_pieces
+  attr_reader :squares, :rows, :columns
 
   def initialize
     @rows      = SIZE
     @columns   = SIZE
     @bg_colors = [:light_white, :cyan]
-    @en_passant_pieces = []
     create_squares(rows,columns)
     load_pieces
   end
@@ -39,37 +38,6 @@ class Board_New
     fill_square(piece.position,nil)
     piece.position = to
     piece.increment_moves
-    control_en_passant_moves(piece) if piece.type == :pawn
-  end
-
-  def control_en_passant_moves(piece)
-    if en_passant_pieces.empty?
-      enable_en_passant_move(side_pieces(piece.position),piece)
-    else
-      disable_en_passant_move
-    end
-  end
-
-  def enable_en_passant_move(opponents,piece)
-    opponents.each do |opponent|
-      if is_opponent?(piece,opponent) && opponent.type == :pawn
-        @en_passant_pieces << opponent
-        opponent.en_passant = true
-      end
-    end
-  end
-
-  def disable_en_passant_move
-    en_passant_pieces.each {|piece| piece.en_passant = false}
-    @en_passant_pieces = []
-  end
-
-  def is_opponent?(to_piece,piece)
-    !piece.nil? && piece.color != to_piece.color
-  end
-
-  def side_pieces(to)
-    filled_squares.select{|piece| squares_at_side_of(to).include?(piece.position)}
   end
 
   def draw_board

@@ -12,7 +12,8 @@ class Pawn_New < Piece_New
   end
 
   def possible_moves
-    possible_positions(to_xy(position),move_direction,1)
+    default_moves = possible_positions(to_xy(position),move_direction,1)
+    add_position(default_moves)
   end
 
   def forward_move?(to)
@@ -27,6 +28,17 @@ class Pawn_New < Piece_New
 
   def move_direction
     (color == :white) ? Directions_New.norwesteast : Directions_New.soutwesteast
+  end
+
+  def add_position(places)
+    if !first_move? && moves == 0
+      places << (position[0] + (position[1].to_i + displacement_by).to_s)
+    end
+    places
+  end
+
+  def displacement_by
+    (color == :white) ? 2 : -2
   end
 
 end

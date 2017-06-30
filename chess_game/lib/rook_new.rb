@@ -31,7 +31,4 @@ class Rook_New < Piece_New
     to_positions(generate_directions(to_xy(position),Directions_New.east_west,7))
   end
 
-  # private
-
-
 end

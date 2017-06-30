@@ -1,6 +1,5 @@
 require_relative "modules/mapper"
 require_relative "modules/coordenates"
-# require_relative "modules/directions"
 require_relative "modules/distance"
 require "./lib/directions_new"
 
@@ -8,7 +7,6 @@ class Piece_New
 
   include Mapper
   include Coordenates
-  # include Directions
   include Distance
 
   PIECES_IMAGES = { white: { king:   "\u2654", queen:  "\u2655", rook: "\u2656",
@@ -49,7 +47,7 @@ class Piece_New
   end
 
   def first_move?
-    moves == 0
+    moves == 1
   end
 
   private
