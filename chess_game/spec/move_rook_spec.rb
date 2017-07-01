@@ -1,6 +1,6 @@
 require "./lib/move_rook"
 require "./lib/board_new"
-require "./lib/rook_new"
+require "./lib/rook"
 
 describe "MoveRook" do
 
@@ -15,9 +15,9 @@ describe "MoveRook" do
      e8: "e8", f8: "f8", g8: "g8", h8: "h8"}}
 
   let(:pieces) {
-    {white_rook: Rook_New.new(:white,positions[:a1]),
-     white_pawn: Pawn_New.new(:white,positions[:a2]),
-     black_rook: Rook_New.new(:black,positions[:a8])}
+    {white_rook: Rook.new(:white,positions[:a1]),
+     white_pawn: Pawn.new(:white,positions[:a2]),
+     black_rook: Rook.new(:black,positions[:a8])}
   }
 
   describe '#new' do

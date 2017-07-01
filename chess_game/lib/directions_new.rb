@@ -18,7 +18,6 @@ class Directions_New
   @@wnw       = [ 2, -1]
 
   def self.generate_coordinates(from,max,axis)
-    # remove_invalid((0..max).map{|i| [(i*axis[0])+from[0], (i*axis[1])+from[1]]})
     remove_invalid((1..max).map{|i| [(i*axis[0])+from[0], (i*axis[1])+from[1]]})
   end
 

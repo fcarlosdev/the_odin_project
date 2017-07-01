@@ -1,6 +1,6 @@
 require "./lib/move_knight"
 require "./lib/board_new"
-require "./lib/knight_new"
+require "./lib/knight"
 
 describe "MoveKnight" do
 
@@ -11,9 +11,9 @@ describe "MoveKnight" do
     {a3: "a3", b1: "b1", b8: "b8", c3: "c3"}}
 
   let(:pieces) {
-    {white_knight: Knight_New.new(:white,positions[:b1]),
-     white_pawn:   Pawn_New.new(:white,positions[:b2]),
-     black_knight: Knight_New.new(:black,positions[:b8])}
+    {white_knight: Knight.new(:white,positions[:b1]),
+     white_pawn:   Pawn.new(:white,positions[:b2]),
+     black_knight: Knight.new(:black,positions[:b8])}
   }
 
   describe '#new' do

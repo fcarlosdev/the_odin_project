@@ -4,10 +4,13 @@ require "bishop"
 require "queen"
 require "knight"
 require "king"
+require "board_new"
 
 describe "Piece" do
 
+  let(:board) {Board_New.new}
   let(:position) {"b2"}
+  let(:piece) {Piece.create_piece(:pawn,:white,position)}
 
   describe '#new' do
 
@@ -34,8 +37,6 @@ describe "Piece" do
     it "creates a new instance of the King class" do
       expect(Piece.create_piece(:king,:white,position)).to be_instance_of(King)
     end
-
-    
 
   end
 

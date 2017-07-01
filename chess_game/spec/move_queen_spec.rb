@@ -10,9 +10,9 @@ describe "MoveQueen" do
      e1: "e1", e2: "e2", f1: "f1", g1: "g1", g4: "g4",h1: "h1"}}
 
   let(:pieces) {
-    {white_queen: Queen_New.new(:white,positions[:d1]),
-     white_pawn: Pawn_New.new(:white,positions[:d2]),
-     black_queen: Queen_New.new(:black,positions[:d8])}
+    {white_queen: Queen.new(:white,positions[:d1]),
+     white_pawn: Pawn.new(:white,positions[:d2]),
+     black_queen: Queen.new(:black,positions[:d8])}
   }
 
   describe '#new' do

@@ -1,13 +1,12 @@
 require_relative "modules/mapper"
 require_relative "modules/coordenates"
-require_relative "modules/directions"
 require_relative "modules/distance"
+require "./lib/directions_new"
 
 class Piece
 
   include Mapper
   include Coordenates
-  include Directions
   include Distance
 
   PIECES_IMAGES = { white: { king:   "\u2654", queen:  "\u2655", rook: "\u2656",
@@ -47,12 +46,8 @@ class Piece
     @moves += 1
   end
 
-  def capture_moves
-    []
-  end
-
-  def valid_move?(piece,to)
-    piece.possible_moves.include?(to)
+  def first_move?
+    moves == 1
   end
 
   private
@@ -61,5 +56,24 @@ class Piece
     PIECES_IMAGES[color][type]
   end
 
+  def possible_positions(from,directions,move_by)
+    to_positions(generate_directions(from,directions,move_by))
+  end
+
+  def generate_directions(from,directions,move_by)
+    directions.map{|d| new_coordinate(from,move_by,d)}
+  end
+
+  def new_coordinate(from,move_by,direction)
+    Directions_New.generate_coordinates(from,move_by,direction)
+  end
+
+  def to_positions(coordinates)
+    coordinates.map{|r| map_to_positions(r)}.flatten.uniq.sort
+  end
+
+  def to_xy(position)
+    map_to_axis(position)
+  end
 
 end

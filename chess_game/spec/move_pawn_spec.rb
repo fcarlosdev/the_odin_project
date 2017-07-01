@@ -10,9 +10,9 @@ describe "MovePawn" do
                     c3: "c3", c4: "c4", c5: "c5", d3: "d3",
                     d4: "d4"}}
   let(:pieces) {
-    {white_pawn: Pawn_New.new(:white,positions[:b2]),
-     white_pawn_2: Pawn_New.new(:white,positions[:b3]),
-     black_pawn: Pawn_New.new(:black,positions[:b7])}
+    {white_pawn: Pawn.new(:white,positions[:b2]),
+     white_pawn_2: Pawn.new(:white,positions[:b3]),
+     black_pawn: Pawn.new(:black,positions[:b7])}
   }
 
 

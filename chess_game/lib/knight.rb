@@ -1,4 +1,5 @@
 require "./lib/piece"
+require "./lib/directions_new"
 
 class Knight < Piece
 
@@ -7,25 +8,9 @@ class Knight < Piece
   end
 
   def possible_moves
-    generate_positions(secondary)
+    possible_positions(to_xy(position),Directions_New.secondary,1)
   end
 
-  def capture_moves
-    possible_moves
-  end
-
-  def get_positions_with(final_position)
-    possible_moves.select{|position| position == final_position}
-  end
-
-  private
-
-  def generate_positions(directions)
-    map_to_positions(new_axes_moves(directions))
-  end
-
-  def new_axes_moves(directions)
-    calculate_moves(position,get_coordinates_from(directions))
-  end
+  # private
 
 end

@@ -11,9 +11,9 @@ describe "MoveKing" do
      g3: "g3", g4: "g4", h1: "h1", h4: "h4"}}
 
   let(:pieces) {
-    {white_king: King_New.new(:white,positions[:e1]),
-     white_pawn: Pawn_New.new(:white,positions[:e2]),
-     black_king: King_New.new(:black,positions[:e8])}
+    {white_king: King.new(:white,positions[:e1]),
+     white_pawn: Pawn.new(:white,positions[:e2]),
+     black_king: King.new(:black,positions[:e8])}
   }
 
   describe '#new' do

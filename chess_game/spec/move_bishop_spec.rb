@@ -10,9 +10,9 @@ describe "MoveBishop" do
      g5: "g5", h6: "h6"}}
 
   let(:pieces) {
-     {white_bishop: Bishop_New.new(:white,positions[:c1]),
-      white_pawn:   Pawn_New.new(:white,positions[:c2]),
-      black_bishop: Bishop_New.new(:black,positions[:c8])}
+     {white_bishop: Bishop.new(:white,positions[:c1]),
+      white_pawn:   Pawn.new(:white,positions[:c2]),
+      black_bishop: Bishop.new(:black,positions[:c8])}
   }
 
   describe '#new' do

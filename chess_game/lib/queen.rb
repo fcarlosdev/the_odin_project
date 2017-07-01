@@ -1,4 +1,5 @@
 require "./lib/piece"
+require "./lib/directions_new"
 
 class Queen < Piece
 
@@ -6,42 +7,38 @@ class Queen < Piece
     super(:queen,color,position)
   end
 
+  def possible_move?(to)
+    possible_moves.include?(to)
+  end
+
   def possible_moves
-    map_to_positions(valid_coordinates(position)).sort
+    possible_positions(to_xy(position),Directions_New.cardinal_and_ordinal,7)
   end
 
-  def capture_moves
-    possible_moves
+  def forward_move?(to)
+    forward_moves.include?(to)
   end
 
-  def get_positions_with(final_position)
-    positions = displacements(position).map{|d| generate_positions(position,d)}
-    positions.select{|positions| positions.include?(final_position)}
+  def forward_moves
+    possible_positions(to_xy(position),Directions_New.north_south,7)
   end
 
-  private
-
-  def valid_coordinates(from)
-    calculate_moves(position,get_coordinates(from))
+  def side_move?(to)
+    side_moves.include?(to)
   end
 
-  def get_coordinates(from)
-    displacements(from).each_with_object([]) do |displacement,coordinates|
-      displacement.map{|coordinate| coordinates << coordinate}
-    end
- end
+  def side_moves
+    possible_positions(to_xy(position),Directions_New.east_west,7)
+  end
 
- def displacements(from)
-   from_coordinates = map_to_axis(from)
-   coordinates = []
-   coordinates << get_north_coordinates(from_coordinates[0])
-   coordinates << get_south_coordinates(from_coordinates[0])
-   coordinates << get_east_coordinates(from_coordinates[1])
-   coordinates << get_west_coordinates(from_coordinates[1])
-   coordinates << get_northwest_coordinates(from_coordinates[0])
-   coordinates << get_southeast_coordinates(from_coordinates[0])
-   coordinates << get_southwest_coordinates(from_coordinates[1])
-   coordinates << get_northeast_coordinates(from_coordinates[0])
- end
+  def diagonal_move?(to)
+    diagonal_moves.include?(to)
+  end
+
+  def diagonal_moves
+    possible_positions(to_xy(position),Directions_New.intercardinal,7)
+  end
+
+  # private
 
 end

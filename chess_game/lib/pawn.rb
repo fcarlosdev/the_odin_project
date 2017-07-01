@@ -1,66 +1,44 @@
 require "./lib/piece"
+require "./lib/directions_new"
 
 class Pawn < Piece
 
-   def initialize(color,position)
-     super(:pawn,color,position)
-   end
+  def initialize(color,position)
+    super(:pawn,color,position)
+  end
 
-   def possible_moves
-     (generate_forward_moves + generate_diagonal_moves).sort
-   end
+  def possible_move?(to)
+    possible_moves.include?(to)
+  end
 
-   def possible_forward_moves
-     generate_forward_moves.sort
-   end
+  def possible_moves
+    default_moves = possible_positions(to_xy(position),move_direction,1)
+    add_position(default_moves)
+  end
 
-   def capture_moves
-     generate_positions(diagonal_directions).sort
-   end
+  def forward_move?(to)
+    (position[0] == to[0] && position[1] != to[1])
+  end
 
-   def get_positions_with(final_position)
-     possible_moves.select{|position| position == final_position}
-   end
+  def capture_move?(to)
+    (position[0] != to[0] && position[1] != to[1])
+  end
 
-   private
+  private
 
-   def generate_all_possible_moves
-     (generate_forward_moves + generate_diagonal_moves).sort
-   end
+  def move_direction
+    (color == :white) ? Directions_New.norwesteast : Directions_New.soutwesteast
+  end
 
-   def generate_forward_moves
-     generated_positions = generate_positions(forward_directions)
-     (moves == 0) ? add_position(generated_positions) : generated_positions
-   end
+  def add_position(places)
+    if !first_move? && moves == 0
+      places << (position[0] + (position[1].to_i + displacement_by).to_s)
+    end
+    places
+  end
 
-   def generate_diagonal_moves
-     generate_positions(diagonal_directions)
-   end
-
-   def generate_positions(directions)
-     map_to_positions(new_axes_moves(directions))
-   end
-
-   def add_position(moves)
-     factor = (color == :white) ? 1 : -1
-     moves.push(moves.map{|move| move[0] + (move[1].to_i + factor).to_s})
-     moves.flatten
-   end
-
-   def new_axes_moves(directions)
-     calculate_moves(position,get_coordinates_from(directions))
-   end
-
-   def default_directions
-     (color == :white) ? [:NORTH,:NE,:NW] : [:SOUTH,:SE,:SW]
-   end
-
-   def forward_directions
-     (color == :white) ? [:NORTH] : [:SOUTH]
-   end
-
-   def diagonal_directions
-     (color == :white) ? [:NE,:NW] : [:SE,:SW]
-   end
+  def displacement_by
+    (color == :white) ? 2 : -2
+  end
 
 end

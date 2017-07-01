@@ -1,21 +1,25 @@
-require "king"
+require "./lib/king"
 
 describe "King" do
 
-  let(:piece) {King.new(:white,"f5")}
-  let(:moves){
-    ["f6","g5","f4","e5","g6","g4","e4","e6","d5","h5"]
-  }
+  let(:piece) {King.new(:white,"d5")}
+  let(:moves) {["c4", "c5", "c6", "d4", "d6", "e4", "e5", "e6"]}
 
   describe '#new' do
-    it "creates a new instance of the king class" do
-      expect(King.new(:white,"f5")).to be_instance_of King
+    it "creates a new instance of the King class" do
+      expect(King.new(:white,"d5")).to be_instance_of(King)
     end
   end
 
   describe '#possible_moves' do
-    it "returns a possible moves that a piece can move" do
+    it "returns the possible moves that the king piece can do" do
       expect(piece.possible_moves).to eq(moves)
+    end
+  end
+
+  describe '#possible_move?' do
+    it "returns the possible moves that the king piece can do" do
+      expect(piece.possible_move?("c6")).to eq(true)
     end
   end
 
