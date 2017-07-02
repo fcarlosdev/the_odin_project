@@ -1,10 +1,10 @@
 require "./lib/move_rook"
-require "./lib/board_new"
+require "./lib/board"
 require "./lib/rook"
 
 describe "MoveRook" do
 
-  let(:board) {Board_New.new}
+  let(:board) {Board.new}
   let(:move_rook) {MoveRook.new(board)}
   let(:positions) {
     {a1: "a1", a2: "a2", a3: "a3", a4: "a4",

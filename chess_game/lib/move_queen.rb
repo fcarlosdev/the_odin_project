@@ -1,5 +1,6 @@
+require "./lib/move_piece"
 
-class MoveQueen
+class MoveQueen < MovePiece
 
   attr_reader :board
 
@@ -22,47 +23,19 @@ class MoveQueen
   end
 
   def forward_move?(piece,to)
-    piece.forward_move?(to) && free_way?(fd_path(piece,to))
+    piece.forward_move?(to) && free_way?(piece,to)
   end
 
   def side_move?(piece,to)
-    piece.side_move?(to) && free_way?(sd_path(piece,to))
+    piece.side_move?(to) && free_way?(piece,to)
   end
 
   def diagonal_move?(piece,to)
-    piece.diagonal_move?(to) && free_way?(dg_path(piece,to))
+    piece.diagonal_move?(to) && free_way?(piece,to)
   end
 
   def capture_move?(piece,to)
-    piece.possible_move?(to) && opponent_to?(piece,to) && free_caputure_path?(piece,to)
-  end
-
-  def free_way?(path)
-    (!path.nil?) ? path.all?{|place| empty_place?(place)} : true
-  end
-
-  def fd_path(piece,to)
-    inner_path(extract_path(piece.position,to,piece.forward_moves))
-  end
-
-  def sd_path(piece,to)
-    inner_path(extract_path(piece.position,to,piece.side_moves))
-  end
-
-  def dg_path(piece,to)
-    extract_path(piece.position,to,piece.diagonal_moves)
-  end
-
-  def extract_path(from,to,positions)
-    positions.select{|place| (from < to) ? (place > from && place < to): (place < from && place > to)}
-  end
-
-  def free_caputure_path?(piece,to)
-    free_way?(fd_path(piece,to)) || free_way?(sd_path(piece,to)) || free_way?(dg_path(piece,to))
-  end
-
-  def inner_path(path)
-    (path.length >= 2) ? path.slice(1..path.length-2) : path
+    piece.possible_move?(to) && opponent_to?(piece,to) && free_way?(piece,to)
   end
 
   def empty_place?(to)

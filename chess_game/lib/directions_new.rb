@@ -58,6 +58,18 @@ class Directions_New
     [south] + intercardinal[2..3]
   end
 
+  def self.all_diagonals
+    [@@southwest,@@northeast,@@northwest,@@southeast]
+  end
+
+  def self.main_diagonal
+    [@@southwest,@@northeast]
+  end
+
+  def self.secondary_diagonal
+    [@@northwest,@@southeast]
+  end
+
   def self.north
     @@north
   end

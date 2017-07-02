@@ -16,7 +16,7 @@ require_relative "modules/mapper"
 require_relative "modules/coordenates"
 require_relative "modules/distance"
 
-class Board_New
+class Board
 
   EMPTY_STRING = ""
   SIZE = 8
@@ -155,7 +155,7 @@ class Board_New
 end
 
 # system("clear")
-# b = Board_New.new
+# b = Board.new
 # b.draw_board
 #
 # final = "n"

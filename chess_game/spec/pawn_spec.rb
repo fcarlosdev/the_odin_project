@@ -1,9 +1,9 @@
 require "pawn"
-require "board_new"
+require "board"
 
 describe "Pawn" do
 
-  let(:board) {Board_New.new}
+  let(:board) {Board.new}
   let(:piece) { Pawn.new(:white,"b2") }
   let(:moves){ ["a3", "b3", "c3", "b4"] }
 

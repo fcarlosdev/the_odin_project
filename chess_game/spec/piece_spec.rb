@@ -4,11 +4,11 @@ require "bishop"
 require "queen"
 require "knight"
 require "king"
-require "board_new"
+require "board"
 
 describe "Piece" do
 
-  let(:board) {Board_New.new}
+  let(:board) {Board.new}
   let(:position) {"b2"}
   let(:piece) {Piece.create_piece(:pawn,:white,position)}
 

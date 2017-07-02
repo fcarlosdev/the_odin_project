@@ -1,6 +1,5 @@
 require "./lib/queen"
 
-
 describe "Queen" do
 
   let(:piece) {Queen.new(:white,"d4")}

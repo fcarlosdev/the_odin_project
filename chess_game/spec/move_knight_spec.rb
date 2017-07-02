@@ -1,10 +1,10 @@
 require "./lib/move_knight"
-require "./lib/board_new"
+require "./lib/board"
 require "./lib/knight"
 
 describe "MoveKnight" do
 
-  let(:board) {Board_New.new}
+  let(:board) {Board.new}
   let(:move_knight) {MoveKnight.new(board)}
 
   let(:positions) {

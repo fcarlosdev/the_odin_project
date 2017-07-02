@@ -28,9 +28,8 @@ class King < Piece
   end
 
   def side_moves
-    moves = possible_positions(to_xy(position),Directions_New.east_west,1)
-    add_castling_moves(moves) if first_move?
-    moves
+    limit = (moves == 0) ? 2 : 1
+    possible_positions(to_xy(position),Directions_New.east_west,limit)
   end
 
   def diagonal_move?(to)
@@ -41,18 +40,9 @@ class King < Piece
     possible_positions(to_xy(position),Directions_New.intercardinal,1)
   end
 
-  private
-
-  def add_castling_moves(moves)
-    generate_castling_moves(moves).each {|cm| moves << cm if !moves.include?(cm) }
+  def move_direction(to)
+    return Directions_New.east if (position[0] < to[0] && position[1] == to[1])
+    return Directions_New.west if (position[0] > to[0] && position[1] == to[1])
   end
-
-  def generate_castling_moves(moves)
-    moves.map{|m| [-2,2].map{ |value| (m[0].ord + value).chr.concat(m[1]) } }.flatten
-  end
-
-  # def to_xy(position)
-  #   map_to_axis(position)
-  # end
 
 end

@@ -1,9 +1,9 @@
 require "./lib/move_pawn"
-require "./lib/board_new"
+require "./lib/board"
 
 describe "MovePawn" do
 
-  let(:board) {Board_New.new}
+  let(:board) {Board.new}
   let(:move_pawn) {MovePawn.new(board)}
   let(:positions) {{a5: "a5", b2: "b2", b3: "b3", b4: "b4",
                     b5: "b5", b6: "b6", b7: "b7", c2: "c2",

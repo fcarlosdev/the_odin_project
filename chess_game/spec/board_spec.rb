@@ -3,9 +3,9 @@ require 'colorize'
 require 'piece'
 require 'player'
 
-describe Board_New do
+describe Board do
 
-  let(:board) {Board_New.new}
+  let(:board) {Board.new}
 
   let(:white_pieces) {
     { pawn: Piece.create_piece(:pawn,:white,"a2"),
@@ -37,7 +37,7 @@ describe Board_New do
 
   describe '#new' do
     it "Creates a new board" do
-      expect(board).to be_instance_of(Board_New)
+      expect(board).to be_instance_of(Board)
     end
   end
 

@@ -1,9 +1,9 @@
 require "./lib/move_queen"
-require "./lib/board_new"
+require "./lib/board"
 
 describe "MoveQueen" do
 
-  let(:board) {Board_New.new}
+  let(:board) {Board.new}
   let(:move_queen) {MoveQueen.new(board)}
   let(:positions) {
     {d1: "d1", d2: "d2", d4: "d4", d5: "d5", d8: "d8",
