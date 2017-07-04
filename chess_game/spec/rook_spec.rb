@@ -6,6 +6,8 @@ describe "Rook" do
   let(:moves) {
     ["a2","a3","a4","a5","a6","a7", "a8",
      "b1", "c1", "d1", "e1", "f1", "g1", "h1"]
+     [["a2", "a3", "a4", "a5", "a6", "a7", "a8"],
+      ["b1", "c1", "d1", "e1", "f1", "g1", "h1"]]
   }
 
   describe '#new' do
@@ -20,10 +22,10 @@ describe "Rook" do
     end
   end
 
-  describe '#forward_moves' do
-    it "returns the possible forward moves to the rook piece" do
-      expect(piece.forward_moves).to eq(["a2", "a3", "a4", "a5", "a6", "a7", "a8"])
-    end
-  end
+  # describe '#forward_moves' do
+  #   it "returns the possible forward moves to the rook piece" do
+  #     expect(piece.forward_moves).to eq(["a2", "a3", "a4", "a5", "a6", "a7", "a8"])
+  #   end
+  # end
 
 end

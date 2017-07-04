@@ -17,9 +17,15 @@ describe "King" do
     end
   end
 
-  describe '#possible_move?' do
+  describe '#valid_move?' do
     it "returns the possible moves that the king piece can do" do
-      expect(piece.possible_move?("c6")).to eq(true)
+      expect(piece.valid_move?("c6")).to eq(true)
+    end
+  end
+
+  describe 'possible_castling_move?' do
+    it "returns the valid forward moves" do
+      expect(piece.possible_castling_move?("b5")).to eq(true)
     end
   end
 

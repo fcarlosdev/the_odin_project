@@ -8,14 +8,14 @@ class Directions_New
   @@southeast = [ 1 , 1]
   @@southwest = [ 1 ,-1]
   @@northwest = [-1 ,-1]
-  @@nne       = [-1, -2]
-  @@nnw       = [ 1, -2]
-  @@ene       = [-2, -1]
-  @@ese       = [-2,  1]
-  @@sse       = [-1,  2]
-  @@ssw       = [ 1,  2]
-  @@wsw       = [ 2,  1]
-  @@wnw       = [ 2, -1]
+  @@nne       = [-2 , 1]
+  @@ene       = [-1 , 2]
+  @@ese       = [ 1,  2]
+  @@sse       = [ 2,  1]
+  @@ssw       = [ 2, -1]
+  @@wsw       = [ 1, -2]
+  @@wnw       = [-1, -2]
+  @@nnw       = [-2, -1]
 
   def self.generate_coordinates(from,max,axis)
     remove_invalid((1..max).map{|i| [(i*axis[0])+from[0], (i*axis[1])+from[1]]})

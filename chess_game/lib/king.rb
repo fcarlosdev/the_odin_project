@@ -7,42 +7,27 @@ class King < Piece
     super(:king,color,position)
   end
 
-  def possible_move?(to)
+  def possible_moves
+    generate_moves(position,directions,1).flatten.sort
+  end
+
+  def valid_move?(to)
     possible_moves.include?(to)
   end
 
-  def possible_moves
-    possible_positions(to_xy(position),Directions_New.cardinal_and_ordinal,1)
+  def possible_castling_move?(to)
+    moves = generate_moves(position,Directions_New.east_west,2)
+    moves.any?{|move| move.include?(to)}
   end
 
-  def forward_move?(to)
-    forward_moves.include?(to)
+  private
+
+  def generate_moves(from,direction,limit)
+    directions.map{|direction| valid_positions(from,direction,limit)}.flatten.sort
   end
 
-  def forward_moves
-    possible_positions(to_xy(position),Directions_New.north_south,1)
-  end
-
-  def side_move?(to)
-    side_moves.include?(to)
-  end
-
-  def side_moves
-    limit = (moves == 0) ? 2 : 1
-    possible_positions(to_xy(position),Directions_New.east_west,limit)
-  end
-
-  def diagonal_move?(to)
-    diagonal_moves.include?(to)
-  end
-
-  def diagonal_moves
-    possible_positions(to_xy(position),Directions_New.intercardinal,1)
-  end
-
-  def move_direction(to)
-    return Directions_New.east if (position[0] < to[0] && position[1] == to[1])
-    return Directions_New.west if (position[0] > to[0] && position[1] == to[1])
+  def directions
+    Directions_New.cardinal_and_ordinal
   end
 
 end

@@ -4,8 +4,8 @@ describe "Bishop" do
 
   let(:piece) {Bishop.new(:white,"d5")}
   let(:moves) {
-    ["a2","a8","b3","b7","c4","c6", "e4","e6","f3","f7","g2","g8","h1"]
-  }
+    [["e6", "f7", "g8"],       ["c6", "b7", "a8"],
+     ["e4", "f3", "g2", "h1"], ["c4", "b3", "a2"]] }
 
   describe '#new' do
     it "creates a new instance of Bishop piece" do

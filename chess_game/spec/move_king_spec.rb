@@ -49,32 +49,33 @@ describe "MoveKing" do
     end
 
     context "when is a valid capture move" do
-      it "allows the king to capture the opponent piece" do
-        board.fill_square(positions[:f2],pieces[:black_king])
-        expect(move_king.move(pieces[:white_king],positions[:f2])).to eq(true)
-        expect(board.value_from(positions[:f2])).to eq(pieces[:white_king])
+
+      context "when is a forward capture move" do
+        it "allows the piece to capture the opponent piece" do
+          board.fill_square(positions[:e2],pieces[:black_king])
+          expect(move_king.move(pieces[:white_king],positions[:e2])).to eq(true)
+          expect(board.value_from(positions[:e2])).to eq(pieces[:white_king])
+        end
       end
+
+      context "when is a side capture move" do
+        it "allows the piece to capture the opponent piece" do
+          board.fill_square(positions[:f1],pieces[:black_king])
+          expect(move_king.move(pieces[:white_king],positions[:f1])).to eq(true)
+          expect(board.value_from(positions[:f1])).to eq(pieces[:white_king])
+        end
+      end
+
+      context "when is a diagonal capture move" do
+        it "allows the piece to capture the opponent piece" do
+          board.fill_square(positions[:f2],pieces[:black_king])
+          expect(move_king.move(pieces[:white_king],positions[:f2])).to eq(true)
+          expect(board.value_from(positions[:f2])).to eq(pieces[:white_king])
+        end
+      end
+
     end
 
-    context "when is an invalid move" do
-      it "doesn't allows the king to move to the new position" do
-        expect(move_king.move(pieces[:white_king],"i4")).to eq(false)
-      end
-    end
-
-    context "when is a possible castling move" do
-      it "allows the king to make the casling move" do
-        board.clear_square(positions[:f1])
-        board.clear_square(positions[:g1])
-        expect(move_king.move(pieces[:white_king],"g1")).to eq(true)
-      end
-    end
-
-    context "when tha castling path move is not free" do
-      it "doesn't allows the king to make the castling move" do
-        expect(move_king.move(pieces[:white_king],"g1")).to eq(false)
-      end
-    end
 
   end
 

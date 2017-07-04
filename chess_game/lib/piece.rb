@@ -52,26 +52,24 @@ class Piece
     moves == 1
   end
 
+  def possible_moves(from)
+    # valid_positions(from,directions,move_by)
+    self.possible_moves(from)
+  end
+
   private
 
   def piece_icon(type,color)
     PIECES_IMAGES[color][type]
   end
 
-  def possible_positions(from,directions,move_by)
-    to_positions(generate_directions(from,directions,move_by))
-  end
-
-  def generate_directions(from,directions,move_by)
-    directions.map{|d| new_coordinate(from,move_by,d)}
-  end
-
-  def new_coordinate(from,move_by,direction)
-    Directions_New.generate_coordinates(from,move_by,direction)
-  end
-
-  def to_positions(coordinates)
-    coordinates.map{|r| map_to_positions(r)}.flatten.uniq.sort
+  def valid_positions(position,direction,max_displacement)
+    displacements = [to_xy(position)]
+    max_displacement.times do
+      move = [direction[0]+displacements.last[0],direction[1]+displacements.last[1]]
+      displacements << move if (on_range?(move))
+    end
+    displacements.map{|d| map_to_position(d) if d != displacements.first}.compact
   end
 
   def to_xy(position)

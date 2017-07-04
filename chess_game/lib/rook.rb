@@ -1,5 +1,4 @@
 require "./lib/piece"
-require "./lib/directions_new"
 
 class Rook < Piece
 
@@ -7,28 +6,18 @@ class Rook < Piece
     super(:rook,color,position)
   end
 
-  def possible_move?(to)
-    possible_moves.include?(to)
-  end
-
   def possible_moves
-    to_positions(generate_directions(to_xy(position),Directions_New.cardinal,7))
+     remove_invalid_moves(generate_moves(position,Directions_New.cardinal,7))
   end
 
-  def forward_move?(to)
-    forward_moves.include?(to)
+  private
+
+  def generate_moves(from,directions,number_of_moves)
+    directions.map{|d| valid_positions(from,d,number_of_moves)}
   end
 
-  def forward_moves
-    possible_positions(to_xy(position),Directions_New.north_south,7)
-  end
-
-  def side_move?(to)
-    side_moves.include?(to)
-  end
-
-  def side_moves
-    to_positions(generate_directions(to_xy(position),Directions_New.east_west,7))
+  def remove_invalid_moves(moves)
+    moves.select{|m| !m.empty?}
   end
 
 end
