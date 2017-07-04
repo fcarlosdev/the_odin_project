@@ -52,11 +52,6 @@ class Piece
     moves == 1
   end
 
-  def possible_moves(from)
-    # valid_positions(from,directions,move_by)
-    self.possible_moves(from)
-  end
-
   private
 
   def piece_icon(type,color)

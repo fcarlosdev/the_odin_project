@@ -10,6 +10,10 @@ class Rook < Piece
      remove_invalid_moves(generate_moves(position,Directions_New.cardinal,7))
   end
 
+  def possible_move?(to)
+    possible_moves.any?{|move| move.include?(to)}
+  end
+
   private
 
   def generate_moves(from,directions,number_of_moves)

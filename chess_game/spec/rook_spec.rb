@@ -22,10 +22,10 @@ describe "Rook" do
     end
   end
 
-  # describe '#forward_moves' do
-  #   it "returns the possible forward moves to the rook piece" do
-  #     expect(piece.forward_moves).to eq(["a2", "a3", "a4", "a5", "a6", "a7", "a8"])
-  #   end
-  # end
+  describe '#possible_move?' do
+    it "confirms that the position is a valid move to the rook piece" do
+      expect(piece.possible_move?("a4")).to eq(true)
+    end
+  end
 
 end
