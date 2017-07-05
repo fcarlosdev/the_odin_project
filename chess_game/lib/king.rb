@@ -8,26 +8,32 @@ class King < Piece
   end
 
   def possible_moves
-    generate_moves(position,directions,1).flatten.sort
+    generate_moves(default_directions).flatten.uniq.sort
   end
 
-  def valid_move?(to)
+  def possible_move?(to)
     possible_moves.include?(to)
-  end
-
-  def possible_castling_move?(to)
-    moves = generate_moves(position,Directions_New.east_west,2)
-    moves.any?{|move| move.include?(to)}
   end
 
   private
 
-  def generate_moves(from,direction,limit)
-    directions.map{|direction| valid_positions(from,direction,limit)}.flatten.sort
+  def generate_moves(directions)
+    directions.each_with_object([]) do |direction,positions|
+      move_by = possible_castling_move?(direction) ? 2 : 1
+      positions << valid_positions(position,direction,move_by)
+    end
   end
 
-  def directions
+  def possible_castling_move?(direction)
+    (side_directions.include?(direction) && moves == 0)
+  end
+
+  def default_directions
     Directions_New.cardinal_and_ordinal
+  end
+
+  def side_directions
+    [Directions_New.choose(:east),Directions_New.choose(:west)]
   end
 
 end

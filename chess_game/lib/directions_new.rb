@@ -70,70 +70,14 @@ class Directions_New
     [@@northwest,@@southeast]
   end
 
-  def self.north
-    @@north
+  def self.choose(direction)
+    {north:     @@north,     south:     @@south,     west:      @@west,
+     east:      @@east,      northeast: @@northeast, southeast: @@southeast,
+     southwest: @@southwest, northwest: @@northwest, nne:       @@nne,
+     ene:       @@ene,       ese:       @@ese,       sse:       @@sse,
+     sse:       @@ssw,       wsw:       @@wsw,       wnw:       @@wnw,
+     nnw:       @@nnw}[direction]
   end
-
-  def self.south
-    @@south
-  end
-
-  def self.west
-    @@west
-  end
-
-  def self.east
-    @@east
-  end
-
-  def self.northeast
-    @@northeast
-  end
-
-  def self.southeast
-    @@southeast
-  end
-
-  def self.southwest
-    @@southwest
-  end
-
-  def self.northwest
-    @@northwest
-  end
-
-  def self.nne
-    @@nne
-  end
-
-  def self.nnw
-    @@nnw
-  end
-
-  def self.ene
-    @@ene
-  end
-
-  def self.ese
-    @@ese
-  end
-
-  def self.sse
-    @@sse
-  end
-
-  def self.ssw
-    @@ssw
-  end
-
-  def self.wsw
-    @@wsw
-  end
-
-  def self.wnw
-    @@wnw
-  end
-
 
   private
 

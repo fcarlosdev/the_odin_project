@@ -10,14 +10,30 @@ class MoveKing < MovePiece
 
   def move(piece,to)
 
-    if piece.valid_move?(to) && (empty_place?(to) || opponent_to?(piece,to))
-      board.move_piece(piece,to)
-      return true
+    if piece.possible_move?(to)
+      if valid_ordinary_move?(piece,to) || capture_move?(piece,to)
+        board.move_piece(piece,to)
+        return true
+      elsif piece.moves == 0
+        rook = board.value_from("g".concat(to[1]))
+        if (to > piece.position && !rook.nil? && rook.moves == 0 &&
+            rook.color == piece.color && rook.type == :rook)
+            board.move_piece(piece,to)
+            return true
+        end
+      end
     end
     false
   end
-
   private
+
+  def valid_ordinary_move?(piece,to)
+    empty_place?(to) && !opponent_to?(piece,to)
+  end
+
+  def capture_move?(piece,to)
+    opponent_to?(piece,to)
+  end
 
   def empty_place?(to)
     board.empty_square?(to)
