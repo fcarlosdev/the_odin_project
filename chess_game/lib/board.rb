@@ -160,7 +160,7 @@ end
 #
 # final = "n"
 # moves = { pawn: MovePawn.new(b), rook: MoveRook.new(b), bishop: MoveBishop.new(b),
-#           knight: MoveKnight.new(b)}
+#           knight: MoveKnight.new(b), king: MoveKing.new(b)}
 # while (final != "s")
 #   print "Move piece from: "
 #   from = gets.chomp

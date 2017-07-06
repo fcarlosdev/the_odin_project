@@ -14,8 +14,11 @@ class MoveKing < MovePiece
       if valid_ordinary_move?(piece,to) || capture_move?(piece,to)
         board.move_piece(piece,to)
         return true
-      elsif piece.moves == 0 && valid_castling_move?(piece,to)
+      elsif piece.moves == 0 && valid_castling_move?(piece.position,to)
+        rook = value_at(border_position(to,piece.position))
+        rook_to = rook_destiny(rook,to)
         board.move_piece(piece,to)
+        board.move_piece(rook,rook_to)
         return true
       end
     end
@@ -31,17 +34,16 @@ class MoveKing < MovePiece
     opponent_to?(piece,to)
   end
 
-  def valid_castling_move?(piece,to)
-    has_castling_rook?(to,piece.position) && move_by(piece.position,to) == 2 &&
-    free_way?(piece.position,to)
+  def valid_castling_move?(from,to)
+    rook_on_expected_place?(to,from) && move_by(from,to) == 2 && free_way?(from,to)
   end
 
-  def has_castling_rook?(to,from)
-    piece = value_at(rook_position(to,from))
+  def rook_on_expected_place?(to,from)
+    piece = value_at(border_position(to,from))
     piece != nil && piece.type == :rook && piece.moves == 0
   end
 
-  def rook_position(to,from)
+  def border_position(to,from)
     (from < to) ? "h".concat(to[1]) : "a".concat(to[1])
   end
 
@@ -50,8 +52,8 @@ class MoveKing < MovePiece
   end
 
   def path(from,to)
-    path = displacement(from,to).map{|i| [(from[0].ord + i).chr+from[1]]}.flatten
-    (!path.empty?) ? path : []
+    path = displacement(from,to).map{|i| [(from[0].ord + i).chr+from[1]]}
+    (!path.empty?) ? path.flatten : []
   end
 
   def displacement(from,to)
@@ -73,5 +75,11 @@ class MoveKing < MovePiece
   def move_by(from,to)
     calc_distance(from,to).abs
   end
+
+  def rook_destiny(rook,to)
+    displacement_by = (rook.position > to) ? -2 : 2
+    (rook.position[0].ord + displacement_by).chr.concat(rook.position[1])
+  end
+
 
 end
