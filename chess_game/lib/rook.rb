@@ -7,11 +7,12 @@ class Rook < Piece
   end
 
   def possible_moves
-     remove_invalid_moves(generate_moves(position,Directions_New.cardinal,7))
+    moves = generate_moves(position,Directions_New.cardinal,7)
+    remove_invalid_moves(moves.flatten.sort)
   end
 
   def possible_move?(to)
-    possible_moves.any?{|move| move.include?(to)}
+    possible_moves.include?(to)
   end
 
   private

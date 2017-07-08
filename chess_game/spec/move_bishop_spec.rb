@@ -23,7 +23,7 @@ describe "MoveBishop" do
 
   describe '#move' do
 
-    context "when is a valid ordinary move" do
+    context "when is a valid move" do
       it "moves the bishop piece to the new positon" do
         board.clear_square(positions[:d2])
         expect(move_bishop.move(pieces[:white_bishop],positions[:e3])).to eq(true)
@@ -31,31 +31,32 @@ describe "MoveBishop" do
       end
     end
 
+    context "when is an invalid move" do
+      it "doesn't moves the bishop piece to the new position" do
+        expect(move_bishop.move(pieces[:white_bishop],positions[:c2])).to eq(false)
+      end
+    end
+
+    context "when there is a piece between initial and final positions" do
+      it "doesn't moves the bishop piece to the new position" do
+        board.fill_square(positions[:d2],pieces[:white_pawn])
+        expect(move_bishop.move(pieces[:white_bishop],positions[:e3])).to eq(false)
+      end
+    end
+
+    context "when there is an ally piece at the final position" do
+      it "doesn't moves the bishop piece to the new position" do
+        board.clear_square(positions[:d2])
+        board.fill_square(positions[:e3],pieces[:white_pawn])
+        expect(move_bishop.move(pieces[:white_bishop],positions[:e3])).to eq(false)
+      end
+    end
+
     context "when is a valid capture move" do
-      it "allows that bishop piece captures the opponent piece" do
+      it "allows the bishop piece to capture the enemy piece" do
         board.clear_square(positions[:d2])
         board.fill_square(positions[:e3],pieces[:black_bishop])
         expect(move_bishop.move(pieces[:white_bishop],positions[:e3])).to eq(true)
-        expect(board.value_from(positions[:e3])).to eq(pieces[:white_bishop])
-      end
-    end
-
-    context "when is an invalid move" do
-      it "doesn't allows that the bishop piece move to the new position" do
-        expect(move_bishop.move(pieces[:white_bishop],"d1")).to eq(false)
-      end
-    end
-
-    context "when there is a piece between the current position and final position" do
-      it "doesn't allows that the bishop piece move to the new position" do
-        expect(move_bishop.move(pieces[:white_bishop],positions[:e3])).to eq(false)
-      end
-    end
-
-    context "when the new position has an ally piece" do
-      it "doesn't allows that the bishop piece move to the new position" do
-        board.fill_square(positions[:e3],pieces[:white_pawn])
-        expect(move_bishop.move(pieces[:white_bishop],positions[:e3])).to eq(false)
       end
     end
 

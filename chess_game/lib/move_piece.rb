@@ -82,4 +82,14 @@ class MovePiece
     (from[0] != to[0] && from[1] != to[1])
   end
 
+  def empty_place?(to)
+    board.empty_square?(to)
+  end
+
+  def opponent_from?(piece,at)
+    !empty_place?(at) && board.value_from(at).color != piece.color
+  end
+
+
+
 end
