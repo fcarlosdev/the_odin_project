@@ -49,7 +49,7 @@ class Piece
   end
 
   def first_move?
-    moves == 1
+    moves == 0
   end
 
   private

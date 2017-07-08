@@ -4,6 +4,7 @@ class MoveKing < MovePiece
 
   attr_reader :board
 
+  # Delete this constructor, implementing equal to piece.
   def initialize(board)
     @board = board
   end
@@ -11,14 +12,8 @@ class MoveKing < MovePiece
   def move(piece,to)
 
     if piece.possible_move?(to)
-      if valid_ordinary_move?(piece,to) || capture_move?(piece,to)
+      if valid_ordinary_move?(piece,to) || capture_move?(piece,to) || valid_castling_move?(piece,to)
         board.move_piece(piece,to)
-        return true
-      elsif piece.moves == 0 && valid_castling_move?(piece.position,to)
-        rook = value_at(border_position(to,piece.position))
-        rook_to = rook_destiny(rook,to)
-        board.move_piece(piece,to)
-        board.move_piece(rook,rook_to)
         return true
       end
     end
@@ -34,21 +29,16 @@ class MoveKing < MovePiece
     opponent_to?(piece,to)
   end
 
-  def valid_castling_move?(from,to)
-    rook_on_expected_place?(to,from) && move_by(from,to) == 2 && free_way?(from,to)
+  def valid_castling_move?(piece,to)
+    allowed_castling_move?(piece,to) && free_way?(piece.position,to) && rook_moved_next?(to)
   end
 
-  def rook_on_expected_place?(to,from)
-    piece = value_at(border_position(to,from))
-    piece != nil && piece.type == :rook && piece.moves == 0
-  end
-
-  def border_position(to,from)
-    (from < to) ? "h".concat(to[1]) : "a".concat(to[1])
+  def allowed_castling_move?(piece,to)
+    piece.first_move? && piece.position[1] == to[1]
   end
 
   def free_way?(from,to)
-    [path(from,to)-[from]].flatten.all?{|position| value_at(position) == nil}
+    [path(from,to)-[from]].flatten.all?{|position| empty_place?(position)}
   end
 
   def path(from,to)
@@ -68,18 +58,34 @@ class MoveKing < MovePiece
     !empty_place?(at) && board.value_from(at).color != piece.color
   end
 
-  def value_at(position)
-    board.value_from(position)
-  end
-
   def move_by(from,to)
-    calc_distance(from,to).abs
+    calc_distance(from,to)
   end
 
-  def rook_destiny(rook,to)
-    displacement_by = (rook.position > to) ? -2 : 2
-    (rook.position[0].ord + displacement_by).chr.concat(rook.position[1])
+  def rook_moved_next?(to)
+    moves = rook_moves_next(to)
+    rook_from = moves[:from]
+    rook_to = moves[:to]
+
+    if !empty_place?(rook_from)
+      piece = board.value_from(rook_from)
+      if piece.type == :rook && piece.first_move?
+        board.move_piece(piece,rook_to)
+        return true
+      end
+    end
+
+    false
+
   end
 
+  def rook_moves_next(king_to)
+    if (king_to[0] == "g")
+      return {from: "h".concat(king_to[1]), to: "f".concat(king_to[1])}
+    elsif (king_to[0] == "c")
+      return {from: "a".concat(king_to[1]), to: "d".concat(king_to[1])}
+    end
+    []
+  end
 
 end
