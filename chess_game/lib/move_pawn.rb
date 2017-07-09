@@ -10,7 +10,6 @@ class MovePawn < MovePiece
 
   def move(piece,to)
 
-    # puts "Possible moves #{piece.possible_moves}"
     if piece.possible_move?(to)
       if ordinary_move?(piece,to) || capture_move?(piece,to)
         board.move_piece(piece,to)
@@ -35,10 +34,9 @@ class MovePawn < MovePiece
 
   def en_passant_move?(pawn,to)
     if diagonal_move?(pawn.position,to) && empty_place?(to)
-      side_position = (to[0].concat(pawn.position[1]))
-      enemy = board.value_from(side_position)
-      return opponent_from?(pawn,side_position) &&
-             enemy.moved_by(enemy.old_position,side_position) == 2
+      enemy = value_from(side_position(pawn.position,to))
+      return enemy_type_pawn?(enemy) && opponent_from?(pawn,enemy.position) &&
+                enemy_moved_two_positions?(enemy)
     end
     false
   end
@@ -46,5 +44,22 @@ class MovePawn < MovePiece
   def enemy_moved_by(from,to)
     calc_distance(from,to).abs
   end
+
+  def side_position(from,to)
+    (to[0].concat(from[1]))
+  end
+
+  def enemy_type_pawn?(enemy)
+    enemy.type == :pawn
+  end
+
+  def value_from(position)
+    board.value_from(position)
+  end
+
+  def enemy_moved_two_positions?(enemy)
+    enemy.moved_by(enemy.old_position,enemy.position) == 2
+  end
+
 
 end
