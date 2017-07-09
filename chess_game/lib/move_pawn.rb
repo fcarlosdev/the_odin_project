@@ -34,9 +34,13 @@ class MovePawn < MovePiece
 
   def en_passant_move?(pawn,to)
     if diagonal_move?(pawn.position,to) && empty_place?(to)
-      enemy = value_from(side_position(pawn.position,to))
-      return enemy_type_pawn?(enemy) && opponent_from?(pawn,enemy.position) &&
-                enemy_moved_two_positions?(enemy)
+      enemy_at = side_position(pawn.position,to)
+      enemy = value_from(enemy_at)
+      if enemy_type_pawn?(enemy) && opponent_from?(pawn,enemy.position) &&
+         enemy_moved_two_positions?(enemy)
+        board.clear_square(enemy_at)
+        return true
+      end
     end
     false
   end
