@@ -154,23 +154,23 @@ class Board
 
 end
 
-# system("clear")
-# b = Board.new
-# b.draw_board
-#
-# final = "n"
-# moves = { pawn: MovePawn.new(b), rook: MoveRook.new(b), bishop: MoveBishop.new(b),
-#           knight: MoveKnight.new(b), king: MoveKing.new(b)}
-# while (final != "s")
-#   print "Move piece from: "
-#   from = gets.chomp
-#   print "Move to: "
-#   to = gets.chomp
-#   piece = b.value_from(from)
-#   moves[piece.type].move(piece,to)
-#   # sleep(2)
-#   system("clear")
-#   b.draw_board
-#   print "End the game? (s/n): "
-#   final = gets.chomp
-# end
+system("clear")
+b = Board.new
+b.draw_board
+
+final = "n"
+moves = { pawn: MovePawn.new(b), rook: MoveRook.new(b), bishop: MoveBishop.new(b),
+          knight: MoveKnight.new(b), king: MoveKing.new(b), queen: MoveQueen.new(b)}
+while (final != "s")
+  print "Move piece from: "
+  from = gets.chomp
+  print "Move to: "
+  to = gets.chomp
+  piece = b.value_from(from)
+  moves[piece.type].move(piece,to)
+  # sleep(2)
+  system("clear")
+  b.draw_board
+  print "End the game? (s/n): "
+  final = gets.chomp
+end
