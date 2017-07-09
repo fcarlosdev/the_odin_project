@@ -6,9 +6,10 @@ describe "MoveKing" do
   let(:board) {Board.new}
   let(:move_king) {MoveKing.new(board)}
   let(:positions) {
-    {c1: "c1", d1: "d1", d2: "d2", d4: "d4", d5: "d5", d8: "d8",
-     e1: "e1", e2: "e2", e3: "e3", f1: "f1", f2: "f2", g1: "g1",
-     g3: "g3", g4: "g4", h1: "h1", h4: "h4"}}
+    {b1: "b1", c1: "c1", d1: "d1", d2: "d2", d4: "d4",
+     d5: "d5", d8: "d8", e1: "e1", e2: "e2", e3: "e3",
+     f1: "f1", f2: "f2", g1: "g1", g3: "g3", g4: "g4",
+     h1: "h1", h4: "h4"}}
 
   let(:pieces) {
     {white_king: King.new(:white,positions[:e1]),
@@ -50,6 +51,55 @@ describe "MoveKing" do
 
     end
 
+    context "when is a side move" do
+
+      context "when is a valid simple side move" do
+        it "moves the king piece to the new side positon" do
+          board.clear_square(positions[:f1])
+          expect(move_king.move(pieces[:white_king],positions[:f1])).to eq(true)
+          expect(board.value_from(positions[:f1])).to eq(pieces[:white_king])
+        end
+      end
+
+      context "when the side destiny position is occupied with is an ally piece" do
+        it "doesn't move the piece to the new position" do
+          expect(move_king.move(pieces[:white_king],positions[:f1])).to eq(false)
+        end
+      end
+
+      context "when is an invalid side move" do
+        it "doesn't move the piece to the new position" do
+          expect(move_king.move(pieces[:white_king],positions[:h1])).to eq(false)
+        end
+      end
+
+    end
+
+    context "when is a diagonal move" do
+
+      context "when is a valid simple diagonal move" do
+        it "moves the king piece to the new diagonal positon" do
+          board.clear_square(positions[:f2])
+          expect(move_king.move(pieces[:white_king],positions[:f2])).to eq(true)
+          expect(board.value_from(positions[:f2])).to eq(pieces[:white_king])
+        end
+      end
+
+      context "when the diagonal destiny position is occupied with is an ally piece" do
+        it "doesn't move the piece to the new position" do
+          expect(move_king.move(pieces[:white_king],positions[:f2])).to eq(false)
+        end
+      end
+
+      context "when is an invalid diagonal move" do
+        it "doesn't move the piece to the new position" do
+          board.clear_square(positions[:f2])
+          expect(move_king.move(pieces[:white_king],positions[:f3])).to eq(false)
+        end
+      end
+
+    end
+
     context "when is a capture move" do
       context "when there is an opponent piece at the capture position" do
         it "makes the captue move" do
@@ -66,7 +116,7 @@ describe "MoveKing" do
       end
     end
 
-    context "when is a valid castling move" do
+    context "when is a valid castling move to g file" do
       it "allows the king to make the castling move" do
         board.clear_square(positions[:f1])
         board.clear_square(positions[:g1])
@@ -74,6 +124,19 @@ describe "MoveKing" do
         expect(move_king.move(pieces[:white_king],"g1")).to eq(true)
         expect(board.value_from("g1")).to eq(pieces[:white_king])
         expect(board.value_from("f1")).to eq(pieces[:white_rook])
+      end
+    end
+
+    context "when is a valid castling move to c file" do
+      it "allows the king to make the castling move" do
+        board.clear_square(positions[:d1])
+        board.clear_square(positions[:c1])
+        board.fill_square("a1",pieces[:white_rook])
+        pieces[:white_rook].position = "a1"
+
+        expect(move_king.move(pieces[:white_king],"c1")).to eq(true)
+        expect(board.value_from("c1")).to eq(pieces[:white_king])
+        expect(board.value_from("d1")).to eq(pieces[:white_rook])
       end
     end
 

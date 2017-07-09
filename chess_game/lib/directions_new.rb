@@ -75,7 +75,7 @@ class Directions_New
      east:      @@east,      northeast: @@northeast, southeast: @@southeast,
      southwest: @@southwest, northwest: @@northwest, nne:       @@nne,
      ene:       @@ene,       ese:       @@ese,       sse:       @@sse,
-     sse:       @@ssw,       wsw:       @@wsw,       wnw:       @@wnw,
+     ssw:       @@ssw,       wsw:       @@wsw,       wnw:       @@wnw,
      nnw:       @@nnw}[direction]
   end
 
