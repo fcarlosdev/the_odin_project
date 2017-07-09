@@ -51,11 +51,11 @@ class Directions_New
   end
 
   def self.norwesteast
-    [north] + intercardinal[0..1]
+    [choose(:north)] + intercardinal[0..1]
   end
 
   def self.soutwesteast
-    [south] + intercardinal[2..3]
+    [choose(:south)] + intercardinal[2..3]
   end
 
   def self.all_diagonals

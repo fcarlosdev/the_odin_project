@@ -7,12 +7,12 @@ describe "MovePawn" do
   let(:move_pawn) {MovePawn.new(board)}
   let(:positions) {{a5: "a5", b2: "b2", b3: "b3", b4: "b4",
                     b5: "b5", b6: "b6", b7: "b7", c2: "c2",
-                    c3: "c3", c4: "c4", c5: "c5", d3: "d3",
-                    d4: "d4"}}
+                    c3: "c3", c4: "c4", c5: "c5", c6: "c6",
+                    c7: "c7", d3: "d3", d4: "d4"}}
   let(:pieces) {
     {white_pawn: Pawn.new(:white,positions[:b2]),
      white_pawn_2: Pawn.new(:white,positions[:b3]),
-     black_pawn: Pawn.new(:black,positions[:b7])}
+     black_pawn: Pawn.new(:black,positions[:c7])}
   }
 
 
@@ -51,15 +51,11 @@ describe "MovePawn" do
 
     context "when is a valid en passant move" do
       it "allows the pawn piece to make the en passant move" do
-        move_pawn.move(pieces[:black_pawn],positions[:b5])
-
-        board.clear_square(positions[:b2])
-        board.fill_square(positions[:a5],pieces[:white_pawn])
-        pieces[:white_pawn].position = positions[:a5]
-
-        expect(move_pawn.move(pieces[:white_pawn],positions[:b6])).to eq(true)
-        expect(board.value_from(positions[:b6])).to eq(pieces[:white_pawn])
-        expect(board.value_from(positions[:b5])).to be_nil
+        pieces[:white_pawn].position = positions[:b5]
+        board.fill_square( positions[:b5],pieces[:white_pawn])
+        move_pawn.move(pieces[:black_pawn],positions[:c5])
+        expect(move_pawn.move(pieces[:white_pawn],positions[:c6])).to eq(true)
+        expect(board.value_from(positions[:c6])).to eq(pieces[:white_pawn])
       end
     end
 

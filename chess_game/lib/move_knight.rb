@@ -1,4 +1,6 @@
-class MoveKnight
+require "./lib/move_piece"
+
+class MoveKnight < MovePiece
 
   attr_reader :board
 
@@ -21,15 +23,15 @@ class MoveKnight
   end
 
   def capture_move?(piece,to)
-    valid_move?(piece,to) && !board.empty_square?(to) && opponent_at?(to,piece)
+    valid_move?(piece,to) && !board.empty_square?(to) && opponent_from?(piece,to)
   end
 
   def valid_move?(piece,to)
     piece.possible_moves.include?(to)
   end
 
-  def opponent_at?(place,piece)
-    board.value_from(place).color != piece.color
-  end
+  # def opponent_at?(place,piece)
+  #   board.value_from(place).color != piece.color
+  # end
 
 end

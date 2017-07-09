@@ -18,14 +18,15 @@ class Piece
                    }
 
 
-  attr_reader :color, :type, :position, :image, :moves
+  attr_reader :color, :type, :position, :image, :moves, :old_position
 
   def initialize(type,color,position)
-    @color    = color
-    @type     = type
-    @position = position
-    @image    = piece_icon(type,color)
-    @moves    = 0
+    @color        = color
+    @type         = type
+    @position     = position
+    @old_position = position
+    @image        = piece_icon(type,color)
+    @moves        = 0
   end
 
   def self.create_piece(type,color,at)
@@ -41,6 +42,7 @@ class Piece
   end
 
   def position=(new_position)
+    @old_position = @position
     @position = new_position
   end
 
@@ -50,6 +52,10 @@ class Piece
 
   def first_move?
     moves == 0
+  end
+
+  def moved_by(from,to)
+    calc_distance(from,to).abs
   end
 
   private

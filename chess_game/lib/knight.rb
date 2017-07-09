@@ -1,5 +1,4 @@
 require "./lib/piece"
-require "./lib/directions_new"
 
 class Knight < Piece
 
@@ -8,9 +7,17 @@ class Knight < Piece
   end
 
   def possible_moves
-    possible_positions(to_xy(position),Directions_New.secondary,1)
+    generate_moves(position,Directions_New.secondary,1).flatten.sort
   end
 
-  # private
+  def possible_move?(to)
+    possible_moves.include?(to)
+  end
+
+  private
+
+  def generate_moves(from,directions,number_of_moves)
+    directions.map{|d| valid_positions(from,d,number_of_moves)}
+  end
 
 end

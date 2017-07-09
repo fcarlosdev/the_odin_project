@@ -25,9 +25,9 @@ describe "MovePiece" do
 
     context "when is a valid move" do
       it "moves a given piece to the given position" do
-        # expect(movePiece.move(pieces[:pawn],"a3")).to eq(true)
+        expect(movePiece.move(pieces[:pawn],"a3")).to eq(true)
         expect(movePiece.move(pieces[:rook],"b5")).to eq(true)
-        # expect(movePiece.move(pieces[:knight],"d4")).to eq(true)
+        expect(movePiece.move(pieces[:knight],"d4")).to eq(true)
         expect(movePiece.move(pieces[:bishop],"e3")).to eq(true)
         expect(movePiece.move(pieces[:queen],"f3")).to eq(true)
         expect(movePiece.move(pieces[:king],"g3")).to eq(true)
