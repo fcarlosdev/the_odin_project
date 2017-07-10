@@ -2,8 +2,6 @@ require "./lib/move_piece"
 
 class MoveQueen < MovePiece
 
-  attr_reader :board
-
   def initialize(board)
     @board = board
   end

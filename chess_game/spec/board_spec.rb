@@ -84,20 +84,29 @@ describe Board do
   end
 
   describe '#empty_square?' do
+  #
+  #   context "when is an empty square" do
+  #     it "returns true" do
+  #       expect(board.empty_square?("a3")).to eq(true)
+  #     end
+  #   end
+  #
+  #   context "when is not an empty square" do
+  #     it "returns false" do
+  #       expect(board.empty_square?("a2")).to eq(false)
+  #     end
+  #   end
+  #
+  # end
 
-    context "when is an empty square" do
-      it "returns true" do
-        expect(board.empty_square?("a3")).to eq(true)
-      end
-    end
-
-    context "when is not an empty square" do
-      it "returns false" do
-        expect(board.empty_square?("a2")).to eq(false)
-      end
-    end
-
-  end
+  # describe '#check' do
+  #
+  #   context "when a king piece is under attack" do
+  #     it "sinalizes that occorred a check move" do
+  #
+  #     end
+  #   end
+  # end
 
 
 

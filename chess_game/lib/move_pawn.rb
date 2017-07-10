@@ -2,8 +2,6 @@ require "./lib/move_piece"
 
 class MovePawn < MovePiece
 
-  attr_reader :board
-
   def initialize(board)
     @board = board
   end
@@ -11,10 +9,7 @@ class MovePawn < MovePiece
   def move(piece,to)
 
     if piece.possible_move?(to)
-      if ordinary_move?(piece,to) || capture_move?(piece,to)
-        board.move_piece(piece,to)
-        return true
-      elsif en_passant_move?(piece,to)
+      if ordinary_move?(piece,to) || capture_move?(piece,to) || en_passant_move?(piece,to)
         board.move_piece(piece,to)
         return true
       end

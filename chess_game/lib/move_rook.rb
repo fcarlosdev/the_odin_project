@@ -2,10 +2,6 @@ require "./lib/move_piece"
 
 class MoveRook < MovePiece
 
-  include Distance
-
-  attr_reader :board
-
   def initialize(board)
     @board = board
   end
