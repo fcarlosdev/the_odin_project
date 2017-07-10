@@ -99,14 +99,14 @@ describe Board do
   #
   # end
 
-  # describe '#check' do
-  #
-  #   context "when a king piece is under attack" do
-  #     it "sinalizes that occorred a check move" do
-  #
-  #     end
-  #   end
-  # end
+  describe '#check' do
+
+    context "when a king piece is under attack" do
+      it "sinalizes that occorred a check move" do
+
+      end
+    end
+  end
 
 
 
