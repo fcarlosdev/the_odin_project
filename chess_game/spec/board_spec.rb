@@ -35,55 +35,55 @@ describe Board do
     end
   end
 
-  describe '#new' do
-    it "Creates a new board" do
-      expect(board).to be_instance_of(Board)
-    end
-  end
-
-  describe '#draw_board' do
-    it "Draws a board" do
-      lines = columns = 8
-      expect(board).to receive(:draw_board).with(no_args).exactly(1).times
-      expect(board.squares[1][0].type).to eq(:pawn)
-      board.draw_board
-    end
-  end
-
-  describe '#value_from' do
-
-    context "when is given a valid location" do
-      it "returns the piece on square" do
-        expect(board.value_from("a2")).to_not be_nil
-      end
-    end
-
-    context "when is given an invalid position" do
-      it "returns nil" do
-        expect(board.value_from("l2")).to be_nil
-      end
-    end
-  end
-
-  describe '#fill_square' do
-    it "changes the value of a square" do
-      board.fill_square("b3",Piece.create_piece(:pawn,:white,"b3"))
-      expect(board.value_from("b3")).to_not be_nil
-    end
-  end
-
-  describe '#move_piece' do
-    context "when is a valid move" do
-      it "moves the piece to the new place" do
-        board.move_piece(white_pieces[:pawn],"a3")
-        expect(board.value_from("a2")).to be_nil
-        expect(board.value_from("a3")).to_not be_nil
-      end
-    end
-
-  end
-
-  describe '#empty_square?' do
+  # describe '#new' do
+  #   it "Creates a new board" do
+  #     expect(board).to be_instance_of(Board)
+  #   end
+  # end
+  #
+  # describe '#draw_board' do
+  #   it "Draws a board" do
+  #     lines = columns = 8
+  #     expect(board).to receive(:draw_board).with(no_args).exactly(1).times
+  #     expect(board.squares[1][0].type).to eq(:pawn)
+  #     board.draw_board
+  #   end
+  # end
+  #
+  # describe '#value_from' do
+  #
+  #   context "when is given a valid location" do
+  #     it "returns the piece on square" do
+  #       expect(board.value_from("a2")).to_not be_nil
+  #     end
+  #   end
+  #
+  #   context "when is given an invalid position" do
+  #     it "returns nil" do
+  #       expect(board.value_from("l2")).to be_nil
+  #     end
+  #   end
+  # end
+  #
+  # describe '#fill_square' do
+  #   it "changes the value of a square" do
+  #     board.fill_square("b3",Piece.create_piece(:pawn,:white,"b3"))
+  #     expect(board.value_from("b3")).to_not be_nil
+  #   end
+  # end
+  #
+  # describe '#move_piece' do
+  #   context "when is a valid move" do
+  #     it "moves the piece to the new place" do
+  #       board.move_piece(white_pieces[:pawn],"a3")
+  #       expect(board.value_from("a2")).to be_nil
+  #       expect(board.value_from("a3")).to_not be_nil
+  #     end
+  #   end
+  #
+  # end
+  #
+  # describe '#empty_square?' do
   #
   #   context "when is an empty square" do
   #     it "returns true" do
@@ -99,11 +99,14 @@ describe Board do
   #
   # end
 
-  describe '#check' do
+  describe '#check?' do
 
     context "when a king piece is under attack" do
       it "sinalizes that occorred a check move" do
-
+        board.clear_square("e7")
+        board.clear_square("e2")
+        board.move_piece(white_pieces[:queen],"e2")
+        expect(board.check?(black_pieces[:king],white_pieces[:queen])).to eq(true)
       end
     end
   end

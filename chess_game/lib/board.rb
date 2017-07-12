@@ -12,6 +12,7 @@ require "./lib/move_bishop"
 require "./lib/move_knight"
 require "./lib/move_queen"
 require "./lib/move_king"
+require "./lib/move_piece"
 require_relative "modules/mapper"
 require_relative "modules/coordenates"
 require_relative "modules/distance"
@@ -67,6 +68,13 @@ class Board
 
   def clear_square(at)
     fill_square(at,nil)
+  end
+
+  def check?(king,attacker)
+    #For the time being I will be create the move piece class here, but it will
+    # be passed as an argument of the method.
+    MovePiece.new(self).free_way?(attacker.position,king.position) &&
+        attacker.possible_moves.include?(king.position)
   end
 
   private
