@@ -99,18 +99,10 @@ describe Board do
 
   end
 
-  describe '#check?' do
-
-    context "when a king piece is under attack" do
-      it "sinalizes that occorred a check move" do
-        board.clear_square("e7")
-        board.clear_square("e2")
-        board.move_piece(white_pieces[:queen],"e2")
-        expect(board.check?(black_pieces[:king],white_pieces[:queen])).to eq(true)
-      end
+  describe '#get_king' do
+    it "finds king piece of given color" do
+      expect(board.get_king(:black)).to eq(board.value_from("e8"))
     end
   end
-
-
 
 end

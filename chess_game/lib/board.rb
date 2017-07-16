@@ -70,11 +70,8 @@ class Board
     fill_square(at,nil)
   end
 
-  def check?(king,attacker)
-    #For the time being I will be create the move piece class here, but it will
-    # be passed as an argument of the method.
-    MovePiece.new(self).free_way?(attacker.position,king.position) &&
-        attacker.possible_moves.include?(king.position)
+  def get_king(color)
+    filled_squares.select{|piece| piece.color == color && piece.type == :king}[0]
   end
 
   private
