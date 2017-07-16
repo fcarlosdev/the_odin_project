@@ -41,6 +41,10 @@ class MovePiece
     return generate_diagonal_path(from,to) if diagonal_move?(from,to)
   end
 
+  def valid_positions?(positions)
+    positions.all?{|position| valid_positions.include?(position)}
+  end
+
   private
 
   def set_moves
@@ -90,6 +94,9 @@ class MovePiece
     !empty_place?(at) && board.value_from(at).color != piece.color
   end
 
+  def valid_positions
+    ("a1".."h8").to_a.select{|position| (1..8).include?(position[1].to_i)}
+  end
 
 
 end
