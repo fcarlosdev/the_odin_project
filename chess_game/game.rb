@@ -40,16 +40,26 @@ class Game
   end
 
   def move_piece
-    
+
     positions = current_player_take_turn
     return false if valid_given_positions?(positions)
     return false if empty_position?(positions[0])
 
-    if !board.empty_place?(positions[0])
-      move_piece.move(board.value_from(positions[0]),positions[1])
+    attacker = board.value_from(positions[0])
+
+    #select opponent king piece
+    color = (attacker.color == :white) ? :black : :white;
+    king = board.get_king(color)
+
+
+    if move_piece.move(attacker,positions[1])
+      #here a check if the king opponent is in check.
+      check_move = move_piece.free_way?(attacker.position,king.position) &&
+        attacke.possible_moves.include?(king.position)
+      if check_move
+        puts "The King piece at #{king.position} is on check."
+      end
       return true
-    else
-      puts "There is no piece in the #{positions[0]} position"
     end
     false
   end
@@ -73,7 +83,5 @@ class Game
     end
     false
   end
-
-
 
 end
