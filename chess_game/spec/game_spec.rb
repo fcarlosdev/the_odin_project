@@ -1,5 +1,6 @@
 require './game.rb'
 require './lib/player.rb'
+# require './lib/board.rb'
 
 describe 'Game' do
 
@@ -39,7 +40,8 @@ describe 'Game' do
     # context "End game scenarios" do
     #
     #   context "when is checkmate" do
-    #
+    #     it "ends the game" do
+    #     end
     #   end
     # end
 

@@ -53,10 +53,9 @@ class Game
 
 
     if move_piece.move(attacker,positions[1])
-      #here a check if the king opponent is in check.
-      check_move = move_piece.free_way?(attacker.position,king.position) &&
-        attacke.possible_moves.include?(king.position)
-      if check_move
+      
+      if move_piece.free_way?(attacker.position,king.position) &&
+          board.check?(king,attacker)
         puts "The King piece at #{king.position} is on check."
       end
       return true
