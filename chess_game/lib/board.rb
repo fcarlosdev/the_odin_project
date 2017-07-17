@@ -74,6 +74,24 @@ class Board
     filled_squares.select{|piece| piece.color == color && piece.type == :king}[0]
   end
 
+  def check?(king,attacker)
+    attacker.possible_moves.include?(king.position)
+  end
+
+  def checkmate?(attacker)
+    color = [:white,:black].find {|color| color != attacker.color}
+    king = get_king(color)
+    if check?(king,attacker)
+      king_moves = king.possible_moves.select{|position| empty_square?(position)}
+      if king_moves.any?{|move| !attacker.possible_moves.include?(move)}
+        return false
+      else
+        return true
+      end
+    end
+    false
+  end
+
   private
 
   def draw_squares(bg_color)

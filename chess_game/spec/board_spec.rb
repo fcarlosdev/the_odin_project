@@ -105,4 +105,27 @@ describe Board do
     end
   end
 
+  describe '#check?' do
+    context "when a king piece is under attack" do
+      it "sinalizes that occorred a check move" do
+       board.clear_square("e7")
+       board.clear_square("e2")
+       board.move_piece(white_pieces[:queen],"e2")
+       expect(board.check?(black_pieces[:king],white_pieces[:queen])).to eq(true)
+      end
+    end
+  end
+
+  describe '#checkmate?' do
+    context "when a king piece has no escape move" do
+      it "indicates the end of the game" do
+        board.move_piece(board.value_from("f2"),"f3")
+        board.move_piece(board.value_from("g2"),"g4")
+        board.move_piece(board.value_from("e7"),"e5")
+        board.move_piece(board.value_from("d8"),"h4")
+        expect(board.checkmate?(board.value_from("h4"))).to eq(true)
+      end
+    end
+  end
+
 end
