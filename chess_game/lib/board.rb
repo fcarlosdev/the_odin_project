@@ -92,6 +92,22 @@ class Board
     false
   end
 
+  def stalemate?(current_player)
+    pieces_of_current_player = filled_squares.select{|piece| piece.color == current_player.color}
+    king_piece = get_king(current_player.color)
+
+    attackers = filled_squares.select{|piece| piece.color != current_player.color}
+    #Check if not in check
+    attackers.any?{|attacker| check?(king_piece,attacker)}
+    movement = MovePiece.new(self)
+    #Fixing king move, to block danger move.
+    pieces_of_current_player.each do |piece|
+      possible_moves = piece.possible_moves
+      possible_moves.any?{|move| attackers.any?{|attacker| !attacker.possible_moves.include?(move)} }
+    end
+    false
+  end
+
   private
 
   def draw_squares(bg_color)

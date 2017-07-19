@@ -7,6 +7,8 @@ describe Board do
 
   let(:board) {Board.new}
 
+  let(:current_player) {Player.new("Player1",:black)}
+
   let(:white_pieces) {
     { pawn: Piece.create_piece(:pawn,:white,"a2"),
       rook: Piece.create_piece(:rook,:white,"a1"),
@@ -124,6 +126,21 @@ describe Board do
         board.move_piece(board.value_from("e7"),"e5")
         board.move_piece(board.value_from("d8"),"h4")
         expect(board.checkmate?(board.value_from("h4"))).to eq(true)
+      end
+    end
+  end
+
+  describe '#stalemate?' do
+    context "when theres only black player has only a king piece" do
+      it "ends the game" do
+        clear_board
+        board.fill_square("h8",black_pieces[:king])
+        board.fill_square("f7",white_pieces[:king])
+        board.fill_square("g6",white_pieces[:queen])
+        black_pieces[:king].position ="h8"
+        white_pieces[:king].position ="f7"
+        white_pieces[:king].position ="g6"
+        expect(board.stalemate?(current_player)).to eq(true)
       end
     end
   end
