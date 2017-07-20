@@ -102,8 +102,7 @@ class Board
     movement = MovePiece.new(self)
     #Fixing king move, to block danger move.
     pieces_of_current_player.each do |piece|
-      possible_moves = piece.possible_moves
-      possible_moves.any?{|move| attackers.any?{|attacker| !attacker.possible_moves.include?(move)} }
+      piece.possible_moves.any?{|move| attackers.any?{|attacker| !attacker.possible_moves.include?(move)} }
     end
     false
   end
