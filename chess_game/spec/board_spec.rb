@@ -7,7 +7,7 @@ describe Board do
 
   let(:board) {Board.new}
 
-  let(:current_player) {Player.new("Player1",:black)}
+  let(:current_player) {Player.new("Player1",:white)}
 
   let(:white_pieces) {
     { pawn: Piece.create_piece(:pawn,:white,"a2"),
@@ -131,7 +131,7 @@ describe Board do
   end
 
   describe '#stalemate?' do
-    context "when theres only black player has only a king piece" do
+    context "when black player has only a king piece" do
       it "ends the game" do
         clear_board
         board.fill_square("h8",black_pieces[:king])
