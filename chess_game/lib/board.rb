@@ -96,12 +96,12 @@ class Board
 
   private
 
-  def any_escape_move?(king,attacker)
-    valid_moves_of(king).any?{|move| !attacker.possible_moves.include?(move)}
+  def any_escape_move?(piece,attacker)
+    valid_moves_of(piece).any?{|move| !attacker.possible_moves.include?(move)}
   end
 
-  def valid_moves_of(king)
-    king.possible_moves.select{|position| empty_square?(position)}
+  def valid_moves_of(piece)
+    piece.possible_moves.select{|position| empty_square?(position)}
   end
 
   def opponent_color_of(current_color)
