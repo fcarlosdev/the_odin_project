@@ -45,6 +45,10 @@ class MovePiece
     positions.all?{|position| valid_positions.include?(position)}
   end
 
+  def valid_moves(piece)
+    piece.possible_moves.select{|move| board.empty_square?(move)}
+  end
+
   private
 
   def set_moves
@@ -63,7 +67,8 @@ class MovePiece
   def generate_diagonal_path(from,to)
     files = generate_files(from,to)
     ranks = generate_ranks(from,to)
-    (0..files.length-1).map{|index| files[index].concat(ranks[index]) }
+    (!files.empty? && !ranks.empty?) ?
+        (0..files.length-1).map{|index| files[index].concat(ranks[index]) } : []
   end
 
   def generate_files(from,to)
