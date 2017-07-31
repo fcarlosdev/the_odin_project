@@ -84,8 +84,11 @@ class Board
   end
 
   def has_escape?(king)
-    attackers_moves = attackers_of(king).map{|attacker| attacker.possible_moves}
-    @movement_piece.valid_moves(king).all?{|move| attackers_moves.include?(move)}
+    @movement_piece.valid_moves(king).all?{|move| attackers_moves(king).include?(move)}
+  end
+
+  def attackers_moves(attacked_piece)
+    attackers_of(attacked_piece).map{|attacker| attacker.possible_moves}
   end
 
   # def stalemate?(current_player)
@@ -123,9 +126,6 @@ class Board
 
   def select_pieces(of_color)
     filled_squares.select{|piece| piece.color == of_color}
-  end
-
-  def get_attackers(king)
   end
 
   def draw_squares(bg_color)
