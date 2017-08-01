@@ -58,5 +58,19 @@ describe 'GameStatus' do
         expect(game_status.check?(current_player)).to eq(true)
       end
     end
+
+  end
+
+  describe '#checkmate?' do
+
+    context "when a king piece is under attack and has no escape move" do
+      it "indicates that the game have ended" do
+        board.move_piece(board.value_from("f2"),"f3")
+        board.move_piece(board.value_from("g2"),"g4")
+        board.move_piece(board.value_from("e7"),"e5")
+        board.move_piece(board.value_from("d8"),"h4")
+        expect(game_status.checkmate?(players[1])).to eq(true)
+      end
+    end
   end
 end
