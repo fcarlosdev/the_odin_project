@@ -8,28 +8,50 @@ class GameStatus
   end
 
   def check?(player)
-    attacker_pieces = get_pieces(player.color)
-    attacked_pieces = get_pieces(get_opponent_color(player))
-    attacked_king = attacked_pieces.select{|piece| piece.type == :king}
-    attacker_pieces.any?{|attacker| attacker.possible_moves.include?(attacked_king[0].position)}
+    king_attacked?(enemy_pieces(player),king_piece(player))
   end
 
   def checkmate?(player)
-    attacked_pieces = get_pieces(get_opponent_color(player))
-    attacked_king = attacked_pieces.select{|piece| piece.type == :king}
-    attacker_pieces = get_pieces(player.color).select{|piece| piece.possible_moves.include?(attacked_king[0].position)}
-    attackers_moves = attacker_pieces.map {|attacker| attacker.possible_moves}.flatten
-    movement.valid_moves(attacked_king[0]).all?{|move| attackers_moves.include?(move)}
+    check?(player) && no_escape?(player)
+  end
+
+  def stalemate?(player)
+    !check?(player) && no_escape?(player)
   end
 
   private
 
-  def get_pieces(color)
+  def enemy_pieces(player)
+    pieces_of(get_opponent_color(player))
+  end
+
+  def pieces_of(color)
     board.filled_squares.select{|square| square.color == color}
   end
 
   def get_opponent_color(to_player)
     [:white,:black].find{|color| color != to_player.color}
   end
+
+  def enemy_pieces_moves(player)
+    enemy_pieces(player).map{|enemy| enemy.possible_moves}.flatten.uniq
+  end
+
+  def king_piece(player)
+    pieces_of(player.color).select{|piece| piece.type == :king}[0]
+  end
+
+  def king_moves(king)
+    movement.valid_moves(king).flatten
+  end
+
+  def no_escape?(player)
+    king_moves(king_piece(player)).all?{|move| enemy_pieces_moves(player).include?(move)}
+  end
+
+  def king_attacked?(enemies,king)
+    enemies.any?{|piece| piece.possible_moves.include?(king.position)}
+  end
+
 
 end

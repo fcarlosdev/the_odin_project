@@ -9,7 +9,7 @@ describe 'GameStatus' do
   let(:movement) {MovePiece.new(board)}
   let(:game_status) {GameStatus.new(movement,board)}
   let(:players) {[Player.new("Player1",:white),Player.new("Player2",:black)]}
-  let(:current_player) {players[0]}
+  let(:current_player) {players[1]}
 
   let(:white_pieces) {
     { pawn: Piece.create_piece(:pawn,:white,"a2"),
@@ -38,7 +38,6 @@ describe 'GameStatus' do
       end
     end
   end
-
 
   describe '#new' do
     it "creates a new instance of GameStatus class" do
@@ -69,8 +68,27 @@ describe 'GameStatus' do
         board.move_piece(board.value_from("g2"),"g4")
         board.move_piece(board.value_from("e7"),"e5")
         board.move_piece(board.value_from("d8"),"h4")
-        expect(game_status.checkmate?(players[1])).to eq(true)
+        expect(game_status.checkmate?(players[0])).to eq(true)
       end
     end
+
+  end
+
+  describe '#stalemate?' do
+
+    context "when the current player has no legal move" do
+      it "indicates the end of game" do
+        clear_board
+        white_pieces[:queen].position = "g6"
+        white_pieces[:king].position = "f7"
+        black_pieces[:king].position = "h8"
+        black_pieces[:king].increment_moves
+        board.fill_square("h8",black_pieces[:king])
+        board.fill_square("f7",white_pieces[:king])
+        board.fill_square("g6",white_pieces[:queen])
+        expect(game_status.stalemate?(players[1])).to eq(true)
+      end
+    end
+
   end
 end
