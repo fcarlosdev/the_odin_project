@@ -46,27 +46,26 @@ describe 'GameStatus' do
   end
 
   describe '#check?' do
-
-    context "when there is a king piece in check" do
-      it "indicates that a check move occurred" do
-        clear_board
-        white_pieces[:queen].position = "e2"
-        black_pieces[:king].position = "e8"
-        board.fill_square("e8",black_pieces[:king])
-        board.fill_square("e2",white_pieces[:queen])
-        expect(game_status.check?(current_player)).to eq(true)
-      end
+    it "returns true when there is a king piece in check" do
+      clear_board
+      board.fill_square("e1",white_pieces[:king])
+      board.fill_square("e4",black_pieces[:queen])
+      black_pieces[:queen].position = "e4"
+      expect(game_status.check?(players[0])).to eq(true)
     end
 
+    it "returns false when there is no king piece in check" do
+      expect(game_status.check?(players[0])).to eq(false)
+    end
   end
 
   describe '#checkmate?' do
 
-    context "when a king piece is under attack and has no escape move" do
-      it "indicates that the game have ended" do
+    context "when a player is in check and has no legal escape move of check" do
+      it "returns true" do
         board.move_piece(board.value_from("f2"),"f3")
         board.move_piece(board.value_from("g2"),"g4")
-        board.move_piece(board.value_from("e7"),"e5")
+        board.move_piece(board.value_from("f7"),"f5")
         board.move_piece(board.value_from("d8"),"h4")
         expect(game_status.checkmate?(players[0])).to eq(true)
       end
@@ -74,21 +73,4 @@ describe 'GameStatus' do
 
   end
 
-  describe '#stalemate?' do
-
-    context "when the current player has no legal move" do
-      it "indicates the end of game" do
-        clear_board
-        white_pieces[:queen].position = "g6"
-        white_pieces[:king].position = "f7"
-        black_pieces[:king].position = "h8"
-        black_pieces[:king].increment_moves
-        board.fill_square("h8",black_pieces[:king])
-        board.fill_square("f7",white_pieces[:king])
-        board.fill_square("g6",white_pieces[:queen])
-        expect(game_status.stalemate?(players[1])).to eq(true)
-      end
-    end
-
-  end
 end
