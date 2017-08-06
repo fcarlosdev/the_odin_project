@@ -23,7 +23,7 @@ class Pawn < Piece
   end
 
   def default_directions
-    Directions_New.norwesteast + Directions_New.soutwesteast
+    (color == :white) ? Directions_New.norwesteast : Directions_New.soutwesteast
   end
 
   def add_position_to(positions)
