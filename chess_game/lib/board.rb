@@ -26,7 +26,7 @@ class Board
   include Coordenates
   include Distance
 
-  attr_reader :squares, :rows, :columns, :movement_piece
+  attr_reader :squares, :rows, :columns
 
   def initialize
     @rows      = SIZE
@@ -70,63 +70,7 @@ class Board
     fill_square(at,nil)
   end
 
-  def movement_piece=(move)
-    @movement_piece = move
-  end
-
-  def check?(current_player)
-    king_under_attack?(get_king(opponent_color(current_player.color)))
-  end
-
-  def checkmate?(current_player)
-    king = get_king(opponent_color(current_player.color))
-    check?(current_player) && !has_escape?(king)
-  end
-
-  def has_escape?(king)
-    @movement_piece.valid_moves(king).all?{|move| attackers_moves(king).include?(move)}
-  end
-
-  def attackers_moves(attacked_piece)
-    attackers_of(attacked_piece).map{|attacker| attacker.possible_moves}
-  end
-
-  # def stalemate?(current_player)
-  #   attacker_pieces = select_pieces_of(current_player.color)
-  #   attacked_pieces = select_pieces_of(opponent_color_of(current_player.color))
-  #
-  #   if attacker_pieces.all?{|attacker| !check?(get_king(attacked_pieces[0].color),attacker)}
-  #     pieceMove = MovePiece.new(self)
-  #     return possible_moves(attacked_pieces).any?{|move| !possible_moves(attacker_pieces).include?(move)}
-  #   end
-  #   false
-  # end
-
   private
-
-  def king_under_attack?(king)
-    attackers_of(king).any?{|piece| reachable?(piece.position,king.position)}
-  end
-
-  def attackers_of(king)
-    select_pieces(opponent_color(king.color)).select {|piece| piece.possible_move?(king.position)}
-  end
-
-  def reachable?(from,to)
-    @movement_piece.free_way?(from,to)
-  end
-
-  def get_king(color)
-    filled_squares.select{|piece| piece.color == color && piece.type == :king}[0]
-  end
-
-  def opponent_color(current_color)
-    [:white,:black].find {|color| color != current_color}
-  end
-
-  def select_pieces(of_color)
-    filled_squares.select{|piece| piece.color == of_color}
-  end
 
   def draw_squares(bg_color)
     rows.times do |row|
