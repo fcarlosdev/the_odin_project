@@ -1,3 +1,6 @@
+require "./game.rb"
+require "./lib/player"
+
 system('clear')
 print %q{
   +=======================================================================+
@@ -19,3 +22,10 @@ print %q{
   3 - Exit
 }
 print "choose one option:"
+
+choice = gets.chomp
+
+if choice.to_i == 1
+  game = Game.new([Player.new("Player1",:white),Player.new("Player2",:black)])
+  game.play
+end
