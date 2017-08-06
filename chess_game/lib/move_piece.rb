@@ -25,8 +25,8 @@ class MovePiece
     @moves       = set_moves
   end
 
-  def move(piece,to)
-    moves[piece.type].move(piece,to)
+  def move(piece,to,simulation=false)
+    moves[piece.type].move(piece,to,simulation)
   end
 
   def free_way?(from,to)
@@ -46,7 +46,7 @@ class MovePiece
   end
 
   def valid_moves(piece)
-    piece.possible_moves.select{|move| board.empty_square?(move)}
+    piece.possible_moves.flatten.select{|move| board.empty_square?(move)}
   end
 
   private

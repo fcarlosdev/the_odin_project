@@ -8,14 +8,14 @@ class MoveKing < MovePiece
     @board = board
   end
 
-  def move(piece,to)
+  def move(piece,to,simulation=false)
 
     if piece.possible_move?(to)
       if (ordinary_move?(piece,to) && empty_place?(to)) || capture_move?(piece,to)
-        board.move_piece(piece,to)
+        board.move_piece(piece,to) if !simulation
         return true
       elsif castling_move?(piece,to)
-        board.move_piece(piece,to)
+        board.move_piece(piece,to) if !simulation
         return true
       end
     end
@@ -41,7 +41,7 @@ class MoveKing < MovePiece
         board.move_piece(piece,rook_to_position_next(to,piece))
         return true
       end
-      
+
     end
     false
   end

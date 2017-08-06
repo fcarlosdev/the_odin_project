@@ -6,9 +6,9 @@ class MoveKnight < MovePiece
     @board = board
   end
 
-  def move(piece,to)
+  def move(piece,to,simulation=false)
     if simple_move?(piece,to) || capture_move?(piece,to)
-      board.move_piece(piece,to)
+      board.move_piece(piece,to) if !simulation
       return true
     end
     false
@@ -27,9 +27,5 @@ class MoveKnight < MovePiece
   def valid_move?(piece,to)
     piece.possible_moves.include?(to)
   end
-
-  # def opponent_at?(place,piece)
-  #   board.value_from(place).color != piece.color
-  # end
 
 end

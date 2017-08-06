@@ -6,11 +6,11 @@ class MovePawn < MovePiece
     @board = board
   end
 
-  def move(piece,to)
+  def move(piece,to,simulation=false)
 
     if piece.possible_move?(to)
       if ordinary_move?(piece,to) || capture_move?(piece,to) || en_passant_move?(piece,to)
-        board.move_piece(piece,to)
+        board.move_piece(piece,to) if !simulation
         return true
       end
     end
@@ -31,7 +31,7 @@ class MovePawn < MovePiece
     if diagonal_move?(pawn.position,to) && empty_place?(to)
       enemy_at = side_position(pawn.position,to)
       enemy = value_from(enemy_at)
-      if enemy_type_pawn?(enemy) && opponent_from?(pawn,enemy.position) &&
+      if enemy != nil && enemy_type_pawn?(enemy) && opponent_from?(pawn,enemy.position) &&
          enemy_moved_two_positions?(enemy)
         board.clear_square(enemy_at)
         return true
