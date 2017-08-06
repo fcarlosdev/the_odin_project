@@ -5,7 +5,7 @@ describe "Pawn" do
 
   let(:board) {Board.new}
   let(:piece) { Pawn.new(:white,"b2") }
-  let(:moves){ ["a1", "a3", "b1", "b3", "c1", "c3", "b4"] }
+  let(:moves){ ["a3", "b3", "c3", "b4"] }
 
   describe '#new' do
     it "creates a new instance of Pawn class" do
