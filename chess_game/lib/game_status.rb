@@ -1,6 +1,6 @@
 class GameStatus
 
-  attr_reader :movement, :board
+  attr_reader :movement, :board, :player_pieces, :enemy_pieces
 
   def initialize(movement,board)
     @movement = movement
@@ -8,52 +8,44 @@ class GameStatus
   end
 
   def check?(player)
-    enemy_pieces_of(player).any?{|piece| piece.possible_moves.include?(get_piece(:king,player.color).position)}
+    king = king_piece(allies_pieces(player))
+    enemy_pieces(player).any?{|piece| piece.possible_moves.include?(king.position)}
   end
 
+  # How to Checkmate in Chess
+  # The purpose of the game is to checkmate the opponent's king. This happens when
+  # the king is put into check and cannot get out of check. There are only three
+  # ways a king can get out of check: move out of the way (though he cannot castle!),
+  # block the check with another piece, or capture the piece threatening the king.
+  # If a king cannot escape checkmate then the game is over. Customarily the king
+  # is not captured or removed from the board, the game is simply declared over.
   def checkmate?(player)
     if check?(player)
 
-      king = get_piece(:king,player.color)
-      player_pieces = get_pieces_of(player.color)
+      player_pieces = get_pieces(true,player.color)
 
-      attackers_king = enemy_pieces_of(player).select{|piece| piece.possible_moves.include?(king.position)}
-      attackers_moves = attackers_king.map{|attacker| movement.generate_path(attacker.position,king.position)}.flatten
+      king = get_piece(:king,player_pieces)
+      attackers_king = get_pieces(false,player.color).select{|piece| piece.possible_moves.include?(king.position)}
 
-      blockers = player_pieces.select{|piece| movement.valid_moves(piece).any?{|move| attackers_moves.include?(move)}}
+      # puts "King #{king.inspect}, Attackers #{attackers_king}"
 
-      blockers.each do |blocker|
+      #king can move out of the way?
+      result = movement.valid_moves(king).any?{|move| attackers_king.all?{|attacker| !attacker.possible_moves.include?(move)}}
+      # puts "Result #{result}"
 
-        movement.valid_moves(blocker).each do |mv|
+      # King can capture attacker
+      captured = movement.valid_moves(king).all?{|move| attackers_king.all?{|attacker| attacker.position == move}}
+      # puts "Captured #{captured}"
 
-          if attackers_moves.include?(mv)
-            movement.move(blocker,mv,true)
-
-            attackers_king.each do |attacker|
-
-              t_path = movement.generate_path(attacker.position,king.position)
-              if !t_path.nil?
-
-                path = t_path - [attacker.position]
-
-                if attacker.position > path[0]
-                  path = path.reverse
-                end
-
-                tmp_attacker = attacker
-                path.each do |pmv|
-                  if !movement.move(attacker,pmv,true)
-                    puts "Can't move"
-                    return false
-                  end
-                end
-
-              end
-
-            end
-
+      #Can block attacker with another piece
+      (player_pieces - [king]).each do |piece|
+        movement.valid_moves(piece).each do |move|
+          movement.move(piece,move,true)
+          attackers_king.each do |attacker|
+            tmp_path = movement.generate_path(attacker.position,king.position) - [attacker.position]
+            path = (attacker.position > tmp_path[0]) ? tmp_path.reverse : tmp_path
+            return false if path.any?{|position| !movement.move(attacker,position,true)}
           end
-
         end
 
       end
@@ -67,20 +59,28 @@ class GameStatus
 
   private
 
-  def get_piece(type,color)
-    board.filled_squares.select{|piece| piece.type == type && piece.color == color}[0]
+  def allies_pieces(player)
+    get_pieces(true,player.color)
   end
 
-  def enemy_pieces_of(player)
-    get_pieces_of(get_different_color_of(player))
+  def enemy_pieces(player)
+    get_pieces(false,player.color)
   end
 
-  def get_pieces_of(color)
-    board.filled_squares.select{|piece| piece.color == color}
+  def king_piece(player_pieces)
+    get_piece(:king,player_pieces)
   end
 
-  def get_different_color_of(player)
-    (player.color == :white) ? :black : :white
+  def get_pieces(same_color_of,color)
+    all_pieces.select {|piece| (same_color_of) ? piece.color == color : piece.color != color}
+  end
+
+  def get_piece(type,from_pieces)
+    from_pieces.find{|piece| piece.type == type}
+  end
+
+  def all_pieces
+    board.filled_squares
   end
 
 end
