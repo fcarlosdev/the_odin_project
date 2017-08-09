@@ -61,13 +61,24 @@ describe 'GameStatus' do
 
   describe '#checkmate?' do
 
-    context "when a player is in check and has no legal escape move of check" do
+    context "when a player is in check and has no legal escape move" do
       it "returns true" do
         board.move_piece(board.value_from("f2"),"f3")
         board.move_piece(board.value_from("g2"),"g4")
         board.move_piece(board.value_from("f7"),"f5")
         board.move_piece(board.value_from("d8"),"h4")
         expect(game_status.checkmate?(players[0])).to eq(true)
+      end
+    end
+
+    context "when a player is in check and has a legal escape move" do
+      it "returns false" do
+        board.move_piece(board.value_from("f2"),"f3")
+        board.move_piece(board.value_from("g2"),"g4")
+        board.move_piece(board.value_from("f7"),"f5")
+        board.move_piece(board.value_from("e2"),"e3")
+        board.move_piece(board.value_from("d8"),"h4")
+        expect(game_status.checkmate?(players[0])).to eq(false)
       end
     end
 
