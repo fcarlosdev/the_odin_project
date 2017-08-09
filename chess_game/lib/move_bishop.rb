@@ -6,10 +6,10 @@ class MoveBishop < MovePiece
     @board = board
   end
 
-  def move(piece,to,simulation=false)
+  def move(piece,to)
     if piece.possible_move?(to) && free_way?(piece.position,to)
       if empty_place?(to) || opponent_from?(piece,to)
-        board.move_piece(piece,to) if !simulation
+        board.move_piece(piece,to) 
         return true
       end
     end

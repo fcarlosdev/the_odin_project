@@ -25,8 +25,8 @@ class MovePiece
     @moves       = set_moves
   end
 
-  def move(piece,to,simulation=false)
-    moves[piece.type].move(piece,to,simulation)
+  def move(piece,to)
+    moves[piece.type].move(piece,to)
   end
 
   def free_way?(from,to)

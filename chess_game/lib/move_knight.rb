@@ -6,9 +6,9 @@ class MoveKnight < MovePiece
     @board = board
   end
 
-  def move(piece,to,simulation=false)
+  def move(piece,to)
     if simple_move?(piece,to) || capture_move?(piece,to)
-      board.move_piece(piece,to) if !simulation
+      board.move_piece(piece,to) 
       return true
     end
     false
