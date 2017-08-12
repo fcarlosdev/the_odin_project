@@ -66,7 +66,7 @@ class MoveKing < MovePiece
   end
 
   def move_by(piece,to)
-    calc_distance(piece.position,to)
+    calc_distance(piece.position,to).abs
   end
 
 end

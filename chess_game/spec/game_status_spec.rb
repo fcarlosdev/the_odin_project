@@ -39,11 +39,11 @@ describe 'GameStatus' do
     end
   end
 
-  # describe '#new' do
-  #   it "creates a new instance of GameStatus class" do
-  #     expect(GameStatus.new(movement,board)).to be_instance_of(GameStatus)
-  #   end
-  # end
+  describe '#new' do
+    it "creates a new instance of GameStatus class" do
+      expect(GameStatus.new(movement,board)).to be_instance_of(GameStatus)
+    end
+  end
 
   describe '#check?' do
     it "returns true when there is a king piece in check" do

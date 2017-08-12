@@ -58,6 +58,10 @@ class Piece
     calc_distance(from,to).abs
   end
 
+  def moves=(number)
+    @moves = number
+  end
+
   private
 
   def piece_icon(type,color)

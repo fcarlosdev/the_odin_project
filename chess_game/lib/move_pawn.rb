@@ -10,7 +10,7 @@ class MovePawn < MovePiece
 
     if piece.possible_move?(to)
       if ordinary_move?(piece,to) || capture_move?(piece,to) || en_passant_move?(piece,to)
-        board.move_piece(piece,to) 
+        board.move_piece(piece,to)
         return true
       end
     end

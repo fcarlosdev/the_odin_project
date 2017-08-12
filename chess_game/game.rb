@@ -5,33 +5,25 @@ require './lib/game_status'
 class Game
 
   attr_reader :players, :current_player, :board, :move_piece,
-              :game_status, :status
+              :game_status, :status, :enemy_player
 
   def initialize(players)
-    @players = players
-    @board   = Board.new
-    @move_piece = MovePiece.new(board)
+    @players        = players
+    @board          = Board.new
+    @status         = :continue
+    @move_piece     = MovePiece.new(board)
+    @game_status    = GameStatus.new(move_piece,board)
     @current_player ||= players[0]
-    @game_status = GameStatus.new(move_piece,board)
-    @status = :continue
+    @enemy_player   ||= players[1]
   end
 
   def play
     loop do
       take_turn
       break if game_over?
-      # check?
       switch_player
     end
-
-    puts "Status = #{status}"
-    if status == :checkmate
-      puts "The #{current_player.name} won the game"
-    end
-    if status == :draw
-      puts "It's a draw"
-    end
-
+    end_of_game_actions
   end
 
   private
@@ -43,10 +35,9 @@ class Game
   end
 
   def game_over?
-    # @status = :checkmate if game_status.checkmate?(enemy_player)
-    # @status = :draw if game_status.stalemate?(enemy_player)
-    # @status != :continue
-    :continue
+    @status = :checkmate if game_status.checkmate?(enemy_player)
+    @status = :draw if game_status.stalemate?(enemy_player)
+    @status != :continue
   end
 
   def move
@@ -54,12 +45,19 @@ class Game
     from = gets.chomp
     print "Move #{board.value_from(from).type} to: "
     to = gets.chomp
+    piece = board.value_from(from)
     @move_piece.move(board.value_from(from),to)
   end
 
-  def check?
-    if game_status.check?(enemy_player)
-      puts "The #{enemy_player.name} is in check"
+  def end_of_game_actions
+    clear_screen
+    display_board
+    puts "Status = #{status}"
+    if status == :checkmate
+      puts "The #{current_player.name} won the game"
+    end
+    if status == :draw
+      puts "It's a draw"
     end
   end
 
@@ -75,19 +73,13 @@ class Game
     current_player.take_turn
   end
 
-  def enemy_player
-    get_player_different_current_player
-  end
-
   def switch_player
-    @current_player = get_player_different_current_player
+    @current_player = players.find { |player| player != current_player }
+    set_enemy_player
   end
 
-  def get_player_different_current_player
-    players.find {|player| player != current_player}
+  def set_enemy_player
+    @enemy_player = (current_player == players[0]) ? players[1] : players[0]
   end
-
-
-
 
 end
