@@ -12,10 +12,10 @@ class MoveKing < MovePiece
 
     if piece.possible_move?(to)
       if (ordinary_move?(piece,to) && empty_place?(to)) || capture_move?(piece,to)
-        board.move_piece(piece,to) 
+        board.move_piece(piece,to)
         return true
       elsif castling_move?(piece,to)
-        board.move_piece(piece,to) 
+        board.move_piece(piece,to)
         return true
       end
     end
@@ -35,7 +35,7 @@ class MoveKing < MovePiece
   def castling_move?(king,to)
     if side_move?(king.position,to) && king.first_move? &&
         moved_by_two(king,to) && free_way?(king.position,to)
-
+      return false if castling_move_over_attacked_position?(king,to)
       piece = board.value_from(rook_position_next(to))
       if piece != nil && piece.first_move?
         board.move_piece(piece,rook_to_position_next(to,piece))
@@ -44,6 +44,13 @@ class MoveKing < MovePiece
 
     end
     false
+  end
+
+  def castling_move_over_attacked_position?(king,to)
+    enemies = board.filled_squares.select{|piece| piece.color != king.color}
+    castling_path = generate_path(king.position,to) - [king.position]
+    attackers = enemies.select{|enemy| enemy.possible_moves.any?{|mv| castling_path.include?(mv)}}
+    attackers.any?{|attacker| castling_path.any?{|ps| free_way?(attacker.position,ps)}}
   end
 
   def rook_position_next(to)

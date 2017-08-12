@@ -5,10 +5,9 @@ class Player
   def initialize(name,color)
     @name = name
     @color = color
-    @on_check = false
   end
 
-  def take_turn    
+  def take_turn
     mount_message("from")
     from = gets.chomp
     mount_message("to")

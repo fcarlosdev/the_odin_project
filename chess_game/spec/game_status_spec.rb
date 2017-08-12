@@ -39,11 +39,11 @@ describe 'GameStatus' do
     end
   end
 
-  describe '#new' do
-    it "creates a new instance of GameStatus class" do
-      expect(GameStatus.new(movement,board)).to be_instance_of(GameStatus)
-    end
-  end
+  # describe '#new' do
+  #   it "creates a new instance of GameStatus class" do
+  #     expect(GameStatus.new(movement,board)).to be_instance_of(GameStatus)
+  #   end
+  # end
 
   describe '#check?' do
     it "returns true when there is a king piece in check" do
@@ -55,6 +55,13 @@ describe 'GameStatus' do
     end
 
     it "returns false when there is no king piece in check" do
+      clear_board
+      white_pieces[:pawn].position = "e2"
+      black_pieces[:queen].position = "e4"
+
+      board.fill_square("e1",white_pieces[:king])
+      board.fill_square("e2",white_pieces[:pawn])
+      board.fill_square("e4",black_pieces[:queen])
       expect(game_status.check?(players[0])).to eq(false)
     end
   end
@@ -79,6 +86,40 @@ describe 'GameStatus' do
         board.move_piece(board.value_from("e2"),"e3")
         board.move_piece(board.value_from("d8"),"h4")
         expect(game_status.checkmate?(players[0])).to eq(false)
+      end
+    end
+
+  end
+
+  describe '#stalemate' do
+
+    context "when a palyer is no in check but has no legal escape move" do
+      it "indicates that a stalemate situation occurred" do
+        clear_board
+        black_pieces[:king].position = "h8"
+        white_pieces[:king].position = "f7"
+        white_pieces[:queen].position = "g6"
+
+        board.fill_square("h8",black_pieces[:king])
+        board.fill_square("f7",white_pieces[:king])
+        board.fill_square("g6",white_pieces[:queen])
+
+        expect(game_status.stalemate?(players[1])).to eq(true)
+      end
+    end
+
+    context "when a palyer is no in check but has a legal escape move" do
+      it "doesn't indicates that a stalemate situation occurred" do
+        clear_board
+        black_pieces[:king].position = "e8"
+        white_pieces[:king].position = "f7"
+        white_pieces[:queen].position = "g6"
+
+        board.fill_square("e8",black_pieces[:king])
+        board.fill_square("f7",white_pieces[:king])
+        board.fill_square("g6",white_pieces[:queen])
+
+        expect(game_status.stalemate?(players[1])).to eq(false)
       end
     end
 

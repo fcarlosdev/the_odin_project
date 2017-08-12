@@ -1,5 +1,6 @@
 require "./lib/move_king"
 require "./lib/board"
+require "./lib/queen"
 
 describe "MoveKing" do
 
@@ -7,9 +8,9 @@ describe "MoveKing" do
   let(:move_king) {MoveKing.new(board)}
   let(:positions) {
     {b1: "b1", c1: "c1", d1: "d1", d2: "d2", d4: "d4",
-     d5: "d5", d8: "d8", e1: "e1", e2: "e2", e3: "e3",
-     f1: "f1", f2: "f2", g1: "g1", g3: "g3", g4: "g4",
-     h1: "h1", h4: "h4"}}
+     d5: "d5", d7: "d7", d8: "d8", e1: "e1", e2: "e2",
+     e3: "e3", f1: "f1", f2: "f2", g1: "g1", g3: "g3",
+     g4: "g4", h1: "h1", h4: "h4"}}
 
   let(:pieces) {
     {white_king: King.new(:white,positions[:e1]),
@@ -17,6 +18,14 @@ describe "MoveKing" do
      black_king: King.new(:black,positions[:e8]),
      white_rook: Rook.new(:white,positions[:h1])}
   }
+
+  def clear_board
+    board.squares.each do |square|
+      square.each do |value|
+        board.fill_square(value.position,nil) if !value.nil?
+      end
+    end
+  end
 
   describe '#new' do
     it "creates a new instance of MoveKing class" do
@@ -139,6 +148,28 @@ describe "MoveKing" do
         expect(board.value_from("d1")).to eq(pieces[:white_rook])
       end
     end
+
+    context "when is a castling move passing through a check position" do
+      it "doesn't make the castling move" do
+        board.clear_square(positions[:d1])
+        board.clear_square(positions[:c1])
+        board.clear_square(positions[:d7])
+        board.clear_square(positions[:d2])
+        board.fill_square("a1",pieces[:white_rook])
+        pieces[:white_rook].position = "a1"
+        expect(move_king.move(pieces[:white_king],"c1")).to eq(false)
+      end
+    end
+
+    # context "when stamemate" do
+    #   it "not move" do
+    #     clear_board
+    #     board.fill_square("h8",King.new(:black,"h8"))
+    #     board.fill_square("f7",King.new(:white,"f7"))
+    #     board.fill_square("g6",Queen.new(:white,"g6"))
+    #     expect(move_king.move(board.value_from("h8"),"f8")).to eq(false)
+    #   end
+    # end
 
   end
 

@@ -1,5 +1,4 @@
 require "./lib/piece"
-require "./lib/directions_new"
 
 class King < Piece
 
