@@ -18,8 +18,9 @@ print %q{
   | "2" indicates the rank/line where pawn is actually positioned.        |
   +=======================================================================+
   1 - New game
-  2 - Load a game
-  3 - Exit
+  2 - Save game
+  3 - Load a game
+  4 - Exit
 }
 print "choose one option:"
 

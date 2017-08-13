@@ -29,39 +29,33 @@ class GameStatus
 
   def no_valid_move?(player)
     allies.each do |ally|
-      initial = ally.position
-      movement.valid_moves(ally).each do |move|
-        if !movement.generate_path(initial,move).empty?
-          enemy_piece = board.value_from(move)
-          movement.move(ally,move)
-          if !check?(player)
-            board.fill_square(initial,ally)
-            ally.position = initial
-            ally.moves = 0
-            board.fill_square(move,enemy_piece)
+      initial_place = ally.position
+      movement.valid_moves(ally).each do |place|
+        if !movement.generate_path(initial_place,place).empty?
+          ally, enemy, moved = simulate_move(ally,place)
+          if moved && !check?(player)
+            undo_move(ally,initial_place,enemy,place)
             return false
           end
-          board.fill_square(initial,ally)
-          ally.position = initial
-          ally.moves = 0
-          board.fill_square(move,enemy_piece)
+          undo_move(ally,initial_place,enemy,place)
         end
       end
     end
     true
   end
 
-  # def simulate_move(piece,to)
-  #   captured_piece = board.value_from(to)
-  #   original_piece = save_piece(piece)
-  #   [original_piece,captured_piece,movement.move(piece,to)]
-  # end
-  #
-  # def undo_move(piece,opponent,to)
-  #   board.fill_square(piece.old_position,piece)
-  #   board.clear_square(to)
-  #   board.fill_square(to,opponent)
-  # end
+  def simulate_move(piece,to)
+    piece_at = board.value_from(to)
+    moved = movement.move(piece,to)
+    [piece,piece_at,moved]
+  end
+
+  def undo_move(piece,initial_place, enemy,at)
+    board.fill_square(initial_place,piece)
+    piece.position = initial_place
+    piece.moves = 0
+    board.fill_square(at,enemy)
+  end
 
   def get_attackers_of(piece)
     enemies.select{|attacker| attacker.possible_moves.include?(piece.position)}

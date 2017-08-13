@@ -19,7 +19,7 @@ class Game
 
   def play
     loop do
-      take_turn
+      break if !take_turn
       break if game_over?
       switch_player
     end
@@ -31,33 +31,75 @@ class Game
   def take_turn
     clear_screen
     display_board
+    verify_check
     move
   end
 
   def game_over?
     @status = :checkmate if game_status.checkmate?(enemy_player)
     @status = :draw if game_status.stalemate?(enemy_player)
-    @status != :continue
+    [:checkmate,:draw].include?(@status)
+  end
+
+  def verify_check
+    if game_status.check?(current_player)
+      puts "WARNING: The #{current_player.name} #{current_player.color} is in check"
+    end
   end
 
   def move
-    print "Move the piece at: "
-    from = gets.chomp
-    print "Move #{board.value_from(from).type} to: "
-    to = gets.chomp
-    piece = board.value_from(from)
-    @move_piece.move(board.value_from(from),to)
+    puts "To end the game enter 'exit' or 'save'."
+    puts "Its your turn #{current_player.name}, your pieces are (#{current_player.color}) pieces."
+    valid_enter = false
+    while !valid_enter do
+      from = enter_move("Move the piece at: ")
+      break if stop_game?(from)
+      if valid_enter?(from)
+        piece = board.value_from(from)
+        to = enter_move("Move #{piece.type} to: ")
+        break if stop_game?(to)
+        return @move_piece.move(piece,to) if valid_enter?(to)
+      end
+    end
+    false
+  end
+
+  def enter_move(message)
+    print message
+    gets.chomp
+  end
+
+  def valid_enter?(value)
+    if !("a".."h").include?(value[0]) || !(1..8).include?(value[1].to_i)
+     puts "ERROR Invalid enter! Try again."
+     return false
+    end
+    true
+  end
+
+  def stop_game?(action)
+    message = {exit: "Existing from the game...",
+               save: "Saving the the game..."}
+    action_executed = ["exit","save"].include?(action)
+    if action_executed
+      puts message[action.to_sym]
+      sleep(2)
+    end
+    action_executed
   end
 
   def end_of_game_actions
     clear_screen
     display_board
-    puts "Status = #{status}"
+    display_messages
+  end
+
+  def display_messages
     if status == :checkmate
-      puts "The #{current_player.name} won the game"
-    end
-    if status == :draw
-      puts "It's a draw"
+      p "The #{current_player.name} make a checkmate move, end of the game"
+    elsif status == :draw
+      puts "Draw"
+      p "It's a draw"
     end
   end
 
