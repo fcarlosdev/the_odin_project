@@ -68,7 +68,6 @@ class Hangman
       saved_game.play_game
       return true
     else
-      # puts "No game found."
       return false
     end
   end
