@@ -5,7 +5,7 @@ require "queen"
 require "knight"
 require "king"
 require "board"
-require "directions_new"
+require "Directions"
 
 describe "Piece" do
 
@@ -29,14 +29,14 @@ describe "Piece" do
   }
 
   let(:directions) {
-    {north: Directions_New.north,    south: Directions_New.south,
-     west:  Directions_New.west,      east: Directions_New.east,
-       ne:  Directions_New.northeast,   sw: Directions_New.southwest,
-       se:  Directions_New.southeast,   nw: Directions_New.northwest,
-       nne: Directions_New.nne,        ene: Directions_New.ene,
-       ese: Directions_New.ese,        sse: Directions_New.sse,
-       ssw: Directions_New.ssw,        wsw: Directions_New.wsw,
-       wnw: Directions_New.wnw,        nnw: Directions_New.nnw}
+    {north: Directions.north,    south: Directions.south,
+     west:  Directions.west,      east: Directions.east,
+       ne:  Directions.northeast,   sw: Directions.southwest,
+       se:  Directions.southeast,   nw: Directions.northwest,
+       nne: Directions.nne,        ene: Directions.ene,
+       ese: Directions.ese,        sse: Directions.sse,
+       ssw: Directions.ssw,        wsw: Directions.wsw,
+       wnw: Directions.wnw,        nnw: Directions.nnw}
   }
 
   describe '#new' do

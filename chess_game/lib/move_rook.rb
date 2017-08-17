@@ -1,5 +1,3 @@
-require "./lib/move_piece"
-
 class MoveRook < MovePiece
 
   def initialize(board)
@@ -9,7 +7,7 @@ class MoveRook < MovePiece
   def move(piece,to)
     if piece.possible_move?(to) && free_way?(piece.position,to)
       if (ordinary_move?(piece,to) && empty_place?(to)) || capture_move?(piece,to)
-        board.move_piece(piece,to) 
+        board.move_piece(piece,to)
         return true
       end
     end

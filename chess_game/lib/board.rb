@@ -1,30 +1,7 @@
-require "colorize"
-require "./lib/piece"
-require "./lib/pawn"
-require "./lib/rook"
-require "./lib/bishop"
-require "./lib/queen"
-require "./lib/knight"
-require "./lib/king"
-require "./lib/move_pawn"
-require "./lib/move_rook"
-require "./lib/move_bishop"
-require "./lib/move_knight"
-require "./lib/move_queen"
-require "./lib/move_king"
-require "./lib/move_piece"
-require_relative "modules/mapper"
-require_relative "modules/coordenates"
-require_relative "modules/distance"
-
 class Board
 
   EMPTY_STRING = ""
   SIZE = 8
-
-  include Mapper
-  include Coordenates
-  include Distance
 
   attr_reader :squares, :rows, :columns
 

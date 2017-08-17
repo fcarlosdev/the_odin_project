@@ -1,5 +1,3 @@
-require "./lib/move_piece"
-
 class MoveKnight < MovePiece
 
   def initialize(board)
@@ -8,7 +6,7 @@ class MoveKnight < MovePiece
 
   def move(piece,to)
     if simple_move?(piece,to) || capture_move?(piece,to)
-      board.move_piece(piece,to) 
+      board.move_piece(piece,to)
       return true
     end
     false

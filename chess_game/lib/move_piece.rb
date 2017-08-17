@@ -1,14 +1,4 @@
-require_relative "modules/mapper"
-require_relative "modules/coordenates"
-require_relative "modules/distance"
-require_relative "directions_new"
-
-
 class MovePiece
-
-  include Mapper
-  include Coordenates
-  include Distance
 
   attr_reader :move_pawn, :move_king,   :move_rook,
               :move_queen,:move_bishop, :move_knight,

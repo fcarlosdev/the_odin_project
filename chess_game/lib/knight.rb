@@ -1,5 +1,3 @@
-require "./lib/piece"
-
 class Knight < Piece
 
   def initialize(color,position)
@@ -7,7 +5,7 @@ class Knight < Piece
   end
 
   def possible_moves
-    generate_moves(position,Directions_New.secondary,1).flatten.sort
+    generate_moves(position,Directions.secondary,1).flatten.sort
   end
 
   def possible_move?(to)

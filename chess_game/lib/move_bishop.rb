@@ -1,5 +1,3 @@
-require "./lib/move_piece"
-
 class MoveBishop < MovePiece
 
   def initialize(board)
@@ -9,7 +7,7 @@ class MoveBishop < MovePiece
   def move(piece,to)
     if piece.possible_move?(to) && free_way?(piece.position,to)
       if empty_place?(to) || opponent_from?(piece,to)
-        board.move_piece(piece,to) 
+        board.move_piece(piece,to)
         return true
       end
     end

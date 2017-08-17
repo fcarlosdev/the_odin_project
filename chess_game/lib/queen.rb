@@ -7,7 +7,7 @@ class Queen < Piece
   end
 
   def possible_moves
-    moves = generate_moves(position,Directions_New.cardinal_and_ordinal,7)
+    moves = generate_moves(position,Directions.cardinal_and_ordinal,7)
     remove_invalid_moves(moves.flatten.sort)
   end
 

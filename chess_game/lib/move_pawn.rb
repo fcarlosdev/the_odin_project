@@ -1,5 +1,3 @@
-require "./lib/move_piece"
-
 class MovePawn < MovePiece
 
   def initialize(board)

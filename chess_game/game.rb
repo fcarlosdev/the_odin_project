@@ -1,7 +1,3 @@
-require './lib/board.rb'
-require './lib/move_piece'
-require './lib/game_status'
-
 class Game
 
   attr_reader :players, :current_player, :board, :move_piece,
@@ -10,7 +6,7 @@ class Game
   def initialize(players)
     @players        = players
     @board          = Board.new
-    @status         = :continue
+    @status         = :gamming
     @move_piece     = MovePiece.new(board)
     @game_status    = GameStatus.new(move_piece,board)
     @current_player ||= players[0]
@@ -19,11 +15,15 @@ class Game
 
   def play
     loop do
-      break if !take_turn
+      moved = take_turn
       break if game_over?
-      switch_player
+      switch_player if moved
     end
     end_of_game_actions
+  end
+
+  def change_status(status)
+    @status = status
   end
 
   private
@@ -32,13 +32,13 @@ class Game
     clear_screen
     display_board
     verify_check
-    move
+    current_player_make_move
   end
 
   def game_over?
     @status = :checkmate if game_status.checkmate?(enemy_player)
     @status = :draw if game_status.stalemate?(enemy_player)
-    [:checkmate,:draw].include?(@status)
+    [:checkmate,:draw,:exit,:save].include?(@status)
   end
 
   def verify_check
@@ -47,51 +47,57 @@ class Game
     end
   end
 
-  def move
-    puts "To end the game enter 'exit' or 'save'."
+  def current_player_make_move
+    puts "Enter exit/save to respectively end or save the game."
     puts "Its your turn #{current_player.name}, your pieces are (#{current_player.color}) pieces."
-    valid_enter = false
-    while !valid_enter do
-      from = enter_move("Move the piece at: ")
-      break if stop_game?(from)
-      if valid_enter?(from)
-        piece = board.value_from(from)
-        to = enter_move("Move #{piece.type} to: ")
-        break if stop_game?(to)
-        return @move_piece.move(piece,to) if valid_enter?(to)
+    move = current_player.make_move
+    if move == "exit"
+      @status = :exit
+      print "Save the game?(s/n): "
+      save_game if gets.chomp.eql?("s")
+      return false
+    elsif move == "save"
+      save_game
+      return false
+    else
+      positions = move.split(",")
+      if valid_enter?(positions)
+        piece = board.value_from(positions[0])
+        return @move_piece.move(piece,positions[1])
+      else
+        puts "ERROR Invalid enter! Try again."
+        sleep(1)
+        return false
       end
     end
-    false
   end
 
-  def enter_move(message)
-    print message
-    gets.chomp
-  end
-
-  def valid_enter?(value)
-    if !("a".."h").include?(value[0]) || !(1..8).include?(value[1].to_i)
-     puts "ERROR Invalid enter! Try again."
-     return false
-    end
+  def valid_enter?(values)
+    return false if values.length != 2
+    return false if values.any?{|value| value[0].length > 1 || value[1].length > 1}
+    return false if values.any?{|value| !("a".."h").include?(value[0]) || !(1..8).include?(value[1].to_i) }
     true
   end
 
-  def stop_game?(action)
-    message = {exit: "Existing from the game...",
-               save: "Saving the the game..."}
-    action_executed = ["exit","save"].include?(action)
-    if action_executed
-      puts message[action.to_sym]
-      sleep(2)
+  def end_of_game_actions
+    if [:checkmate, :draw, :exit].include?(status)
+      if status != :exit
+        clear_screen
+        display_board
+      end
+      display_messages
     end
-    action_executed
   end
 
-  def end_of_game_actions
-    clear_screen
-    display_board
-    display_messages
+  def save_game
+    puts "Saving game wait..."
+    sleep(1)
+    game_serialized = YAML::dump(self)
+    game_file = File.new("chess_game.yaml","w+")
+    game_file.write(game_serialized)
+    game_file.flush
+    puts "Game saved."
+    sleep(1)
   end
 
   def display_messages
@@ -100,6 +106,8 @@ class Game
     elsif status == :draw
       puts "Draw"
       p "It's a draw"
+    elsif status == :exit
+      p "Game finalized."
     end
   end
 
@@ -109,10 +117,6 @@ class Game
 
   def display_board
     board.draw_board
-  end
-
-  def current_player_take_turn
-    current_player.take_turn
   end
 
   def switch_player

@@ -1,71 +1,93 @@
-module Directions
+class Directions
 
-  DIRECTIONS = {
-    NORTH: [-1, 0], NE:   [-1, 1], EAST: [0,  1],  SE:  [1, 1], SOUTH: [1,  0],
-    SW:    [1, -1], WEST: [0, -1], NW:   [-1, -1], NNW: [1,-2], NNE:   [-1,-2],
-    ENE:   [-2,-1], ESE:  [-2, 1], SSE:  [-1,  2], SSW: [1, 2], WSW:   [ 2, 1],
-    WNW:   [ 2,-1]
-  }
+  @@north     = [-1 , 0]
+  @@south     = [ 1 , 0]
+  @@west      = [ 0 ,-1]
+  @@east      = [ 0 , 1]
+  @@northeast = [-1 , 1]
+  @@southeast = [ 1 , 1]
+  @@southwest = [ 1 ,-1]
+  @@northwest = [-1 ,-1]
+  @@nne       = [-2 , 1]
+  @@ene       = [-1 , 2]
+  @@ese       = [ 1,  2]
+  @@sse       = [ 2,  1]
+  @@ssw       = [ 2, -1]
+  @@wsw       = [ 1, -2]
+  @@wnw       = [-1, -2]
+  @@nnw       = [-2, -1]
 
-  def all
-    [:NORTH, :NE, :EAST, :SE, :SOUTH, :SW, :WEST, :NW, :NNW, :NNE, :ENE,
-     :ESE, :SSE, :SSW, :WSW, :WNW]
+  def self.generate_coordinates(from,max,axis)
+    remove_invalid((1..max).map{|i| [(i*axis[0])+from[0], (i*axis[1])+from[1]]})
   end
 
-  def cardinal
-    [:NORTH, :EAST, :SOUTH, :WEST]
+  def self.all_directions
+    [@@north,     @@south,     @@west,      @@east,
+     @@northeast, @@southeast, @@southwest, @@northwest]
   end
 
-  def intercardinal
-    [:NE, :SE, :SW, :NW]
+  def self.cardinal
+    [@@north, @@south, @@west, @@east]
   end
 
-  def secondary
-    [:NNW, :NNE, :ENE, :ESE, :SSE, :SSW, :WSW, :WNW]
+  def self.north_south
+    cardinal[0..1]
   end
 
-  def cardinal_and_ordinal
-    cardinal + intercardinal
+  def self.east_west
+    cardinal[2..3]
   end
 
-  def north_south
-    [:NORTH, :SOUTH]
+  def self.secondary
+   [@@nne, @@nnw, @@ene, @@ese, @@sse, @@ssw, @@wsw, @@wnw]
   end
 
-  def get_coordinates_from(directions)
-    directions.collect {|c| DIRECTIONS[c]}
+  def self.intercardinal
+    [@@northeast, @@northwest, @@southeast, @@southwest]
   end
 
-  def get_north_coordinates(from_rank)
-    from_rank.downto(1).map {|rank| [rank * DIRECTIONS[:NORTH][0],DIRECTIONS[:NORTH][1]]}
+  def self.cardinal_and_ordinal
+   cardinal + intercardinal
   end
 
-  def get_south_coordinates(from_rank)
-    (1..(7-from_rank)).map {|rank| [rank * DIRECTIONS[:SOUTH][0],DIRECTIONS[:SOUTH][1]]}
+  def self.norwesteast
+    [choose(:north)] + intercardinal[0..1]
   end
 
-  def get_east_coordinates(from_file)
-    (0..(7-from_file)).map {|file| [DIRECTIONS[:EAST][0], file * DIRECTIONS[:EAST][1]]}
+  def self.soutwesteast
+    [choose(:south)] + intercardinal[2..3]
   end
 
-  def get_west_coordinates(from_file)
-    from_file.downto(1).map {|file| [DIRECTIONS[:WEST][0], file * DIRECTIONS[:WEST][1]]}
+  def self.all_diagonals
+    [@@southwest,@@northeast,@@northwest,@@southeast]
   end
 
-  def get_northwest_coordinates(from_file)
-    (0..from_file-1).map {|i| [DIRECTIONS[:NW][0]-i, DIRECTIONS[:NW][1]-i]}
+  def self.main_diagonal
+    [@@southwest,@@northeast]
   end
 
-  def get_southeast_coordinates(from_rank)
-    (0..(6-from_rank)).map {|i| [DIRECTIONS[:SE][0]+i, DIRECTIONS[:SE][1]+i]}
+  def self.secondary_diagonal
+    [@@northwest,@@southeast]
   end
 
-  def get_southwest_coordinates(from_file)
-    (from_file -1).downto(0).map {|i| [DIRECTIONS[:SW][0]+i, DIRECTIONS[:SW][1]-i]}
+  def self.choose(direction)
+    {north:     @@north,     south:     @@south,     west:      @@west,
+     east:      @@east,      northeast: @@northeast, southeast: @@southeast,
+     southwest: @@southwest, northwest: @@northwest, nne:       @@nne,
+     ene:       @@ene,       ese:       @@ese,       sse:       @@sse,
+     ssw:       @@ssw,       wsw:       @@wsw,       wnw:       @@wnw,
+     nnw:       @@nnw}[direction]
   end
 
-  def get_northeast_coordinates(from_rank)
-    (0..from_rank-1).map {|i| [DIRECTIONS[:NE][0]-i, DIRECTIONS[:NE][1]+i]}
+  private
+
+  def self.remove_invalid(coordinates)
+    coordinates.select{|c| inside_limits?(c[0]) && inside_limits?(c[1])}
   end
+
+  def self.inside_limits?(value)
+    (0..7).include?(value)
+  end
+
 
 end

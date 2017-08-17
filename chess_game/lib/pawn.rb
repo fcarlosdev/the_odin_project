@@ -1,6 +1,3 @@
-require "./lib/piece"
-require "./lib/directions_new"
-
 class Pawn < Piece
 
   def initialize(color,position)
@@ -23,7 +20,7 @@ class Pawn < Piece
   end
 
   def default_directions
-    (color == :white) ? Directions_New.norwesteast : Directions_New.soutwesteast
+    (color == :white) ? Directions.norwesteast : Directions.soutwesteast
   end
 
   def add_position_to(positions)

@@ -1,5 +1,3 @@
-require "./lib/piece"
-
 class King < Piece
 
   def initialize(color,position)
@@ -28,11 +26,11 @@ class King < Piece
   end
 
   def default_directions
-    Directions_New.cardinal_and_ordinal
+    Directions.cardinal_and_ordinal
   end
 
   def side_directions
-    [Directions_New.choose(:east),Directions_New.choose(:west)]
+    [Directions.choose(:east),Directions.choose(:west)]
   end
 
 end

@@ -1,15 +1,4 @@
-require_relative "modules/mapper"
-require_relative "modules/coordenates"
-require_relative "modules/distance"
-require "./lib/directions_new"
-require "./lib/modules/directions"
-
 class Piece
-
-  include Mapper
-  include Coordenates
-  include Distance
-  include Directions
 
   PIECES_IMAGES = { white: { king:   "\u2654", queen:  "\u2655", rook: "\u2656",
                              bishop: "\u2657", knight: "\u2658", pawn: "\u2659" },

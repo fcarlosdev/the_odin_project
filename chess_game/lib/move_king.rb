@@ -1,5 +1,3 @@
-require "./lib/move_piece"
-
 class MoveKing < MovePiece
 
   attr_reader :board
