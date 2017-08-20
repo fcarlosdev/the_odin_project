@@ -40,36 +40,4 @@ describe "Pawn" do
     end
   end
 
-  describe '#move' do
-
-    context "when is a valid forward move" do
-      it "moves to the new position" do
-        expect(piece.move("b3",board)).to eq(true)
-        expect(piece.position).to eq("b3")
-      end
-    end
-
-    context "when is a valid capture move" do
-      it "allows the pawn piece to capture the enemy piece" do
-        board.fill_square("c3",black_pieces[:pawn])
-        expect(piece.move("c3",board)).to eq(true)
-        expect(board.value_from("c3")).to eq(piece)
-      end
-    end
-
-    context "when is a valid en passant move" do
-      it "allows the pawn piece to make the en passant move" do
-        white_pieces[:pawn].position = "a5"
-        black_pieces[:pawn2].position = "b5"
-        white_pieces[:pawn].en_passant_allowed(true)
-        board.fill_square("b5",black_pieces[:pawn2])
-        board.fill_square("a5",white_pieces[:pawn])
-        expect(white_pieces[:pawn].move("b6",board)).to eq(true)
-        expect(board.value_from("b6")).to eq(white_pieces[:pawn])
-        expect(board.value_from("a5")).to be_nil
-      end
-    end
-
-  end
-
 end

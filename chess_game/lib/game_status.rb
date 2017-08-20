@@ -29,25 +29,16 @@ class GameStatus
 
   def no_valid_move?(player)
     allies.each do |ally|
-      initial_place = ally.position
+      old_place = ally.position
       number_of_moves = ally.moves
-      # if ally.type == :pawn
-      #   en_passant = ally.en_passant_ok
-      # end
       movement.valid_moves(ally).each do |place|
-        if !movement.generate_path(initial_place,place).empty?
-          ally, enemy, moved = simulate_move(ally,place)
-          if moved && !check?(player)
-            undo_move(ally,initial_place,enemy,place)
-            ally.moves = number_of_moves
-            # if ally.type == :pawn
-            #   ally.en_passant_allowed(en_passant)
-            #   puts "Ally #{ally.inspect}"
-            #   sleep(1)
-            # end
+        if !movement.generate_path(old_place,place).empty?
+          args = simulate_move(ally,place)
+          if args[:move_ok] && !check?(player)
+            undo_move(args)
             return false
           end
-          undo_move(ally,initial_place,enemy,place)
+          undo_move(args)
         end
       end
     end
@@ -57,14 +48,16 @@ class GameStatus
   def simulate_move(piece,to)
     piece_at = board.value_from(to)
     moved = movement.move(piece,to)
-    [piece,piece_at,moved]
+    args = {piece: piece, old_position: piece.old_position,
+            moves: (piece.moves-1), enemy_piece: piece_at,
+            enemy_at: to, move_ok: moved}
   end
 
-  def undo_move(piece,initial_place, enemy,at)
-    board.fill_square(initial_place,piece)
-    piece.position = initial_place
-    # piece.moves = 0
-    board.fill_square(at,enemy)
+  def undo_move(args ={})
+    board.fill_square(args[:old_position],args[:piece])
+    args[:piece].position = args[:old_position]
+    args[:piece].moves = args[:moves]
+    board.fill_square(args[:enemy_at],args[:enemy_piece])
   end
 
   def get_attackers_of(piece)

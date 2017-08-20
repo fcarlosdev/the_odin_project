@@ -59,9 +59,7 @@ class Game
       positions = move.split(",")
       if valid_enter?(positions)
         piece = board.value_from(positions[0])
-        move_ok = (piece.type == :pawn) ? piece.move(positions[1],board) :
-                                          move_piece.move(piece,positions[1])
-        return (move_ok) ? true : display_error_message(:impossible_move)
+        return (move_piece.move(piece,positions[1])) ? true : display_error_message(:impossible_move)
       else
         return display_error_message(:invalid_enter)
       end
