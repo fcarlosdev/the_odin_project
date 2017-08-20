@@ -1,4 +1,10 @@
+require "./lib/modules/pieces"
+require "./lib/modules/mapper"
+
 class Board
+
+  include Pieces
+  include Mapper
 
   EMPTY_STRING = ""
   SIZE = 8
@@ -93,41 +99,18 @@ class Board
   end
 
   def load_pieces
-    squares[0][0] = Piece.create_piece(:rook,:black,"a8")
-    squares[0][1] = Piece.create_piece(:knight,:black,"b8")
-    squares[0][2] = Piece.create_piece(:bishop,:black,"c8")
-    squares[0][3] = Piece.create_piece(:queen,:black,"d8")
-    squares[0][4] = Piece.create_piece(:king,:black,"e8")
-    squares[0][5] = Piece.create_piece(:bishop,:black,"f8")
-    squares[0][6] = Piece.create_piece(:knight,:black,"g8")
-    squares[0][7] = Piece.create_piece(:rook,:black,"h8")
+    rows = [0,1,6,7]
+    cols = (0..7).to_a
+    index = 0;
 
-    squares[1][0] = Piece.create_piece(:pawn,:black,"a7")
-    squares[1][1] = Piece.create_piece(:pawn,:black,"b7")
-    squares[1][2] = Piece.create_piece(:pawn,:black,"c7")
-    squares[1][3] = Piece.create_piece(:pawn,:black,"d7")
-    squares[1][4] = Piece.create_piece(:pawn,:black,"e7")
-    squares[1][5] = Piece.create_piece(:pawn,:black,"f7")
-    squares[1][6] = Piece.create_piece(:pawn,:black,"g7")
-    squares[1][7] = Piece.create_piece(:pawn,:black,"h7")
+    pieces = Pieces.create_pieces
 
-    squares[6][0] = Piece.create_piece(:pawn,:white,"a2")
-    squares[6][1] = Piece.create_piece(:pawn,:white,"b2")
-    squares[6][2] = Piece.create_piece(:pawn,:white,"c2")
-    squares[6][3] = Piece.create_piece(:pawn,:white,"d2")
-    squares[6][4] = Piece.create_piece(:pawn,:white,"e2")
-    squares[6][5] = Piece.create_piece(:pawn,:white,"f2")
-    squares[6][6] = Piece.create_piece(:pawn,:white,"g2")
-    squares[6][7] = Piece.create_piece(:pawn,:white,"h2")
-
-    squares[7][0] = Piece.create_piece(:rook,:white,"a1")
-    squares[7][1] = Piece.create_piece(:knight,:white,"b1")
-    squares[7][2] = Piece.create_piece(:bishop,:white,"c1")
-    squares[7][3] = Piece.create_piece(:queen,:white,"d1")
-    squares[7][4] = Piece.create_piece(:king,:white,"e1")
-    squares[7][5] = Piece.create_piece(:bishop,:white,"f1")
-    squares[7][6] = Piece.create_piece(:knight,:white,"g1")
-    squares[7][7] = Piece.create_piece(:rook,:white,"h1")
+    rows.each do |row|
+      cols.each do |col|
+        squares[row][col] = pieces[index]
+        index += 1
+      end
+    end
   end
 
 end

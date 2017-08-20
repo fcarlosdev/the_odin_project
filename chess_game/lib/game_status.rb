@@ -30,11 +30,21 @@ class GameStatus
   def no_valid_move?(player)
     allies.each do |ally|
       initial_place = ally.position
+      number_of_moves = ally.moves
+      # if ally.type == :pawn
+      #   en_passant = ally.en_passant_ok
+      # end
       movement.valid_moves(ally).each do |place|
         if !movement.generate_path(initial_place,place).empty?
           ally, enemy, moved = simulate_move(ally,place)
           if moved && !check?(player)
             undo_move(ally,initial_place,enemy,place)
+            ally.moves = number_of_moves
+            # if ally.type == :pawn
+            #   ally.en_passant_allowed(en_passant)
+            #   puts "Ally #{ally.inspect}"
+            #   sleep(1)
+            # end
             return false
           end
           undo_move(ally,initial_place,enemy,place)
@@ -53,7 +63,7 @@ class GameStatus
   def undo_move(piece,initial_place, enemy,at)
     board.fill_square(initial_place,piece)
     piece.position = initial_place
-    piece.moves = 0
+    # piece.moves = 0
     board.fill_square(at,enemy)
   end
 

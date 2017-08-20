@@ -1,5 +1,9 @@
+require "./lib/modules/distance"
+
 class MovePiece
 
+  include Distance
+  
   attr_reader :move_pawn, :move_king,   :move_rook,
               :move_queen,:move_bishop, :move_knight,
               :moves, :board

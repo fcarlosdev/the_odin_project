@@ -1,6 +1,12 @@
-require './lib/move_piece'
 require './lib/board'
 require './lib/piece'
+require './lib/move_piece'
+require './lib/move_pawn'
+require './lib/move_bishop'
+require './lib/move_king'
+require './lib/move_queen'
+require './lib/move_rook'
+require './lib/move_knight'
 
 describe "MovePiece" do
 

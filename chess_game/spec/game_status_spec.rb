@@ -1,7 +1,13 @@
-require './lib/game_status.rb'
-require './lib/board.rb'
-require './lib/move_piece.rb'
-require './lib/player.rb'
+require './lib/game_status'
+require './lib/board'
+require './lib/player'
+require './lib/move_piece'
+require './lib/move_pawn'
+require './lib/move_bishop'
+require './lib/move_king'
+require './lib/move_queen'
+require './lib/move_rook'
+require './lib/move_knight'
 
 describe 'GameStatus' do
 

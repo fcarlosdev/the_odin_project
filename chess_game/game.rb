@@ -52,28 +52,44 @@ class Game
     puts "Its your turn #{current_player.name}, your pieces are (#{current_player.color}) pieces."
     move = current_player.make_move
     if move == "exit"
-      @status = :exit
-      print "Save the game?(s/n): "
-      save_game if gets.chomp.eql?("s")
-      return false
+      exit_game
     elsif move == "save"
       save_game
-      return false
     else
       positions = move.split(",")
       if valid_enter?(positions)
         piece = board.value_from(positions[0])
-        return @move_piece.move(piece,positions[1])
+        move_ok = (piece.type == :pawn) ? piece.move(positions[1],board) :
+                                          move_piece.move(piece,positions[1])
+        return (move_ok) ? true : display_error_message(:impossible_move)
       else
-        puts "ERROR Invalid enter! Try again."
-        sleep(1)
-        return false
+        return display_error_message(:invalid_enter)
       end
     end
   end
 
+  def exit_game
+    @status = :exit
+    print "Save the game?(s/n): "
+    save_game if gets.chomp.eql?("s")
+    return false
+  end
+
+  def save_game
+    puts "Saving game wait..."
+    sleep(1)
+    game_serialized = YAML::dump(self)
+    game_file = File.new("chess_game.yaml","w+")
+    game_file.write(game_serialized)
+    game_file.flush
+    puts "Game saved."
+    sleep(1)
+    return false
+  end
+
   def valid_enter?(values)
     return false if values.length != 2
+    return false if values.any?{|value| value.length < 2}
     return false if values.any?{|value| value[0].length > 1 || value[1].length > 1}
     return false if values.any?{|value| !("a".."h").include?(value[0]) || !(1..8).include?(value[1].to_i) }
     true
@@ -89,17 +105,6 @@ class Game
     end
   end
 
-  def save_game
-    puts "Saving game wait..."
-    sleep(1)
-    game_serialized = YAML::dump(self)
-    game_file = File.new("chess_game.yaml","w+")
-    game_file.write(game_serialized)
-    game_file.flush
-    puts "Game saved."
-    sleep(1)
-  end
-
   def display_messages
     if status == :checkmate
       p "The #{current_player.name} make a checkmate move, end of the game"
@@ -109,6 +114,16 @@ class Game
     elsif status == :exit
       p "Game finalized."
     end
+  end
+
+  def display_error_message(type)
+    if type == :invalid_enter
+      puts "ERROR Invalid enter! Try again."
+    elsif type == :impossible_move
+      puts "ERROR Impossible move! Try again."
+    end
+    sleep(1)
+    false
   end
 
   def clear_screen
