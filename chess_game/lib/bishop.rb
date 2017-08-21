@@ -1,3 +1,5 @@
+require "./lib/piece"
+
 class Bishop < Piece
 
   def initialize(color,position)

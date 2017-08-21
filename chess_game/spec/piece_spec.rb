@@ -5,7 +5,6 @@ require "queen"
 require "knight"
 require "king"
 require "board"
-require "Directions"
 
 describe "Piece" do
 

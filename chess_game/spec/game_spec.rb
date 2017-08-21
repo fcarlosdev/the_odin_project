@@ -1,7 +1,15 @@
-require './game.rb'
-require './lib/player.rb'
-require './lib/board.rb'
+require './game'
+require './lib/player'
+require './lib/board'
 require './lib/move_piece'
+require './lib/move_pawn'
+require './lib/move_bishop'
+require './lib/move_king'
+require './lib/move_queen'
+require './lib/move_rook'
+require './lib/move_knight'
+require './lib/game_status'
+
 
 describe 'Game' do
 
@@ -25,7 +33,7 @@ describe 'Game' do
     allow(game).to receive(:current_player).and_return(current_player)
     allow(game).to receive_message_chain("gets.chomp").and_return("a2","a3")
     allow(game).to receive(:move_piece).and_return(true)
-    allow(current_player).to receive(:take_turn).and_return(["a2","a3"])
+    allow(current_player).to receive(:make_move).and_return(["a2","a3"])
     allow(game).to receive(:take_turn).and_return(true)
     allow(game.game_status).to receive(:checkmate?).and_return(false)
     allow(game.game_status).to receive(:stalemate?).and_return(false)

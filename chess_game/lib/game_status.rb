@@ -30,10 +30,10 @@ class GameStatus
   def no_valid_move?(player)
     allies.each do |ally|
       old_place = ally.position
-      number_of_moves = ally.moves
       movement.valid_moves(ally).each do |place|
         if !movement.generate_path(old_place,place).empty?
-          args = simulate_move(ally,place)
+          args = simulate_move(ally,ally.moves, place)
+          args[:old_position] = old_place
           if args[:move_ok] && !check?(player)
             undo_move(args)
             return false
@@ -45,18 +45,18 @@ class GameStatus
     true
   end
 
-  def simulate_move(piece,to)
+  def simulate_move(piece,moves,to)
     piece_at = board.value_from(to)
     moved = movement.move(piece,to)
-    args = {piece: piece, old_position: piece.old_position,
-            moves: (piece.moves-1), enemy_piece: piece_at,
-            enemy_at: to, move_ok: moved}
+    args = {piece: piece, moves: moves, enemy_piece: piece_at, enemy_at: to,
+            move_ok: moved}
   end
 
   def undo_move(args ={})
-    board.fill_square(args[:old_position],args[:piece])
-    args[:piece].position = args[:old_position]
-    args[:piece].moves = args[:moves]
+    piece = args[:piece]
+    board.fill_square(args[:old_position],piece)
+    piece.position = args[:old_position]
+    piece.moves = args[:moves]
     board.fill_square(args[:enemy_at],args[:enemy_piece])
   end
 
