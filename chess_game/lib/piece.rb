@@ -2,14 +2,12 @@ require "./lib/directions"
 require "./lib/modules/mapper"
 require "./lib/modules/coordenates"
 require "./lib/modules/distance"
-require "./lib/modules/type_moves"
 
 class Piece
 
   include Mapper
   include Coordenates
   include Distance
-  include TypeMoves
 
   PIECES_IMAGES = { white: { king:   "\u2654", queen:  "\u2655", rook: "\u2656",
                              bishop: "\u2657", knight: "\u2658", pawn: "\u2659" },
