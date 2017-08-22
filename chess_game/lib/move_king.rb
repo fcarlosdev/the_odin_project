@@ -1,3 +1,5 @@
+require "./lib/move_piece"
+
 class MoveKing < MovePiece
 
   attr_reader :board
@@ -32,8 +34,9 @@ class MoveKing < MovePiece
 
   def castling_move?(king,to)
     if side_move?(king.position,to) && king.first_move? &&
-        moved_by_two(king,to) && free_way?(king.position,to)
-      return false if castling_move_over_attacked_position?(king,to)
+        moved_by_two(king,to) && free_way?(king.position,to) &&
+        !castling_over_attacked_position?(king,to)
+
       piece = board.value_from(rook_position_next(to))
       if piece != nil && piece.first_move?
         board.move_piece(piece,rook_to_position_next(to,piece))
@@ -44,11 +47,14 @@ class MoveKing < MovePiece
     false
   end
 
-  def castling_move_over_attacked_position?(king,to)
-    enemies = board.filled_squares.select{|piece| piece.color != king.color}
-    castling_path = generate_path(king.position,to) - [king.position]
-    attackers = enemies.select{|enemy| enemy.possible_moves.any?{|mv| castling_path.include?(mv)}}
-    attackers.any?{|attacker| castling_path.any?{|ps| free_way?(attacker.position,ps)}}
+  def castling_over_attacked_position?(king,to)
+    castling_path(king,to).any?{|move| position_under_attack?(move,king)}
+  end
+
+  def position_under_attack?(move,king)
+    enemies_of(king).any?{|enemy| enemy.possible_moves.include?(move) &&
+                                  free_way?(enemy.position,move)
+                         }
   end
 
   def rook_position_next(to)
@@ -65,6 +71,14 @@ class MoveKing < MovePiece
 
   def move_by(piece,to)
     calc_distance(piece.position,to).abs
+  end
+
+  def enemies_of(piece)
+    Pieces.select_enemies_of(piece,board.filled_squares)
+  end
+
+  def castling_path(king,to)
+    generate_path(king.position,to) - [king.position]
   end
 
 end

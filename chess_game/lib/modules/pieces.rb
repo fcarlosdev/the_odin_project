@@ -48,4 +48,9 @@ module Pieces
     pieces << Piece.create_piece(:rook,:white,"h1")
     pieces
   end
+
+  def self.select_enemies_of(from_piece,pieces)
+    pieces.select{|piece| piece.color != from_piece.color}
+  end
+
 end
