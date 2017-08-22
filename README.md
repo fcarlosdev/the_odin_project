@@ -64,3 +64,6 @@ This repository contain the solutions of projects of The Odin Project, according
  (http://www.theodinproject.com/courses/ruby-programming/lessons/testing-ruby);
   - Warmup: Time Traveling;
   - Project: TDD Connect Four.
+
+  - [**Ruby Final Project**] (https://www.theodinproject.com/courses/ruby-programming/lessons/ruby-final-project);
+    - Chess Game.
