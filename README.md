@@ -66,4 +66,4 @@ This repository contain the solutions of projects of The Odin Project, according
   - Project: TDD Connect Four.
 
 - [**Ruby Final Project**] (https://www.theodinproject.com/courses/ruby-programming/lessons/ruby-final-project);
-  - Chess Game.
+  - [Chess Game](https://github.com/fcarlosdev/the_odin_project/tree/master/chess_game)
