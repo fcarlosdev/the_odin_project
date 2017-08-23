@@ -5,10 +5,15 @@ class MovePawn < MovePiece
   end
 
   def move(piece,to)
+    #Missed the promotion move.
 
     if piece.possible_move?(to)
       if ordinary_move?(piece,to) || capture_move?(piece,to) || en_passant_move?(piece,to)
-        board.move_piece(piece,to)
+        if !promotion?(piece,to)
+          board.move_piece(piece,to)
+        else
+          board.clear_square(piece.position)
+        end
         return true
       end
     end
@@ -36,6 +41,30 @@ class MovePawn < MovePiece
       end
     end
     false
+  end
+
+  def promotion?(piece,to)
+    promoted = false
+    if (piece.color == :white && to[1].to_i == 8) || (piece.color == :black && to[1].to_i == 1)
+      puts "Promove the pawn piece to :Q(queen), N(Knight), R(Rook) or B(Bishop)"
+      promote_to = gets.chomp.upcase
+      case promote_to
+        when "Q"
+          promoted_piece = Piece.create_piece(:queen,piece.color,to)
+          promoted = true
+        when "N"
+          promoted_piece = Piece.create_piece(:knight,piece.color,to)
+          promoted = true
+        when "R"
+          promoted_piece = Piece.create_piece(:rook,piece.color,to)
+          promoted = true
+        when "B"
+          promoted_piece = Piece.create_piece(:bishop,piece.color,to)
+          promoted = true
+      end
+      board.fill_square(to,promoted_piece) if promoted
+    end
+    promoted
   end
 
   def enemy_moved_by(from,to)
