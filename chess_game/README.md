@@ -6,13 +6,13 @@ To start the game open a terminal (Linux/Mac) / command prompt (Windows) on the 
 
 The image below will be shown.
 
-![Main menu](./images/start_page.png)
+![Main menu](/images/start_page.png)
 
 Choose one option to among those showed on the screen.
 
 if you choose the option **1 - New Game** you will be presented the screen below.
 
-![Main menu](./images/chess_board.png)
+![Chess Board](/images/chess_board.png)
 
 if you choose the option **2 - Load a game** the last game saved will be oppened just where it was saved.
 
