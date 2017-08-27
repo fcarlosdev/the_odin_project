@@ -22,9 +22,12 @@ After have created a new game or loaded a one saved, you can make the follow act
 2. Exit of the game (for that just type ***exit*** -****you will be asked if you want to save the game or not****)
 3. To save a game by typing ***save***.
 
-*Obs.: This game implement just only two situations of end game beside type* ***exit***, *that are:*
+**Special situations**
 
-1. Checkmate
-2. Stalemate
+1. This game implement just only two situations of end game beside type ***exit***, that are:  
+  - Checkmate  
+  - Stalemate  
+  
+2. During the game if a king piece is under directing attack (i.e. if the attacker pice has no other pice blocking its way until the king piece), the game will show a message indicate that is a check situation.
 
 Have a fun!
