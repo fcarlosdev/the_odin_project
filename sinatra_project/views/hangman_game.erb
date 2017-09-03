@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Hangman Game</title>
+    <link rel="stylesheet" href="hangman_style.css">
+  </head>
+  <body>
+    <div id="header">
+      <h1>Hangman Game</h1>
+    </div>
+    <div id="guess_form">
+      <form method="get">
+        <label for="letter">Enter a letter</label>
+        <%if ![:won, :game_over].include?(game_status) %>
+          <input type="text" name="letter" maxlength="1" autofocus >
+        <% else %>
+          <input type="text" name="letter" maxlength="1" autofocus disabled >
+        <% end %>
+      </form>
+    </div>
+
+    <div id="gallow_image">
+      <img src="<%=gallow%>">
+      <div id="secret_letters">
+        <%=hidden_letters%>
+      </div>
+      <%if ![:won, :game_over].include?(game_status) %>
+        <div id="guesses">
+          <p>Wrong guesses: <%=wrong_letters%></p>
+        </div>
+      <% end %>
+    </div>
+
+    <% if game_status == :game_over %>
+      <div id="secret">
+         <span id="label_secret">
+            Secret word:
+            <span id="secret_word">
+              <%=secret_word%>
+            </span>
+          </span>
+      </div>
+    <% elsif  game_status == :won %>
+       <div id="win_message">
+         <p>Congratulation you won the game!!!</p>
+       </div>
+    <% end %>
+
+    <div class="link-wrapper">
+      <a class="button-link" href="/">Home</a>
+      <a class="button-link" href="/play_again">New Game</a>
+    </div>
+
+    <div id="footer">
+      Learning Ruby on Rails
+    </div>
+
+  </body>
+</html>
