@@ -18,5 +18,5 @@ get "/caesar_cipher" do
   else
     ciphered_text = ""
   end
-  erb :index, :locals => {result: ciphered_text}
+  erb :caesar_cipher, :locals => {result: ciphered_text}
 end

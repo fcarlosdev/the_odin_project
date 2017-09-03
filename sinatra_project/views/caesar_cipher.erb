@@ -3,25 +3,36 @@
   <head>
     <meta charset="utf-8">
     <title>Caesar Cipher</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="hangman_style.css">
+    <link rel="stylesheet" href="caesar_style.css">
     <script type="text/javascript">
-      function clear() {
-        // document.getElementsByName('ciphered_text').
+      <!--
+      function Redirect() {
+         window.location="/";
       }
+      //-->
     </script>
   </head>
   <body>
-    <div id="top">
+    <div id="header">
       <h1>Caesar Cipher</h1>
     </div>
     <div id="middle">
       <form>
+
         <label for="text">Enter the text:</label>
-        <input type="text" name="text" class="txt"/> <br>
+        <input type="text" name="text" class="ciphertext"
+           pattern="[A-Za-z]" title="Only letter accepted"/> <br>
+
         <label for="shift_by">Shift by:</label>
-        <input type="text" name="shift_by" class="shift" />
-        <input type="submit" value="Cipher" class="button">
-        <input type="button" value="Cipher other text" onclick="">
+        <input type="text" name="shift_by" class="shift"
+           pattern="[0-9]" title="Enter a valid number"/>
+
+        <div id ="buttons">
+          <input type="submit" value="Cipher" class="btn">
+          <input type="button" value="Home" class="btn" onclick="Redirect();">
+        </div>
+
         <div id="result">
           <label for="ciphered_text" class="ciphered_txt">Ciphered text:</label>
           <output name="ciphered_text">
@@ -29,6 +40,10 @@
            </output>
         </div>
       </form>
+    </div>
+
+    <div id="footer">
+      Learning Ruby on Rails
     </div>
 
   </body>
