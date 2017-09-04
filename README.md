@@ -2,68 +2,97 @@
 
 This repository contain the solutions of projects of The Odin Project, according the list below:
 
-**Projects/Tasks**
+- **HTML/CSS**
+  - **Google Homepage**  
 
-- [**HTML/CSS**] (http://www.theodinproject.com/web-development-101/html-css)
-  - [**Google Homepage**](https://github.com/fcarlosdev/the_odin_project/tree/master/google_homepage)
 
-- [**Javascript Basics**] (http://www.theodinproject.com/web-development-101/javascript-basics)
-  - [**Project Euler**](https://github.com/fcarlosdev/the_odin_project/tree/master/projecteuler)
+- **Javascript Basics**  
+
+  - **Project Euler**
     - Multiples of 3 and 5;
     - Even Fibonacci Numbers;
-    - Largest Prime Factor.
+    - Largest Prime Factor.  
 
-- [**Javascript/jQuery**] (http://www.theodinproject.com/web-development-101/javascript-and-jquery)
-  - Scketchpad.
 
-- [**Ruby (Learn Ruby Folder)**] (http://www.theodinproject.com/web-development-101/ruby);
+- **Javascript/jQuery**  
+
+  - Scketchpad.  
+
+
+- **Ruby (Learn Ruby Folder)**
   - Hello;
   - Temperature;
   - Calculator;
   - Simon Says;
   - Pig Latin;
   - Book Titles;
-  - Timer.
+  - Timer.  
 
-- [**Ruby on Rails**] (http://www.theodinproject.com/web-development-101/ruby-on-rails);
-  - Blog.
 
-- [**Ruby Building Blocks**] (http://www.theodinproject.com/ruby-programming/building-blocks);
+- **Ruby on Rails**
+  - Blog.  
+
+
+- **Ruby Building Blocks**  
+
   - Caesar Cipher;
   - Stock Picker;
-  - Substrings.
+  - Substrings.  
 
-- [**Advanced Building Blocks**] (http://www.theodinproject.com/ruby-programming/advanced-building-blocks);
+
+- **Advanced Building Blocks**  
+
   - Bubble Sort;
-  - Enumerable Methods.
+  - Enumerable Methods.  
 
-- [**OOP**] (http://www.theodinproject.com/ruby-programming/oop);
+
+- **OOP**  
+
   - Tic Tac Toe;
-  - Mastermind.
+  - Mastermind.  
 
-- [**File I/O and Serialization**] (http://www.theodinproject.com/ruby-programming/file-i-o-and-serialization);
+
+- **File I/O and Serialization**  
+
   - Event Manager;
-  - Hangman.
+  - Hangman.  
 
-- [**Ruby on the Web**] (http://www.theodinproject.com/ruby-programming/ruby-on-the-web);
+
+- **Ruby on the Web**  
+
   - Twitter Spambot;
-  - A Real Web Server and Browser (from the command line).
+  - A Real Web Server and Browser (from the command line).  
 
-- [**Project Recursion**] (http://www.theodinproject.com/ruby-programming/recursion);
+
+- **Project Recursion**  
+
   - Fibonacci;
-  - Merge Sort.
+  - Merge Sort.  
 
-- [**Project Linked Lists**] (http://www.theodinproject.com/ruby-programming/linked-lists);
-  - Linked List.
 
-- [**Projects: Basic Data Structures and Algorithms**] (http://www.theodinproject.com/ruby-programming/data-structures-and-algorithms);
+- **Project Linked Lists**  
+
+  - Linked List.  
+
+
+- **Projects: Basic Data Structures and Algorithms**  
+
   - Searching Binary Trees;
-  - Knight's Travails.
+  - Knight's Travails.  
 
-- [**Project: Testing Ruby with RSpec**]
- (http://www.theodinproject.com/courses/ruby-programming/lessons/testing-ruby);
+
+- **Project: Testing Ruby with RSpec**  
+
   - Warmup: Time Traveling;
-  - Project: TDD Connect Four.
+  - Project: TDD Connect Four.  
 
-- [**Ruby Final Project**] (https://www.theodinproject.com/courses/ruby-programming/lessons/ruby-final-project);
-  - [Chess Game](https://github.com/fcarlosdev/the_odin_project/tree/master/chess_game)
+
+- **Ruby Final Project**  
+
+  - Chess Game  
+
+
+- **Sinatra Project**
+
+  - Caesar Cipher;
+  - Hangman  
