@@ -1,98 +1,41 @@
-# THE ODIN PROJECT COURSE (http://www.theodinproject.com/home)
+# Ruby on Rails Tutorial sample application
 
-This repository contain the solutions of projects of The Odin Project, according the list below:
+This is the sample application for
+[*Ruby on Rails Tutorial:
+Learn Web Development with Rails*](http://www.railstutorial.org/)
+by [Michael Hartl](http://www.michaelhartl.com/).
 
-- **HTML/CSS**
-  - **Google Homepage**  
+## License
 
+All source code in the [Ruby on Rails Tutorial](http://railstutorial.org/)
+is available jointly under the MIT License and the Beerware License. See
+[LICENSE.md](LICENSE.md) for details.
 
-- **Javascript Basics**  
+## Getting started
 
-  - **Project Euler**
-    - Multiples of 3 and 5;
-    - Even Fibonacci Numbers;
-    - Largest Prime Factor.  
+To get started with the app, clone the repo and then install the needed gems:
 
+```
+$ bundle install --without production
+```
 
-- **Javascript/jQuery**  
+Next, migrate the database:
 
-  - Scketchpad.  
+```
+$ rails db:migrate
+```
 
+Finally, run the test suite to verify that everything is working correctly:
 
-- **Ruby (Learn Ruby Folder)**
-  - Hello;
-  - Temperature;
-  - Calculator;
-  - Simon Says;
-  - Pig Latin;
-  - Book Titles;
-  - Timer.  
+```
+$ rails test
+```
 
+If the test suite passes, you'll be ready to run the app in a local server:
 
-- **Ruby on Rails**
-  - Blog.  
+```
+$ rails server
+```
 
-
-- **Ruby Building Blocks**  
-
-  - Caesar Cipher;
-  - Stock Picker;
-  - Substrings.  
-
-
-- **Advanced Building Blocks**  
-
-  - Bubble Sort;
-  - Enumerable Methods.  
-
-
-- **OOP**  
-
-  - Tic Tac Toe;
-  - Mastermind.  
-
-
-- **File I/O and Serialization**  
-
-  - Event Manager;
-  - Hangman.  
-
-
-- **Ruby on the Web**  
-
-  - Twitter Spambot;
-  - A Real Web Server and Browser (from the command line).  
-
-
-- **Project Recursion**  
-
-  - Fibonacci;
-  - Merge Sort.  
-
-
-- **Project Linked Lists**  
-
-  - Linked List.  
-
-
-- **Projects: Basic Data Structures and Algorithms**  
-
-  - Searching Binary Trees;
-  - Knight's Travails.  
-
-
-- **Project: Testing Ruby with RSpec**  
-
-  - Warmup: Time Traveling;
-  - Project: TDD Connect Four.  
-
-
-- **Ruby Final Project**  
-
-  - Chess Game  
-
-
-- **Sinatra Project**
-
-  - Caesar Cipher;
-  - Hangman  
+For more information, see the
+[*Ruby on Rails Tutorial* book](http://www.railstutorial.org/book).
