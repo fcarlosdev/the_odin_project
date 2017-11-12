@@ -6,12 +6,12 @@
 
 <%= form_for @user do |f| %> 
    <%= f.label :username, 'Username ' %><br>
-   <%= f.text_field :username %><br><br>
+   <%= f.text_field :username %><br>
  
    <%= f.label :email, 'Email ' %><br>
-   <%= f.email_field :email, placeholder: "user@example.com" %><br> <br>
+   <%= f.email_field :email, placeholder: "user@example.com" %><br>
 
    <%= f.label :password, 'Password ' %><br>
-   <%= f.password_field :password, placeholder: "Enter your password" %><br><br>
+   <%= f.password_field :password, placeholder: "Enter your password" %><br>
   <%= f.submit "Save" %>
 <% end %>

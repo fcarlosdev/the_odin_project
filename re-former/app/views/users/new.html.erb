@@ -1,52 +1,44 @@
-<html>
-<head><title>Rails Forms</title></head>
-<body>
-  <!--<h1> New user </h1>
-  <form accept-charset="UTF-8" action="/users" method="post">
-    <label for ="username">User name</label><br>
-    <input type="text" name="user[username]" id ="username"><br>
-    <label for="email">Email</label><br>
-    <input type="email" name="user[email]" id="email"><br>
-    <label for="password">Password</label><br>
-    <input type="password" name="user[password]" id="password"><br>
-    <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
-    <input type="submit" value="Create">
-  </form>-->
+<!--<h1> New user </h1>
+<form accept-charset="UTF-8" action="/users" method="post">
+  <label for ="username">User name</label><br>
+  <input type="text" name="user[username]" id ="username"><br>
+  <label for="email">Email</label><br>
+  <input type="email" name="user[email]" id="email"><br>
+  <label for="password">Password</label><br>
+  <input type="password" name="user[password]" id="password"><br>
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+  <input type="submit" value="Create">
+</form>-->
 
-  <!--<%= form_tag("/users", method: "post") do %>
-    <p>
-     <%= label_tag(:username, "Username:") %>
-     <%= text_field_tag(:username) %>
-    </p>
+<!--<%= form_tag("/users", method: "post") do %>
+  <p>
+   <%= label_tag(:username, "Username:") %>
+   <%= text_field_tag(:username) %>
+  </p>
     
-    <p>
-    <%= label_tag(:email, "Email:") %>
-    <%= email_field_tag(:email) %>
-    </p>
+  <p>
+  <%= label_tag(:email, "Email:") %>
+  <%= email_field_tag(:email) %>
+  </p>
 
-    <p>
-    <%= label_tag(:password, "Password:") %>
-    <%= password_field_tag(:password) %>
-    </p>
-    <%= submit_tag("Create") %>
-  <% end %> -->
+  <p>
+  <%= label_tag(:password, "Password:") %>
+  <%= password_field_tag(:password) %>
+  </p>
+  <%= submit_tag("Create") %>
+<% end %> -->
 
- <%= form_for @user do |f| %>
-   <p>
-     <%= f.label :username, 'Username' %>
-     <%= f.text_field :username %>
-   </p>
-   
-   <p>
-     <%= f.label :email, 'Email' %>
-     <%= f.email_field :email, :value => 'user@domain.com' %>
-   </p>
+<%= form_for @user do |f| %> 
+   <%= f.label :username, 'Username ' %><br>
+   <%= f.text_field :username %><br>
+ 
+   <%= f.label :email, 'Email ' %><br>
+   <%= f.email_field :email, placeholder: "user@example.com" %><br>
 
-   <p>
-    <%= f.label :password, 'Password' %>
-    <%= f.password_field :password %>
-   </p>
-   <%= f.submit "Create" %>
- <% end %>
+   <%= f.label :password, 'Password ' %><br>
+   <%= f.password_field :password, placeholder: "Enter your password" %><br>
+  <%= f.submit "Save" %>
+<% end %>
+
 </body>
 </html>
