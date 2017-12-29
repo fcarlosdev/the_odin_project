@@ -2,97 +2,22 @@
 
 Solutions of the projects of The Odin Project Curriculum
 
-- **HTML/CSS**
-  - **Google Homepage**  
+## [WEB DEVELOPMENT 101](https://www.theodinproject.com/courses/web-development-101) 
 
+Contains solutions to the projects that introduction the web development work.
 
-- **Javascript Basics**  
+## [RUBY PROGRAMMING](https://www.theodinproject.com/courses/ruby-programming)
 
-  - **Project Euler**
-    - Multiples of 3 and 5;
-    - Even Fibonacci Numbers;
-    - Largest Prime Factor.  
+Contains solutions to the projects that deep into Ruby language that cover object-oriented design, testing, and data structures .
 
+## [RUBY ON RAILS](https://www.theodinproject.com/courses/ruby-on-rails)
 
-- **Javascript/jQuery**  
+Contains solutions to the projects that take the web development to the next level with Ruby on Rails framework.
 
-  - Scketchpad.  
+## [HTML5 and CSS3](https://www.theodinproject.com/courses/html5-and-css3)
 
+Contains solutions to the projects that give a face to the work done on the backend.
 
-- **Ruby (Learn Ruby Folder)**
-  - Hello;
-  - Temperature;
-  - Calculator;
-  - Simon Says;
-  - Pig Latin;
-  - Book Titles;
-  - Timer.  
+## [Javascript](https://www.theodinproject.com/courses/javascript)
 
-
-- **Ruby on Rails**
-  - Blog.  
-
-
-- **Ruby Building Blocks**  
-
-  - Caesar Cipher;
-  - Stock Picker;
-  - Substrings.  
-
-
-- **Advanced Building Blocks**  
-
-  - Bubble Sort;
-  - Enumerable Methods.  
-
-
-- **OOP**  
-
-  - Tic Tac Toe;
-  - Mastermind.  
-
-
-- **File I/O and Serialization**  
-
-  - Event Manager;
-  - Hangman.  
-
-
-- **Ruby on the Web**  
-
-  - Twitter Spambot;
-  - A Real Web Server and Browser (from the command line).  
-
-
-- **Project Recursion**  
-
-  - Fibonacci;
-  - Merge Sort.  
-
-
-- **Project Linked Lists**  
-
-  - Linked List.  
-
-
-- **Projects: Basic Data Structures and Algorithms**  
-
-  - Searching Binary Trees;
-  - Knight's Travails.  
-
-
-- **Project: Testing Ruby with RSpec**  
-
-  - Warmup: Time Traveling;
-  - Project: TDD Connect Four.  
-
-
-- **Ruby Final Project**  
-
-  - Chess Game  
-
-
-- **Sinatra Project**
-
-  - Caesar Cipher;
-  - Hangman  
+Contais solutions to the projects the makes the website dynamic and interactive.
