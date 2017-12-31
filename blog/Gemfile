@@ -32,7 +32,11 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
+
+#Used to manage file attachments and uploading
 gem "paperclip"
+
+#Used for authentication
 gem 'sorcery'
 
 group :development, :test do

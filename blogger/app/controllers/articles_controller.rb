@@ -14,6 +14,7 @@ class ArticlesController < ApplicationController
 
   def new
     @article = Article.new
+    3.times {@article.attachments.build}
   end
 
   def create
@@ -32,14 +33,13 @@ class ArticlesController < ApplicationController
 
   def edit
     @article = Article.find(params[:id])
+    3.times {@article.attachments.build}
   end
 
   def update
     @article = Article.find(params[:id])
     @article.update(article_params)
-
     flash.notice = "Article '#{@article.title}' Updated!"
-
     redirect_to article_path(@article)
   end
 

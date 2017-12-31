@@ -16,6 +16,17 @@
     <%= f.label :tag_list %><br />
     <%= f.text_field :tag_list %>
   </p>
+
+  <p>
+    <% if !@article.attachments.empty? %>
+      <% @article.attachments.each do |att|%>
+        <% if att.image.exists? %>
+          <%= image_tag att.image.url %>
+        <% end %>
+      <% end %>
+    <% end %>
+  </p>
+
   <%= f.fields_for :attachments do |builder| %>
     <% if builder.object.new_record? %>
       <p>

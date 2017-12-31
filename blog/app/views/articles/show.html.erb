@@ -5,8 +5,9 @@
 
 <p>
   <% @article.attachments.each do |attachment| %>
-    <%= attachment.image_file_name %><br/>
-    <%= image_tag attachment.image.url(:thumb) %><br/>
+    <% if attachment.image.exists? %>
+      <%= image_tag attachment.image.url(:thumb) %>
+    <% end %>
   <% end %>
 </p>
 
