@@ -2,6 +2,6 @@
 
 <ul>
   <% @tag.articles.each do |article| %>
-    <li><%= link_to article.title, article_path(article) %></li>
+    <li><%= link_to article.title, article_path(article), class: "link" %></li>
   <% end %>
 </ul>
