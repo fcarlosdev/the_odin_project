@@ -57,6 +57,7 @@ Rails.application.configure do
   # Configurations of email that not send an email to the outside world.
   # config.action_mailer.delivery_method = :test
   # host = 'example.com' # Don't use this literally; use your local dev host instead
+  # host = 'localhost:3000' # Don't use this literally; use your local dev host instead
   # config.action_mailer.default_url_options = { host: host, protocol: 'https' }
 
   # Configurations to use a Gmail server to send an email to the outside world
