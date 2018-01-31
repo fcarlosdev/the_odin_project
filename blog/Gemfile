@@ -34,7 +34,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 
 #Used to manage file attachments and uploading
-gem "paperclip"
+gem "paperclip", "~> 5.2.1"
 
 #Used for authentication
 gem 'sorcery'
