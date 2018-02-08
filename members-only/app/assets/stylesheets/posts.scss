@@ -1,0 +1,37 @@
+
+$gray-medium-light: #eaeaea;
+
+.post {
+  border: 1px solid #151B54;
+  width: 60%;
+  margin: auto;
+}
+
+.title {
+  background: #25383C;
+  font-weight: bold;
+  padding: 15px 8px;
+  color: #FFF;
+  height: 50px;
+}
+
+.body {
+  background: #98AFC7;
+  margin-top: -20px;
+  height: 120px;
+  padding: 5px 8px;
+}
+
+#logo {
+  float: left;
+  margin-right: 10px;
+  font-size: 1.7em;
+  color: #eafafa;
+  text-transform: uppercase;
+  letter-spacing: -1px;
+  padding-top: 9px;
+  font-weight: bold;
+  &:hover  {
+    text-decoration: none;
+  }
+}

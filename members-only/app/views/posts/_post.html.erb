@@ -1,0 +1,9 @@
+<div class="row">
+  <div class="title post">
+    <% if !current_user.nil? %>
+    		<%= User.find(post.user_id).name %> posted -
+    <% end %>
+    <%= post.title %>
+  </div> <br>
+  <div class="body post"> <%= post.body %> </div><br>
+</div>

@@ -1,24 +1,9 @@
-# README
+# MEMBERS ONLY APPLICATION
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Introduction
 
-Things you may want to cover:
+This is the solution to the [The Odin Project  - Project Authentication](https://www.theodinproject.com/courses/ruby-on-rails/lessons/authentication), that implements the basic behaves of the authentication and authorization on Rails.
 
-* Ruby version
+## How it works
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Basically it has only two models ***Users*** and ***Posts*** where any people can see all posts created even though they are not authenticated, but only registered users can see who created each post, where the signed in users can create new posts.

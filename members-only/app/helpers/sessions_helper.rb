@@ -1,24 +1,29 @@
 module SessionsHelper
 
-  # Logs in the given user.
   def log_in(user)
-    session[:user_id] = user.id
+    token = User.new_token
+    cookies.permanent[:remember_token] = token
+    user.update_attribute(:remember_token, User.encrypt_token(token))
+    self.current_user = user
   end
 
-  # Returns the current logged-in user (if any).
   def current_user
-    @current_user ||= User.find_by(id: session[:user_id])
+    remember_token =  User.encrypt_token(cookies.permanent[:remember_token])
+    @current_user ||= User.find_by(remember_token: remember_token)
   end
 
-  # Returns true if the user is logged in, false otherwise.
-  def logged_in?
+  def current_user=(user)
+    @current_user = user
+  end
+
+  def sign_out
+    current_user.update_attribute(:remember_token, User.encrypt_token(User.new_token))
+    cookies.delete(:remember_token)
+    self.current_user = nil
+  end
+
+  def signed_in?
     !current_user.nil?
   end
 
-  # Logs out the current user.
-  def log_out
-    session.delete(:user_id)
-    @current_user = nil
-  end
-  
 end
