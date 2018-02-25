@@ -1,0 +1,20 @@
+<h1> Event Details </h1>
+<p> Created by: <%= link_to @event.creator.name, @event.creator %>
+<p> Event: <%= @event.title %> </p>
+<p> At date: <%= @event.at_date %></p>
+<p> Description: <%= @event.description %></p>
+<h2>Attendees</h2>
+<% if @event.attendees.any? %>
+  <% @event.attendees.each do |attendee|%>
+    <ul>
+      <li><%= attendee.name %></li>
+    </ul>
+  <% end %>
+<% else %>
+  <h4>No attendees.</h4>
+<% end %>
+<hr>
+<!-- Put that in a form -->
+<% if signed_in? && current_user?(@event.creator) %>
+  <%= link_to "Invite Someone", invitation_path(obj: {event_id: @event.id}) %>
+<% end %>

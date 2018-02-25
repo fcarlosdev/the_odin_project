@@ -1,0 +1,25 @@
+<h1> User Info </h1>
+
+Name: <%= @user.name %>
+
+<h3>Created Events</h3>
+<% if @user.created_events.any? %>
+  <% @events.each do |event| %>
+    <%= link_to event.title, event %><br>
+    <hr>
+  <% end %>
+<% end %>
+
+<h3>Previous Attended Events</h3>
+<% if @past_events.any? %>
+  <% @past_events.each do |event| %>
+    <% event.title %>
+  <% end %>
+<% end %>
+
+<h3>Upcoming Events</h3>
+<% if @future_events.any? %>
+  <% @future_events.each do |event| %>
+    <% event.title %>
+  <% end %>
+<% end %>

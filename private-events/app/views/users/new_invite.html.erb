@@ -1,0 +1,28 @@
+<h1>Inviting People</h1>
+
+<% if @people_to_invite.any? %>
+  <%= form_tag do %>
+    <table>
+      <caption>People available to invite</caption>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th class="invite">Invite</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @people_to_invite.each do |person| %>
+          <tr>
+            <td><%= person.name %></td>
+            <td><%= check_box_tag "people_invited[]", person.id %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <br>
+    <% if !params[:obj].nil? %>
+      <%= hidden_field_tag(:event_id, params[:obj][:event_id] ) %>
+    <% end %>
+    <%= submit_tag "Send Invitation" %>
+  <% end %>
+<% end %>
