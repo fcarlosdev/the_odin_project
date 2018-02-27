@@ -20,7 +20,10 @@ class EventsController < ApplicationController
 
   def show
     @event = Event.find(params[:id])
-    # @attendees = @event.attendees
+    accepted_invites = @event.invitations.where(accepted: true)
+    @attendees = accepted_invites.map {|invite| User.find_by(id: invite.attendee_id)}
+    pending_invites = @event.invitations.where(accepted: false)
+    @attendees_no_confirmed = pending_invites.map {|invite| User.find_by(id: invite.attendee_id)}
   end
 
 

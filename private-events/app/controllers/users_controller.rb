@@ -20,6 +20,10 @@ class UsersController < ApplicationController
       @events = @user.created_events
       @past_events = @events.previous_events
       @future_events = @events.upcoming_events
+      @invites = []
+      @user.invitations.each do |invite|
+        @invites << Event.find(invite.attended_event_id)
+      end
     else
       redirect_to login_path
     end
@@ -39,7 +43,6 @@ class UsersController < ApplicationController
         person_invited.attended_events << invited_to_event
       end
       flash[:success] = "All invitations ok."
-      # redirect_to current_user
       redirect_to @event
     end
   end
@@ -48,10 +51,21 @@ class UsersController < ApplicationController
     User.where("name != :actual_user_name", {actual_user_name: current_user.name})
   end
 
+  def accept_invite
+    e = current_user.invitations.find_by(attendee_id: current_user.id)
+    if e.update(accepted: params[:accepted])
+      flash[:success] = "Invite accepted."
+      redirect_to current_user
+    else
+      flash[:danger] = "Error to the accept."
+      render current_user
+    end
+  end
+
   private
 
     def user_params
-      params.require(:user).permit(:name)
+      params.require(:user).permit(:name, :accepted)
     end
 
 end

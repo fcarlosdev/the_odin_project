@@ -4,8 +4,8 @@
 <p> At date: <%= @event.at_date %></p>
 <p> Description: <%= @event.description %></p>
 <h2>Attendees</h2>
-<% if @event.attendees.any? %>
-  <% @event.attendees.each do |attendee|%>
+<% if @attendees.any? %>
+  <% @attendees.each do |attendee|%>
     <ul>
       <li><%= attendee.name %></li>
     </ul>
@@ -14,7 +14,14 @@
   <h4>No attendees.</h4>
 <% end %>
 <hr>
-<!-- Put that in a form -->
+<h2> Confirmation pending </h2>
+  <% @attendees_no_confirmed.each do |attendee| %>
+  <ul>
+    <li><%= attendee.name %></li>
+  </ul>
+  <% end %>
+<hr>
+<!-- Fixing is putting the method post -->
 <% if signed_in? && current_user?(@event.creator) %>
   <%= link_to "Invite Someone", invitation_path(obj: {event_id: @event.id}) %>
 <% end %>

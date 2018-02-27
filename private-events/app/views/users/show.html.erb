@@ -8,6 +8,8 @@ Name: <%= @user.name %>
     <%= link_to event.title, event %><br>
     <hr>
   <% end %>
+<% else %>
+  <p>No event created</p>
 <% end %>
 
 <h3>Previous Attended Events</h3>
@@ -15,6 +17,8 @@ Name: <%= @user.name %>
   <% @past_events.each do |event| %>
     <% event.title %>
   <% end %>
+<% else %>
+  <p>No event attended</p>
 <% end %>
 
 <h3>Upcoming Events</h3>
@@ -22,4 +26,12 @@ Name: <%= @user.name %>
   <% @future_events.each do |event| %>
     <% event.title %>
   <% end %>
+<% else %>
+  <p>No upcoming event</p>
+<% end %>
+
+<h3>Invites</h3>
+<% @invites.each do |invite| %>
+ Inveted to: <%= link_to invite.title, invite %>
+ <%= link_to "Accept", accept_invite_path(params: {accepted: true}), method: :post %>
 <% end %>
