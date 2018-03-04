@@ -1,27 +1,26 @@
-<h1> Event Details </h1>
-<p> Created by: <%= link_to @event.creator.name, @event.creator %>
-<p> Event: <%= @event.title %> </p>
-<p> At date: <%= @event.at_date %></p>
-<p> Description: <%= @event.description %></p>
-<h2>Attendees</h2>
-<% if @attendees.any? %>
-  <% @attendees.each do |attendee|%>
-    <ul>
-      <li><%= attendee.name %></li>
-    </ul>
-  <% end %>
-<% else %>
-  <h4>No attendees.</h4>
-<% end %>
+<h1> <%= @event.title %> </h1>
+ <div class="row">
+  <div class="col-md-6">
+    <span class="label">Created by:</span> <%= link_to @event.creator.name, @event.creator %><br>
+    <span class="label">At date:</span> <%= @event.at_date %><br>
+    <span class="label">Description:</span> <%= @event.description %>
+  </div>
+</div>
+<br>
+<div class="row">
+  <div class="col-md-4">
+    <% if signed_in? && current_user?(@event.creator) %>
+    <%= link_to "Invite a person",
+    invitation_path(obj: { event_id: @event.id}), method: :get,
+    class:'btn btn-primary' %>
+    <% end %>
+  </div>
+</div>
 <hr>
-<h2> Confirmation pending </h2>
-  <% @attendees_no_confirmed.each do |attendee| %>
-  <ul>
-    <li><%= attendee.name %></li>
-  </ul>
-  <% end %>
+<%= render partial: 'events/attendees',
+  locals: { attendees: @attendees_confirmed, type: 'Attendees',
+            status: "No attendees"} %>
 <hr>
-<!-- Fixing is putting the method post -->
-<% if signed_in? && current_user?(@event.creator) %>
-  <%= link_to "Invite Someone", invitation_path(obj: {event_id: @event.id}) %>
-<% end %>
+<%= render partial: 'events/attendees',
+  locals: { attendees: @invites_not_accepted, type: 'Confirmation pending',
+            status: "No invites pending"} %>

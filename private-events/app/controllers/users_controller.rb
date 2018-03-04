@@ -1,5 +1,9 @@
 class UsersController < ApplicationController
 
+  def index
+    @users = User.all
+  end
+
   def new
     @user = User.new
   end
@@ -7,8 +11,9 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
+      sign_in(@user)
       flash[:success]="user #{@user.name} registered!!!"
-      redirect_to @user
+      redirect_to root_url
     else
      render 'new'
     end
@@ -16,9 +21,7 @@ class UsersController < ApplicationController
 
   def show
     if signed_in?
-      # @user = User.find(params[:id])
       @user = current_user
-      # @events = @user.created_events
       @events = current_user.created_events
       @past_events = @events.previous_events
       @future_events = @events.upcoming_events
@@ -33,13 +36,19 @@ class UsersController < ApplicationController
     end
   end
 
+  def destroy
+    User.find(params[:id]).destroy
+    flash[:success] = "User deleted"
+    redirect_to users_url
+  end
+
   def new_invite
-    @people_to_invite = list_people_to_invite
+    @people_to_invite = users_not_invited
   end
 
   def create_invite
     people_ids = params[:people_invited]
-    if people_ids.any?
+    if !people_ids.nil? && people_ids.any?
       people_ids.each do |id|
         person_invited   = User.find(id)
         invited_to_event = Event.find(params[:event_id])
@@ -49,12 +58,6 @@ class UsersController < ApplicationController
       flash[:success] = "All invitations sending with sucess!!!"
       redirect_to @event
     end
-  end
-
-  def list_people_to_invite
-    invites = Invitation.select("attendee_id").where("attended_event_id = :event", {event: params[:obj][:event_id]})
-    users = User.where("name != :actual_user_name", {actual_user_name: current_user.name})
-    users.select{|user| invites.all?{|invite| invite.attendee_id != user.id}}
   end
 
   def accept_invite
@@ -70,6 +73,21 @@ class UsersController < ApplicationController
   end
 
   private
+
+    def users_not_invited
+      invites = invitations_to(params[:obj][:event_id])
+      users_to_invite.select{|user| invites.all?{|invite|
+                                invite.attendee_id != user.id}}
+    end
+
+    def invitations_to(event)
+      Invitation.select("attendee_id").
+        where("attended_event_id = :event", {event: event})
+    end
+
+    def users_to_invite
+      index - [current_user]
+    end
 
     def user_params
       params.require(:user).permit(:name, :accepted)

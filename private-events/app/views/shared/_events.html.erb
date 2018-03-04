@@ -1,27 +1,25 @@
-<!-- <% if events.any? %> -->
-  <h1><%= type %></h1>
-  <table class="table table-condensed">
-    <thead>
+<% if events.any? %>
+<h1><%= type %></h1>
+<table class="table table-condensed">
+  <thead>
+    <tr>
+      <th>Event</th>
+      <th>Date</th>
+      <th>Host</th>
+      <th>Attendees</th>
+      <th>Invites</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% events.each do |event| %>
       <tr>
-        <th>Event</th>
-        <th>Date</th>
-        <th>Place</th>
-        <th>Host</th>
-        <th>Attendees</th>
-        <th>Invites</th>
+        <td class="col-md-6"><%= link_to event.title, event %></td>
+        <td class="col-md-2"><%= event.at_date %></td>
+        <td class="col-md-2"><%= event.creator.name%></td>
+        <td class="col-md-1 text-center"><%= event.total_confirmations %></td>
+        <td class="col-md-1 text-center"><%= event.pending_invites_accept %></td>
       </tr>
-    </thead>
-    <tbody>
-      <% events.each do |event| %>
-        <tr>
-          <td class="col-md-4"><%= link_to event.title, event %></td>
-          <td class="col-md-2"><%= event.at_date %></td>
-          <td class="col-md-3">Place</td>
-          <td class="col-md-2"><%= event.creator.name%></td>
-          <td class="col-md-1 text-center"><%= event.attendees_confirmations %></td>
-          <td class="col-md-1 text-center"><%= event.pending_invites_accept %></td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
-<!-- <% end %> -->
+    <% end %>
+  </tbody>
+</table>
+<% end %>

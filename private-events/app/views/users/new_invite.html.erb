@@ -24,8 +24,13 @@
           <% if !params[:obj].nil? %>
             <%= hidden_field_tag(:event_id, params[:obj][:event_id] ) %>
           <% end %>
-          <%= submit_tag "Send Invitation", class: "btn btn-primary" %>
+          <div class="col-md-2"></div>
+          <div class="col-md-8">
+            <%= submit_tag "Send Invitation", class: "btn btn-primary" %>
+          </div>
         <% end %>
+      <% else %>
+        <h4 class="info">There is no one to invite.</h4>
       <% end %>
   </div>
 </div>

@@ -33,7 +33,9 @@ Name: <%= @user.name %>
 <h3>Invites</h3>
 <% @invites.each do |invite| %>
   <div class="row">
-    Inveted to: <%= link_to invite.title, invite %>
-    <%= link_to "Accept", accept_invite_path(params: {accepted: true, event: invite.id}), method: :post %>
+    Inveted to: <%= link_to invite.title, invite %> |
+    <%= link_to "Accept",
+        accept_invite_path(params: {accepted: true, event: invite.id}),
+        method: :post, class: 'btn btn-primary' %>
   </div>
 <% end %>

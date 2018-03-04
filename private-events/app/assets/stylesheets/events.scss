@@ -1,42 +1,17 @@
 // Place all the styles related to the Events controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-table {
-  width: 15%;
-  // background-color: #f1f1c1;
+
+h2, h4 {
+  font-size: 1.2em;
+  letter-spacing: -1px;
+  margin-bottom: 10px;
+  text-align: left;
+  font-weight: normal;
+  color: #111;
 }
 
-// table tr:nth-child(even) {
-//     background-color: #eee;
-// }
-// table tr:nth-child(odd) {
-//     background-color: #fff;
-// }
-// table th {
-//     color: white;
-//     background-color: black;
-// }
-
-table, th, td {
-    border: 1px solid black;
-    border-collapse: collapse;
+.info {
+  color: #339933;
+  text-align: center;
 }
-//
-// th, td {
-//     padding: 15px;
-// }
-//
-// th {
-//   text-align: left;
-// }
-//
-// .invite {
-//   width: 5%;
-//   margin: 0 auto;
-// }
-//
-// td input[type="checkbox"] {
-//     float: left;
-//     margin: 0 auto;
-//     width: 100%;
-// }

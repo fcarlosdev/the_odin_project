@@ -7,12 +7,16 @@ class Event < ApplicationRecord
   has_many   :invitations, foreign_key: :attended_event_id
   has_many   :attendees, through: :invitations
 
-  def attendees_confirmations
+  def total_confirmations
     invitations.where(accepted: :true).count
   end
 
   def pending_invites_accept
-    self.invitations.select{|invite| !invite.accepted?}.count
+    invitations.count - total_confirmations
+  end
+
+  def invites(status)
+    invitations.where(accepted: status)
   end
 
 end

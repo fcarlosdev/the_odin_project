@@ -1,0 +1,14 @@
+<h2><%= type %></h2>
+<div class="row">
+  <div class="col-md-6">
+    <% if attendees.any? %>
+      <% attendees.each do |attendee|%>
+        <ul>
+          <li><%= attendee.name %></li>
+        </ul>
+      <% end %>
+    <% else %>
+      <h4 class="info"><%= status %></h4>
+    <% end %>
+  </div>
+</div>
