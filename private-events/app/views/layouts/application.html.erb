@@ -10,9 +10,13 @@
 
   <body>
     <%= render "layouts/header" %>
-    <% flash.each do |type, message| %>
-      <%= type.capitalize + ": " + message %>
-    <% end %>
-    <%= yield %>
+    <div class="container">
+      <% flash.each do |type, message| %>
+      <%= content_tag(:div, message, class: "alert alert-#{type}") %>
+      <% end %>
+    </div>
+    <div class="container">
+      <%= yield %>
+    </div>
   </body>
 </html>

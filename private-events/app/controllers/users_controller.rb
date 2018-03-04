@@ -16,13 +16,17 @@ class UsersController < ApplicationController
 
   def show
     if signed_in?
-      @user = User.find(params[:id])
-      @events = @user.created_events
+      # @user = User.find(params[:id])
+      @user = current_user
+      # @events = @user.created_events
+      @events = current_user.created_events
       @past_events = @events.previous_events
       @future_events = @events.upcoming_events
       @invites = []
       @user.invitations.each do |invite|
-        @invites << Event.find(invite.attended_event_id)
+        if !invite.accepted?
+          @invites << Event.find(invite.attended_event_id)
+        end
       end
     else
       redirect_to login_path
@@ -42,19 +46,22 @@ class UsersController < ApplicationController
         @event = invited_to_event
         person_invited.attended_events << invited_to_event
       end
-      flash[:success] = "All invitations ok."
+      flash[:success] = "All invitations sending with sucess!!!"
       redirect_to @event
     end
   end
 
   def list_people_to_invite
-    User.where("name != :actual_user_name", {actual_user_name: current_user.name})
+    invites = Invitation.select("attendee_id").where("attended_event_id = :event", {event: params[:obj][:event_id]})
+    users = User.where("name != :actual_user_name", {actual_user_name: current_user.name})
+    users.select{|user| invites.all?{|invite| invite.attendee_id != user.id}}
   end
 
   def accept_invite
-    e = current_user.invitations.find_by(attendee_id: current_user.id)
-    if e.update(accepted: params[:accepted])
+    invite = current_user.invitations.find_by(attended_event_id: params[:event])
+    if invite.update_column(:accepted, params[:accepted])
       flash[:success] = "Invite accepted."
+      invite.save
       redirect_to current_user
     else
       flash[:danger] = "Error to the accept."

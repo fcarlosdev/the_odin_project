@@ -27,7 +27,7 @@ ActiveRecord::Schema.define(version: 20180226230907) do
     t.integer "attended_event_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.boolean "accepted"
+    t.boolean "accepted", default: false
   end
 
   create_table "users", force: :cascade do |t|
