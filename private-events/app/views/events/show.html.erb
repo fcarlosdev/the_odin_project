@@ -1,6 +1,6 @@
 <h1> <%= @event.title %> </h1>
  <div class="row">
-  <div class="col-md-6">
+  <div class="col-md-8">
     <span class="label">Created by:</span> <%= link_to @event.creator.name, @event.creator %><br>
     <span class="label">At date:</span> <%= @event.at_date %><br>
     <span class="label">Description:</span> <%= @event.description %>
@@ -9,7 +9,7 @@
 <br>
 <div class="row">
   <div class="col-md-4">
-    <% if signed_in? && current_user?(@event.creator) %>
+    <% if logged_in? && current_user?(@event.creator) %>
     <%= link_to "Invite a person",
     invitation_path(obj: { event_id: @event.id}), method: :get,
     class:'btn btn-primary' %>

@@ -14,7 +14,8 @@ class EventsController < ApplicationController
   def create
     @event = current_user.created_events.new(event_params)
     if @event.save!
-      redirect_to current_user, notice: "Event sucessfully created!"
+      flash[:success] = "Event sucessfully created!"
+      redirect_to current_user
     else
       flash[:danger] = "Event doesn't created"
       render 'new'
@@ -46,7 +47,7 @@ class EventsController < ApplicationController
     end
 
     def user_logged
-      unless signed_in?
+      unless logged_in?
         flash[:danger] = "Please sign in."
         redirect_to login_url
       end
@@ -55,7 +56,7 @@ class EventsController < ApplicationController
     def allow_to_visualize
       event = Event.find(params[:id])
       invited = event.invitations.any?{|invite| invite.attended_event_id = event.id}
-      unless (event.creator == current_user || invited)
+      if (event.creator.name != current_user.name && !invited)
         flash[:danger] = "You not was invited to this event."
         redirect_to events_path
       end

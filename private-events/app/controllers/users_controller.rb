@@ -10,8 +10,9 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
+    @user.name.downcase!
     if @user.save
-      sign_in(@user)
+      log_in(@user)
       flash[:success]="user #{@user.name} registered!!!"
       redirect_to root_url
     else
@@ -20,17 +21,12 @@ class UsersController < ApplicationController
   end
 
   def show
-    if signed_in?
-      @user = current_user
+    if logged_in?
       @events = current_user.created_events
       @past_events = @events.previous_events
       @future_events = @events.upcoming_events
-      @invites = []
-      @user.invitations.each do |invite|
-        if !invite.accepted?
-          @invites << Event.find(invite.attended_event_id)
-        end
-      end
+      puts "FUTURE EVENTS = #{@future_events.inspect}"
+      @invites = get_invitations || []
     else
       redirect_to login_path
     end
@@ -87,6 +83,10 @@ class UsersController < ApplicationController
 
     def users_to_invite
       index - [current_user]
+    end
+
+    def get_invitations
+      current_user.invitations.map {|invite| Event.find(invite.attended_event_id) if invite.accepted == false}.compact
     end
 
     def user_params

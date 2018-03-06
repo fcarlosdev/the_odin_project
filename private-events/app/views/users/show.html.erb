@@ -1,13 +1,14 @@
 <h1> User Info </h1>
 
-Name: <%= @user.name %>
+<span class="label">Name:</span> <%= current_user.name %>
 
 <h3>Created Events</h3>
-<% if @user.created_events.any? %>
-  <% @events.each do |event| %>
-    <%= link_to event.title, event %><br>
-    <hr>
-  <% end %>
+<% if current_user.created_events.any? %>
+  <ul>
+    <% @events.each do |event| %>
+      <li> <%= link_to event.title, event %></li>
+    <% end %>
+  </ul>
 <% else %>
   <p>No event created</p>
 <% end %>
@@ -15,7 +16,7 @@ Name: <%= @user.name %>
 <h3>Previous Attended Events</h3>
 <% if @past_events.any? %>
   <% @past_events.each do |event| %>
-    <% event.title %>
+    <%= event.title %>
   <% end %>
 <% else %>
   <p>No event attended</p>
@@ -24,7 +25,7 @@ Name: <%= @user.name %>
 <h3>Upcoming Events</h3>
 <% if @future_events.any? %>
   <% @future_events.each do |event| %>
-    <% event.title %>
+    <%= event.title %>
   <% end %>
 <% else %>
   <p>No upcoming event</p>

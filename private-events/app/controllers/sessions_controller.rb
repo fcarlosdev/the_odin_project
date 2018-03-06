@@ -4,10 +4,14 @@ class SessionsController < ApplicationController
   end
 
   def create
-    @user = User.find_by(name: params[:session][:name])
+    @user = User.find_by(name: params[:session][:name].downcase)
     if @user
-      sign_in(@user)
-      redirect_to root_path
+      log_in(@user)
+      if @user.invitations.any? {|invite| invite.accepted == false }
+        redirect_to @user
+      else
+        redirect_to root_path
+      end
     else
      flash.now[:error] = "User '#{params[:session][:name]}' not found."
      render 'new'
@@ -16,7 +20,7 @@ class SessionsController < ApplicationController
   end
 
   def destroy
-    sign_out
+    log_out
     redirect_to root_path
   end
 
