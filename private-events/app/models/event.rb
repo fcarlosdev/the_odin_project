@@ -7,6 +7,10 @@ class Event < ApplicationRecord
   has_many   :invitations, foreign_key: :attended_event_id
   has_many   :attendees, through: :invitations
 
+  validates :title, presence: true
+  validates :description, presence: true
+  validates :at_date, presence: true
+
   def total_confirmations
     invitations.where(accepted: :true).count
   end

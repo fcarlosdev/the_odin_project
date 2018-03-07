@@ -13,11 +13,12 @@ class EventsController < ApplicationController
 
   def create
     @event = current_user.created_events.new(event_params)
-    if @event.save!
+    if @event.save
       flash[:success] = "Event sucessfully created!"
       redirect_to current_user
     else
-      flash[:danger] = "Event doesn't created"
+      puts "ENDED HERE.........."
+      # flash[:danger] = "Event doesn't created"
       render 'new'
     end
   end
@@ -48,7 +49,7 @@ class EventsController < ApplicationController
 
     def user_logged
       unless logged_in?
-        flash[:danger] = "Please sign in."
+        flash[:danger] = "Please log in."
         redirect_to login_url
       end
     end

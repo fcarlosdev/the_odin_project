@@ -25,7 +25,6 @@ class UsersController < ApplicationController
       @events = current_user.created_events
       @past_events = @events.previous_events
       @future_events = @events.upcoming_events
-      puts "FUTURE EVENTS = #{@future_events.inspect}"
       @invites = get_invitations || []
     else
       redirect_to login_path
@@ -33,7 +32,11 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    User.find(params[:id]).destroy
+    user = User.find(params[:id])
+    user.invitations.each do |invite|
+      invite.delete
+    end
+    user.destroy
     flash[:success] = "User deleted"
     redirect_to users_url
   end
