@@ -1,0 +1,34 @@
+<h1>Odin Flight Booking</h1>
+
+<%= form_tag(flights_path, method: "get") do %>
+  <%= label_tag(:from_airport_id, "From Airport:") %>
+  <%= select_tag(:from_airport_id, options_for_select(@from_airport_options), {prompt: 'Departure from'}) %>
+
+  <%= label_tag(:to_airport_id, "To Airport:") %>
+  <%= select_tag(:to_airport_id, options_for_select(@to_airport_options), {prompt: 'Arrive at'}) %>
+
+  <%= label_tag(:passangers, "Number of Passangers:") %>
+  <%= select_tag(:passangers, options_for_select(@passangers_option)) %>
+
+  <%= label_tag(:departure_dates, "Dates:") %>
+  <%= select_tag(:departure_dates, options_for_select(@dates_options)) %>
+
+  <hr>
+  <h2>Available Flights</h2>
+  <% @flights.each do |flight| %>
+    <ul>
+      <li>Flight Number: <%=flight.id %></li>
+      <li>
+        From: <%= flight.from_airport.code %> -
+              <%= flight.from_airport.name %>
+      </li>
+      <li>
+        To: <%= flight.to_airport.code %> -
+            <%= flight.to_airport.name %>
+      </li>
+      <li>Date: <%= flight.start_date.strftime("%d/%m/%Y") %> </li>
+      <li>Hour: <%= flight.start_hour.strftime("%H:%M:%S") %> </li>
+      <li>Duration: <%= flight.duration %> </li>
+    </ul>
+  <% end %>
+<% end %>

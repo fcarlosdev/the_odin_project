@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  from_aiport_id: 1
+  to_aiport_id: 1
+  start_date: 2018-03-11
+  start_hour: 2018-03-11 09:52:23
+  duration: 1
+
+two:
+  from_aiport_id: 1
+  to_aiport_id: 1
+  start_date: 2018-03-11
+  start_hour: 2018-03-11 09:52:23
+  duration: 1
