@@ -1,0 +1,31 @@
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+/*===========
+  Search box
+============*/
+
+input[type="submit"] {
+  margin-top: 20px;
+}
+
+select {
+  margin-bottom: 10px;
+}
+
+div .well {
+  // margin-left: 15%;
+  // box-sizing: border-box;
+}
+
+h1, h2 {
+  text-align: center;
+}
+
+/*=================
+ Table Flights
+===================*/
+
+.table > thead > tr > th, .table > tbody > tr > td {
+  text-align: center;
+}

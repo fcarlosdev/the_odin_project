@@ -1,8 +1,8 @@
 require 'test_helper'
 
-class FlightControllerTest < ActionDispatch::IntegrationTest
+class FlightsControllerTest < ActionDispatch::IntegrationTest
   test "should get index" do
-    get flight_index_url
+    get flights_index_url
     assert_response :success
   end
 
