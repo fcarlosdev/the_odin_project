@@ -1,0 +1,45 @@
+<% if @flights.any? %>
+
+  <h2>Available Flights (<%= @flights.count %>)</h2>
+
+  <div class="container">
+
+    <div class="cold-md-10 col-md-offset-1 well">
+
+      <%= form_tag(book_path, method: "get") do %>
+
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th></th>
+              <th>Number</th>
+              <th>Origin</th>
+              <th>Destiny</th>
+              <th>Date</th>
+              <th>Time</th>
+              <th>Duration</th>
+              <th>Seats</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @flights.each do |flight| %>
+              <tr>
+                <td><%= radio_button_tag(:flight_id, flight.id) %></td>
+                <td><%= flight.id %></td>
+                <td><%= flight.from_airport.code %> - <%= flight.from_airport.name %></td>
+                <td><%= flight.to_airport.code %> - <%= flight.to_airport.name %></td>
+                <td><%= flight.start_date.strftime("%d/%m/%Y") %> </td>
+                <td><%= flight.start_hour.strftime("%H:%M") %> </td>
+                <td><%= flight.duration %> </td>
+                <td><%= flight.total_seats %> </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+        <%= submit_tag("Continue", class: "btn btn-primary col-md-2 col-md-offset-5 book_btn") %>
+      <% end %>
+
+    </div>
+
+  </div>
+<% end %>

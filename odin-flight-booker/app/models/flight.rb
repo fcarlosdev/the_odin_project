@@ -8,8 +8,9 @@ class Flight < ApplicationRecord
   end
 
   def self.search(origin, destiny, number_of_passengers, at_date)
-    Flight.where(from_airport_id: origin, to_airport_id: destiny,
+    flights = Flight.where(from_airport_id: origin, to_airport_id: destiny,
                  start_date: Flight.to_date(at_date))
+    flights.where("total_seats >= ?", number_of_passengers.to_i)
   end
 
   private

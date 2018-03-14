@@ -5,8 +5,12 @@
   Search box
 ============*/
 
-input[type="submit"] {
-  margin-top: 20px;
+// input[type="submit"] {
+//   margin-top: 20px;
+// }
+
+.search_btn  {
+  margin-top:  20px;
 }
 
 select {
@@ -28,4 +32,11 @@ h1, h2 {
 
 .table > thead > tr > th, .table > tbody > tr > td {
   text-align: center;
+}
+
+/*================
+  booking
+=================*/
+.book_btn {
+  margin-top: -20px;
 }
