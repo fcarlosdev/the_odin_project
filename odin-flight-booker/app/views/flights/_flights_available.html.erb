@@ -22,9 +22,14 @@
             </tr>
           </thead>
           <tbody>
-            <% @flights.each do |flight| %>
+            <% @flights.each.with_index do |flight,index| %>
               <tr>
-                <td><%= radio_button_tag(:flight_id, flight.id) %></td>
+                <% if index == 0 %>
+                  <td><%= radio_button_tag(:flight_id, flight.id,
+                                            class: "flight_select") %></td>
+                <% else %>
+                  <td><%= radio_button_tag(:flight_id, flight.id) %></td>
+                <% end %>
                 <td><%= flight.id %></td>
                 <td><%= flight.from_airport.code %> - <%= flight.from_airport.name %></td>
                 <td><%= flight.to_airport.code %> - <%= flight.to_airport.name %></td>
@@ -38,7 +43,7 @@
         </table>
         <%= hidden_field_tag(:num_seats, params[:num_passangers]) %>
         <%= submit_tag("Continue", class: "btn btn-primary col-md-2
-                        col-md-offset-5 book_btn choose") %>
+                                            col-md-offset-5 book_btn choose") %>
       <% end %>
 
     </div>
