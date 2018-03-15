@@ -2,11 +2,11 @@
 
   <h2>Available Flights (<%= @flights.count %>)</h2>
 
-  <div class="container">
+  <div class="row">
 
-    <div class="cold-md-10 col-md-offset-1 well">
+    <div class="cold-md-10 well">
 
-      <%= form_tag(book_path, method: "get") do %>
+      <%= form_tag(new_booking_path, method: "get") do %>
 
         <table class="table table-striped">
           <thead>
@@ -36,6 +36,7 @@
             <% end %>
           </tbody>
         </table>
+        <%= hidden_field_tag(:num_seats, params[:num_passangers]) %>
         <%= submit_tag("Continue", class: "btn btn-primary col-md-2 col-md-offset-5 book_btn") %>
       <% end %>
 

@@ -5,21 +5,12 @@
   Search box
 ============*/
 
-// input[type="submit"] {
-//   margin-top: 20px;
-// }
-
 .search_btn  {
   margin-top:  20px;
 }
 
 select {
   margin-bottom: 10px;
-}
-
-div .well {
-  // margin-left: 15%;
-  // box-sizing: border-box;
 }
 
 h1, h2 {
@@ -39,4 +30,14 @@ h1, h2 {
 =================*/
 .book_btn {
   margin-top: -20px;
+}
+
+.passenger_box  {
+  // padding-top: 30px;
+  padding-bottom: 50px;
+}
+
+.control-label {
+    margin-left: -15px;
+    margin-top :5px;
 }

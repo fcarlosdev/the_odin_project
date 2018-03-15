@@ -1,0 +1,48 @@
+<h1>Booking Details</h1>
+
+<div class="row">
+
+  <div class="col-md-6 col-md-offset-3">
+
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Booking Number</th>
+          <th>From Airport</th>
+          <th>To Airport</th>
+          <th>Departure Date</th>
+          <th>Departure Time</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><%= @booking.id %></td>
+          <td><%= @booking.flight.from_airport.code%></td>
+          <td><%= @booking.flight.to_airport.code %></td>
+          <td><%= @booking.flight.start_date.strftime("%d/%m/%Y") %></td>
+          <td><%= @booking.flight.start_hour.strftime("%H:%M") %></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3>Passenger(s) detail(s)</h3>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Email</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @booking.passengers.each do |p| %>
+          <tr>
+            <td><%= p.name %></td>
+            <td><%= p.email %></td>
+          </tr>
+        <% end%>
+      </tbody>
+    </table>
+
+  </div>
+
+</div>

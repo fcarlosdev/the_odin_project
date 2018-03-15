@@ -7,8 +7,10 @@ class FlightsController < ApplicationController
 
     @origin       = params[:from_airport_id]
     @destiny      = params[:to_airport_id]
-    @passangers   = params[:passangers]
+    @passangers   = params[:num_passangers]
     @date_choosed = params[:departure_date]
+
+    route_valid?(@origin,@destiny)
 
     @flights = Flight.search(@origin, @destiny, @passangers, @date_choosed)
   end
@@ -21,6 +23,14 @@ class FlightsController < ApplicationController
 
   def airport_name(airport)
     airport.code + " - " + airport.name
+  end
+
+  def route_valid?(origin, destiny)
+    if (params[:commit] == "Search")
+      if (!origin.empty? && !destiny.empty? && origin == destiny)
+        flash.now[:danger] = "You can't departure and arrive at the same airport."
+      end
+    end
   end
 
 end

@@ -1,6 +1,6 @@
 <h1>Odin Flight Booking</h1>
 
-<div class="container">
+<div class="row">
 
   <div class="col-md-10 col-md-offset-1 well">
 
@@ -21,8 +21,8 @@
       </div>
 
       <div class="col-md-6">
-        <%= label_tag(:passangers, "Number of Passangers") %>
-        <%= select_tag(:passangers,
+        <%= label_tag(:num_passangers, "Number of Passangers") %>
+        <%= select_tag(:num_passangers,
                         options_for_select(@passangers_option, @passangers),
                         {prompt: "Enter number of passengers", class: "form-control"}) %>
       </div>
