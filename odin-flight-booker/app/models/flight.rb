@@ -12,7 +12,7 @@ class Flight < ApplicationRecord
        map{|date| date.start_date.strftime("%d/%m/%Y")}.uniq
   end
 
-  def self.search(origin, destiny, num_of_passengers=0, at_date)
+  def self.search(origin, destiny, num_of_passengers, at_date)
     parameters = {from_airport_id: origin, to_airport_id: destiny}
     parameters[:start_date] = Flight.to_date(at_date) if !param_not_provided?(at_date)
     Flight.where(parameters).where("total_seats >= ?", num_of_passengers.to_i)

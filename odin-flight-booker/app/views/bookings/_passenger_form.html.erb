@@ -21,7 +21,8 @@
       <%= hidden_field_tag(:flight_id, params[:flight_id]) %>
       <%= hidden_field_tag(:passengers, params[:passengers]) %>
 
-      <%= f.submit "Book Flight", class: "btn btn-success btn-lg col-md-4 col-md-offset-4" %>
+      <%= f.submit "Book Flight", class: "btn btn-success btn-lg col-md-4 col-md-offset-1" %>
+      <%= link_to "Cancel", flights_path, class: "btn btn-danger btn-lg col-md-4 col-md-offset-1" %>
 
     <% end %>
 

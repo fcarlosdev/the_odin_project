@@ -1,0 +1,28 @@
+<div class="row">
+
+  <div class="col-md-8 col-md-offset-2 well">
+
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Booking Number</th>
+          <th>From Airport</th>
+          <th>To Airport</th>
+          <th>Departure Date</th>
+          <th>Departure Time</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><%= @booking.id %></td>
+          <td><%= @booking.flight.from_airport.code%></td>
+          <td><%= @booking.flight.to_airport.code %></td>
+          <td><%= @booking.flight.start_date.strftime("%d/%m/%Y") %></td>
+          <td><%= @booking.flight.start_hour.strftime("%H:%M") %></td>
+        </tr>
+      </tbody>
+    </table>
+
+  </div>
+
+</div>
