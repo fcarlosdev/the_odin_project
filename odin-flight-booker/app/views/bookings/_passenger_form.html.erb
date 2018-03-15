@@ -6,6 +6,8 @@
 
     <%= form_for @booking do |f| %>
 
+      <%= render 'shared/error_messages', object: @booking %>
+      
       <%= f.fields_for :passengers do |passenger| %>
         <div class="row">
           <div class="col-md-12 well passenger_box">

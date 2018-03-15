@@ -5,8 +5,12 @@
   Search box
 ============*/
 
-.search_btn  {
+.search_btn, .new_btn  {
   margin-top:  20px;
+}
+
+.new_btn {
+  margin-left: 5px;
 }
 
 select {
@@ -25,6 +29,10 @@ h1, h2 {
   text-align: center;
 }
 
+.choose {
+  margin-top: 50px;
+}
+
 /*================
   booking
 =================*/
@@ -33,7 +41,6 @@ h1, h2 {
 }
 
 .passenger_box  {
-  // padding-top: 30px;
   padding-bottom: 50px;
 }
 

@@ -9,6 +9,7 @@ class BookingsController < ApplicationController
   def create
     @booking = Booking.new(booking_params)
     if @booking.save
+      decrease_total_seats
       flash[:success] = "Booking registered with success!!!!"
       redirect_to booking_path(@booking)
     else
@@ -25,6 +26,10 @@ class BookingsController < ApplicationController
 
   def booking_params
     params.require(:booking).permit(:flight_id, passengers_attributes: [:id, :name, :email])
+  end
+
+  def decrease_total_seats
+    @booking.flight.update_attribute(:total_seats, (@booking.flight.total_seats - 1))
   end
 
 end
