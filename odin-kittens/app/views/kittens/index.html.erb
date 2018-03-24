@@ -1,0 +1,28 @@
+<h1> Kittens List </h1>
+
+<table>
+  <thead>
+    <tr>
+      <td>Name</td>
+      <td>Age</td>
+      <td>Cuteness</td>
+      <td>Softness</td>
+      <td></td>
+      <td></td>
+    </tr>
+  </thead>
+  <tbody>
+    <% @kittens.each do |kitten| %>
+       <tr>
+         <td><%= kitten.name %></td>
+         <td><%= kitten.age %></td>
+         <td><%= kitten.cuteness ? "Yes" : "No" %></td>
+         <td><%= kitten.softness ? "Yes" : "No" %></td>
+         <td><%= link_to("Edit", edit_kitten_path(kitten.id)) %> </td>
+         <td><%= link_to("Delete", kitten, method: :delete) %></td>
+       </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<div> <%= link_to("New kitten", new_kitten_path) %></div>
