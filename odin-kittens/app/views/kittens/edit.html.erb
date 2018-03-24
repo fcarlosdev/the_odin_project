@@ -1,18 +1,2 @@
-<h1>Updating kitten informations</h1>
-
-<%= form_for @kitten do |f| %>
-
-  <%= f.label :name %>
-  <%= f.text_field :name %>
-  <br><br>
-  <%= f.label :age %>
-  <%= f.select :age, options_for_select(@ages_options, @kitten.age || 0) %>
-  <br><br>
-  <%= f.label :cuteness %>
-  <%= f.check_box :cuteness %>
-
-  <%= f.label :softness %>
-  <%= f.check_box :softness %>
-  <br>
-  <%= f.submit "Update" %>
-<% end %>
+<h1>Editing kitten informations</h1>
+<%= render "kittens/form" %>

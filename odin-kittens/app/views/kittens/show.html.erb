@@ -1,6 +1,6 @@
 <h1>Kitten Info</h1>
 Name: <%= @kitten.name %><br>
-Age:  <%= @kitten.age %><br>
+Age:  <%= pluralize(@kitten.age, "year") %> <br>
 Cuteness: <%= @kitten.cuteness ? "Yes" : "No" %><br>
-Softness: <%= @kitten.softness %><br>
+Softness: <%= @kitten.softness ? "Yes" : "No" %><br>
 <%= link_to "Home", kittens_path %>

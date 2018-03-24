@@ -1,0 +1,34 @@
+<div class="container">
+
+  <%= form_for @kitten do |f| %>
+
+    <%= render 'shared/error_messages' %>
+
+    <div class="col-50">
+      <div>
+        <%= f.label :name %>
+        <%= f.text_field :name %>
+      </div>
+    </div>
+    <div class="col-50">
+      <div>
+        <%= f.label :age %>
+        <%= f.select :age, options_for_select(1..100, @kitten.age)%>
+        <%= f.label :cuteness %>
+        <%= f.check_box :cuteness %>
+        <%= f.label :softness %>
+        <%= f.check_box :softness %>
+      </div>
+    </div>
+
+    <br>
+    <div>
+      <%= f.submit "Save" %>
+      <% if params[:action]  == "edit" %>
+        <%= link_to("Delete", @kitten, method: :delete,
+                                      data: { confirm: "You sure?" }) %>
+      <% end %>
+    </div>
+  <% end %>
+
+</div>

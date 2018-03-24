@@ -9,13 +9,12 @@ class KittensController < ApplicationController
   end
 
   def new
-    @ages_options = (1..100).to_a
     @kitten = Kitten.new
   end
 
   def create
     @kitten = Kitten.new(kitten_params)
-    if @kitten.save!
+    if @kitten.save
       flash.now[:success] = "Kitten added with success!!"
       redirect_to @kitten
     else
@@ -24,14 +23,13 @@ class KittensController < ApplicationController
   end
 
   def edit
-    @ages_options = (1..100).to_a
     @kitten = Kitten.find(params[:id])
   end
 
   def update
     @kitten = Kitten.find(params[:id])
     if @kitten.update_attributes(kitten_params)
-      flash[:sucess] = "Kitten #{@kitten.name} updated."
+      flash[:success] = "Kitten #{@kitten.name} updated with success."
       redirect_to kittens_path
     else
       render 'edit'
