@@ -1,0 +1,24 @@
+<div class="side_bar">
+  <% if @photos && @photos.any? %>
+    <h3>
+      <% if !@user_id.nil? %>
+        User(<%=@user_id%>) Photos
+      <% elsif !@user_name.nil? %>
+        User(<%=@user_name%>)Photos
+      <% end %>
+    </h3>
+
+    <ul>
+      <% @photos.each do |photo| %>
+        <% info = flickr.photos.getInfo(photo_id: photo.id) %>
+        <%= image_tag(FlickRaw.url_m(info)) %>
+      <% end %>
+    </ul>
+  <% else %>
+    <% if !@user_id.nil? %>
+      <h3>User(<%=@user_id%>) has no public photos yet.</h3>
+    <% elsif !@user_name.nil? %>
+      <h3>User(<%=@user_name%>) has no public photos yet.</h3>
+    <% end %>
+  <% end %>
+</div>

@@ -1,3 +1,39 @@
 // Place all the styles related to the StaticPages controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+#flickr_id {
+  margin-left: 30px;
+  margin-bottom: 5px;
+}
+#flickr_name {
+  margin-left: 5px;
+  margin-bottom: 5px;
+}
+
+input[type="submit"] {
+  margin-left: 230px;
+}
+
+.right_bar {
+  width: 25%;
+  float: left;
+}
+
+.side_bar {
+  width: 75%;
+  float: right;
+  margin-top: -20px;
+}
+
+h3 {
+  margin-left: 30%;
+}
+
+form {
+  margin-top: -10px;
+}
+
+h1 {
+  margin-left: 50%;
+}

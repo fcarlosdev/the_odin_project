@@ -1,2 +1,14 @@
-<h1>StaticPages#home</h1>
-<p>Find me in app/views/static_pages/home.html.erb</p>
+<h1>Flickr Photos</h1>
+<div class="right_bar">
+
+  <h2>Search for (Id or Name)</h2>
+  <%= form_tag(search_path, method: "get") do %>
+    <%= label_tag(:flickr_id, "User Id:") %>
+    <%= text_field_tag(:flickr_id) %> <br>
+    <%= label_tag(:person_name, "User Name:") %>
+    <%= text_field_tag(:flickr_name) %><br>
+    <%= submit_tag("search") %>
+  <% end %>
+
+</div>
+<%= render "flickr/show_photos" %>
