@@ -9,6 +9,7 @@ class BookingsController < ApplicationController
   def create
     @booking = Booking.new(booking_params)
     if @booking.save
+      PassengerMailer.thank_you_email(@booking.passengers[0]).deliver
       decrease_total_seats
       flash[:success] = "Booking registered with success!!!!"
       redirect_to booking_path(@booking)
