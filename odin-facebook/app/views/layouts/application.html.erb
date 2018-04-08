@@ -9,6 +9,19 @@
   </head>
 
   <body>
+    <div>
+      <p class="notice"><%= notice %></p>
+      <p class="alert"><%= alert %></p>
+    </div>
+    <div>
+      <% if user_signed_in? %>
+        Logged in as <%= current_user.email %>
+        <%= link_to "Log out", destroy_user_session_path, method: :delete %>
+      <% else %>
+        <%= link_to "Register", new_user_registration_path %> or 
+        <%= link_to "Log in", new_user_session_path %>
+      <% end %>
+    </div>
     <%= yield %>
   </body>
 </html>
