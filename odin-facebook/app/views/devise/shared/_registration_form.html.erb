@@ -1,0 +1,38 @@
+<div class="registration_title">
+  <h2>Sign Up</h2>
+  <div id="motto">It's free and always will be.</div>
+</div>
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+    <%= render 'layouts/error_messages', object: resource %>
+    <div id="register_form" >
+
+      <div id="first_name">
+        <%= f.text_field :first_name, autofocus: true, placeholder: "First name" %>
+      </div>
+
+      <div id="last_name">
+        <%= f.text_field :last_name, placeholder: "Last name "%><br />
+      </div>
+
+      <div >
+        <%= f.email_field :email, autocomplete: "email", placeholder: "Email",
+        class:"input_width" %><br />
+      </div>
+
+      <div>
+        <%= f.password_field :password, autocomplete: "off", placeholder: "Password",
+        class:"input_width" %><br />
+      </div>
+
+      <div>
+        <%= f.password_field :password_confirmation, autocomplete: "off",
+        placeholder: "Password confirmation", class:"input_width" %>
+      </div>
+
+  </div>
+
+  <div id="register-btn">
+    <%= f.submit "Create Account" %>
+  </div>
+
+<% end %>
