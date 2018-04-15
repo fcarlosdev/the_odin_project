@@ -1,0 +1,15 @@
+<div class="search_bar">
+  <div class="content_search_bar">
+    <div class="search_logo">
+      <img src=<%= image_url("fb_logo.png")%> alt="Odin Book">
+    </div>
+    <div class="search_field">
+      <%= form_tag(newsfeed_path, method: "get") do %>
+        <%= search_field_tag('search', nil, placeholder: "Search") %>
+        <%= button_tag(name: nil, class: 'search_button')  do %>
+          <%= image_tag("search-icon.png") %>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>
