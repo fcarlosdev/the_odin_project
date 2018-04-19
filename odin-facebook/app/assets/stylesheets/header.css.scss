@@ -1,0 +1,139 @@
+.main-header {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 42;
+  height: 43px;
+  min-width: 980px;
+  background-color: #3a5795;
+  border-bottom: 1px solid #133783;
+  box-shadow: 0 2px 2px -2px rgba(0,0,0,0.52);
+}
+
+.header-holder {
+  height: 100%;
+  width: 980px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.header-holder .icon {
+  height: 22px;
+  border-radius: 3px;
+  float: left;
+  position: relative;
+  top: 10px;
+  left: -8px;
+  vertical-align: baseline;
+}
+
+.header-holder .header-form {
+  position: relative;
+  top: 8px;
+  left: -1px;
+}
+
+.header-holder input {
+  height: 26px;
+  font-size: 14px;
+  border: 1px solid #355089;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+  padding-left: 5px;
+  margin-right: 7px;
+  overflow: hidden;
+  max-width: 550px;
+  width: 433px;
+}
+
+.header-holder button {
+  height: 24px;
+  width: 46px;
+  border: none;
+  -webkit-border-radius: 0 4px 4px 0;
+  -moz-border-radius: 0 4px 4px 0;
+  border-radius: 0 4px 4px 0;
+  background-color: #f6f7f8;
+  position: absolute;
+  margin-left: -54px;
+  top: 1px;
+  padding: 0;
+}
+
+.header-menu li {
+  display: inline-block;
+  margin-right: 8px;
+}
+
+.header-holder ul {
+  position: relative;
+  top: -18px;
+  left: 470px;
+}
+
+a {
+  text-decoration: none;
+}
+
+.header-profile {
+  margin-top: -5px;
+}
+
+.header-profile a {
+  padding-left: 2px;
+  vertical-align: middle;
+}
+
+.header-profile img {
+  vertical-align: middle;
+}
+
+.header-holder a {
+  color: #fff;
+  text-shadow: 0 -1px rgba(0,0,0,0.5);
+  font-size: 14px;
+  font-weight: bold;
+}
+
+ol, ul {
+  list-style: none;
+}
+
+.header-holder li:first-child {
+    border-left: none;
+}
+
+.main-container {
+  width: 996px;
+  margin: 0 auto;
+  padding-top: 10px;
+}
+
+.side_bar {
+  display: inline-block;
+  float: left;
+}
+
+.side_bar li {
+  margin-top: 12px;
+  a {
+      color: #1d2129;
+  }
+
+  img {
+      margin-top: -5px;
+  }
+}
+
+.feeds-content {
+  margin-left: 15px;
+  width: 800px;
+  height: 800px;
+  display: inline-block;
+  border: 1px solid;
+}
+
+.feeds-content form {
+   margin: 0 auto;
+}

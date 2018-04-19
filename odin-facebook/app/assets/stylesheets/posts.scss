@@ -1,0 +1,43 @@
+// Place all the styles related to the Posts controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.frm-post {
+  margin-left: 10px;
+  margin-top: 5px;
+  width: 500px;
+  border-radius: 3px;
+  border: 1px solid #d3d6db;
+}
+
+.post-title {
+  width: 498px;
+  height: 33px;
+  border-bottom: 1px solid #dcdee3;
+  padding: 10px 0 8px 12px;
+  font-weight: bold;
+  line-height: 16px;
+  border-radius: 3px 3px 0 0;
+  background-color: #f6f7f8;
+}
+
+.frm-post textarea {
+  width: 100%;
+  border: none;
+  resize: none;
+  padding: 13px 12px 5px 12px;
+}
+
+.frm-post .post-submit {
+  height: 41px;
+  padding: 8px;
+  background-color: #f6f7f8;
+  border-top: 1px solid #dcdee3;
+  margin-top: -2px;
+  border-bottom-left-radius: 3px;
+  border-bottom-right-radius: 3px;
+}
+
+.post-submit input[type="submit"] {
+  float: right;
+}

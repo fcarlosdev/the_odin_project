@@ -1,0 +1,14 @@
+<div class="frm-post">
+  <%= form_for @post do |f| %>
+    <div class="post-title">
+      New post
+    </div>
+    <div class="">
+      <%= f.text_area :content, size: '50x7',
+          autofocus: true, placeholder: "What are you thinking about?" %>
+    </div>
+    <div class="post-submit">
+      <%= f.submit 'Publish' %>
+    </div>
+  <% end %>
+</div>
