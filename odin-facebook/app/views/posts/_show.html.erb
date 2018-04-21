@@ -1,0 +1,30 @@
+  <% current_user.posts.each do |post| %>
+      <div class="posted">
+        <div class="info-comment">
+          <%= render 'posts/post_top' %>
+        </div>
+        <div class="post-content">
+          <%= post.content %>
+        </div>
+        <div class="links-comment">
+          <ul>
+            <li>like</li>
+            <li>Comment</li>
+          </ul>
+        </div>
+        <div class="post-comment">
+          <div class="comment">
+            <ul>
+              <li>
+                <%= link_to image_tag("user_icon.jpg"), '#' %>
+              </li>
+              <li>
+                <%= form_tag(newsfeed_path, method: "get") do %>
+                  <%= text_field_tag('comment', nil, placeholder: 'write a comment') %>
+                <% end %>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+  <% end %>

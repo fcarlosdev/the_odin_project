@@ -25,6 +25,7 @@
   width: 100%;
   border: none;
   resize: none;
+  height: 100px;
   padding: 13px 12px 5px 12px;
 }
 
@@ -40,4 +41,98 @@
 
 .post-submit input[type="submit"] {
   float: right;
+  background-color: #9cb4d8;
+  border-color: #9cb4d8;
+  color: #fff;
+  font-size: 12px;
+  line-height: 22px;
+  padding: 0 6px;
+  border: 1px solid;
+  border-radius: 2px;
+  box-sizing: content-box;
+  font-weight: bold;
+  justify-content: center;
+  position: relative;
+  text-align: center;
+  text-shadow: none;
+  vertical-align: middle;
+  width: 60px;
+  height: 28px;
+  margin-top: -2px;
+}
+
+.posted {
+  height: 217px;
+  width: 500px;
+  margin-left: 10px;
+  margin-top: 15px;
+  border-radius: 3px;
+  border: 1px solid #d3d6db;
+  background-color: #fff;
+}
+
+.posted a img {
+  margin: 8px 0 0 8px;
+}
+
+.info-comment a img {
+  width: 40px;
+  height: 40px;
+}
+
+.posted .user_name {
+  margin-top: -44px;
+  margin-left: 54px;
+  display: block;
+}
+
+.time-passed {
+  font-size: 10px;
+  margin-left: 54px;
+  margin-top: 12px;
+  display: block;
+}
+
+.post-content {
+  margin-top: 16px;
+  margin-left: 8px;
+  border-bottom: 1px solid #e5e5e5;
+  padding-bottom: 12px;
+  width: 480px;
+  height: 60px;
+  background-color: #fff;
+}
+
+/*====================================
+  Comments
+======================================*/
+.links-comment ul li {
+  display: inline-block;
+  margin: 10px 50px 0 10px;
+  float: left;
+}
+
+.post-comment {
+  margin-top: 38px;
+  width: 498px;
+  height: 52px;
+  background-color: #f6f7f9;
+}
+
+.comment a img {
+  width: 32px;
+  height: 32px;
+  margin-top: 10px;
+}
+
+.comment ul li {
+  display: block;
+  float: left;
+}
+
+.comment input {
+  margin-left: 6px;
+  margin-top: 10px;
+  height: 34px;
+  width: 444px;
 }

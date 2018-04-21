@@ -1,0 +1,25 @@
+<div class="main-header">
+  <div class="header-holder">
+    <%= link_to image_tag("fb_logo.png", class:'icon'), newsfeed_path %>
+    <div class="header-form">
+      <%= form_tag(newsfeed_path, method: "get") do %>
+        <%= search_field_tag('search', nil, placeholder: "Search") %>
+        <%= button_tag(name: nil)  do %>
+          <%= image_tag("search-icon.png") %>
+        <% end %>
+      <% end %>
+    </div>
+    <div class="header-menu">
+      <ul>
+        <li>
+          <div class="header-profile">
+            <%= render 'shared/user_info' %>
+          </div>
+        </li>
+        <li>
+          <%= link_to "Log out", destroy_user_session_path, method: :delete %>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
