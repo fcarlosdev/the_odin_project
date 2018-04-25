@@ -3,7 +3,8 @@ class UsersController < ApplicationController
   before_action :logged_in_user, only: [:newsfeed]
 
   def newsfeed
-    @post = Post.new
+    @post    = Post.new
+    @comment = Comment.new
   end
 
   private

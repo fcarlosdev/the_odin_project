@@ -62,13 +62,18 @@
 }
 
 .posted {
-  height: 217px;
+  height: 166px;
   width: 500px;
   margin-left: 10px;
   margin-top: 15px;
   border-radius: 3px;
   border: 1px solid #d3d6db;
+  border-bottom: none;
   background-color: #fff;
+}
+
+.posted a:link {
+  color: #3b5998;
 }
 
 .posted a img {
@@ -114,25 +119,9 @@
 
 .post-comment {
   margin-top: 38px;
-  width: 498px;
-  height: 52px;
-  background-color: #f6f7f9;
 }
 
-.comment a img {
-  width: 32px;
-  height: 32px;
-  margin-top: 10px;
-}
-
-.comment ul li {
-  display: block;
-  float: left;
-}
-
-.comment input {
-  margin-left: 6px;
-  margin-top: 10px;
-  height: 34px;
-  width: 444px;
+.comment-date {
+  margin-left: 38px;
+  font-size: 12px;
 }

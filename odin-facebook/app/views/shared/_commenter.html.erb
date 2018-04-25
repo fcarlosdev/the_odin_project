@@ -1,0 +1,8 @@
+<div class="commenter-container">
+  <div class="img">
+    <%= link_to image_tag("user_icon.jpg"), '#' %>
+  </div>
+  <div class="commenter_name">
+    <%= link_to current_user.first_name + current_user.last_name, '#', class: 'user_name' %>
+  </div>
+</div>

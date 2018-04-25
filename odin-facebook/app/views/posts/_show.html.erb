@@ -12,19 +12,11 @@
             <li>Comment</li>
           </ul>
         </div>
-        <div class="post-comment">
-          <div class="comment">
-            <ul>
-              <li>
-                <%= link_to image_tag("user_icon.jpg"), '#' %>
-              </li>
-              <li>
-                <%= form_tag(newsfeed_path, method: "get") do %>
-                  <%= text_field_tag('comment', nil, placeholder: 'write a comment') %>
-                <% end %>
-              </li>
-            </ul>
-          </div>
-        </div>
       </div>
+
+      <%= render 'comments/show_comments', locals: {post: post} %>
+      <div class="fcomment">
+        <%= render 'comments/form_comment', locals: {post: post} %>
+      </div>
+
   <% end %>

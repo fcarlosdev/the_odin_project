@@ -9,7 +9,6 @@ class PostsController < ApplicationController
       redirect_to newsfeed_path
     else
       flash[:error] = "Invalid post"
-      # redirect_to newsfeed_path(current_user)
       redirect_to newsfeed_path
     end
   end

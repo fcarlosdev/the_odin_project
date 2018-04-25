@@ -1,0 +1,15 @@
+<% if locals[:post].comments.any? %>
+  <% locals[:post].comments.each do |comment| %>
+    <div class="comment-body">
+      <div id="info-user">
+        <%= render 'shared/commenter' %>
+      </div>
+      <div id="comment-txt">
+        <span> <%= comment.body %> </span>
+      </div>
+      <div class="comment-date">
+        <span>date:</span>
+      </div>
+    </div>
+  <% end %>
+<% end %>
