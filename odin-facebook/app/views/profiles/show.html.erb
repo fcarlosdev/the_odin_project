@@ -1,7 +1,33 @@
 <%= render 'shared/header' %>
-<div class="profile_body">
-  <div class="profile-header">
-    
+<div class="profile-container">
+  <div class="profile-content">
+    <div class="profile-image">
+      <%= link_to image_tag("img-profile.jpg"), profile_path(current_user.id) %>
+      <span>
+        <%= link_to current_user.fullname, profile_path(current_user.id) %>
+      </span>
+      <div class="profile-edit">
+        <%= link_to 'Edit your Profile', edit_profile_path(current_user.id) %>
+      </div>
+    </div>
+  </div>
+  <div class="profile-menu">
+    <ul>
+      <li><%= link_to 'Timeline', '#' %></li>
+      <li><%= link_to 'About', '#' %></li>
+      <li><%= link_to 'Friends', '#' %></li>
+    </ul>
+  </div>
+  <div class="profile-side-bar">
+    <%= render 'shared/side_bar' %>
+  </div>
+  <div class="profile-description">
+    <div class="description-title">
+
+    </div>
+    <div class="description-bottom">
+
+    </div>
 
   </div>
 </div>

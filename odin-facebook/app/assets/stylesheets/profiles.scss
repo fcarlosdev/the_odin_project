@@ -1,3 +1,123 @@
 // Place all the styles related to the Profiles controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.profile-container {
+  width: 980px;
+  height: 762px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.profile-content {
+  width: 679px;
+  height: 250px;
+  position: relative;
+  border: 1px solid #232937;
+  background-color: #232937;
+}
+
+.profile-image img {
+  margin-left: 15px;
+  margin-top: 100px;
+  background-color: #232937;
+  border: 1px solid #232937;
+  position: absolute;
+  z-index: 1;
+}
+
+.profile-image span a {
+  display: inline-block;
+  color: #fff;
+  margin-top: 190px;
+  margin-left: 200px;
+  line-height: 30px;
+  font-size: 24px;
+  position: relative;
+  text-decoration: none;
+}
+
+.profile-edit {
+  float: right;
+  margin-left: 30px;
+  margin-top: 210px;
+  padding-left: 18px;
+  padding-right: 10px;
+  position: relative;
+}
+
+.profile-edit  a {
+  color: #666;
+  border: 1px solid #e9eaed;
+  background-color: #e9eaed;
+  position: relative;
+  padding: 4px;
+  font-size: 14px;
+  line-height: 18px;
+  border-radius: 2px;
+}
+
+.profile-menu {
+  width: 679px;
+  height: 43px;
+  border: 1px solid #d3d6db;
+  position: relative;
+  background-color: #fff;
+}
+
+.profile-menu ul {
+  margin-left:  200px;
+  list-style: none;
+}
+
+.profile-menu ul li {
+  float: left;
+  height: 42px;
+  margin-top: -1px;
+  display: inline-block;
+  border-left: 1px solid #e9eaed;
+  border-right: 1px solid #e9eaed;
+}
+
+.profile-menu ul li a {
+  font-size: 14px;
+  height: 42px;
+  color: #3b5998;
+  text-decoration: none;
+  padding: 0 17px;
+  line-height: 42px;
+  font-weight: bold;
+}
+
+.profile-side-bar {
+  float: left;
+  clear: left;
+  margin-top: 10px;
+  width: 200px;
+  height: 400px;
+}
+
+.description-title {
+  width: 473px;
+  height: 60px;
+  background-color: #f7f5f5;
+  border-bottom: 1px solid #bdc7d8;
+}
+
+.profile-description {
+  clear: right;
+  width: 100px;
+  height: 400px;
+  width: 475px;
+  margin-top: 10px;
+  margin-left: 205px;
+  border: 1px solid #bdc7d8;
+  background-color: #fff;
+}
+
+.description-bottom {
+  width: 450  px;
+  height: 1px;
+  margin-top: 280px;
+  margin-left: 10px;
+  border-bottom: 1px solid #bdc7d8;
+}

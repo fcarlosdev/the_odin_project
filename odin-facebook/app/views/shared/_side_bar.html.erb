@@ -3,7 +3,8 @@
     <li>
       <div class="header-profile">
         <%= link_to image_tag("user_icon.jpg"), '#' %>
-        <%= link_to current_user.first_name + current_user.last_name, '#' %>
+        <%= link_to current_user.fullname, '#' %>
+        <%#= link_to current_user.first_name + current_user.last_name, '#' %>
       </div>
     </li>
     <li><%= link_to "Newsfeed", '#' %></li>
