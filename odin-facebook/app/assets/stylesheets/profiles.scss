@@ -1,9 +1,13 @@
 // Place all the styles related to the Profiles controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+/*===========================================
+  Profile Header
+ ============================================*/
 .profile-container {
   width: 980px;
-  height: 762px;
+  height: 790px;
   margin: 0 auto;
   position: relative;
 }
@@ -88,6 +92,10 @@
   font-weight: bold;
 }
 
+/*===========================================
+  Profile Sidebar
+ ============================================*/
+
 .profile-side-bar {
   float: left;
   clear: left;
@@ -96,28 +104,159 @@
   height: 400px;
 }
 
-.description-title {
-  width: 473px;
+/*===========================================
+  Profile Data
+ ============================================*/
+.user-profile {
+   clear: right;
+   height: 404px;
+   width: 477px;
+   margin-top: 10px;
+   margin-left: 202px;
+   border: 1px solid #bdc7d8;
+   background-color: #fff;
+   color: #373e4d;
+ }
+
+.user-profile-title {
+  width: 475px;
   height: 60px;
   background-color: #f7f5f5;
   border-bottom: 1px solid #bdc7d8;
 }
 
-.profile-description {
-  clear: right;
-  width: 100px;
-  height: 400px;
-  width: 475px;
-  margin-top: 10px;
-  margin-left: 205px;
-  border: 1px solid #bdc7d8;
-  background-color: #fff;
+.user-profile-title h3 {
+  font-size: 20px;
+  padding: 16px 18px;
+  font-weight: bold;
 }
 
-.description-bottom {
-  width: 450  px;
-  height: 1px;
-  margin-top: 280px;
+.user-profile-data {
+  margin-top: 10px;
+}
+
+.user-profile-data ul li {
+  padding-left: 10px;
+  padding-bottom: 8px;
+}
+
+.user-profile-data li span {
+  font-weight: bold;
+}
+
+.user-profile-bottom {
+  width: 475px;
+  height: 60px;
+  margin-top: 116px;
+  background-color: #f7f5f5;
+  border-top: 1px solid #bdc7d8;
+}
+
+.profile-buttons {
+  margin-left: 180px;
+}
+
+.profile-buttons a {
+  color: #fff;
+  font-size: 16px;
+  padding: 4px 16px;
+  line-height: 60px;
+  background: #3a5795;
+  border: 1px solid #133783;
+  border-radius: 2px;
+}
+
+/*===========================================
+  Profile Edit info
+ ============================================*/
+ .user-edit-profile {
+    clear: right;
+    height: 452px;
+    width: 477px;
+    margin-top: 10px;
+    margin-left: 202px;
+    border: 1px solid #bdc7d8;
+    background-color: #fff;
+    color: #373e4d;
+  }
+
+ .user-edit-profile div {
+   margin-bottom: 10px;
+ }
+
+ .user-edit-profile-bottom {
+   margin-left: -20px;
+   width: 475px;
+   height: 60px;
+   margin-top: 18px;
+   background-color: #f7f5f5;
+   border-top: 1px solid #bdc7d8;
+ }
+
+ .update-profile-buttom {
+   margin-top: 20px;
+   margin-left: 177px;
+ }
+
+ .update-profile-buttom a {
+   color: #fff;
+   font-size: 14px;
+   padding: 5px 6px;
+   border-radius: 2px;
+   border: 1px solid #3a5795;
+   background-color: #3a5795;
+ }
+
+.user-profile-data form {
+  margin-left: 20px;
+}
+
+.user-edit-profile form input select {
   margin-left: 10px;
-  border-bottom: 1px solid #bdc7d8;
+}
+
+.user-edit-profile input[type="date"] {
+  width: 360px;
+  margin-top: 8px;
+  padding: 5px 6px;
+  border: 1px solid #bcd7d8;
+}
+
+.user-edit-profile form select {
+  width: 360px;
+  padding: 5px 6px;
+  vertical-align: top;
+  border: 1px solid #bcd7d8;
+}
+
+.user-edit-profile label {
+  display: inline-block;
+  width: 80px;
+  color: #9197a3;
+}
+
+.user-edit-profile form textarea {
+  width: 360px;
+  height: 100px;
+  vertical-align: top;
+}
+
+/*=================================
+  Other options
+===================================*/
+
+.privacy span {
+  display: inline-block;
+  font-size: 14px;
+  width: 200px;
+}
+
+.privacy label {
+  width: 23px;
+}
+
+.privacy input[type="radio"] {
+  margin-left: 4px;
+  margin-right: 10px;
+  vertical-align: middle;
 }

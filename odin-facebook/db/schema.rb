@@ -37,8 +37,7 @@ ActiveRecord::Schema.define(version: 20180428161254) do
     t.string "country"
     t.string "education"
     t.string "profession"
-    t.text "about_to"
-    t.text "interests"
+    t.text "about_me"
     t.boolean "email_notification"
     t.bigint "user_id"
     t.datetime "created_at", null: false

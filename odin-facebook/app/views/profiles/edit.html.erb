@@ -1,2 +1,67 @@
-<h1>Profiles#edit</h1>
-<p>Find me in app/views/profiles/edit.html.erb</p>
+<%= render 'shared/header' %>
+<div class="profile-container">
+  <div class="profile-content">
+    <div class="profile-image">
+      <%= link_to image_tag("img-profile.jpg"), profile_path(current_user.id) %>
+      <span>
+        <%= link_to current_user.fullname, profile_path(current_user.id) %>
+      </span>
+      <!-- <div class="profile-edit">
+        <%= link_to 'Edit your Profile', edit_profile_path(current_user.id) %>
+      </div> -->
+    </div>
+  </div>
+  <div class="profile-menu">
+    <ul>
+      <li><%= link_to 'Timeline', '#' %></li>
+      <li><%= link_to 'About', '#' %></li>
+      <li><%= link_to 'Friends', '#' %></li>
+    </ul>
+  </div>
+  <div class="profile-side-bar">
+    <%= render 'shared/side_bar' %>
+  </div>
+  <div class="user-edit-profile">
+    <div class="user-profile-title">
+      <h3>Edit <%= @profile.user.fullname %> profile </h3>
+    </div>
+    <div class="user-profile-data">
+      <%= form_for @profile, url: edit_profile_path(@profile.user.id) do |f| %>
+        <div>
+          <%= f.label :birthday%>
+          <%= f.date_field :birthday, value: Date.today.strftime("%d/%m/%Y") %>
+        </div>
+        <div>
+          <%= f.label :country %>
+          <%= f.country_select :country,prompt: "Select Country", include_blank: true %>
+        </div>
+        <div>
+          <%= f.label :education %>
+          <%= f.select( :education, get_education, prompt: "Select the education level") %>
+        </div>
+        <div>
+          <%= f.label :profession %>
+          <%= f.select( :profession, grouped_options_for_select(get_professions,nil),
+          prompt: "Select the profession") %>
+        </div>
+        <div>
+          <%= f.label :about_me %>
+          <%= f.text_area :about_me %>
+        </div>
+        <div class="privacy">
+          <span>Receive email of notifications? </span>
+          <%= f.label :email_notification, "Yes" %>
+          <%= f.radio_button :email_notification, true %>
+          <%= f.label :email_notification, "No" %>
+          <%= f.radio_button :email_notification, false %>
+        </div>
+        <div class="user-edit-profile-bottom">
+          <div class="update-profile-buttom">
+            <%= link_to "Update", '#' %>
+            <%= link_to "Cancel", profile_path(@profile.user) %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

@@ -2,8 +2,8 @@
   <ul>
     <li>
       <div class="header-profile">
-        <%= link_to image_tag("user_icon.jpg"), '#' %>
-        <%= link_to current_user.fullname, '#' %>
+        <%= link_to image_tag("user_icon.jpg"), profile_path(current_user.id) %>
+        <%= link_to current_user.fullname, profile_path(current_user.id) %>
       </div>
     </li>
     <li><%= link_to "Newsfeed", '#' %></li>

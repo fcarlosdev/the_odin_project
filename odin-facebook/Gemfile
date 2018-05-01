@@ -35,6 +35,9 @@ gem 'devise'
 # Use Guard gem to run tests automatically.
 gem 'guard-rspec'
 
+# List countries
+gem 'country_select'
+
 # Using Rspect to test the application
 group :development, :test do
   gem "database_cleaner"

@@ -5,8 +5,7 @@ class CreateProfiles < ActiveRecord::Migration[5.1]
       t.string :country
       t.string :education
       t.string :profession
-      t.text :about_to
-      t.text :interests
+      t.text :about_me
       t.boolean :email_notification
       t.references :user, foreign_key: true
 

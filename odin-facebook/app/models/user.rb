@@ -13,7 +13,7 @@ class User < ApplicationRecord
   has_one :profile, dependent: :destroy
 
   def fullname
-    first_name + last_name
+    first_name + " " + last_name
   end
 
 end

@@ -16,6 +16,7 @@
             <%= render 'shared/user_info' %>
           </div>
         </li>
+        <li> <%= link_to "Home", newsfeed_path %> </li>
         <li>
           <%= link_to "Log out", destroy_user_session_path, method: :delete %>
         </li>

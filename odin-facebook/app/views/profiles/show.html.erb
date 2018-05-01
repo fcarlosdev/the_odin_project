@@ -21,13 +21,26 @@
   <div class="profile-side-bar">
     <%= render 'shared/side_bar' %>
   </div>
-  <div class="profile-description">
-    <div class="description-title">
-
+  <div class="user-profile">
+    <div class="user-profile-title">
+      <h3>About <%= @profile.user.fullname %></h3>
     </div>
-    <div class="description-bottom">
-
+    <div class="user-profile-data">
+      <ul>
+        <li> <span>Birthday:  </span> <%= @profile.birthday %> </li>
+        <li> <span>Country:   </span> <%= @profile.country %> </li>
+        <li> <span>Education: </span> <%= @profile.education %> </li>
+        <li> <span>Profession:</span> <%= @profile.profession %> </li>
+        <li> <span>About <%= @profile.user.first_name %>: </span> <%= @profile.about_me %></li>
+        <li> <span>Accept receive email of notifications:
+                       </span> <%= @profile.email_notification %> </li>
+      </ul>
     </div>
-
+    <div class="user-profile-bottom">
+      <div class="profile-buttons">
+        <!-- <%= link_to 'Edit', edit_profile_path(@profile.user.id) %> -->
+        <%= link_to 'Edit', edit_profile_path(@profile.user) %>
+      </div>
+    </div>
   </div>
 </div>
