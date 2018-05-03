@@ -21,6 +21,8 @@
 }
 
 .profile-image img {
+  width: 170px;
+  height: 170px;
   margin-left: 15px;
   margin-top: 100px;
   background-color: #232937;
@@ -157,13 +159,8 @@
 }
 
 .profile-buttons a {
-  color: #fff;
-  font-size: 16px;
   padding: 4px 16px;
   line-height: 60px;
-  background: #3a5795;
-  border: 1px solid #133783;
-  border-radius: 2px;
 }
 
 /*===========================================
@@ -198,7 +195,7 @@
    margin-left: 177px;
  }
 
- .update-profile-buttom a {
+ .btn {
    color: #fff;
    font-size: 14px;
    padding: 5px 6px;

@@ -2,7 +2,8 @@
 <div class="profile-container">
   <div class="profile-content">
     <div class="profile-image">
-      <%= link_to image_tag("img-profile.jpg"), profile_path(current_user.id) %>
+      <!-- Refactory repeated snippet code !-->
+      <%= link_to image_tag(@profile.picture.url), profile_path(current_user.id) %>
       <span>
         <%= link_to current_user.fullname, profile_path(current_user.id) %>
       </span>
@@ -26,10 +27,11 @@
       <h3>Edit <%= @profile.user.fullname %> profile </h3>
     </div>
     <div class="user-profile-data">
-      <%= form_for @profile, url: edit_profile_path(@profile.user.id) do |f| %>
+      <%= form_for @profile, html: {multipart: true} do |f| %>
         <div>
           <%= f.label :birthday%>
-          <%= f.date_field :birthday, value: Date.today.strftime("%d/%m/%Y") %>
+          <%#= f.date_field :birthday, value: Date.today.strftime("%d/%m/%Y"), autofocus: true %>
+          <%= f.date_field :birthday, autofocus: true %>
         </div>
         <div>
           <%= f.label :country %>
@@ -55,10 +57,14 @@
           <%= f.label :email_notification, "No" %>
           <%= f.radio_button :email_notification, false %>
         </div>
+        <div>
+          <%= f.file_field :picture %>
+        </div>
         <div class="user-edit-profile-bottom">
           <div class="update-profile-buttom">
-            <%= link_to "Update", '#' %>
-            <%= link_to "Cancel", profile_path(@profile.user) %>
+            <%#= link_to "Update", profile_path(@profile.user.id), method: :post %>
+            <%= f.submit "Update", class: "btn" %>
+            <%= link_to "Cancel", profile_path(@profile.user), class: "btn" %>
           </div>
         </div>
       <% end %>

@@ -2,7 +2,7 @@
 <div class="profile-container">
   <div class="profile-content">
     <div class="profile-image">
-      <%= link_to image_tag("img-profile.jpg"), profile_path(current_user.id) %>
+      <%= link_to image_tag(@profile.picture.url), profile_path(current_user.id) %>
       <span>
         <%= link_to current_user.fullname, profile_path(current_user.id) %>
       </span>
@@ -32,14 +32,13 @@
         <li> <span>Education: </span> <%= @profile.education %> </li>
         <li> <span>Profession:</span> <%= @profile.profession %> </li>
         <li> <span>About <%= @profile.user.first_name %>: </span> <%= @profile.about_me %></li>
-        <li> <span>Accept receive email of notifications:
+        <li> <span>Receive email of notifications:
                        </span> <%= @profile.email_notification %> </li>
       </ul>
     </div>
     <div class="user-profile-bottom">
       <div class="profile-buttons">
-        <!-- <%= link_to 'Edit', edit_profile_path(@profile.user.id) %> -->
-        <%= link_to 'Edit', edit_profile_path(@profile.user) %>
+        <%= link_to 'Edit', edit_profile_path(@profile.user), class: "btn" %>
       </div>
     </div>
   </div>

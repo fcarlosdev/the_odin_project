@@ -82,11 +82,14 @@ a {
 
 .header-profile a {
   padding-left: 2px;
+  font-size: 14px;
   vertical-align: middle;
 }
 
 .header-profile img {
   vertical-align: middle;
+  width: 30px;
+  height: 30px;
 }
 
 .header-holder a {
@@ -94,10 +97,6 @@ a {
   text-shadow: 0 -1px rgba(0,0,0,0.5);
   font-size: 14px;
   font-weight: bold;
-}
-
-ol, ul {
-  list-style: none;
 }
 
 .header-holder li:first-child {
@@ -110,26 +109,10 @@ ol, ul {
   padding-top: 10px;
 }
 
-.side_bar {
-  display: inline-block;
-  float: left;
-}
-
-.side_bar li {
-  margin-top: 20px;
-  a {
-      color: #1d2129;
-  }
-
-  img {
-      margin-top: -5px;
-  }
-}
-
 .feeds-content {
-  margin-left: 15px;
   width: 800px;
   height: 800px;
+  margin-left: 1px;
   display: inline-block;
 }
 

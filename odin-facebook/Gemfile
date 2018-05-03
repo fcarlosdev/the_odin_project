@@ -38,6 +38,9 @@ gem 'guard-rspec'
 # List countries
 gem 'country_select'
 
+# Enabling uplodin images
+gem "paperclip", "~> 6.0.0"
+
 # Using Rspect to test the application
 group :development, :test do
   gem "database_cleaner"
