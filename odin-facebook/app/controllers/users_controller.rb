@@ -2,6 +2,10 @@ class UsersController < ApplicationController
 
   before_action :logged_in_user, only: [:newsfeed]
 
+  def index
+    @users = User.all
+  end
+
   def newsfeed
     @post    = Post.new
     @comment = Comment.new

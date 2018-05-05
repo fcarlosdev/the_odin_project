@@ -1,0 +1,33 @@
+<div class="main-container">
+
+  <div> <%= render 'shared/side_bar' %> </div>
+
+  <div class="users-container">
+      <div class="users-header">
+        <h2>All Users</h2>
+      </div>
+      <% @users.each do |user| %>
+        <% if user != current_user %>
+          <ul>
+            <li>
+              <div class="user-img">
+                <%= image_tag(user.profile.picture.url(:lg_img)) %>
+              </div>
+              <div class="user-info">
+                <div class="user-name">
+                  <%=link_to user.fullname, '#'%>
+                </div>
+                <div class="btn-friendship">
+                  <!-- Change this to current_user.friendship.build later -->
+                  <%= form_for current_user, url:users_path do |f| %>
+                    <% f.submit "Add as Friend" %>
+                  <% end %>
+                </div>
+              </div>
+            </li>
+          </ul>
+        <% end %>
+      <% end %>
+  </div>
+
+</div>

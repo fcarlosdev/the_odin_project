@@ -41,6 +41,9 @@ gem 'country_select'
 # Enabling uplodin images
 gem "paperclip", "~> 6.0.0"
 
+# JQuery gem
+gem 'jquery-rails',  '4.3.1'
+
 # Using Rspect to test the application
 group :development, :test do
   gem "database_cleaner"

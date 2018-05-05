@@ -4,7 +4,8 @@ Rails.application.routes.draw do
 
   root 'static_pages#home'
   get  'newsfeed/',   to: 'users#newsfeed'
-
+  
+  resources :users, only: [:index] 
   resources :posts, only: [:new, :create, :show]
   resources :comments, only: [:new, :create, :show]
   resources :profiles, only: [:show, :edit, :update]
