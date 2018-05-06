@@ -24,8 +24,9 @@ default: &default
 development:
   <<: *default
   database: odinbook_development
-  username: odinbook
-  password: WEBDEV2018
+  username: <%= ENV["USERNAME"] %>
+  password: <%= ENV["PASSWORD"] %>
+
   host: localhost
 
   # The TCP port the server listens on. Defaults to 5432.
@@ -47,8 +48,8 @@ development:
 test:
   <<: *default
   database: odinbook_test
-  username: odinbook
-  password: WEBDEV2018
+  username: <%= ENV["USERNAME"] %>
+  password: <%= ENV["PASSWORD"] %>
   host: localhost
   port: 5432
 
