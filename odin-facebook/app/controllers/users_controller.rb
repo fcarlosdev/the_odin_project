@@ -11,6 +11,15 @@ class UsersController < ApplicationController
     @comment = Comment.new
   end
 
+  def friends
+    @friendships = current_user.friendships
+  end
+
+  def friends_requests
+    # @friends_requests = current_user.friendships_requests(current_user.id)
+    @friends_requests = current_user.inverse_friendships
+  end
+
   private
 
     def logged_in_user

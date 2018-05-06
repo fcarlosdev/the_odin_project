@@ -25,6 +25,7 @@
 }
 
 .users-container ul li {
+  height: 85px;
   border-bottom: 1px solid #bdc7d8;
 }
 
@@ -46,7 +47,7 @@
 .user-info {
   width: 398px;
   height: 75px;
-  vertical-align: top;
+  top: -32px;
 }
 
 .user-name {
@@ -55,24 +56,25 @@
 
 .user-name a {
   color: #3a5795;
+  cursor: pointer;
   font-size: 18px;
   font-weight: bold;
 }
 
 .btn-friendship {
-  margin-left: -24px;
+  top: 45px;
+  right: 10px;
+  float: right;
   margin-top: -22px;
-  vertical-align: top;
 }
 
-.users-container form input[type="submit"] {
+.btn {
   color: #fff;
-  cursor: pointer;
   height: 29px;
   padding: 5px;
+  cursor: pointer;
   font-size: 14px;
   font-weight: bold;
-  margin-left: 330px;
   border-radius: 2px;
   border:1px solid #435a8b;
   background-color: #3a5795;
