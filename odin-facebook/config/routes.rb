@@ -4,6 +4,7 @@ Rails.application.routes.draw do
 
   root 'static_pages#home'
   get  'newsfeed/',            to: 'users#newsfeed'
+  get  'timeline/',            to: 'users#timeline'
   get  'friends/:id',          to: 'users#friends',          as: :friends
   get  'friends_requests/:id', to: 'users#friends_requests', as: :friends_requests
 

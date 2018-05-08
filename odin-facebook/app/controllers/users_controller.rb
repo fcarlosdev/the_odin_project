@@ -11,8 +11,13 @@ class UsersController < ApplicationController
     @comment = Comment.new
   end
 
+  def timeline
+    @post    = Post.new
+    @comment = Comment.new
+  end
+
   def friends
-    @friendships = current_user.friendships
+    @friendships = current_user.inverse_friendships
   end
 
   def friends_requests

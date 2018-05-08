@@ -8,12 +8,17 @@
         <%= link_to current_user.fullname, profile_path(current_user.id) %>
       </div>
     </li>
-    <li><%= link_to "Newsfeed", '#' %></li>
     <li><%= link_to "Timeline", '#' %></li>
     <li><%= link_to "All Users", users_path %></li>
     <li><%= link_to "Profile", '#' %></li>
-    <li><%= link_to "Firends", friends_path(current_user) %></li>
-    <li><%= link_to "Firends Requests", friends_requests_path(current_user) %></li>
-    <li><%= link_to "Notifications", '#' %></li>
+    <li><%= link_to "Friends", friends_path(current_user) %></li>
+    <li>
+      <% if friend_requests_pending > 0 %>
+        <%= link_to "Friends Requests(#{friend_requests_pending})",
+              friends_requests_path(current_user) %>
+      <% else %>
+        <%= link_to "Friends Requests", friends_requests_path(current_user) %>
+      <% end %>
+    </li>
   </ul>
 </div>

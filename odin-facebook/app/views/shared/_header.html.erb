@@ -1,8 +1,10 @@
 <div class="main-header">
   <div class="header-holder">
-    <%= link_to image_tag("fb_logo.png", class:'icon'), newsfeed_path %>
+    <%#= link_to image_tag("fb_logo.png", class:'icon'), newsfeed_path %>
+    <%= link_to image_tag("fb_logo.png", class:'icon'), timeline_path %>
     <div class="header-form">
-      <%= form_tag(newsfeed_path, method: "get") do %>
+      <%#= form_tag(newsfeed_path, method: "get") do %>
+      <%= form_tag(timeline_path, method: "get") do %>
         <%= search_field_tag('search', nil, placeholder: "Search") %>
         <%= button_tag(name: nil)  do %>
           <%= image_tag("search-icon.png") %>
@@ -16,7 +18,8 @@
             <%= render 'shared/user_info' %>
           </div>
         </li>
-        <li> <%= link_to "Home", newsfeed_path %> </li>
+        <!--<li> <%#= link_to "Home", newsfeed_path %> </li>-->
+        <li> <%= link_to "Home", timeline_path %> </li>
         <li>
           <%= link_to "Log out", destroy_user_session_path, method: :delete %>
         </li>
