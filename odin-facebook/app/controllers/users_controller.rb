@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
 
-  before_action :logged_in_user, only: [:newsfeed]
+  before_action :logged_in_user, only: [:newsfeed, :timeline]
 
   def index
     @users = User.all
@@ -17,11 +17,10 @@ class UsersController < ApplicationController
   end
 
   def friends
-    @friendships = current_user.inverse_friendships
+   @friendships = (current_user.friendships + current_user.inverse_friendships).uniq
   end
 
   def friends_requests
-    # @friends_requests = current_user.friendships_requests(current_user.id)
     @friends_requests = current_user.inverse_friendships
   end
 

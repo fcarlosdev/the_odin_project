@@ -12,18 +12,15 @@ class FriendshipsController < ApplicationController
   end
 
   def destroy
-    # @friendship = current_user.friendships.find(params[:id])
-    @friendship = current_user.inverse_friendships.find(params[:id])
-    @friendship.destroy
+    Friendship.find(params[:id]).destroy
     flash[:error] = "Removed friendship."
     redirect_to friends_path(current_user)
   end
 
   def update
-    puts "Params = #{params.inspect}"
-    @friendship = current_user.inverse_friendships.find(params[:id])
+    @friendship = Friendship.find(params[:id])
     @friendship.accepted = true
-    @friendship.save
+    @friendship.save    
     redirect_to friends_requests_path(current_user)
   end
 

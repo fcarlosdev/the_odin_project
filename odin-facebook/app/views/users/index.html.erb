@@ -3,7 +3,6 @@
   <div> <%= render 'shared/side_bar' %> </div>
 
   <div class="users-container">
-      <%#= render 'devise/shared/flash_messages' %>
       <div class="users-header">
         <h2>All Users</h2>
       </div>
@@ -20,12 +19,14 @@
                   <%= link_to user.fullname, profile_path(user.id) %>
                 </div>
                 <div class="btn-friendship">
-                  <% if !current_user.friends.include?(user) %>
+                  <% if !exists_friendship?(current_user, user) %>
                     <%= link_to "Add Friend", friendships_path(friend_id: user),
                         method: :post, class: "btn" %>
                   <% elsif !current_user.friendship_accepted?(user.id) %>
                     Friendship requested
-                    <%#= current_user.friendships.find_by(friend_id:user.id).inspect %>
+                  <% else %>
+                    <%= link_to "Unfriend",friendship_path(find_friendship(current_user, user)), 
+                      method: :delete, class: "btn" %>
                   <% end %>
                 </div>
               </div>

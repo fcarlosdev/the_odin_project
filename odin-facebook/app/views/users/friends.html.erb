@@ -11,13 +11,13 @@
             <ul>
               <li>
                 <div class="user-img">
-                  <%= link_to image_tag(friendship.user.profile.picture.url(:lg_img)),
+                  <%= link_to image_tag(get_friend_at(friendship).profile.picture.url(:lg_img)),
                       profile_path(friendship.id) %>
                 </div>
                 <div class="user-info">
                   <div class="user-name">
-                    <%= link_to friendship.user.fullname,
-                          profile_path(friendship.user.id) %>
+                    <%= link_to get_friend_at(friendship).fullname,
+                         profile_path(get_friend_at(friendship).id) %>
                   </div>
                   <div class="btn-friendship">
                     <%= link_to "Unfriend", friendship_path(friendship),

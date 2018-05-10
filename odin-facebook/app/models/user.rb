@@ -30,7 +30,9 @@ class User < ApplicationRecord
   end
 
   def friendship_accepted?(friend_id)
-    self.friendships.find_by(friend_id:friend_id).accepted
+    friendship = self.friendships.find_by(friend_id:friend_id) ||
+                 self.inverse_friendships.find_by(user_id:friend_id)
+    friendship.accepted
   end
 
   def fullname
