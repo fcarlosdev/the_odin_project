@@ -6,12 +6,13 @@ class PostsController < ApplicationController
   def create
     @post = current_user.posts.build(post_params)
     if @post.save!
-      redirect_to newsfeed_path
+      redirect_to timeline_path(current_user)
     else
       flash[:error] = "Invalid post"
-      redirect_to newsfeed_path
+      redirect_to timeline_path(current_user)
     end
   end
+
 
   private
 

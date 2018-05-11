@@ -5,7 +5,7 @@ module UsersHelper
   end
 
   def get_friend_at(friendship)
-    friendship.friend || friendship.user
+    [friendship.friend, friendship.user].select{|u| u != current_user}[0]
   end
 
   def exists_friendship?(user1, user2)

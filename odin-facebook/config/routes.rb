@@ -3,8 +3,7 @@ Rails.application.routes.draw do
   devise_for :users
 
   root 'static_pages#home'
-  get  'newsfeed/',            to: 'users#newsfeed'
-  get  'timeline/',            to: 'users#timeline'
+  get  'timeline/:id',         to: 'users#timeline',         as: :timeline
   get  'friends/:id',          to: 'users#friends',          as: :friends
   get  'friends_requests/:id', to: 'users#friends_requests', as: :friends_requests
 

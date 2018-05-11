@@ -1,14 +1,9 @@
 class UsersController < ApplicationController
 
-  before_action :logged_in_user, only: [:newsfeed, :timeline]
+  before_action :logged_in_user, only: [:timeline]
 
   def index
     @users = User.all
-  end
-
-  def newsfeed
-    @post    = Post.new
-    @comment = Comment.new
   end
 
   def timeline

@@ -35,6 +35,17 @@ class User < ApplicationRecord
     friendship.accepted
   end
 
+  def get_posts
+
+    friends = accepted_friendships.each_with_object([]) do |f,arr|
+      arr << f.user if f.user != self
+      arr << f.friend if f.user == self
+    end
+
+    (self.posts + friends.map {|f| f.posts}.flatten)
+
+  end
+
   def fullname
     first_name + " " + last_name
   end
@@ -43,6 +54,11 @@ class User < ApplicationRecord
 
     def create_default_profile
       self.build_profile({email_notification: false})
+    end
+
+    def accepted_friendships
+      self.friendships.select{|f| f.accepted } +
+      self.inverse_friendships.select {|f| f.accepted }
     end
 
 
