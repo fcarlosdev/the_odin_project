@@ -1,47 +1,70 @@
-// Place all the styles related to the Comments controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+/*======================================
+  Shared styles.
+ =======================================*/
+.right-border {
+  border-right: 1px solid #dcdee3;
+}
+
+.left-border {
+  border-left: 1px solid #dcdee3;
+}
+
+
+.side-borders {
+  border-right: 1px solid #dcdee3;
+  border-left: 1px solid #dcdee3;
+}
+
+.up-border {
+  border-top: 1px solid #dcdee3;
+}
+
+.down-border {
+  border-bottom: 1px solid #dcdee3;
+}
+
+.up-down-borders {
+  border-top: 1px solid #dcdee3;
+  border-bottom: 1px solid #dcdee3;
+}
 
 /*======================================
   Comment styles.
  =======================================*/
+.comment-body {
+  width: 500px;
+  height: 52px;
+  margin-left: 10px;
+  display: inline-block;
+  background-color: #f6f7f9;
+}
 
- .comment-body {
-   width: 500px;
-   height: 52px;
-   margin-left: 10px;
-   display: inline-block;
-   background-color: #f6f7f9;
-   border-right: 1px solid #dcdee3;
-   border-left: 1px solid #dcdee3;
-  }
+.commenter-container {
+  display: inline-block;
+  float: left;
+  margin-left: 10px;
+  margin-top: 10px;
+}
 
-  .commenter-container {
-    display: inline-block;
-    float: left;
-    margin-left: 10px;
-    margin-top: 10px;
-  }
+.commenter-container a:link {
+  text-decoration: none;
+  color: #3b5998;
+}
 
-  .commenter-container a:link {
-    text-decoration: none;
-    color: #3b5998;
-  }
+#info-user .commenter_name {
+  font-size: 12px;
+  margin-top: -28px;
+  margin-left: 30px;
+  font-weight: bold;
+}
 
-  #info-user .commenter_name {
-    font-size: 12px;
-    margin-top: -28px;
-    margin-left: 30px;
-    font-weight: bold;
-  }
-
-  #comment-txt {
-    font-size: 12px;
-    margin-top: 10px;
-    margin-left: 5px;
-    display: inline-block;
-    vertical-align: middle;
-  }
+#comment-txt {
+  font-size: 12px;
+  margin-top: 10px;
+  margin-left: 5px;
+  display: inline-block;
+  vertical-align: middle;
+}
 
 /*======================================
    Form comment styles
@@ -51,14 +74,11 @@
   height: 54px;
   margin-left: 10px;
   background-color: #f6f7f9;
-  border-left: 1px solid #dcdee3;
-  border-right: 1px solid #dcdee3;
-  border-bottom: 1px solid #dcdee3;
 }
 
 .fcomment a img {
   width: 32px;
-  height: 32px;
+  height: 34px;
   margin-top: 8px;
   margin-left: 10px;
 }
@@ -73,4 +93,25 @@
   margin-top: 8px;
   height: 34px;
   width: 444px;
+}
+
+.likes {
+  height: 31px;
+  width: 500px;
+  margin-left: 10px;
+  padding-top: 4px;
+  display: inline-block;
+  background-color: #f6f7f8;
+}
+
+.likes span {
+  color: #3b5998;
+  font-size: 12px;
+  margin-left: 4px;
+}
+
+.likes img {
+  width: 12px;
+  height: 12px;
+  margin-left: 10px;
 }

@@ -18,6 +18,18 @@
         </li>
         <li> <%= link_to "Home", timeline_path(current_user) %> </li>
         <li>
+          <!-- Refactor this code -->
+          <% if friend_requests_pending > 0 %>
+            <%= link_to friends_requests_path(current_user) do %>
+              Notifications
+              <%= content_tag :span, " #{friend_requests_pending}",
+                  class: "friend-requests-counter" %>
+            <% end %>
+          <% else %>
+            <%= link_to "Notifications", "#" %>
+          <% end %>
+        </li>
+        <li>
           <%= link_to "Log out", destroy_user_session_path, method: :delete %>
         </li>
       </ul>

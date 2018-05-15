@@ -1,4 +1,8 @@
-<%= link_to image_tag(locals[:user].profile.picture.url),
+<% if !locals[:user].profile.picture.url.include?("missing.png") %>
+  <%= link_to image_tag(locals[:user].profile.picture.url),
             profile_path(locals[:user].id) %>
+<% else %>
+  <%= link_to image_tag("img-profile.jpg"), profile_path(current_user.id) %>
+<% end %>
 <%= link_to locals[:user].fullname,
             profile_path(locals[:user].id), class: 'user_name' %>

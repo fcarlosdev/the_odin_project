@@ -1,11 +1,14 @@
+<% if locals[:post].user != current_user %>
 <ul>
   <li>
-    <%= link_to image_tag("user_icon.jpg"), '#' %>
+    <%= link_to image_tag(current_user.profile.picture.url), 
+        profile_path(current_user.id) %>
   </li>
   <li>
     <%= form_for locals[:post].comments.build() do |c| %>
       <%= c.text_field :body %>
-      <%= c.hidden_field :post_id, value: locals[:post].id %>      
+      <%= c.hidden_field :post_id, value: locals[:post].id %>
     <% end %>
   </li>
 </ul>
+<% end %>

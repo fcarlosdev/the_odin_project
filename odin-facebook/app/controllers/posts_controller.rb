@@ -13,6 +13,11 @@ class PostsController < ApplicationController
     end
   end
 
+  def update
+    @post = Post.find(params[:id])
+
+  end
+
 
   private
 

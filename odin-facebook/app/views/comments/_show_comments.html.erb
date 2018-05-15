@@ -1,6 +1,14 @@
+<% if locals[:post].likes.length > 0 %>
+  <div class="likes left-border right-border up-border">
+    <%= image_tag("like.png") %>
+    <span>
+      <%= pluralize(locals[:post].count_likes, 'person') %> likes this.
+    </span>
+  </div>
+<% end %>
 <% if locals[:post].comments.any? %>
   <% locals[:post].comments.each do |comment| %>
-    <div class="comment-body">
+    <div class="comment-body side-borders">
       <div id="info-user">
         <%= render 'shared/commenter' %>
       </div>

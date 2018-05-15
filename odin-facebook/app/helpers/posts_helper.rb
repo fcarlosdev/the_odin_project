@@ -1,5 +1,13 @@
 module PostsHelper
 
+  def format_datetime(datetime)
+    if (Time.now - datetime) >= 1
+      datetime.strftime("%B %e, %Y at %I:%M %p")
+    else
+       time_ago_in_words(datetime).gsub("hour", "hr").gsub("minute", "min")
+    end
+  end
+
   def get_professions
     professions = {
       "Arts and entertainment":

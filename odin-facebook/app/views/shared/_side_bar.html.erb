@@ -2,7 +2,12 @@
   <ul>
     <li>
       <div class="profile-img">
-        <%= link_to image_tag(current_user.profile.picture.url), profile_path(current_user.id) %>
+        <!-- Refactory this code -->
+        <% if !current_user.profile.picture.url.include?("missing.png") %>
+          <%= link_to image_tag(current_user.profile.picture.url), profile_path(current_user.id) %>
+        <% else %>
+          <%= link_to image_tag("img-profile.jpg"), profile_path(current_user.id) %>
+        <% end %>
       </div>
       <div class="profile-name">
         <%= link_to current_user.fullname, profile_path(current_user.id) %>
@@ -13,6 +18,7 @@
     <li><%= link_to "Profile", profile_path(current_user) %></li>
     <li><%= link_to "Friends", friends_path(current_user) %></li>
     <li>
+      <!-- Refactor this code -->
       <% if friend_requests_pending > 0 %>
         <%= link_to "Friends Requests(#{friend_requests_pending})",
               friends_requests_path(current_user) %>
