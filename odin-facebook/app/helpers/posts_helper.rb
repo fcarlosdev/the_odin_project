@@ -1,6 +1,8 @@
 module PostsHelper
 
   def format_datetime(datetime)
+    return "" if (datetime == nil)
+
     if (Time.now - datetime) >= 1
       datetime.strftime("%B %e, %Y at %I:%M %p")
     else

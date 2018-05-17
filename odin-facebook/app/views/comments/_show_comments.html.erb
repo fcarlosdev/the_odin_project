@@ -8,15 +8,13 @@
 <% end %>
 <% if locals[:post].comments.any? %>
   <% locals[:post].comments.each do |comment| %>
-    <div class="comment-body side-borders">
-      <div id="info-user">
-        <%= render 'shared/commenter' %>
-      </div>
-      <div id="comment-txt">
-        <span> <%= comment.body %> </span>
-      </div>
-      <div class="comment-date">
-        <span>date:</span>
+    <div class="comment-details side-borders">
+      <%= link_to image_tag(comment.user.profile.picture.url),
+          profile_path(current_user.id) %>
+      <div class="comment-info">
+        <%= link_to comment.user.fullname, '#', class: 'user_name' %>
+        <span><%= comment.body %></span>
+        <p> <%= format_datetime(comment.created_at) %> </p>
       </div>
     </div>
   <% end %>

@@ -9,7 +9,6 @@
   border-left: 1px solid #dcdee3;
 }
 
-
 .side-borders {
   border-right: 1px solid #dcdee3;
   border-left: 1px solid #dcdee3;
@@ -31,40 +30,48 @@
 /*======================================
   Comment styles.
  =======================================*/
-.comment-body {
+.comment-details {
   width: 500px;
   height: 52px;
   margin-left: 10px;
-  display: inline-block;
   background-color: #f6f7f9;
 }
 
-.commenter-container {
-  display: inline-block;
-  float: left;
-  margin-left: 10px;
-  margin-top: 10px;
+.comment-details img {
+  height: 32px;
+  width: 32px;
+  margin-left: 8px;
+  margin-top: 8px;
 }
 
-.commenter-container a:link {
+.comment-info {
+  max-width: 425px;
+  margin-left: 2px;
+  display: inline-block;
+}
+
+.comment-info a {
+  font-size: 12px;
+  font-weight: bold;
+  vertical-align: top;
+}
+
+.comment-info .user_name {
   text-decoration: none;
   color: #3b5998;
 }
 
-#info-user .commenter_name {
+.comment-info span {
   font-size: 12px;
-  margin-top: -28px;
-  margin-left: 30px;
-  font-weight: bold;
+  vertical-align: top;
 }
 
-#comment-txt {
+.comment-info p {
+  color: #9197a3;
   font-size: 12px;
-  margin-top: 10px;
-  margin-left: 5px;
-  display: inline-block;
-  vertical-align: middle;
+  vertical-align: top;
 }
+
 
 /*======================================
    Form comment styles
@@ -93,6 +100,7 @@
   margin-top: 8px;
   height: 34px;
   width: 444px;
+  padding-left: 2px;
 }
 
 .likes {

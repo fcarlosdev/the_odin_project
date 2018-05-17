@@ -61,6 +61,10 @@
   margin-top: -2px;
 }
 
+/*=========================================
+  Posts styles
+===========================================*/
+
 .posted {
   height: 166px;
   width: 500px;
@@ -72,34 +76,52 @@
   background-color: #fff;
 }
 
+.posted img {
+  width: 40px;
+  height: 40px;
+}
+
 .posted a:link {
   color: #3b5998;
 }
 
 .posted a img {
-  margin: 8px 0 0 8px;
-}
-
-.info-comment a img {
+  margin-left: 8px;
+  margin-top: 10px;
   width: 40px;
   height: 40px;
 }
 
-.posted .user_name {
-  margin-top: -44px;
-  margin-left: 54px;
-  display: block;
+.posted p {
+  margin-top: 10px;
+  margin-left: 10px;
 }
 
-.time-passed {
-  font-size: 10px;
-  margin-left: 54px;
+.post-info {
+  max-width: 460px;
   margin-top: 12px;
-  display: block;
+  vertical-align: top;
+  display: inline-block;
+}
+
+.post-info a {
+  vertical-align: top;
+}
+
+.posted .post-info p {
+  color: #9197a3;
+  font-size: 11px;
+  margin-left: 1px;
+  margin-top: 1px;
+}
+
+.posted p {
+  max-width: 460px;
+  margin-left: 14px;
 }
 
 .post-content {
-  width: 480px;
+  width: 460px;
   height: 60px;
   margin-top: 16px;
   margin-left: 8px;
@@ -114,14 +136,19 @@
 .links-comment ul li {
   float: left;
   display: inline-block;
-  margin: 10px 50px 0 10px;
+  margin: 5px 50px 0 10px;
+}
+
+.links-comment li>a {
+  margin-left: 5px;
 }
 
 .post-comment {
   margin-top: 38px;
 }
 
-.comment-date {
-  margin-left: 38px;
-  font-size: 12px;
+.no-form {
+  width: 510px;
+  height: 1px;
+  // border-top: 1px solid #dcdee3;
 }
