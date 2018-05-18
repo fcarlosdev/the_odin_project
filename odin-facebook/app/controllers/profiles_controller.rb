@@ -1,9 +1,16 @@
 class ProfilesController < ApplicationController
+
   def show
+    @post = Post.new
     @profile = Profile.find(params[:id])
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   def edit
+    puts "PARAMS => #{params.inspect}"
     @profile = current_user.profile
   end
 

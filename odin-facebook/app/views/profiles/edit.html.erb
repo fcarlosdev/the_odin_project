@@ -1,73 +1,7 @@
-<%= render 'shared/header' %>
 <div class="profile-container">
-  <div class="profile-content">
-    <div class="profile-image">
-      <!-- Refactory repeated snippet code !-->
-      <%= link_to image_tag(@profile.picture.url), profile_path(current_user.id) %>
-      <span>
-        <%= link_to current_user.fullname, profile_path(current_user.id) %>
-      </span>
-      <!-- <div class="profile-edit">
-        <%= link_to 'Edit your Profile', edit_profile_path(current_user.id) %>
-      </div> -->
-    </div>
-  </div>
-  <div class="profile-menu">
-    <ul>
-      <li><%= link_to 'Timeline', '#' %></li>
-      <li><%= link_to 'About', '#' %></li>
-      <li><%= link_to 'Friends', '#' %></li>
-    </ul>
-  </div>
-  <div class="profile-side-bar">
-    <%= render 'shared/side_bar' %>
-  </div>
-  <div class="user-edit-profile">
-    <div class="user-profile-title">
-      <h3>Edit <%= @profile.user.fullname %> profile </h3>
-    </div>
-    <div class="user-profile-data">
-      <%= form_for @profile, html: {multipart: true} do |f| %>
-        <div>
-          <%= f.label :birthday%>
-          <%#= f.date_field :birthday, value: Date.today.strftime("%d/%m/%Y"), autofocus: true %>
-          <%= f.date_field :birthday, autofocus: true %>
-        </div>
-        <div>
-          <%= f.label :country %>
-          <%= f.country_select :country,prompt: "Select Country", include_blank: true %>
-        </div>
-        <div>
-          <%= f.label :education %>
-          <%= f.select( :education, get_education, prompt: "Select the education level") %>
-        </div>
-        <div>
-          <%= f.label :profession %>
-          <%= f.select( :profession, grouped_options_for_select(get_professions,nil),
-          prompt: "Select the profession") %>
-        </div>
-        <div>
-          <%= f.label :about_me %>
-          <%= f.text_area :about_me %>
-        </div>
-        <div class="privacy">
-          <span>Receive email of notifications? </span>
-          <%= f.label :email_notification, "Yes" %>
-          <%= f.radio_button :email_notification, true %>
-          <%= f.label :email_notification, "No" %>
-          <%= f.radio_button :email_notification, false %>
-        </div>
-        <div>
-          <%= f.file_field :picture %>
-        </div>
-        <div class="user-edit-profile-bottom">
-          <div class="update-profile-buttom">
-            <%#= link_to "Update", profile_path(@profile.user.id), method: :post %>
-            <%= f.submit "Update", class: "btn" %>
-            <%= link_to "Cancel", profile_path(@profile.user), class: "btn" %>
-          </div>
-        </div>
-      <% end %>
-    </div>
+  <%= render 'profiles/banner' %>
+  <%= render 'shared/side_bar' %>
+  <div id="ajax-content">
+   <%= render "profiles/update_profile" %>
   </div>
 </div>

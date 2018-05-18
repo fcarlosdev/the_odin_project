@@ -43,7 +43,7 @@ gem "paperclip", "~> 6.0.0"
 # JQuery gem
 gem 'jquery-rails',  '4.3.1'
 
-# Figaro gem
+# Figaro gem to works with ENV configuration
 gem  'figaro'
 
 # Using Rspect to test the application

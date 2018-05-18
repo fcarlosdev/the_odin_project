@@ -1,0 +1,21 @@
+<div class="user-profile">
+  <div class="user-profile-title">
+    <h3>About <%= @profile.user.fullname %></h3>
+  </div>
+  <div class="user-profile-data">
+    <ul>
+      <li> <span>Birthday:  </span> <%= @profile.birthday %> </li>
+      <li> <span>Country:   </span> <%= @profile.country %> </li>
+      <li> <span>Education: </span> <%= @profile.education %> </li>
+      <li> <span>Profession:</span> <%= @profile.profession %> </li>
+      <li> <span>About <%= @profile.user.first_name %>: </span> <%= @profile.about_me %></li>
+      <li> <span>Receive email of notifications: </span>
+          <%= to_yes_no @profile.email_notification %>
+      </li>
+    </ul>
+  </div>
+  <div class="user-profile-bottom">
+    <div class="profile-buttons">
+      <%= link_to 'Edit', edit_profile_path(@profile.user), class: "btn" %>
+    </div>
+</div>

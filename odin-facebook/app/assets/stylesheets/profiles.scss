@@ -12,7 +12,7 @@
   position: relative;
 }
 
-.profile-content {
+.banner-container {
   width: 679px;
   height: 250px;
   position: relative;
@@ -20,7 +20,7 @@
   background-color: #232937;
 }
 
-.profile-image img {
+.banner-image img {
   width: 170px;
   height: 170px;
   margin-left: 15px;
@@ -31,7 +31,7 @@
   z-index: 1;
 }
 
-.profile-image span a {
+.banner-image span a {
   display: inline-block;
   color: #fff;
   margin-top: 190px;
@@ -95,33 +95,20 @@
 }
 
 /*===========================================
-  Profile Sidebar
- ============================================*/
-
-.profile-side-bar {
-  float: left;
-  clear: left;
-  margin-top: 10px;
-  width: 200px;
-  height: 400px;
-}
-
-/*===========================================
   Profile Data
  ============================================*/
 .user-profile {
-   clear: right;
-   height: 404px;
-   width: 477px;
+   height: 420px;
+   width: 503px;
    margin-top: 10px;
-   margin-left: 202px;
+   margin-left: 8px;
    border: 1px solid #bdc7d8;
    background-color: #fff;
    color: #373e4d;
  }
 
 .user-profile-title {
-  width: 475px;
+  // width: 500px;
   height: 60px;
   background-color: #f7f5f5;
   border-bottom: 1px solid #bdc7d8;
@@ -147,9 +134,9 @@
 }
 
 .user-profile-bottom {
-  width: 475px;
+  width: 500px;
   height: 60px;
-  margin-top: 116px;
+  margin-top: 132px;
   background-color: #f7f5f5;
   border-top: 1px solid #bdc7d8;
 }
@@ -159,6 +146,7 @@
 }
 
 .profile-buttons a {
+  margin-left: 50px;
   padding: 4px 16px;
   line-height: 60px;
 }
@@ -168,10 +156,10 @@
  ============================================*/
  .user-edit-profile {
     clear: right;
-    height: 452px;
-    width: 477px;
+    height: 485px;
+    width: 500px;
     margin-top: 10px;
-    margin-left: 202px;
+    margin-left: 12px;
     border: 1px solid #bdc7d8;
     background-color: #fff;
     color: #373e4d;
@@ -183,7 +171,7 @@
 
  .user-edit-profile-bottom {
    margin-left: -20px;
-   width: 475px;
+   width: 498px;
    height: 60px;
    margin-top: 18px;
    background-color: #f7f5f5;
@@ -256,4 +244,25 @@
   margin-left: 4px;
   margin-right: 10px;
   vertical-align: middle;
+}
+
+/*
+===================================
+    Profile Content Styles
+===================================
+*/
+
+#ajax-content {
+  width: 520px;
+  margin-left: 27px;
+  display: inline-block;
+}
+
+#ajax-content .users-container {
+  margin-top: 8px !important ;
+  margin-left: 10px;
+}
+
+#ajax-content .frm-post {
+  margin-top: 8px;
 }

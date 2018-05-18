@@ -1,0 +1,19 @@
+<div class="banner-container">
+  <div class="banner-image">
+    <%= link_to image_tag(avatar_for(@profile.user)),
+        profile_path(@profile.user.id) %>
+    <span>
+      <%= link_to @profile.user.fullname, profile_path(@profile.user.id) %>
+    </span>
+    <div class="profile-edit">
+      <%= link_to 'Edit your Profile', edit_profile_path(@profile.user.id) %>
+    </div>
+  </div>
+</div>
+<div class="profile-menu">
+  <ul>
+    <li><%= link_to 'Timeline', timeline_path(@profile.user), remote: true %></li>
+    <li><%= link_to 'About', profile_path(@profile.user), remote: true %></li>
+    <li><%= link_to 'Friends', friends_path(@profile.user), remote: true %></li>
+  </ul>
+</div>

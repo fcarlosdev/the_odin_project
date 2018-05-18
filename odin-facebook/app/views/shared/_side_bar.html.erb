@@ -3,11 +3,7 @@
     <li>
       <div class="profile-img">
         <!-- Refactory this code -->
-        <% if !current_user.profile.picture.url.include?("missing.png") %>
-          <%= link_to image_tag(current_user.profile.picture.url), profile_path(current_user.id) %>
-        <% else %>
-          <%= link_to image_tag("img-profile.jpg"), profile_path(current_user.id) %>
-        <% end %>
+        <%= link_to image_tag(avatar_for(current_user)), profile_path(current_user.id) %>
       </div>
       <div class="profile-name">
         <%= link_to current_user.fullname, profile_path(current_user.id) %>

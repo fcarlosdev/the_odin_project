@@ -8,14 +8,16 @@
 <% end %>
 <% if locals[:post].comments.any? %>
   <% locals[:post].comments.each do |comment| %>
-    <div class="comment-details side-borders">
-      <%= link_to image_tag(comment.user.profile.picture.url),
-          profile_path(current_user.id) %>
-      <div class="comment-info">
-        <%= link_to comment.user.fullname, '#', class: 'user_name' %>
-        <span><%= comment.body %></span>
-        <p> <%= format_datetime(comment.created_at) %> </p>
+    <% if !comment.user.nil? %>
+      <div class="comment-details side-borders">
+        <%= link_to image_tag(comment.user.profile.picture.url),
+            profile_path(comment.user.id) %>
+        <div class="comment-info">
+          <%= link_to comment.user.fullname, '#', class: 'user_name' %>
+          <span><%= comment.body %></span>
+          <p> <%= format_datetime(comment.created_at) %> </p>
+        </div>
       </div>
-    </div>
+    <% end %>
   <% end %>
 <% end %>

@@ -9,10 +9,22 @@ class UsersController < ApplicationController
   def timeline
     @post    = Post.new
     @comment = Comment.new
+
+    respond_to do |format|
+      format.html
+      format.js
+    end
+
   end
 
   def friends
    @friendships = (current_user.friendships + current_user.inverse_friendships).uniq
+
+   respond_to do |format|
+     format.html
+     format.js
+   end
+
   end
 
   def friends_requests
