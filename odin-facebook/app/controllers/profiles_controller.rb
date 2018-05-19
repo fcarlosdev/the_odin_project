@@ -10,7 +10,6 @@ class ProfilesController < ApplicationController
   end
 
   def edit
-    puts "PARAMS => #{params.inspect}"
     @profile = current_user.profile
   end
 

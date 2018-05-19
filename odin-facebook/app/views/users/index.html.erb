@@ -19,14 +19,21 @@
                   <%= link_to user.fullname, profile_path(user.id) %>
                 </div>
                 <div class="btn-friendship">
-                  <% if !exists_friendship?(current_user, user) %>
+                  <% if !current_user.has_friendship_with?(user) %>
                     <%= link_to "Add Friend", friendships_path(friend_id: user),
-                        method: :post, class: "btn" %>
-                  <% elsif !current_user.friendship_accepted?(user.id) %>
-                    Friendship requested
+                        method: :post, remote: true, class: "btn" %>
+                  <% elsif user.friendship_requested_by?(current_user) %>
+                    <%= link_to "Accept", friendship_path(
+                       current_user.get_friendship_with(user).id,
+                       origin: 'user_list'), method: :patch, remote: true,
+                       class: "btn" %>
+                  <% elsif current_user.friendship_requested_by?(user) %>
+                       <span>Friendship Requested</span>
                   <% else %>
-                    <%= link_to "Unfriend",friendship_path(find_friendship(current_user, user)), 
-                      method: :delete, class: "btn" %>
+                    <%= link_to "Unfriend",
+                       friendship_path(current_user.get_friendship_with(user,true).id,
+                        origin: "user_list"), method: :delete, remote: true,
+                        class: "btn" %>
                   <% end %>
                 </div>
               </div>

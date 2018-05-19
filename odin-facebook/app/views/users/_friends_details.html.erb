@@ -1,34 +1,37 @@
 <div class="users-container">
-    <div class="users-header">
-      <h2>Friends</h2>
-    </div>
-    <% if !@friendships.empty? %>
-        <% @friendships.each do |friendship| %>
-          <% if friendship.accepted %>
-            <ul>
-              <li>
-                <div class="user-img">
-                  <%= link_to image_tag(get_friend_at(friendship).profile.picture.url(:lg_img)),
-                      profile_path(friendship.id) %>
-                </div>
-                <div class="user-info">
-                  <div class="user-name">
-                    <%= link_to get_friend_at(friendship).fullname,
-                         profile_path(get_friend_at(friendship).id) %>
-                  </div>
-                  <div class="btn-friendship">
-                    <%= link_to "Unfriend", friendship_path(friendship),
-                            method: :delete, class: "btn" %>
-                </div>
-                </div>
-              </li>
-            </ul>
-          <% end %>
-        <% end %>
-    <% else %>
-      <div class="empty-list">
-        <div class="no-friendship">
-          No friends
-        </div>
+  <div class="users-header">
+    <h2>Friends</h2>
+  </div>
+
+  <% if @friends.empty? %>
+    <div class="empty-list">
+      <div class="no-friendship">
+        No friends
       </div>
-    <% end %>
+    </div>
+  <% end %>
+
+  <% @friends.each do |friend| %>
+
+    <% if @user.has_friendship_with?(friend) %>
+      <ul>
+        <li>
+          <div class="user-img">
+            <%= link_to image_tag(friend.profile.picture.url(:lg_img)),
+                profile_path(friend.id) %>
+          </div>
+          <div class="user-info">
+            <div class="user-name">
+              <%= link_to friend.fullname, profile_path(friend.id) %>
+            </div>
+            <div class="btn-friendship">
+               <%= link_to "Unfriend", friendship_path(
+                   @user.get_friendship_with(friend,true).id,
+                   user: @user,origin: "friends_details"), method: :delete,
+                   remote: true, class: "btn" %>
+            </div>
+          </div>
+        </li>
+      </ul>
+  <% end %>
+<% end %>

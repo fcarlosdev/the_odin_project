@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
 
+  include UsersHelper
+
   before_action :logged_in_user, only: [:timeline]
 
   def index
@@ -18,7 +20,9 @@ class UsersController < ApplicationController
   end
 
   def friends
-   @friendships = (current_user.friendships + current_user.inverse_friendships).uniq
+
+   @user = User.find(params[:id])
+   @friends = @user.friends
 
    respond_to do |format|
      format.html
