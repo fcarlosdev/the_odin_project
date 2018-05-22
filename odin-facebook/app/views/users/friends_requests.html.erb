@@ -5,29 +5,27 @@
       <div class="users-header">
         <h2>Friends Requests</h2>
       </div>
-      <% if @friends_requests.any? %>
-          <% @friends_requests.each do |friendship| %>
-            <% if !friendship.accepted %>
-            <ul>
-              <li>
-                <div class="user-img">
-                  <%= link_to image_tag(friendship.user.profile.picture.url(:lg_img)),
-                      profile_path(friendship.user.id) %>
+      <% if !@friends_requests.nil? %>
+        <% @friends_requests.each do |friendship| %>
+          <ul>
+            <li>
+              <div class="user-img">
+                <%= link_to image_tag(friendship.user.profile.picture.url(:lg_img)),
+                    profile_path(friendship.user.id) %>
+              </div>
+              <div class="user-info">
+                <div class="user-name">
+                  <%= link_to friendship.user.fullname,
+                        profile_path(friendship.user.id) %>
                 </div>
-                <div class="user-info">
-                  <div class="user-name">
-                    <%= link_to friendship.user.fullname,
-                          profile_path(friendship.user.id) %>
-                  </div>
-                  <div class="btn-friendship">
-                    <%= link_to "Accept", friendship_path(friendship,
-                         origin: "requests"), method: :patch, class: "btn" %>
-                </div>
-                </div>
-              </li>
-            </ul>
-            <% end %>
-          <% end %>
+                <div class="btn-friendship">
+                  <%= link_to "Accept", friendship_path(friendship,
+                       origin: "requests"), method: :patch, class: "btn" %>
+              </div>
+              </div>
+            </li>
+          </ul>
+        <% end %>
       <% else %>
         <div class="empty-list">
           <div class="no-friendship">

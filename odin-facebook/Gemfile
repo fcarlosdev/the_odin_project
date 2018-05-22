@@ -46,6 +46,9 @@ gem 'jquery-rails',  '4.3.1'
 # Figaro gem to works with ENV configuration
 gem  'figaro'
 
+# Enabling login with facebook account
+gem 'omniauth-facebook'
+
 # Using Rspect to test the application
 group :development, :test do
   gem "database_cleaner"

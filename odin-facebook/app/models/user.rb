@@ -22,10 +22,35 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
+         :recoverable, :rememberable, :trackable, :validatable,
+         :omniauthable, omniauth_providers: [:facebook]
 
   # Callbacks Function
   before_create :create_default_profile
+
+  def self.from_omniauth(auth)
+    puts "INFO=>#{auth.info.inspect}, First Name: #{auth.info.first_name}"
+    where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
+      user.provider   = auth.provider
+      user.uid        = auth.uid
+      user.email      = auth.info.email
+      user.first_name = auth.info.first_name || auth.info.name.split(" ")[0]
+      user.last_name  = auth.info.last_name || auth.info.name.split(" ")[1]
+      user.password   = Devise.friendly_token[0,20]
+    end
+  end
+
+  def self.new_with_session(params, session)
+    super.tap do |user|
+     if data = session["devise.facebook_data"] &&
+               session["devise.facebook_data"]["extra"]["raw_info"]
+       user.email      = data["email"]      if user.email.blank?
+       user.first_name = data["first_name"] if user.first_name.blank?
+       user.last_name  = data["last_name"]  if user.last_name.blank?
+       user.valid?
+     end
+   end
+  end
 
   def has_friendship_with?(user)
     self.friendships.find_by(friend_id: user.id) ||
@@ -41,9 +66,8 @@ class User < ApplicationRecord
     user.friendships.find_by(friend_id: self.id, accepted: accepted)
   end
 
-  def has_friendship_requests?
-    self.friendships.any?{|f| !f.accepted} ||
-    self.inverse_friendships.any? {|f| !f.accepted}
+  def friendship_requests
+    self.friendships.find_by(friend_id: self.id, accepted: false)
   end
 
   def get_posts

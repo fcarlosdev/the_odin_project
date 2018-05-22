@@ -1,11 +1,11 @@
 Rails.application.routes.draw do
 
-  devise_for :users
+  devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks'}
 
   root 'static_pages#home'
   get  'timeline/:id',         to: 'users#timeline',         as: :timeline
   get  'friends/:id',          to: 'users#friends',          as: :friends
-  get  'friends_requests/:id', to: 'users#friends_requests', as: :friends_requests  
+  get  'friends_requests/:id', to: 'users#friends_requests', as: :friends_requests
 
   resources :users, only: [:index]
   resources :posts, only: [:new, :create, :show]

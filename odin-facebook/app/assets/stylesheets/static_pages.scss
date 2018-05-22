@@ -184,6 +184,41 @@ h1 {
   margin-top: 12px;
 }
 
+.fb_login {
+  float: left;
+  width: 220px;
+  margin-left: 130px;
+  border: 1px solid;
+  margin-top: 20px;
+  padding: 4px 8px;
+  background-color: #4267b2;
+  border-color: #12345f;
+  border-radius: 5px;
+  display: inline-block;
+}
+
+.fb_login #text {
+  height: 32px;
+  width: 180px;
+  padding-top: 6px;
+  margin-left: 40px;
+  padding-left: 2px;
+}
+
+.fb_login a {
+  color: #fff;
+  font-size: 15px;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.fb_login img {
+  height: 32px;
+  width: 32px;
+  margin-left: -4px;
+  float: left;
+}
+
 #forgot_password {
   margin-left: -10px;
   float: right;

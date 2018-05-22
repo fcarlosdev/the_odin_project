@@ -4,6 +4,13 @@
 
     <div class="logo"> <h1>odinbook</h1> </div>
 
+    <div class='fb_login'>
+      <%= link_to user_facebook_omniauth_authorize_path do %>
+        <div class="img"> <%= image_tag("fb_logo_2.png", class:'icon') %> </div>
+        <div id="text"> Sign in with Facebook </div>
+      <% end %>
+    </div>
+
     <div class="form_login">
 
       <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
