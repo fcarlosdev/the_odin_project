@@ -49,6 +49,9 @@ gem  'figaro'
 # Enabling login with facebook account
 gem 'omniauth-facebook'
 
+# Preview email
+gem "letter_opener", :group => :development
+
 # Using Rspect to test the application
 group :development, :test do
   gem "database_cleaner"

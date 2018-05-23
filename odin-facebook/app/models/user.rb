@@ -52,6 +52,10 @@ class User < ApplicationRecord
    end
   end
 
+  def self.new_user?(mail)
+    self.find_by(email:mail).nil?
+  end
+
   def has_friendship_with?(user)
     self.friendships.find_by(friend_id: user.id) ||
     user.friendships.find_by(friend_id: self.id)
