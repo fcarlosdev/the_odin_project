@@ -5,10 +5,10 @@ class PostsController < ApplicationController
 
   def create
     @post = current_user.posts.build(post_params)
-    if @post.save!
+    if @post.save
       redirect_to timeline_path(current_user)
     else
-      flash[:error] = "Invalid post"
+      flash[:alert] = "Invalid post"
       redirect_to timeline_path(current_user)
     end
   end

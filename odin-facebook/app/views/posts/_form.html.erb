@@ -4,10 +4,11 @@
       New post
     </div>
     <div>
-      <%= f.text_area :content, placeholder: "What are you thinking about?" %>
+      <%= f.text_area :content, id: "content",
+          placeholder: "What are you thinking about?" %>
     </div>
     <div class="post-submit">
       <%= f.submit 'Post' %>
     </div>
-  <% end %>  
+  <% end %>
 </div>

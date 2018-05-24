@@ -52,10 +52,17 @@ gem 'omniauth-facebook'
 # Preview email
 gem "letter_opener", :group => :development
 
+# Factory gem
+gem "factory_bot_rails"
+
+# Faker gem
+gem "faker"
+
 # Using Rspect to test the application
 group :development, :test do
   gem "database_cleaner"
   gem "rspec-rails"
+  gem "rails-controller-testing"
 end
 
 # Use Capistrano for deployment
