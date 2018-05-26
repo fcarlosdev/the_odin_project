@@ -31,12 +31,13 @@
 
 .user-img, .user-info,
 .user-name, .btn-friendship {
+  float: left;
   display:inline-block;
 }
 
-.user-info, .user-name,
+.user-name,
 .btn-friendship {
-  position: relative;
+  // position: relative;
 }
 
 .user-img {
@@ -52,6 +53,7 @@
 
 .user-name {
   margin-top: 6%;
+  margin-left: 4px;
 }
 
 .user-name a {
@@ -62,10 +64,10 @@
 }
 
 .btn-friendship {
-  top: 45px;
   right: 10px;
   float: right;
-  margin-top: -22px;
+  margin-top: 22px;
+  display: inline-block;
 }
 
 .btn {

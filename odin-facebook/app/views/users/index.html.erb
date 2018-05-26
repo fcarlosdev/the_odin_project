@@ -11,7 +11,7 @@
           <ul>
             <li>
               <div class="user-img">
-                <%= link_to image_tag(user.profile.picture.url(:lg_img)),
+                <%= link_to image_tag(avatar_for(user), class: :lg_img),
                     profile_path(user.id) %>
               </div>
               <div class="user-info">

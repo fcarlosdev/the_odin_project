@@ -51,6 +51,12 @@ class User < ApplicationRecord
    end
   end
 
+  def self.search(q)
+    q = q.downcase
+    where("lower(first_name) LIKE ? OR lower(last_name) LIKE ?",
+          "%#{q}%", "%#{q}%")
+  end
+
   def self.new_user?(mail)
     self.find_by(email:mail).nil?
   end

@@ -32,7 +32,22 @@ class UsersController < ApplicationController
   end
 
   def friends_requests
-    @friends_requests = current_user.friendship_requests    
+    @friends_requests = current_user.friendship_requests
+  end
+
+  def serach
+
+    if params[:q].blank?
+      redirect_back fallback_location: root_path
+    else
+      @users = User.search(params[:q])
+
+      respond_to do |format|
+        format.html { render "users/index" }
+        format.js   
+      end
+    end
+
   end
 
   private

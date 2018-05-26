@@ -1,23 +1,25 @@
-# README
+# OdinBook App
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This is the final project of The Odin Rails course that simulate facebook site.
 
-Things you may want to cover:
+Things you going to encouter in this project:
 
-* Ruby version
+* Can sign in a user locally or by a facebook account;
+Obs.: To use facebook account it's necessary to setting protected connection
+      (ssl) on rails local server,where you can discover how here
+      [Localhost SSL](https://gist.github.com/tadast/9932075).
 
-* System dependencies
+* Can visualize and edit a user profile (Delete a profile not implemented yet)
 
-* Configuration
+* Can create a post e remove your own posts, and hide friends posts
 
-* Database creation
+* Can comment to friends posts
 
-* Database initialization
+* Can send friendships requests
 
-* How to run the test suite
+* Send a email notification after sign up
 
-* Services (job queues, cache servers, search engines, etc.)
+* Can search for users.
 
 * Deployment instructions
 

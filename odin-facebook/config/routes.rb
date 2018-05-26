@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   get  'timeline/:id',         to: 'users#timeline',         as: :timeline
   get  'friends/:id',          to: 'users#friends',          as: :friends
   get  'friends_requests/:id', to: 'users#friends_requests', as: :friends_requests
+  get  'serach',               to: 'users#serach',           as: :search
 
   resources :users, only: [:index]
   resources :posts, only: [:new, :create, :show, :destroy]
