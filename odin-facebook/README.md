@@ -1,6 +1,6 @@
 # OdinBook App
 
-This is the final Rails project at [Ruby On Rails: Final Project](https://www.theodinproject.com/courses/ruby-on-rails/lessons/final-project)
+This is the solution to the [Ruby On Rails: Final Project](https://www.theodinproject.com/courses/ruby-on-rails/lessons/final-project)
 that simulate facebook site.
 
 Things you going to encouter in this project:
