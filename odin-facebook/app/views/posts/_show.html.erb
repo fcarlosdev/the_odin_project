@@ -1,15 +1,24 @@
   <% current_user.get_posts.each do |post| %>
+    <% if post.visible || post.user == current_user %>
       <div class="posted">
-          <%= link_to image_tag(avatar_for(post.user)),
-              profile_path(post.user.id) %>
+          <div class="profile-img">
+            <%= link_to image_tag(avatar_for(post.user)),
+            profile_path(post.user.id) %>
+          </div>
         <div class="post-info">
           <%= link_to post.user.fullname, '#', class: 'user_name' %>
           <p> <%= format_datetime(post.created_at) %> </p>
         </div>
+        <div class="post-delete">
+          <%= link_to image_tag("delete-post.png"), post_path(post.id),
+              method: :delete %>
+        </div>
         <% if current_user != post.user %>
           <p class="post-content"><%= post.content %></p>
         <% else %>
-        <p><%= post.content %></p>
+          <div class="post-content">
+            <p><%= post.content %></p>
+          </div>
         <% end %>
         <div class="links-comment">
           <ul>
@@ -35,5 +44,5 @@
         <div class="no-form up-border">
         </div>
       <% end %>
-
+    <% end %>
   <% end %>

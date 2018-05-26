@@ -6,7 +6,6 @@
     <%= form_for @profile, html: {multipart: true} do |f| %>
       <div>
         <%= f.label :birthday%>
-        <%#= f.date_field :birthday, value: Date.today.strftime("%d/%m/%Y"), autofocus: true %>
         <%= f.date_field :birthday, autofocus: true %>
       </div>
       <div>

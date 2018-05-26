@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   get  'friends_requests/:id', to: 'users#friends_requests', as: :friends_requests
 
   resources :users, only: [:index]
-  resources :posts, only: [:new, :create, :show]
+  resources :posts, only: [:new, :create, :show, :destroy]
   resources :comments, only: [:new, :create, :show]
   resources :profiles, only: [:show, :edit, :update]
   resources :friendships, only: [:create, :destroy, :update]

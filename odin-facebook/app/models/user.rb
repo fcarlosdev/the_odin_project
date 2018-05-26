@@ -29,7 +29,6 @@ class User < ApplicationRecord
   before_create :create_default_profile
 
   def self.from_omniauth(auth)
-    puts "INFO=>#{auth.info.inspect}, First Name: #{auth.info.first_name}"
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
       user.provider   = auth.provider
       user.uid        = auth.uid
@@ -71,7 +70,7 @@ class User < ApplicationRecord
   end
 
   def friendship_requests
-    self.friendships.find_by(friend_id: self.id, accepted: false)
+    self.inverse_friendships.where(accepted: false)
   end
 
   def get_posts

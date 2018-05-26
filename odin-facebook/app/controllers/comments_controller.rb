@@ -2,11 +2,10 @@ class CommentsController < ApplicationController
 
   def create
     @comment = current_user.comments.build(comment_params)
-    if @comment.save!
-      redirect_to timeline_path(current_user)
-    else
-      redirect_to timeline_path(current_user)
+    if !@comment.save
+      flash[:alert] = "Failed to comment at a post"
     end
+    redirect_to timeline_path(current_user)
   end
 
   private

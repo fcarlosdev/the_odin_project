@@ -13,8 +13,15 @@ class PostsController < ApplicationController
     end
   end
 
-  def update
+  def destroy
     @post = Post.find(params[:id])
+    if (@post.user_id == current_user.id)
+      @post.destroy
+    else
+      @post.visible = false
+      @post.save
+    end
+    redirect_to timeline_path(current_user)
   end
 
 

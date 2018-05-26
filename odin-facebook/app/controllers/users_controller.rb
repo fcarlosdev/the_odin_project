@@ -32,7 +32,7 @@ class UsersController < ApplicationController
   end
 
   def friends_requests
-    @friends_requests = current_user.friendship_requests
+    @friends_requests = current_user.friendship_requests    
   end
 
   private
