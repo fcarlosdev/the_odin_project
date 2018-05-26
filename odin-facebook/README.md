@@ -1,6 +1,7 @@
 # OdinBook App
 
-This is the final project of The Odin Rails course that simulate facebook site.
+This is the final Rails project at [Ruby On Rails: Final Project](https://www.theodinproject.com/courses/ruby-on-rails/lessons/final-project)
+that simulate facebook site.
 
 Things you going to encouter in this project:
 
@@ -17,8 +18,6 @@ Things you going to encouter in this project:
 * Send a email notification after sign up
 
 * Can search for users.
-
-* Deployment instructions
 
 * Can receive notifications (Only requests friendships notifications for a while)
 
