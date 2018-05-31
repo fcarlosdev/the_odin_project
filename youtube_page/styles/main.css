@@ -126,17 +126,13 @@ section {
   float: left;
   width: 700px;
   height: 433px;
-  margin-left: 140px;  
+  margin-left: 140px;
   display: inline-block;
 }
 
 section iframe {
   width: 700px;
   height: 433px;
-}
-
-.video-play {
-  border: 1px solid;
 }
 
 .video-caption h1 {
