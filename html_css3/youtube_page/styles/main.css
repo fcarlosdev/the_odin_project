@@ -1,29 +1,39 @@
-/* General styles */
 body {
   margin: 0;
+  height: 100%;
+  font-family: 'Roboto', sans-serif;
 }
+
 a {
-  color: #444;
+  color: #433;
+  text-decoration: none;
+}
+
+.line {
+  margin-top: -5px;
+  border-bottom: 1px solid #4333;
 }
 
 /* Header Styles */
 header {
   height: 56px;
-  width: 99.85%;
-  border-top: none;
   border: 1px solid #ccc;
   box-shadow: 0 1px 3px rgba(236, 236, 236);
 }
 
-.menu-button {
-  margin: 0 5px 0 26px;
+.button-bars, .logo {
   display: inline-block;
+}
+
+.button-bars {
+  margin-top: 15px;
+  margin-left: 10px;
   vertical-align: middle;
 }
 
 .logo {
   margin: 15px 0 0 20px;
-  display: inline-block;
+  vertical-align: middle;
 }
 
 .logo img {
@@ -31,7 +41,7 @@ header {
   vertical-align: middle;
 }
 
-/* Form styles */
+/* Search Form Styles */
 .search-form {
   height: 36px;
   width: 631px;
@@ -41,35 +51,31 @@ header {
 }
 
 .search-form input {
-  float: left;
   width: 500px;
-  height: 26px;
-  font-size: 16px;
-  margin-top: 6px;
-  border: 1px solid #ccc;
-  padding: 4px 6px;
+  height: 30px;
+  margin-top: 12px;
+  display: inline-block;
 }
 
 .search-form a {
-  width: 60px;
-  height: 24px;
-  float: left;
-  margin-top: 6px;
-  border: 1px solid #ccc;
+  width: 65px;
+  height: 28px;
+  margin-left: -4px;
   border-left: none;
   text-align: center;
   display: inline-block;
-  text-decoration: none;
+  border: 1px solid #ccc;
+  vertical-align: middle;
   background-color: #efefef;
 }
 
 .search-form  i {
-  margin-top: 4px;
+  margin-top: 6px;
 }
 
-/* Righ Icon styles */
 .video-create {
-  margin-left: 170px;
+  margin-top: 18px;
+  margin-left: 150px;
   display: inline-block;
   vertical-align: middle;
 }
@@ -77,23 +83,27 @@ header {
 .video-create svg {
   width: 24px;
   height: 24px;
+  margin-left: 16px;
 }
 
 .apps-icon {
+  height: 16px;
+  margin-top: 14px;
   margin-left: 20px;
   display: inline-block;
   vertical-align: middle;
 }
 
 .settings-icons {
+  margin-top: 19px;
+  margin-left: 20px;
   display: inline-block;
   vertical-align: middle;
-  margin-left: 20px;
 }
 
 .login-link {
-  margin-left: 20px;
-  font-family: Arial, sans-serif;
+  margin-top: 17px;
+  margin-left: 40px;
   font-weight: bold;
   display: inline-block;
   vertical-align: middle;
@@ -104,52 +114,60 @@ header {
   text-decoration: none;
 }
 
-/* Video Playing Styles */
+
+/* Video Section and Aside common Styles */
+section, aside {
+  margin-top: 20px;
+  margin-left: 10px;
+}
+
+/* Video Section Styles */
 section {
-  height: 431px;
-  width: 750px;
-  margin-left: 155px;
-  margin-top: 10px;
+  float: left;
+  width: 700px;
+  height: 433px;
+  margin-left: 140px;
+  border: 1px solid;
+  display: inline-block;
 }
 
-/* Video caption styles */
-h1, .views, .thumbs, .share-link {
-  font-family: 'Roboto', sans-serif;
+section iframe {
+  width: 700px;
+  height: 433px;
 }
 
-.views, .thumbs, .share-link {
-  color: rgb(143, 143, 143);
+.video-play {
+  border: 1px solid;
 }
 
-h1 {
-  line-height: 1em;
-  font-weight: bold;
+.video-caption h1 {
+  font-weight: 400;
+  font-size: 20px;
 }
 
-/* Views styles */
 .views {
   margin-top: -10px;
-}
-.views span {
-  font-weight:
-  font-size: 10px;
+  font-size: 18px;
+  font-weight: 400;
+  color: #4339;
 }
 
 .thumbs {
+  width: 700px;
+  height: 20px;
+  padding-top: 10px;
+  /* border: 1px solid; */
   display: inline-block;
-  width: 750px;
 }
 
-.thumb-up, .thumb-down{
-  display: inline-block;
-}
-
-.thumb-up{
+.thumb-up {
   margin-left: 375px;
-  margin-right: 20px;
+  display: inline-block;
 }
-.thumb-up span, .thumb-down span {
+
+.thumb-down {
   margin-left: 10px;
+  display: inline-block;
 }
 
 .share-link {
@@ -182,19 +200,165 @@ h1 {
   margin-left: 45px;
 }
 
-/* Related Videos Styles */
-
-aside {
-  width: 430px;
-  height: 100px;
-  float: right;
-  border: 1px solid;
-  /* display: inline-block; */
+#video-line {
+  margin-top: 10px;
 }
 
-.related-videos {
-  /* border: 1px solid; */
-  width: 100px;
-  height: auto;
+#sup-line {
+  margin-top: -1px;
+  width: 95px;
+  margin-left: 372px;
+  border: 1px solid #2793e6;
+}
+
+
+/* Related Videos  */
+aside {
+  width: 420px;
+  height: 100%;
+  display: inline-block;
+}
+
+.up-next {
+  width: 402px;
+  height: 145px;
+  padding: 2px 4px;
+}
+
+#u-next {
+  margin-bottom: 10px;
+}
+
+.thumbnail, .thumbnail-caption,
+.thumbnail-footer {
+  display: inline-block;
+}
+
+.thumbnail-caption {
+  width: 230px;
+  font-size: 16px;
+  margin-top: -6px;
+  vertical-align: top;
+}
+
+.thumbnail-caption a {
+  color: black;
+  font-weight: bold;
+}
+
+.thumbnail-footer {
+  width: 210px;
+  font-size: 12px;
+  font-weight:320;
+  vertical-align: top;
+}
+
+.thumbnail-container {
+  margin-top: 10px;
+  padding: 2px 4px;
+}
+
+/* Video footer styles */
+.video-footer {
+  height: 66px;
+  width: 700px;
+  margin-top: 2px;
+  display: inline-block;
+}
+
+.channel-logo {
+  display: inline-block;
+}
+
+.channel-logo img {
+  height: 48px;
+  margin-top: 15%;
+  margin-left: 2px;
+  border-radius: 100px;
+}
+
+.channel-name {
+  width: 190px;
+  vertical-align: super;
+  display: inline-block;
+}
+
+#chn-name {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+#chn-published {
+  font-size: 14px;
+}
+
+.btn-subscribe {
+  color: #fff;
+  font-size: 1em;
+  margin-top: 12px;
+  margin-left: 282px;
+  text-align: center;
+  padding: 11px 20px;
+  border-radius: 2px;
+  vertical-align: top;
+  letter-spacing: 1px;
+  display: inline-block;
+  background-color: #ff0000;
+}
+
+.video-description {
+  height: 90px;
+  width: 652px;
+  font-size: 16px;
+  margin-left: 53px;
+  margin-top: 15px;
+}
+
+.show-more {
+  font-size: 13px;
+  margin-top: 5px;
+  font-weight: bolder;
+  display: inline-block;
+}
+
+#desc-line {
+  margin-top: 10px;
+}
+
+/* Comments styles */
+.comments {
+  margin-top: 20px;
+  display: inline-block;
+}
+
+.comments svg {
+  height: 24px;
+}
+
+.bars {
+  margin-right: 10px;
+  margin-left: 20px;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.comments-sort {
+  vertical-align: middle;
+  display: inline-block;
+}
+
+.add-comment {
+  width: 700px;
+  margin-top: 5px;
+}
+
+.add-comment img {
+  height: 40px;
+  margin-top: 2px;
+}
+
+.prompt-comment {
+  margin-top: 15px;
+  vertical-align: top;
   display: inline-block;
 }
