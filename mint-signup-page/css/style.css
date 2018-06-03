@@ -1,0 +1,130 @@
+/* General styles */
+body {
+  background-color: #eceef1;
+  font-family: AvenirNext,Avenir,"Helvetica Neue",Helvetica,Arial,sans-serif;
+}
+
+a { text-decoration: none; }
+
+ul {
+  list-style-type: none;
+}
+
+/* Top styles */
+.navigation-wrapper {
+  height: 60px;
+}
+
+.navigation-container {
+  float: right;
+  height: 36px;
+  width: 300px;
+  padding: 10px 30px;
+  text-align: right;
+}
+
+.navigation-texts {
+  float: left;
+  height: 36px;
+  width: 190px;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+.navigation-texts a {
+  color: #0077C5;
+}
+.signin-button {
+  float: left;
+  margin-left: 10px;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+button {
+  height: 34px;
+  color: white;
+  cursor: pointer;
+  padding: 0 20px;
+  border-radius: 4px;
+  background: #0077c5;
+  border: 1px solid #4c4c4c;
+}
+
+button img {
+  height: 15px;
+  vertical-align: middle;
+}
+
+/* Header styles */
+header {
+  height: 30px;
+  padding: 10px 0;
+}
+
+#logo-container {
+  margin: 0 auto;
+  text-align: center;
+}
+
+/* Form styles */
+.form-container {
+  margin-top: 25px;
+}
+
+.form {
+  height: 781px;
+  width: 380px;
+  margin: 0 auto;
+  background-color: #fff;
+  border: 1px solid #c7c7c7;
+}
+
+#eco-systems-logos {
+  width: 318px;
+  margin: 0 auto;
+  padding-top: 15px;
+  text-align: left;
+  line-height: 1.5;
+}
+
+ul {
+  display: block;
+  text-align: center;
+}
+
+li {
+  display: inline-block;
+}
+
+hr {
+  border: 0;
+  width: 318px;
+  text-align: left;
+  border-top: 1px solid #e2e1e1;
+}
+
+.form-header {
+  text-align: center;
+}
+
+#sign-in-header {
+  color: #4c4c4c;
+  line-height: 1.1;
+  font-size: 24px;
+}
+
+#sub-sign-in-header {
+  width: 318px;
+  padding-top: 20px;
+  margin: 0 auto;
+  font-size: 14px;
+  color: #4c4c4c;
+  font-weight: 300;
+  line-height: 1.2;
+}
+
+#sub-sign-in-header a {
+  color: #0077C5;
+}
