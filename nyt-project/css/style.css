@@ -1,0 +1,299 @@
+body {
+  margin: 0
+}
+
+a {
+  color: #333;
+  text-decoration: none;
+}
+
+/* Menu bar styles */
+#menu-bar {
+  width: 100%;
+  height: 43px;
+  padding: 4px 0 2px;
+  display: inline-block;
+  border-bottom: 1px solid #e2e2e2;
+  font-family: "nyt-franklin",helvetica,arial,sans-serif;
+}
+
+#menu-bar div {
+  float: left;
+}
+
+#icons-container {
+  width: 76px;
+  margin-left: 17px;
+  display: inline-block;
+}
+
+#icons-container div {
+  margin-top: 14px;
+}
+
+#icons-container div:first-child {
+  margin-right: 32px;
+}
+
+#section-title {
+  margin-left: 20px;
+  font-size: 12px;
+  margin-top: 16px;
+  letter-spacing: 0.05em;
+  vertical-align: baseline;
+  text-transform: uppercase;
+}
+
+#section-title a {
+  color: #000;
+  font-weight: 900;
+}
+#section-title a:hover {
+  text-decoration: underline;
+}
+
+#logo-container {
+  width: 62%;
+  height: 28px;
+  margin-top: 8px;
+  text-align: center;
+}
+
+#buttons-container {
+  margin-top: 9px;
+  margin-left: 80px;
+  display: inline-block;
+}
+
+#buttons-container button {
+  color: #fff;
+  cursor: pointer;
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 11px;
+  border-radius: 3px;
+  padding: 8px 9px 6px;
+  letter-spacing: 0.05em;
+  background-color: #6288a5;
+  border: 1px solid #326891;
+  text-transform: uppercase;
+}
+
+#buttons-container button:hover {
+  transition: 0.6s;
+  background-color: #326891;
+}
+
+/* Main content styles */
+#main-container {
+  top: -4px;
+  position: relative;
+}
+
+#main-container h1 {
+  width: 385px;
+  margin-left: 380px;
+  text-align: left;
+}
+
+#main-container h1 span {
+  font-size: 35px;
+  font-style: oblique;
+}
+
+#cosmos-img {
+  margin-bottom: 40px;
+}
+
+figure {
+  font-size: 13px;
+  text-align: left;
+  margin-left: 190px;
+}
+
+figure img {
+  width: 893px;
+  height: 502px;
+}
+
+figcaption span {
+  font-size: 12px;
+  color: #999;
+}
+
+#article-info {
+  height: 62px;
+  margin-top: 10px;
+}
+
+#article-info > div {
+  height: 62px;
+  width: 600px;
+  margin: 0 auto;
+  text-align: left;
+}
+
+#article-info > div > div {
+  height: 22px
+  width: 112px;
+}
+
+#article-info > div > div p {
+  color: #000;
+  margin-top: 2px;
+  font-weight: 700;
+  line-height: 1rem;
+  font-size: .75rem;
+  font-family: nyt-franklin,helvetica,arial,sans-serif;
+}
+
+#article-info > div > div > p span {
+  border-bottom: 1px solid #CCC;
+}
+
+#article-info a {
+  color: #000;
+}
+
+#article-info  > div > div > p span:hover {
+  border-bottom-color: #000;
+}
+
+ul {
+  height: 40px;
+  margin-top: 20px;
+  list-style-type: none;
+}
+
+ul li {
+  float: left;
+  display: inline-block;
+}
+
+ul li:nth-child(2) {
+  float: right;
+}
+
+ul > li > time {
+  color: #666;
+  font-weight: 500;
+  line-height: 1rem;
+  margin-left: -40px;
+  font-size: 0.85rem;
+}
+
+li img {
+  margin-top: -6px;
+  margin-right: 10px;
+}
+
+#article-text {
+  margin-top: 25px;
+}
+
+.text-container {
+  width: 610px;
+  margin: 0 auto;
+  /* border: 1px solid; */
+}
+
+.text-container p {
+  width: 600px;
+  margin: 0 auto;
+  font-size: 17px;
+  text-align: left;
+  font-weight: 400;
+  line-height: 26px;
+  margin-bottom: 20px;
+  font-family: nyt-imperial,georgia,'times new roman',times,serif;
+}
+
+.text-container h3 {
+  text-align: left;
+}
+
+/* Image inflation theory styles */
+
+#inflation-container {
+  width: 945px;
+  height: 740px;
+  margin: 0 auto;
+}
+
+#inflation-container header h2, p {
+  text-align: left;
+}
+
+.sumary-theory p {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 18px;
+  margin-top: -15px;
+  margin-bottom: 10px;
+  color: rgba(102, 102, 102);
+  font-family: georgia,"times new roman",times,serif;
+}
+
+.theory-part-one img , .theory-part-two  img {
+  width: 945px;
+}
+
+.theory-part-one div, .theory-part-two div {
+  float: left;
+  width: 220px;
+  margin-right: 10px;
+  margin-left: 6px;
+  display: inline-block;
+}
+
+.theory-part-one div > p, .theory-part-two div > p {
+  color: #000000;
+  font-size: 14px;
+  line-height: 17px;
+  font-weight: 300;
+  font-family: nyt-franklin,arial,helvetica,sans-serif;
+}
+
+article footer {
+  height: 1px;
+  width: 60px;
+  font-size: 14px;
+  margin:  0 0 13px 207px;
+  display: inline-block;
+  background-color: #000;
+}
+
+#inflation-credit {
+  width: 400px;
+}
+
+#more-credits {
+  width: 500px;
+  height: 100px;
+  margin-top: 40px;
+}
+
+#more-credits div > p {
+  font-size: 17px;
+}
+
+.credits-container {
+  width: 600px;
+  margin: 0 auto;
+}
+
+/* More text styles */
+#yt-celebrate {
+  height: 100px;
+  width: 600px;
+  text-align: left;
+}
+
+#yt-celebrate figcaption span:first-child {
+  color: #666;
+  font-size: 14px;
+}
+
+#yt-celebrate figcaption span:nth-child(2) {
+  color: #999;  
+}
