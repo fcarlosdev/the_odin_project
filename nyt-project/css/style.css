@@ -1,10 +1,14 @@
 body {
-  margin: 0
+  margin: 0;
 }
 
 a {
   color: #333;
   text-decoration: none;
+}
+
+.font-nytc {
+  font-family: nyt-franklin,helvetica,arial,sans-serif;
 }
 
 /* Menu bar styles */
@@ -144,7 +148,6 @@ figcaption span {
   font-weight: 700;
   line-height: 1rem;
   font-size: .75rem;
-  font-family: nyt-franklin,helvetica,arial,sans-serif;
 }
 
 #article-info > div > div > p span {
@@ -194,7 +197,6 @@ li img {
 .text-container {
   width: 610px;
   margin: 0 auto;
-  /* border: 1px solid; */
 }
 
 .text-container p {
@@ -209,7 +211,7 @@ li img {
 }
 
 .text-container h3 {
-  text-align: left;
+  margin-left: 4px;
 }
 
 /* Image inflation theory styles */
@@ -258,7 +260,7 @@ article footer {
   height: 1px;
   width: 60px;
   font-size: 14px;
-  margin:  0 0 13px 207px;
+  margin:  0 0 100px 207px;
   display: inline-block;
   background-color: #000;
 }
@@ -267,25 +269,26 @@ article footer {
   width: 400px;
 }
 
-#more-credits {
+.more-text-container {
+  width: 600px;
+  margin: 0 auto;
+}
+
+#more-text {
   width: 500px;
   height: 100px;
   margin-top: 40px;
 }
 
-#more-credits div > p {
+#more-text div > p {
   font-size: 17px;
 }
 
-.credits-container {
-  width: 600px;
-  margin: 0 auto;
-}
-
-/* More text styles */
+/* Video Styles */
 #yt-celebrate {
-  height: 100px;
+  height: 319px;
   width: 600px;
+  padding: 20px 0 60px 0;
   text-align: left;
 }
 
@@ -295,5 +298,97 @@ article footer {
 }
 
 #yt-celebrate figcaption span:nth-child(2) {
-  color: #999;  
+  color: #999;
+}
+
+#yt-celebrate iframe {
+  width: 600px;
+  height: 319px;
+}
+
+#celebrate-link {
+  color: #326891;
+  text-decoration: underline;
+}
+
+/* Telescop images styles */
+#telescope {
+  width: 630px;
+  height: 420px;
+  margin: 0 auto;
+  margin-bottom: 80px;
+}
+
+#telescope img {
+  width: 630px;
+  height: 420px;
+}
+
+#telescope figcaption {
+  margin-top: 5px;
+}
+
+#telescope figcaption span {
+  font-family: nyt-imperial,georgia,'times new roman',times,serif;
+}
+
+#telescope figcaption span:first-child {
+  color: #1b1b1b;
+  font-size: 14px;
+}
+
+#telescope figcaption span:nth-child(2) {
+  font-size: 12px;
+  margin-left: 7px;
+}
+
+/* End of article styles */
+.bottom-of-article, .bottom-of-article span > a {
+  width: 600px;
+  color: #999;
+  margin: 0 auto;
+  font-size: 12px;
+  margin-bottom: 10px;
+}
+
+.bottom-of-article span > a:hover {
+  text-decoration: underline;
+  color: #999;
+}
+
+.bottom-of-article div:nth-child(2) {
+  margin-top: 20px;
+  margin-bottom: 50px;
+}
+
+.bottom-wrapper {
+  max-width: 1145px;
+  margin: 0 auto;
+}
+
+#related-content {
+  width: 732px;
+  height: 300px;
+  padding-top: 10px;
+  border-top: 1px solid;
+  /* border: 1px solid; */
+}
+
+#related-content header {
+  font-size: 14px;
+  font-weight: 900;
+  margin-bottom: 20px;
+}
+
+.list-more {
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 10px;
+  margin-left: 0;
+}
+
+.more-item img {
+  width: 234px;
+  height: 151px;
 }
