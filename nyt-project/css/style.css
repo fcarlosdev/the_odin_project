@@ -512,26 +512,92 @@ nav div {
   float: none;
 }
 
-#subscribe ul:nth-child(3) {
-  padding-bottom: 20px;
+/* #subscribe ul:nth-child(3) {
+  padding-bottom: 10px;
   border-bottom: 1px solid rgb(226, 226, 226);
+} */
+
+#home-page-link {
+  height: 26px;
+  width: 1007px;
+  text-align: right;
+  vertical-align: top;
+  display: inline-block;
 }
 
-.other-links section > h3 {
-  height: 25px;
-  font-size: 13px;
-  margin-bottom: 0;
-  font-weight: 700;
-  line-height: 15px;
-  text-transform: uppercase;
+#home-page-link a {
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 11px;
+  font-style: normal;
+  vertical-align: sub;
+  color: rgb(98, 136, 165);
   font-family: nyt-franklin;
 }
 
 .ul-links {
-  padding-left: 0;
+  padding: 0;
   margin: 0;
 }
 
 .li-links {
   height: 26px;
+}
+
+.other-links section > h3 {
+  height: 25px;
+  font-size: 13px;
+  margin-top: 0;
+  margin-bottom: 0;
+  font-weight: 700;
+  line-height: 15px;
+  text-transform: uppercase;
+}
+
+#subscribe {
+  margin: 0;
+  padding: 0;
+  padding-left: 15px;
+}
+
+#subscribe h3 {
+  height: 25px;
+  margin-top: 0;
+  font-size: 13px;
+  margin-bottom: 0;
+  font-weight: 700;
+}
+
+#subscribe-ul-1 {
+  margin-top: 0;
+  margin-bottom: 50px;
+}
+
+#subscribe-ul-1 li {
+  height: 25px;
+  margin-bottom: 5px;
+}
+
+#subscribe-ul-1 li a {
+  font-weight: bold;
+  color: #000;
+}
+
+svg {
+  height: 14px;
+}
+
+#subscribe-ul-2 {
+  padding-bottom: 15px;
+}
+
+#subscribe-ul-2 li,
+#subscribe-ul-3 li {
+  height: 25px;
+  font-size: 13px;
+}
+
+#subscribe-ul-3 {
+  padding-top: 5px;
+  border-top: 1px solid rgb(226, 226, 226);
 }
