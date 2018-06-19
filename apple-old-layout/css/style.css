@@ -1,15 +1,137 @@
 * {
   margin: 0;
   padding: 0;
+  font: 12px/18px "Lucida Grande", "Lucida Sans Unicode", Helvetica, Arial,
+        Verdana, sans-serif;
 }
 
 .banner-container {
-  border: 1px solid;
+  position: relative;
 }
 
 #banner {
   height: 538px;
-  background-size: contain;
-  background: url("../images/your_verse_hero.jpg") no-repeat;
-  background-position: right 0 bottom 0;
+  width: 1350px;
+  overflow: hidden;
+  background-size: 1440px 1315px;
+  background: url("../images/your_verse_hero.jpg") no-repeat 50% 100%;
+}
+
+nav {
+  top: 30px;
+  z-index: 1;
+  left: 190px;
+  position: absolute;
+}
+
+nav ul {
+  display: table;
+}
+
+nav li {
+  background: linear-gradient(rgb(140,140,140), rgb(110,110,110) 50%,
+              rgb(90,90,90) 51%, rgb(130,130,130));
+}
+
+nav ul li {
+  height: 36px;
+  width: 106px;
+  text-align: center;
+  display: table-cell;
+  vertical-align: middle;
+  border-right: 1px solid #454545;
+}
+
+nav ul li:hover {
+  background: #333;
+}
+
+nav ul li:last-of-type:hover {
+    background: linear-gradient(rgb(140,140,140), rgb(110,110,110) 50%,
+                rgb(90,90,90) 51%, rgb(130,130,130));
+}
+
+nav ul li:first-child {
+  border-radius: 4px 0 0 4px;
+}
+
+nav ul li:last-child {
+  border-radius: 0 4px 4px 0;
+}
+
+nav a, nav ul li:hover {
+  cursor: pointer;
+}
+
+nav a {
+  color: #fff;
+  text-decoration: none;
+}
+
+nav img {
+  width: 23px;
+  vertical-align: middle;
+}
+
+/* Search form styles */
+#mn-search {
+  padding: 2px 5px;
+  position: relative;
+}
+
+#mn-search input {
+  color: #fff;
+  border: none;
+  height: 19px;
+  width: 106px;
+  border-radius: 12px;
+  padding: 2px 18px 1px 8px;
+  border-top: 2px solid rgb(60,60,60);
+  border-bottom: 1px solid rgb(160,160,160);
+  background: linear-gradient(rgb(140,140,140), rgb(110,110,110) 50%,
+              rgb(90,90,90) 51%, rgb(130,130,130));
+}
+
+#icon-search {
+  top: 15px;
+  left: 10px;
+  width: 15px;
+  height: 15px;
+  position: absolute;
+  display: table-cell;
+  background-image: url(data:image/svg+xml;base64,PHN2ZyB2ZXJzaW9uPSIxLjEiIGJhc2VQcm9maWxlPSJmdWxsIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB4bWxuczpldj0iaHR0cDovL3d3dy53My5vcmcvMjAwMS94bWwtZXZlbnRzIj4KPGcgZmlsbC1vcGFjaXR5PSIuNSI%2BCgk8cG9seWdvbiBwb2ludHM9IjkuMjA3LDcuMTI2IDcuNzkzLDguNTQxIDExLjc5MywxMi41NDEgMTMuMjA3LDExLjEyNiIgLz4KCTxwYXRoIGQ9Ik01LjkxNywzYzEuNjA4LDAsMi45MTcsMS4zMDgsMi45MTcsMi45MTdTNy41MjUsOC44MzMsNS45MTcsOC44MzNTMyw3LjUyNSwzLDUuOTE3UzQuMzA4LDMsNS45MTcsMyBNNS45MTcsMQoJCUMzLjIwMSwxLDEsMy4yMDEsMSw1LjkxN3MyLjIwMSw0LjkxNyw0LjkxNyw0LjkxN3M0LjkxNy0yLjIwMSw0LjkxNy00LjkxN0MxMC44MzMsMy4yMDEsOC42MzIsMSw1LjkxNywxTDUuOTE3LDF6IiAvPgo8L2c%2BCjxnPgoJPHBvbHlnb24gZmlsbD0iI2ZmZiIgcG9pbnRzPSI5LjIwNyw2LjEyNiA3Ljc5Myw3LjU0MSAxMS43OTMsMTEuNTQxIDEzLjIwNywxMC4xMjYiIC8%2BCgk8cGF0aCBmaWxsPSIjZmZmIiBkPSJNNS45MTcsMmMxLjYwOCwwLDIuOTE3LDEuMzA4LDIuOTE3LDIuOTE3UzcuNTI1LDcuODMzLDUuOTE3LDcuODMzUzMsNi41MjUsMyw0LjkxN1M0LjMwOCwyLDUuOTE3LDIKCQkgTTUuOTE3LDBDMy4yMDEsMCwxLDIuMjAxLDEsNC45MTdzMi4yMDEsNC45MTcsNC45MTcsNC45MTdzNC45MTctMi4yMDEsNC45MTctNC45MTdDMTAuODMzLDIuMjAxLDguNjMyLDAsNS45MTcsMEw1LjkxNywweiIgLz4KPC9nPgo8L3N2Zz4K);
+}
+
+/* Promos styles */
+aside {
+  width: 1310px;
+  height: 200px;
+  position: absolute;
+  border-bottom: 2px solid #333;
+  border-right: 2px solid #333;
+}
+
+aside ul {
+  display: flex;
+  flex-flow: row;
+}
+
+aside ul li {
+  width: 25%;
+  list-style-type: none;
+}
+
+aside ul li a img {
+  position: relative;
+  border: 2px solid #333;
+}
+
+/* Footer styles */
+footer {
+  top: 740px;
+  z-index: 1;
+  height: 90px;
+  padding-top: 10px;
+  max-width: 1350px;
+  position: absolute;
 }
