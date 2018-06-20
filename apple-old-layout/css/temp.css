@@ -1,0 +1,78 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+
+nav {
+  top: 15px;
+  z-index: 1;
+  width: 1440px;
+  margin: 0 auto;
+  position: relative;
+}
+
+nav ul {
+  width: 980px;
+  height: 36px;
+  margin: 0 auto;
+  position: relative;
+  list-style: none outside;
+}
+
+nav ul {
+  color: #fff;
+  display: flex;
+  flex-flow: row;
+  text-align: center;
+  position: relative;
+  background-color: #333;
+}
+
+nav ul li {
+  width: 106px;
+  height: 36px;
+  line-height: 36px;
+}
+
+nav a {
+  color: #fff;
+  text-decoration: none;
+}
+
+nav a img {
+  width: 23px;
+  vertical-align: middle;
+}
+
+article {
+  height: 500px;
+  width: 1440px;
+  margin: 0 auto;
+}
+
+section {
+  top: 0;
+  width: 1440px;
+  height: 536px;
+  background: url(http://web.archive.org/web/20140301004302im_/http://images.apple.com/v/home/as/images/your_verse_hero.jpg) no-repeat 50% 100%;
+  position: absolute;
+}
+
+aside {
+  height: 200px;
+  width: 1440px;
+  margin: 0 auto;
+  position: relative;
+
+}
+
+aside ul {
+  display: flex;
+  flex-flow: row;
+  list-style: none outside;
+}
+
+aside img {
+  width: 100%;
+}
