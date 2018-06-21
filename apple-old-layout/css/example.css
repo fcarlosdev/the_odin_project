@@ -68,21 +68,25 @@ nav a, nav ul li:hover {
 
 /* Article styles */
 article {
+  left: 0;
   top: 0;
+  right: auto;
   width: 100%;
-  height: 536px;
+  height: 538px;
   overflow: hidden;
   position: absolute;
-  /* background-color: green; */
 }
 
 section {
-  /* width: 1440px; */
-  height: 536px;
-  position: relative;
+  left: 50%;
+  height: 538px;
+  width: 1440px;
   overflow: hidden;
-  background: url("../images/your_verse_hero.jpg") 50% 100% no-repeat;
+  position: relative;
+  margin-left: -720px;
+  background: url("../images/your_verse_hero.jpg") no-repeat 50% 100%;
 }
+
 
 /* Search form styles */
 #mn-search {
@@ -117,7 +121,7 @@ section {
 /* Promos styles */
 .promos {
   z-index: 1;
-  top: 536px;
+  top: 538px;
   width: 100%;
   height: 200px;
   overflow: hidden;
@@ -126,7 +130,6 @@ section {
 
 .promos ul {
   height: 200px;
-  display: table;
   margin: 0 auto;
   min-width: 1024px;
   max-width: 1440px;
@@ -136,10 +139,35 @@ section {
   list-style: none outside;
 }
 
-.promos li {
-  width: 25%;
+.promos ul li {
+  position: relative;
+  z-index: 1;
   float: left;
+  overflow: hidden;
+  margin: 0;
+  width: 25%;
+  height: 200px
 }
+
+.promos ul li a {
+  position: absolute;
+      z-index: 1;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      display: block;
+      overflow: hidden;
+      cursor: pointer;
+}
+
+.promos ul li a img {
+  position: absolute;
+    z-index: 1;
+    left: 50%;
+    margin-left: -182px;
+}
+
 
 /* Footer styles */
 
