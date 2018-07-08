@@ -1,0 +1,90 @@
+* {
+  padding: 0;
+  margin: 0;
+  overflow: hidden;
+  font-family: ARS Maquette,Helvetica Neue,Arial,sans-serif;
+}
+
+/* NavBar Styles */
+#nav {
+  height: 80px;
+  width: 100%;
+  font-size: 14px;
+  position: absolute;
+  box-shadow: 0 0 32px rgba(0, 0, 0, 0.15);
+}
+
+#nav > ul {
+  color: #fff;
+  height: 32px;
+  position: relative;
+  background: #131313;
+  list-style-type: none;
+}
+
+#nav > ul > li {
+  float: left;
+  margin-left: 12px;
+  line-height: 32px;
+}
+
+#nav .nav-menu-right {
+  float: right;
+  margin-left: 0;
+  margin-right: 12px;
+}
+
+@media screen and (min-width: 1024px) {
+  #tnw-logo > span {
+    display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  #nav > ul {
+    display: none;
+  }
+}
+
+@media (max-width: 1023px) {
+
+  #nav {
+    padding-left: 106px;
+    width: calc(100% - 106px);
+  }
+
+  #tnw-logo {
+    left: 0;
+    top: 0;
+    z-index: 2;
+    width: 106px;
+    height: 80px;
+    text-align: center;
+    line-height: 80px;
+    position: absolute;
+    background-color: red;
+  }
+
+}
+
+#sections-container {
+  height: 48px;
+  width: 100%;
+  position: absolute;
+  border-bottom: 1px solid #eee;
+}
+
+#nav-sections {
+  color: #aaa;
+  font-weight: 500;
+  padding: 0 10px 0;
+  display: inline-block;
+  text-transform: uppercase;
+  font-family: Shentox,sans-serif;
+}
+
+#nav-sections > li {
+  float: left;
+  margin-right: 12px;
+  line-height: 48px;
+}
