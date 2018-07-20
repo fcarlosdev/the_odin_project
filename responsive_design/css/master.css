@@ -5,8 +5,9 @@
 * {
   padding: 0;
   margin: 0;
-  overflow: hidden;
   font-size: 14px;
+  overflow: initial;
+  box-sizing: border-box;
   font-family: ARS Maquette,Helvetica Neue,Arial,sans-serif;
 }
 
@@ -23,8 +24,9 @@ a {
  *                 Top menu styles                *
  **************************************************/
 nav {
+  left: 0;
+  right: 0;
   height: 80px;
-  width: 100%;
   position: fixed;
   box-shadow: 0 0 32px rgba(0, 0, 0, .15);
 }
@@ -32,6 +34,7 @@ nav {
 #tnw-logo {
   top: 0;
   left: 0;
+  z-index: 1;
   width: 106px;
   height: 80px;
   display: none;
@@ -49,7 +52,6 @@ nav {
 }
 
 #nav-tnw {
-  z-index: 2;
   font-size: 13px;
   max-height: 32px;
   overflow: hidden;
@@ -79,13 +81,15 @@ nav {
 #sections-container {
   height: 48px;
   width: 100%;
-  position: absolute;
+  background: #fff;
+  position: relative;
 }
 
 #nav-tnw-sections {
   line-height: 48px;
-  position: absolute;
   text-transform: uppercase;
+  position: fixed;
+  z-index: 1;
 }
 
 #nav-tnw-sections li a {
@@ -134,17 +138,34 @@ nav {
 #nav-tnw-follows {
   float: right;
   width: 136px;
-  z-index: 2;
-  line-height: 48px;
-  padding: 0 0 0 8px;
+  line-height: 40px;
+  padding: 3px 0 0 8px;
   position: relative;
   background-color: #fff;
+  z-index: 2;
 }
 
 #nav-tnw-follows li {
   margin-top: 2px;
   margin-left: 13px;
 }
+
+.nav-message {
+  left: 0;
+  right: 0;
+  top: 48px;
+  height: 30px;
+  font-size: 13px;
+  background: #fd3;
+  line-height: 30px;
+  position: absolute;
+}
+
+.nav-message a {
+  color: #000;
+  margin-left: 20px;
+}
+
 
 @media (max-width: 1023px) {
   #tnw-logo {
@@ -180,4 +201,79 @@ nav {
     border-left: 1px solid #aaa;
     display: inline-block;
   }
+
+  .nav-message {
+    top: 48px;
+  }
+}
+
+nav:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/**************************************************
+ *            Highlits Stories styles             *
+ **************************************************/
+#main {
+  top: 108px;
+  z-index: -1;
+  position: relative;
+  box-sizing: border-box;
+}
+
+.grid-3 {
+  height: 75vh;
+  padding: 4px;
+  max-height: 580px;
+  position: relative;
+}
+
+.cover-story {
+  padding: 4px;
+  float: left;
+  overflow: hidden;
+  position: relative;
+}
+
+.grid-3 article:first-child {
+  float: left;
+  height: 100%;
+  width: 66.66%;
+}
+
+.grid-3 article:nth-child(2),
+.grid-3 article:last-of-type {
+  float: left;
+  height: 50%;
+  width: 33.33%;
+}
+
+.cover-image {
+  top: 4px;
+  left: 4px;
+  right: 4px;
+  bottom: 4px;
+  position: absolute;
+  background-position: 50%;
+}
+
+.grid-3 article:first-child div:first-child,
+.grid-3 article:nth-child(2) div:first-child,
+.grid-3 article:nth-child(3) div:first-child {
+  background-size: 100%;
+  background-repeat: no-repeat;
+}
+
+.grid-3 article:first-child div:first-child {
+  background-image: url("https://cdn0.tnwcdn.com/wp-content/blogs.dir/1/files/2018/07/spider-man-ps4-796x468.png");
+}
+
+ .grid-3 article:nth-child(2) div:first-child {
+  background-image: url("https://cdn0.tnwcdn.com/wp-content/blogs.dir/1/files/2018/07/moto_featured-796x417.jpg");
+}
+
+.grid-3 article:nth-child(3) div:first-child {
+  background-image: url("https://cdn0.tnwcdn.com/wp-content/blogs.dir/1/files/2017/04/zuckerberg-f8-2017-796x398.png");
 }
