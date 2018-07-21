@@ -284,7 +284,6 @@ nav:after {
   background-image: url("https://cdn0.tnwcdn.com/wp-content/blogs.dir/1/files/2018/07/translateglitch-796x448.jpg");
 }
 
-<<<<<<< HEAD
 .grid-3 article h2 span:first-child,
 .cover-section {
   text-transform: capitalize;
@@ -294,9 +293,6 @@ nav:after {
   text-transform: none;
 }
 
-
-=======
->>>>>>> b3666dc94d78bb5546edc848d080ccc7f67d8388
 /**************************************************
  *               Main article styles              *
  **************************************************/
@@ -313,33 +309,21 @@ nav:after {
   background: linear-gradient(to bottom right, rgba(255, 68, 34, 1), rgba(0,0,0, 0.7), rgba(0,0,0, 10));
 }
 
-<<<<<<< HEAD
 .grid-3 article:first-child .cover-header {
   padding: 50px 12px;
 }
 
 
-=======
->>>>>>> b3666dc94d78bb5546edc848d080ccc7f67d8388
 /**************************************************
  *              Others article styles             *
  **************************************************/
 
-<<<<<<< HEAD
-=======
-
-
->>>>>>> b3666dc94d78bb5546edc848d080ccc7f67d8388
 .cover-container {
   z-index: 6;
   height: 100%;
   cursor: pointer;
   position: relative;
-<<<<<<< HEAD
   background: linear-gradient(to bottom ,rgba(255, 255, 255, 0.1), rgba(0, 0, 0, 0.7), rgba(0,0,0, 10));
-=======
-  background: linear-gradient(to bottom ,rgba(255, 255, 255, 0.1), rgba(0, 0, 0, 0.4), rgba(0,0,0, 0.9));
->>>>>>> b3666dc94d78bb5546edc848d080ccc7f67d8388
 }
 
 .grid-3 article a {
@@ -359,14 +343,6 @@ nav:after {
   position: absolute;
 }
 
-<<<<<<< HEAD
-=======
-.cover-section,
-.cover-title span {
-  text-transform: capitalize;
-}
-
->>>>>>> b3666dc94d78bb5546edc848d080ccc7f67d8388
 .cover-section {
   font-size: 20px;
   font-weight: 500;
