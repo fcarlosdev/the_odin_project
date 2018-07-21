@@ -11,6 +11,10 @@
   font-family: ARS Maquette,Helvetica Neue,Arial,sans-serif;
 }
 
+body {
+  min-height: 400vh;
+}
+
 ul li {
   float: left;
   list-style-type: none;
@@ -28,6 +32,7 @@ nav {
   right: 0;
   height: 80px;
   position: fixed;
+  z-index: 20;
   box-shadow: 0 0 32px rgba(0, 0, 0, .15);
 }
 
@@ -209,7 +214,7 @@ nav {
 
 nav:after {
   content: "";
-  display: table;
+  display: inline-block;
   clear: both;
 }
 
@@ -217,8 +222,8 @@ nav:after {
  *            Highlits Stories styles             *
  **************************************************/
 #main {
-  top: 108px;
-  z-index: -1;
+  top: 104px;
+  z-index: 2;
   position: relative;
   box-sizing: border-box;
 }
@@ -262,18 +267,118 @@ nav:after {
 .grid-3 article:first-child div:first-child,
 .grid-3 article:nth-child(2) div:first-child,
 .grid-3 article:nth-child(3) div:first-child {
+  z-index: 2;
   background-size: 100%;
   background-repeat: no-repeat;
 }
 
 .grid-3 article:first-child div:first-child {
-  background-image: url("https://cdn0.tnwcdn.com/wp-content/blogs.dir/1/files/2018/07/spider-man-ps4-796x468.png");
+  background-image: url("https://cdn0.tnwcdn.com/wp-content/blogs.dir/1/files/2018/07/stars-796x419.jpg");
 }
 
  .grid-3 article:nth-child(2) div:first-child {
-  background-image: url("https://cdn0.tnwcdn.com/wp-content/blogs.dir/1/files/2018/07/moto_featured-796x417.jpg");
+  background-image: url("https://cdn0.tnwcdn.com/wp-content/blogs.dir/1/files/2018/06/Fortnite-eShop-796x416.jpg");
 }
 
-.grid-3 article:nth-child(3) div:first-child {
-  background-image: url("https://cdn0.tnwcdn.com/wp-content/blogs.dir/1/files/2017/04/zuckerberg-f8-2017-796x398.png");
+.grid-3 article:nth-child(3) .cover-image {
+  background-image: url("https://cdn0.tnwcdn.com/wp-content/blogs.dir/1/files/2018/07/translateglitch-796x448.jpg");
+}
+
+.grid-3 article h2 span:first-child,
+.cover-section {
+  text-transform: capitalize;
+}
+
+.grid-3 article h2 span:last-child {
+  text-transform: none;
+}
+
+
+/**************************************************
+ *               Main article styles              *
+ **************************************************/
+.grid-3 article:first-child h5 {
+  margin-left: 5px;
+}
+
+.grid-3 article:first-child h2 span {
+  font-size: 50px;
+  line-height: 1;
+}
+
+.grid-3 article:first-child .cover-container {
+  background: linear-gradient(to bottom right, rgba(255, 68, 34, 1), rgba(0,0,0, 0.7), rgba(0,0,0, 10));
+}
+
+.grid-3 article:first-child .cover-header {
+  padding: 50px 12px;
+}
+
+
+/**************************************************
+ *              Others article styles             *
+ **************************************************/
+
+.cover-container {
+  z-index: 6;
+  height: 100%;
+  cursor: pointer;
+  position: relative;
+  background: linear-gradient(to bottom ,rgba(255, 255, 255, 0.1), rgba(0, 0, 0, 0.7), rgba(0,0,0, 10));
+}
+
+.grid-3 article a {
+  text-decoration: none;
+}
+
+.cover-section, .cover-title {
+  color: #fff;
+}
+
+.cover-header {
+  left: 4px;
+  right: 4px;
+  bottom: 4px;
+  z-index: 5;
+  padding: 14px 12px;
+  position: absolute;
+}
+
+.cover-section {
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 1.5;
+  letter-spacing: .04em;
+  font-family: 'Quantico', sans-serif;
+}
+
+.cover-title span {
+  font-size: 24px;
+  font-weight: 800;
+  font-family: 'Avalon', sans-serif;
+}
+
+.grid-3 .cover-header-bottom {
+  top: 4px;
+  z-index: 12px;
+  cursor: default;
+  position: relative;
+}
+
+.cover-header-bottom li {
+  float: left;
+  margin-right: 8px;
+  cursor: default;
+}
+
+.cover-header-bottom li,
+.cover-header-bottom li a {
+  color: #ccc;
+  font-size: 12px;
+  margin-left: 1px;
+}
+
+.cover-header-bottom li a:hover {
+  cursor: pointer;
+  color: #fff;
 }
