@@ -12,7 +12,8 @@
 }
 
 body {
-  min-height: 400vh;
+  min-height: 100vh;
+  line-height: 1.5;
 }
 
 ul li {
@@ -23,6 +24,15 @@ ul li {
 a {
   text-decoration: none;
 }
+
+h2 a {
+  color: #f42;
+  font-size: 28px;
+  font-weight: 800;
+  text-decoration: none;
+  letter-spacing: -.015em;
+}
+
 
 /**************************************************
  *                 Top menu styles                *
@@ -272,6 +282,14 @@ nav:after {
   background-repeat: no-repeat;
 }
 
+#cover-time {
+  top: -100px;
+  color: #fff;
+  position: absolute;
+  left: 81%;
+}
+
+
 .grid-3 article:first-child div:first-child {
   background-image: url("https://cdn0.tnwcdn.com/wp-content/blogs.dir/1/files/2018/07/stars-796x419.jpg");
 }
@@ -312,7 +330,6 @@ nav:after {
 .grid-3 article:first-child .cover-header {
   padding: 50px 12px;
 }
-
 
 /**************************************************
  *              Others article styles             *
@@ -380,4 +397,206 @@ nav:after {
 .cover-header-bottom li a:hover {
   cursor: pointer;
   color: #fff;
+}
+
+/**************************************************
+ *                Latest News styles              *
+ **************************************************/
+.wrapper {
+  width: 90%;
+  height: 100%;
+  margin: 0 auto;
+  padding: 0 20px;
+  overflow: hidden;
+  position: relative;
+}
+
+.wrapper:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.latest {
+  padding-top: 24px;
+}
+
+.latest h2 {
+  padding: 10px 0 10px 10px;
+}
+
+.latest h4 {
+  margin-top: 5px;
+}
+
+.latest h4 a {
+  color: #000;
+}
+
+.latest h4 a:hover {
+  color: #f42;
+  text-decoration: underline;
+}
+
+#arrow {
+  font-size: 24px;
+}
+
+#emoji {
+  height: 16px;
+  width: 16px;
+}
+
+.row-stories {
+  display: inline-block;
+  margin: 0 auto;
+}
+
+.row-stories li {
+  padding: 12px 10px;
+  height: 222px;
+}
+
+.story img {
+  width: 270px;
+  height: 135px;
+}
+
+.story-title {
+  width: 270px;
+  height: 36px;
+}
+
+.story-by {
+  height: 24px;
+}
+
+.story-by li,
+.story-by li a {
+  color: #aaa;
+  font-size: 13px;
+}
+
+.story-by li {
+  height: 24px;
+  padding: 4px 0;
+}
+
+.story-by li a:hover {
+  color: #555;
+}
+
+.story-by li:nth-child(2) {
+  padding-left: 4px;
+}
+
+.main::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+
+/**************************************************
+ *                   Footer styles                *
+ **************************************************/
+.footer {
+   top: 130px;
+   height: 227px;
+   position: relative;
+   margin-bottom: 5px;
+   background-color: #131313;
+   text-align: center;
+}
+
+.footer-links {
+  padding: 2.5em 0;
+}
+
+.container {
+  width: 25%;
+  margin: 0 auto;
+}
+
+.footer-links-social,
+.footer-links-menu {
+   margin-bottom: 1.5em;
+}
+
+.footer-links-social ul li {
+   display: inline-block;
+}
+
+.footer-links-social li a .fab,
+.footer-links-social li a .fas,
+.footer-links-menu li a {
+   color: #fff;
+}
+
+.footer-links-social li a,
+.footer-links-menu li a {
+   text-decoration: none;
+}
+
+.footer-links-social li a {
+  width: 40px;
+  height: 40px;
+  padding: 12px;
+  display: block;
+  background: #333;
+  border-radius: 50%;
+  text-align: center;
+  margin: 0 4px;
+}
+
+.footer-links-social a:hover {
+   background: #222;
+}
+
+.footer-links-social::after {
+   content: "";
+   display: table;
+   clear: both;
+}
+
+.footer-links-menu li {
+  margin: 0 4px;
+}
+
+.footer-links-menu li a {
+  color: #999;
+  font-size: 13px;
+  text-transform: uppercase;
+  font-family: 'Quantico', sans-serif;
+}
+
+.footer-links-menu li a:hover {
+  color: #fff;
+}
+
+.container::after {
+   content: "";
+   display: table;
+   clear: both;
+}
+
+.footer-legal .container {
+  width: 100%;
+  margin-top: -5px;
+}
+
+.footer-legal {
+  color: #aaa;
+  height: 61px;
+  padding: 3em 0;
+  background: #000;
+  margin-bottom: 1.2em;
+}
+
+.footer-legal img {
+  height: 9px;
+}
+
+.footer-legal span {
+  display: inline;
 }
