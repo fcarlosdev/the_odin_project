@@ -181,7 +181,6 @@ nav {
   margin-left: 20px;
 }
 
-
 @media (max-width: 1023px) {
   #tnw-logo {
     display: inline-block;
@@ -241,7 +240,7 @@ nav:after {
 .grid-3 {
   height: 75vh;
   padding: 4px;
-  max-height: 580px;
+  max-height: 560px;
   position: relative;
 }
 
@@ -255,14 +254,14 @@ nav:after {
 .grid-3 article:first-child {
   float: left;
   height: 100%;
-  width: 66.66%;
+  width: 66.66666%;
 }
 
 .grid-3 article:nth-child(2),
 .grid-3 article:last-of-type {
   float: left;
   height: 50%;
-  width: 33.33%;
+  width: 33.33333%;
 }
 
 .cover-image {
@@ -274,75 +273,72 @@ nav:after {
   background-position: 50%;
 }
 
-.grid-3 article:first-child div:first-child,
-.grid-3 article:nth-child(2) div:first-child,
-.grid-3 article:nth-child(3) div:first-child {
+#cover-time {
+  top: 16px;
+  color: #fff;
+  z-index: 6;
+  right: 24px;
+  position: absolute;
+}
+
+.cover-logo {
+  top: 24px;
+  left: 24px;
+  z-index: 6;
+  right: 24px;
+  height: 100%;
+  max-width: 50%;
+  max-height: 112px;
+  text-align: right;
+  position: absolute;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-image: url("https://cdn0.tnwcdn.com/wp-content/themes/cyberdelia/assets/img/tnw.svg");
+}
+
+.grid-3 article:nth-child(1n+1) .cover-image {
   z-index: 2;
-  background-size: 100%;
+  background-size: cover;
   background-repeat: no-repeat;
 }
 
-#cover-time {
-  top: -100px;
-  color: #fff;
-  position: absolute;
-  left: 81%;
+.grid-3 article:first-child .cover-image {
+  background-image: linear-gradient(to bottom right, rgba(255, 68, 34, 1), rgba(0,0,0, 0.70), rgba(0,0,0, 10)),
+        url("https://cdn0.tnwcdn.com/wp-content/blogs.dir/1/files/2018/07/stars-796x419.jpg");
 }
 
-
-.grid-3 article:first-child div:first-child {
-  background-image: url("https://cdn0.tnwcdn.com/wp-content/blogs.dir/1/files/2018/07/stars-796x419.jpg");
-}
-
- .grid-3 article:nth-child(2) div:first-child {
-  background-image: url("https://cdn0.tnwcdn.com/wp-content/blogs.dir/1/files/2018/06/Fortnite-eShop-796x416.jpg");
+ .grid-3 article:nth-child(2) .cover-image {
+   background-image: linear-gradient(to bottom ,rgba(255, 255, 255, 0.1), rgba(0, 0, 0, 0.7), rgba(0,0,0, 10)),
+                     url("https://cdn0.tnwcdn.com/wp-content/blogs.dir/1/files/2018/06/Fortnite-eShop-796x416.jpg");
 }
 
 .grid-3 article:nth-child(3) .cover-image {
-  background-image: url("https://cdn0.tnwcdn.com/wp-content/blogs.dir/1/files/2018/07/translateglitch-796x448.jpg");
-}
-
-.grid-3 article h2 span:first-child,
-.cover-section {
-  text-transform: capitalize;
-}
-
-.grid-3 article h2 span:last-child {
-  text-transform: none;
+  background-image: linear-gradient(to bottom ,rgba(255, 255, 255, 0.1), rgba(0, 0, 0, 0.7), rgba(0,0,0, 10)),
+                    url("https://cdn0.tnwcdn.com/wp-content/blogs.dir/1/files/2016/07/Twitter-Arrow-796x398.jpg");
 }
 
 /**************************************************
  *               Main article styles              *
  **************************************************/
+ .cover-header h5 {
+   font-size: 14px;
+   letter-spacing: .04em;
+   text-transform: uppercase;
+ }
+
 .grid-3 article:first-child h5 {
   margin-left: 5px;
 }
 
-.grid-3 article:first-child h2 span {
-  font-size: 50px;
+.grid-3 article:first-child h2 {
+  font-size: 42px;
   line-height: 1;
-}
-
-.grid-3 article:first-child .cover-container {
-  background: linear-gradient(to bottom right, rgba(255, 68, 34, 1), rgba(0,0,0, 0.7), rgba(0,0,0, 10));
-}
-
-.grid-3 article:first-child .cover-header {
-  padding: 50px 12px;
+  padding-bottom: 10px;
 }
 
 /**************************************************
  *              Others article styles             *
  **************************************************/
-
-.cover-container {
-  z-index: 6;
-  height: 100%;
-  cursor: pointer;
-  position: relative;
-  background: linear-gradient(to bottom ,rgba(255, 255, 255, 0.1), rgba(0, 0, 0, 0.7), rgba(0,0,0, 10));
-}
-
 .grid-3 article a {
   text-decoration: none;
 }
@@ -368,14 +364,15 @@ nav:after {
   font-family: 'Quantico', sans-serif;
 }
 
-.cover-title span {
+.cover-title {
   font-size: 24px;
   font-weight: 800;
+  line-height: 1.2;
   font-family: 'Avalon', sans-serif;
 }
 
-.grid-3 .cover-header-bottom {
-  top: 4px;
+.cover-header-bottom {
+  margin-top: 5px;
   z-index: 12px;
   cursor: default;
   position: relative;
@@ -385,7 +382,13 @@ nav:after {
   float: left;
   margin-right: 8px;
   cursor: default;
+  padding-bottom: 5px;
 }
+
+.grid-3 article:first-child .cover-header-bottom li {
+  padding-bottom: 10px;
+}
+
 
 .cover-header-bottom li,
 .cover-header-bottom li a {
@@ -398,6 +401,101 @@ nav:after {
   cursor: pointer;
   color: #fff;
 }
+
+@media only screen and (max-width: 1351px) {
+  .grid-3 {
+    height: 65vh;
+    padding: 4px;
+  }
+}
+
+@media only screen and (max-width: 1024px) {
+
+  .grid-3 {
+    padding: 4px;
+    height: 60vh;
+    max-height: 350px;
+    padding: 6px 12px;
+  }
+
+  .grid-3 article:first-child h2 {
+    font-size: 38px;
+    padding-bottom: 5px;
+  }
+
+  .grid-3 article:nth-child(1n+2) h2 {
+    font-size: 20px;
+  }
+
+  .grid-3 article:first-child .cover-header-bottom li {
+    padding-bottom: 5px;
+  }
+
+}
+
+@media (max-width: 1023px) and (min-width: 768px) {
+  .cover-logo, #cover-time {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+
+  .grid-3 article:nth-child(1n+1) h2 {
+    font-size: 20px;
+  }
+
+  .cover-logo, #cover-time {
+    display: none;
+  }
+
+  .nav-message { display: none; }
+
+  #main { top: 45px; }
+
+
+  .grid-3 article:nth-child(1n+1) {
+    width: 100%;
+    height: 30vh;
+    min-height: 18vh;
+    position: relative;
+  }
+
+  .cover-image {
+    background-position-y: 3%;
+  }
+
+  .grid-3 article:first-child .cover-image {
+    background-position-y: 79%;
+  }
+
+}
+
+@media only screen and (max-width: 500px) {
+  .grid-3 article:nth-child(1n+1) h2 {
+    font-size: 18px;
+  }
+}
+
+
+/* @media screen (min-width: 640px) {
+
+  .nav-message { display: none; }
+
+  #main { top: 80px; }
+
+
+  .grid-3 article:first-child,
+  .grid-3 article:nth-child(2),
+  .grid-3 article:nth-child(3) {
+    width: 100%;
+    height: 100%;
+    min-height: 18vh;
+    position: relative;
+  }
+
+} */
+
 
 /**************************************************
  *                Latest News styles              *
