@@ -477,123 +477,91 @@ nav:after {
   }
 }
 
-
-/* @media screen (min-width: 640px) {
-
-  .nav-message { display: none; }
-
-  #main { top: 80px; }
-
-
-  .grid-3 article:first-child,
-  .grid-3 article:nth-child(2),
-  .grid-3 article:nth-child(3) {
-    width: 100%;
-    height: 100%;
-    min-height: 18vh;
-    position: relative;
-  }
-
-} */
-
-
 /**************************************************
- *                Latest News styles              *
- **************************************************/
-.wrapper {
-  width: 90%;
+*                Latest News styles              *
+**************************************************/
+.wrapper-latest-news {
+  width: 100%;
   height: 100%;
-  margin: 0 auto;
-  padding: 0 20px;
-  overflow: hidden;
   position: relative;
+  padding-left: 4%;
+  padding-right: 6%;
 }
 
-.wrapper:after {
-  content: "";
-  display: table;
-  clear: both;
-}
-
-.latest {
-  padding-top: 24px;
-}
-
-.latest h2 {
-  padding: 10px 0 10px 10px;
-}
-
-.latest h4 {
-  margin-top: 5px;
-}
-
-.latest h4 a {
-  color: #000;
-}
-
-.latest h4 a:hover {
-  color: #f42;
-  text-decoration: underline;
-}
-
-#arrow {
-  font-size: 24px;
-}
-
-#emoji {
-  height: 16px;
-  width: 16px;
+.latest-news h2 {
+  padding-left: 1%;
 }
 
 .row-stories {
-  display: inline-block;
-  margin: 0 auto;
+  list-style: none;
 }
 
 .row-stories li {
-  padding: 12px 10px;
-  height: 222px;
+  float: left;
+  padding: 12px;
+  display: block;
 }
 
-.story img {
-  width: 270px;
-  height: 135px;
+.ul-col-25 {
+  width: 25%;
+  height: 25%;
+}
+
+.story-image {
+  display: block;
+  padding-top: 50%;
+  position: relative;
+  margin-bottom: 8px;
+  background-size: cover;
+  background-position: 50%;
+  background-repeat: no-repeat;
 }
 
 .story-title {
-  width: 270px;
-  height: 36px;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 18px;
+  margin-bottom: 1px;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
 }
 
 .story-by {
-  height: 24px;
-}
-
-.story-by li,
-.story-by li a {
   color: #aaa;
-  font-size: 13px;
+  font-size: 12px;
+  overflow: hidden;
+  list-style: none;
+  padding-top: 4px;
+  line-height: 18px;
 }
 
 .story-by li {
-  height: 24px;
-  padding: 4px 0;
+  margin: 0;
+  padding: 0;
+  float: left;
+  display: block;
+}
+
+.story-by li::after {
+  content: "\B7";
+  display: block;
+  float: right;
+  margin: 0 4px;
+}
+
+.story-by li a {
+  color: #aaa;
 }
 
 .story-by li a:hover {
-  color: #555;
+  color: #333;
 }
 
-.story-by li:nth-child(2) {
-  padding-left: 4px;
-}
-
-.main::after {
+.wrapper-latest-news::after {
   content: "";
   display: table;
   clear: both;
 }
-
 
 /**************************************************
  *                   Footer styles                *
