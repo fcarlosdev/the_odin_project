@@ -389,7 +389,6 @@ nav:after {
   padding-bottom: 10px;
 }
 
-
 .cover-header-bottom li,
 .cover-header-bottom li a {
   color: #ccc;
@@ -439,7 +438,7 @@ nav:after {
   }
 }
 
-@media only screen and (max-width: 767px) {
+@media only screen and (max-width: 768px) {
 
   .grid-3 article:nth-child(1n+1) h2 {
     font-size: 20px;
@@ -557,18 +556,40 @@ nav:after {
   color: #333;
 }
 
+@media only screen and (max-width: 768px) {
+  .row-stories li {
+    width: auto;
+  }
+
+  .story {
+    min-height: 72px;
+    padding-left: 88px;
+    position: relative;
+  }
+
+  .story-image {
+    left: 0;
+    top: 0;
+    width: 75px;
+    max-height: 72px;
+    position: absolute;
+    padding-top: 75px;
+  }
+
+}
 .wrapper-latest-news::after {
   content: "";
   display: table;
   clear: both;
 }
 
+
 /**************************************************
  *                   Footer styles                *
  **************************************************/
 .footer {
    top: 130px;
-   height: 227px;
+   height: auto;
    position: relative;
    margin-bottom: 5px;
    background-color: #131313;
@@ -576,31 +597,32 @@ nav:after {
 }
 
 .footer-links {
+  height: auto;
   padding: 2.5em 0;
 }
 
 .container {
-  width: 25%;
   margin: 0 auto;
+  padding: 0 20px;
+  max-width: 1192px;
+  text-align: center;
+}
+
+.container ul li {
+  float: none;
+  display: inline-block;
 }
 
 .footer-links-social,
 .footer-links-menu {
+  height: auto;
    margin-bottom: 1.5em;
-}
-
-.footer-links-social ul li {
-   display: inline-block;
 }
 
 .footer-links-social li a .fab,
 .footer-links-social li a .fas,
 .footer-links-menu li a {
    color: #fff;
-}
-
-.footer-links-social li a,
-.footer-links-menu li a {
    text-decoration: none;
 }
 
@@ -608,21 +630,15 @@ nav:after {
   width: 40px;
   height: 40px;
   padding: 12px;
+  margin: 0 4px;
   display: block;
   background: #333;
   border-radius: 50%;
   text-align: center;
-  margin: 0 4px;
 }
 
 .footer-links-social a:hover {
    background: #222;
-}
-
-.footer-links-social::after {
-   content: "";
-   display: table;
-   clear: both;
 }
 
 .footer-links-menu li {
@@ -647,13 +663,12 @@ nav:after {
 }
 
 .footer-legal .container {
-  width: 100%;
   margin-top: -5px;
 }
 
 .footer-legal {
   color: #aaa;
-  height: 61px;
+  height: auto;
   padding: 3em 0;
   background: #000;
   margin-bottom: 1.2em;
