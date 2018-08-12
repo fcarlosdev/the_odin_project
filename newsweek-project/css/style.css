@@ -1,0 +1,52 @@
+a, a:hover {
+  color: #fff;
+  text-decoration: none;
+}
+.container {
+  max-width: 1310px;
+}
+
+.page-header date {
+  top: 45px;
+  color: #fff;
+  position: relative;
+  font: 16px/34px "Roboto Condensed",sans-serif;
+}
+
+.lk-font {
+  text-decoration: none;
+  font: bold 14px/14px "Roboto Condensed",sans-serif;
+}
+
+.lk-color {
+  color: #fff;
+}
+
+.header-top {
+  height: 95px;
+  padding-left: 10px;
+  position: relative;
+  background-color: #f72210;
+}
+
+.header-middle {
+  text-align: center;
+}
+
+.header-middle a {
+  font-size: 70px;
+  font-weight: bolder;
+  position: relative;
+}
+
+.header-bottom a {
+  top: 45px;
+  padding: 10px;
+  position: relative;
+  font: bold 16px/16px "Roboto Condensed",sans-serif;
+}
+
+.header-bottom a:last-child {
+  color: #f72210;
+  background-color: #fff;
+}
