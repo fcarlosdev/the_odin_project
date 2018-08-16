@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="css/style.css">
+    <script type="text/javascript" src="js/myscript.js"></script>
   </head>
   <body>
     <header class="page-header">
@@ -14,18 +15,77 @@
           <div class="col-2">
             <date class="">Sun, Aug 12, 2018 </date>
           </div>
-          <div class="col-8 header-middle" >
+          <div class="col-8 header-top-title" >
             <a href="" class="lk-color">Newsweek</a>
           </div>
-          <div class="col-2 right header-bottom">
+          <div class="col-2 subscribe">
             <a href="" class="lk-color lk-font">SIGN IN</a>
             <a href="" class="lk-color">SUBSCRIBE ></a>
           </div>
         </div>
+        <nav class="header-bottom">
+          <ul class="nav navbar nav-fill">
+            <li class="nav-item separator hv-link"><a href="#">U.S.</a></li>
+            <li class="nav-item separator hv-link"><a href="#">World</a></li>
+            <li class="nav-item separator hv-link"><a href="#">Business</a></li>
+            <li class="nav-item separator hv-link"><a href="#">Tech & Science</a></li>
+            <li class="nav-item separator hv-link"><a href="#">Culture</a></li>
+            <li class="nav-item separator hv-link"><a href="#">Sports</a></li>
+            <li class="nav-item separator hv-link"><a href="#">Health</a></li>
+            <li class="nav-item separator hv-link"><a href="#">Opinion</a></li>
+            <li class="nav-item dlb">
+                <a href="#" class="ndelible">Ndelible</a>
+              </li>
+            <li class="nav-item search-field">
+                <input type="text" id="s-field" placeholder="Search" onfocus="changesize();"
+                     onblur="changesize('60px');">
+              </li>
+            <li class="nav-item filter-image">
+                <h2>Search</h2>
+              </li>
+          </ul>
+        </div>
       </div>
     </header>
-    </header>
-
+    <main class="container">
+      <div class="row">
+        <div class="col-sm-3">
+          <article>
+            <h2 class="section-title"> Feature Stories</h2>
+            <img src="https://s.newsweek.com/sites/www.newsweek.com/files/styles/sm/public/2018/08/15/donald-trump-lying-security-clearance.jpg" alt="">
+          </article>
+        </div>
+        <div class="col-sm-6">
+          <h2 class="section-title"> Top Story</h2>
+          <img src="https://s.newsweek.com/sites/www.newsweek.com/files/styles/desktop/public/2018/08/15/gettyimages-992930218.jpg" alt="">
+        </div>
+        <div class="col-sm-3">
+          <h2 class="section-title"> Opinion</h2>
+          <ul>
+            <li class="line">
+              <img src="https://s.newsweek.com/sites/www.newsweek.com/files/styles/square_thumbnail/public/23544/profile_image/nw-columnist-natalie_hanna.png" alt="">
+              <a href="#"> Trump, Omarosa and Dangerous Stereotypes About Women </a>
+              BY <a href="">NATALIE HANNA</a>
+            </li>
+            <li class="line">
+              <img src="https://s.newsweek.com/sites/www.newsweek.com/files/styles/square_thumbnail/public/23544/profile_image/lee_habeeb_0.png" alt="">
+              <a href="#"> The Texas Town Proving Trump Supporters Aren’t Racist </a>
+              BY <a href="">LEE HABEEB</a>
+            </li>
+            <li class="line">
+              <img src="https://s.newsweek.com/sites/www.newsweek.com/files/styles/square_thumbnail/public/23544/profile_image/robert_reich.png" alt="">
+              <a href="#"> Trump Is Taking a Meat Ax to Regulation </a>
+              BY <a href="">ROBERT REICH</a>
+            </li>
+            <li>
+              <img src="https://s.newsweek.com/sites/www.newsweek.com/files/styles/square_thumbnail/public/23544/profile_image/nw-columnist-juliana_britto_schwartz.png" alt="">
+              <a href="#"> The Problem With Banning Plastic Straws </a>
+              BY <a href="">JULIANA BRITTO SCHWARTZ</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </main>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>

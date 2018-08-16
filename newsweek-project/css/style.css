@@ -1,7 +1,17 @@
+/********************************
+ * Geral styles
+ *********************************/
+body {
+  background-color: #f4f5f6;
+}
+
 a, a:hover {
-  color: #fff;
   text-decoration: none;
 }
+
+/********************************
+ * Header Top styles
+ *********************************/
 .container {
   max-width: 1310px;
 }
@@ -9,8 +19,13 @@ a, a:hover {
 .page-header date {
   top: 45px;
   color: #fff;
+  margin-left: 14px;
   position: relative;
   font: 16px/34px "Roboto Condensed",sans-serif;
+}
+
+.page-header a, .page-header a:hover {
+  color: #fff;
 }
 
 .lk-font {
@@ -24,29 +39,164 @@ a, a:hover {
 
 .header-top {
   height: 95px;
-  padding-left: 10px;
   position: relative;
   background-color: #f72210;
 }
 
-.header-middle {
-  text-align: center;
-}
-
-.header-middle a {
-  font-size: 70px;
-  font-weight: bolder;
-  position: relative;
-}
-
-.header-bottom a {
+.subscribe a {
   top: 45px;
   padding: 10px;
   position: relative;
   font: bold 16px/16px "Roboto Condensed",sans-serif;
 }
 
-.header-bottom a:last-child {
+.subscribe a:last-child {
   color: #f72210;
   background-color: #fff;
 }
+
+.header-top-title {
+  text-align: center;
+}
+
+.header-top-title a {
+  font-size: 70px;
+  font-weight: bolder;
+  position: relative;
+}
+
+/********************************
+ * Nav bar styles
+ *********************************/
+.header-bottom {
+  height: 58px;
+  width: 1310px;
+  margin-left: -15px;
+  background-color: #fff;
+  border-bottom: 1px solid #d9d9d9;
+}
+
+.header-bottom a {
+  color: black;
+}
+
+.header-bottom ul::before {
+    position: absolute;
+    top: 0;
+    right: 0;
+    content: "";
+    display: block;
+    width: 78px;
+    background-color: #f72210;
+    border-left: 12px solid #fff;
+    border-top: 13px solid #f72210;
+}
+
+.header-bottom ul {
+  width: 100%;
+  font-size: 21px;
+  padding-left: 0;
+  font-weight: 700;
+  list-style: none;
+  line-height: 44px;
+  font-family: "Roboto Condensed",sans-serif;
+}
+
+.nav-item a:hover {
+  color: #f72210;
+}
+
+.dlb {
+  width: 89px;
+  font-size: 0;
+  background-position: 10px 0;
+  background: url("https://s.newsweek.com/sites/www.newsweek.com/themes/newsweek/images/NDELIBLE.black3.gif") 15px 5px/89px no-repeat;
+}
+
+.nav-item .ndelible {
+  height: 26px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.filter-image h2 {
+  top: 20px;
+  clip: auto;
+  width: 20px;
+  right: 80px;
+  height: 20px;
+  font-size: 0;
+  position: absolute;
+  background-color: #fff;
+  background-size: contain;
+  background-position: center;
+  background-image: url("https://s.newsweek.com/sites/www.newsweek.com/themes/newsweek/images/icon-search-glass.svg");
+}
+
+.search-field input {
+  top: 1px;
+  right: 96px;
+  width: 60px;
+  height: 52px;
+  border: none;
+  font-size: 18px;
+  position: absolute;
+}
+
+.separator {
+  line-height: 24px;
+  border-right: 1px solid #d9d9d9;
+}
+
+header::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/********************************
+ * Articles styles
+ *********************************/
+main {
+  background: #fff;
+  padding-bottom: 30px;
+}
+
+main img {
+  width: 100%;
+}
+
+.row {
+  padding-top: 20px;
+}
+
+ul {
+  padding: 0;
+  list-style: none;
+}
+
+.line {
+  border-bottom: 1px solid;
+}
+
+ul > li img {
+  width: auto;
+  height: 63px;
+}
+
+.section-title {
+  padding-left: 1%;
+  padding-bottom: 5px;
+  color: rgba(3,3,3,.4);
+  text-transform: uppercase;
+  font: bold 16px/16px "Roboto Condensed",sans-serif;
+}
+
+/* .category {
+  bottom: 0;
+  color: #f72210;
+  position: absolute;
+  padding: 8px 15px 9px;
+  background-color: rgba(255,255,255,.9);
+  font: bold 17px/16px "Roboto Condensed",sans-serif;
+} */
