@@ -7,6 +7,7 @@ body {
 
 a, a:hover {
   text-decoration: none;
+  color: inherit;
 }
 
 /********************************
@@ -166,22 +167,22 @@ main img {
   width: 100%;
 }
 
-.row {
+main .row {
   padding-top: 20px;
 }
 
-ul {
-  padding: 0;
-  list-style: none;
+.wrap {
+  position: relative;
+  margin-bottom: 10px;
 }
 
-.line {
-  border-bottom: 1px solid;
-}
-
-ul > li img {
-  width: auto;
-  height: 63px;
+.category {
+  bottom: 0;
+  color: #f72210;
+  position: absolute;
+  padding: 8px 15px 9px;
+  background-color: rgba(255,255,255,.9);
+  font: bold 17px/16px "Roboto Condensed",sans-serif;
 }
 
 .section-title {
@@ -192,11 +193,203 @@ ul > li img {
   font: bold 16px/16px "Roboto Condensed",sans-serif;
 }
 
-/* .category {
-  bottom: 0;
+/********************************
+ * Opinion column styles
+ *********************************/
+
+.block-opinion {
+  padding-bottom: 30px;
+}
+
+ul {
+  padding: 0;
+  list-style: none;
+}
+
+.line {
+  border-bottom: 1px solid;
+  margin-bottom: 10px;
+}
+
+ul > li img {
+  width: auto;
+  height: 63px;
+}
+
+.img-opinion {
+  float: left;
+  width: 22%;
+  margin-right: 7px;
+}
+
+.info-opinion {
+  width: 96%;
+  height: 63px;
+  margin-bottom: 15px;
+  font:bold 16px/18px "Roboto Condensed",sans-serif;
+}
+
+.info-opinion a {
+  color: #000;
+}
+
+.info-by, .info-by a {
+  color: #555;
+  margin-top: 5px;
+}
+
+.info-opinion a:hover{
   color: #f72210;
-  position: absolute;
-  padding: 8px 15px 9px;
-  background-color: rgba(255,255,255,.9);
-  font: bold 17px/16px "Roboto Condensed",sans-serif;
-} */
+}
+
+.block-latest h2 {
+  padding-top: 25px;
+  padding-bottom: 0;
+  border-bottom: none;
+}
+
+.block-latest .image {
+  float: left;
+  width: 106px;
+  margin-right: 5px;
+}
+
+.latest-info {
+  font: bold 17px/21px "Roboto Condensed",sans-serif;
+}
+
+.block-latest li {
+  height: 64px;
+  padding-bottom: 73px;
+  border-bottom: 1px solid #ccc;
+}
+
+.block-latest li:nth-child(1n+1) {
+  margin-top: 10px;
+}
+
+.block-latest li:last-of-type {
+  border-bottom: none;
+}
+
+/********************************
+ * Column one Articles styles
+ *********************************/
+
+h3,h4 {
+  color: #000;
+  font-weight: 700;
+}
+h3 {
+  font-size: 24px;
+  line-height: 24px;
+}
+
+h4 {
+  font-size: 23px;
+  line-height: 23px;
+}
+
+.summary {
+  font-size: 15px;
+  line-height: 20px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #ccc;
+}
+
+h3 > a:hover {
+  text-decoration: underline #f72210;
+}
+
+.related {
+  font-size: 14px;
+  color: #000;
+  font-weight: 700;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #ccc;
+}
+
+.related a:hover {
+  color: #f72210;
+}
+
+/********************************
+ * Top story colum styles
+ *********************************/
+
+.top-story .related  {
+  font-size: 19px;
+}
+
+.block-title {
+  padding-bottom: 11px;
+  color: rgba(3,3,3,.4);
+  text-transform: uppercase;
+  border-bottom: 1px solid #ccc;
+  font: bold 16px/16px "Roboto Condensed",sans-serif;
+}
+
+.top-story-more article {
+  height: 147px;
+  padding-top: 14px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid #ccc;
+}
+
+.top-story-more article .image {
+  float: left;
+  width: 182px;
+  margin-right: 20px;
+}
+
+.top-story-more h4 {
+  font-size: 18px;
+  padding-bottom: 10px;
+}
+
+.top-story-more h4 a:hover {
+  text-decoration: underline #f72210;
+}
+
+.top-story-more article .summary,
+.top-story-more article:last-of-type {
+  border-bottom: none;
+}
+
+.newsletter-signup {
+  padding: 20px;
+  max-width: 274px;
+  margin: 0 auto 30px;
+  border:1px solid #e5e5e5;
+  background-color: #f4f5f6;
+}
+
+.signup-title {
+  margin-bottom: 30px;
+  text-transform: uppercase;
+  font: bold 19px/19px "Roboto Condensed",sans-serif;
+}
+
+.ico {
+  float: left;
+  width: 29px;
+  height: 28px;
+  margin-right: 10px;
+  background: url("https://s.newsweek.com/sites/www.newsweek.com/themes/newsweek/images/logo-n.svg")
+              center/contain no-repeat #f72210;
+}
+
+.signup-lk {
+  color: #fff;
+  display: inline-block;
+  background-color: #666;
+  padding: 10px 10px 10px 12px;
+  font: bold 18px/18px "Roboto Condensed",sans-serif;
+  margin-bottom: 10px;
+}
+
+.upprefs-lk {
+  color: #000;
+  font: bold 15px/15px "Roboto Condensed",sans-serif;
+}
