@@ -1,6 +1,10 @@
 /********************************
  * Geral styles
  *********************************/
+* {
+  box-sizing: border-box;
+}
+
 body {
   background-color: #f4f5f6;
 }
@@ -158,9 +162,16 @@ header::after {
 /********************************
  * Articles styles
  *********************************/
+.container-fluid {
+  max-width: 1310px;
+  padding-left: 30px;
+  padding-right: 30px;
+}
+
 main {
   background: #fff;
   padding-bottom: 30px;
+  margin: 0 auto;
 }
 
 main img {
@@ -177,12 +188,16 @@ main .row {
 }
 
 .category {
-  bottom: 0;
+  display: block;
+  font: bold 17px/16px "Roboto Condensed",sans-serif;
   color: #f72210;
-  position: absolute;
+  text-transform: uppercase;
   padding: 8px 15px 9px;
   background-color: rgba(255,255,255,.9);
-  font: bold 17px/16px "Roboto Condensed",sans-serif;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  z-index: 1;
 }
 
 .section-title {
@@ -275,7 +290,6 @@ ul > li img {
 /********************************
  * Column one Articles styles
  *********************************/
-
 h3,h4 {
   color: #000;
   font-weight: 700;
@@ -317,7 +331,6 @@ h3 > a:hover {
 /********************************
  * Column two styles
  *********************************/
-
 .top-story .related  {
   font-size: 19px;
 }
@@ -365,7 +378,7 @@ h3 > a:hover {
   border-bottom: none;
 }
 
-.newsletter-signup {
+.newsletter {
   padding: 20px;
   max-width: 274px;
   margin: 0 auto 30px;
@@ -373,17 +386,20 @@ h3 > a:hover {
   background-color: #f4f5f6;
 }
 
-.signup-title {
+.n-title {
   margin-bottom: 30px;
   text-transform: uppercase;
   font: bold 19px/19px "Roboto Condensed",sans-serif;
 }
 
-.ico {
+.icon-n {
+  top: 5px;
   float: left;
   width: 29px;
   height: 28px;
   margin-right: 10px;
+  position: relative;
+  display: inline-block;
   background: url("https://s.newsweek.com/sites/www.newsweek.com/themes/newsweek/images/logo-n.svg")
               center/contain no-repeat #f72210;
 }
@@ -400,4 +416,117 @@ h3 > a:hover {
 .upprefs-lk {
   color: #000;
   font: bold 15px/15px "Roboto Condensed",sans-serif;
+}
+
+/********************************
+ * Magazine styles
+ *********************************/
+.magazine .n-title {
+  height: 50px;
+  margin-bottom: 0;
+  text-align: center;
+  border-bottom: 1px solid #ccc;
+}
+
+.magazine .icon-n {
+  float: none;
+}
+
+.magazine .col-sm-3 {
+  padding: 0;
+  margin-top: 13px;
+}
+
+.lk-all-features {
+  display: block;
+  text-align: center;
+  margin-bottom: 0;
+  background-color: #f4f5f6;
+  padding: 10px 10px 10px 12px;
+  font: bold 18px/18px "Roboto Condensed",sans-serif;
+  text-transform: uppercase;
+}
+
+.cover-footer {
+  margin-bottom: 0;
+}
+
+.cover-footer .category {
+  font: bold 16px/33px "Roboto Condensed",sans-serif;
+  padding: 0 10px;
+}
+
+.lk-all-features:hover {
+  background-color: #ccc;
+}
+
+.bottom .col-sm-3 picture,
+.magazine .col-sm-4 picture {
+  width: 100%;
+  display: block;
+  overflow: hidden;
+  position: relative;
+  padding-bottom: 100%;
+}
+
+.bottom .col-sm-3 picture img,
+.magazine .col-sm-4 picture img {
+  top: 0;
+  left: 50%;
+  width: auto;
+  height: 100%;
+  position: absolute;
+  max-width: inherit;
+  transform: translate(-50%,0%);
+}
+
+.magazine article .category {
+  padding-left: 0;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  position: relative;
+}
+
+.mag-cat {
+  color: #fff;
+  padding: 0 7px;
+  background-color: #f72210;
+  margin-right: 10px;
+}
+
+.magazine h5 {
+  color: #000;
+  font-size: 20px;
+  line-height: 20px;
+  font-weight: 700;
+  font-family: "Roboto Condensed",sans-serif;
+  margin-bottom: 10px;
+  position: relative;
+}
+
+.magazine h5 a:hover {
+  text-decoration: underline #f72210;
+}
+
+.bottom .col-sm-3 .big-shots picture {
+  padding-bottom: 110%;
+}
+
+
+
+/********************************
+* Responsive settings
+*********************************/
+@media (min-height: 60px) {
+
+  .tp-story {
+    position: sticky;
+    top: 0;
+  }
+
+  .r-sidebar {
+    position: sticky;
+    top: 0;
+  }
+
 }
