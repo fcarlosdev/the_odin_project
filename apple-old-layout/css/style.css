@@ -230,9 +230,9 @@ footer div, footer p {
 
 footer .right {
   float: right;
-  width: 51%;
+  width: 53%;
   text-align: right;
-  padding-top: 1.5em;
+  padding-top: .6em;
 }
 
 footer div ul li {
@@ -262,13 +262,14 @@ footer a img {
 .left {
   float: left;
   clear: both;
-  width: 49%;
+  width: 47%;
   text-align: left;
-  padding-top: 1.5em;
+  padding-top: .8em;
+  padding-bottom: 0;
+  margin-left: -10px;
 }
 
 .piped, footer ul li, footer p {
   display: inline;
-  margin: 0;
   list-style: none outside;
 }
