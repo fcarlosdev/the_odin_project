@@ -480,7 +480,8 @@ h3 > a:hover {
   transform: translate(-50%,0%);
 }
 
-.magazine article .category {
+.magazine article .category,
+.bottom article .category {
   padding-left: 0;
   margin-top: 10px;
   margin-bottom: 10px;
@@ -494,7 +495,8 @@ h3 > a:hover {
   margin-right: 10px;
 }
 
-.magazine h5 {
+.magazine h5,
+.bottom h5 {
   color: #000;
   font-size: 20px;
   line-height: 20px;
@@ -510,6 +512,14 @@ h3 > a:hover {
 
 .bottom .col-sm-3 .big-shots picture {
   padding-bottom: 110%;
+}
+
+.bottom .col-sm-3 .big-shots .category {
+  position: absolute;
+  margin-bottom: 0;
+  padding-left: 9px;
+  color: #fff;
+  background-color: #f72210;
 }
 
 
