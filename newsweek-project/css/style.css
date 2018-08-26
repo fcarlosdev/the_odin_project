@@ -421,20 +421,33 @@ h3 > a:hover {
 /********************************
  * Magazine styles
  *********************************/
-.magazine .n-title {
+.magazine {
+  margin-bottom: 10px;
+}
+
+.magazine .n-title,
+.editors-pick .n-title,
+.galleries-pictures .n-title {
   height: 50px;
   margin-bottom: 0;
   text-align: center;
   border-bottom: 1px solid #ccc;
 }
 
-.magazine .icon-n {
+.magazine .icon-n,
+.editors-pick .icon-n,
+.galleries-pictures .icon-n {
   float: none;
 }
 
-.magazine .col-sm-3 {
+.magazine .top .col-sm-3 {
   padding: 0;
   margin-top: 13px;
+}
+
+.magazine .bottom .col-sm-3 {
+  padding-left: 15px;
+  padding-right: 15px;
 }
 
 .lk-all-features {
@@ -483,8 +496,8 @@ h3 > a:hover {
 .magazine article .category,
 .bottom article .category {
   padding-left: 0;
-  margin-top: 10px;
-  margin-bottom: 10px;
+  margin-top: 3px;
+  margin-bottom: 2px;
   position: relative;
 }
 
@@ -523,7 +536,36 @@ h3 > a:hover {
   padding: 6px 12px 6px;
 }
 
+.editors-pick {
+  margin-bottom: 10px;
+}
 
+.editors-pick article h3,
+.galleries-pictures article h3 {
+  font-family: "Roboto Condensed",sans-serif;
+  margin-bottom: 10px;
+  position: relative;
+}
+
+.editors-pick article .summary {
+  border-bottom: none;
+}
+
+.galleries-pictures .n-title .icon-n::after {
+  width: 26px;
+  right: -4px;
+  bottom: -4px;
+  height: 25px;
+  content: "";
+  display: block;
+  position: absolute;
+  border-bottom: 3px solid red;
+  border-right: 3px solid red;
+}
+
+.galleries-pictures .image {
+  margin-bottom: 15px;
+}
 
 /********************************
 * Responsive settings
