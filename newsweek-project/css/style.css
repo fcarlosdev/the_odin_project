@@ -3,6 +3,8 @@
  *********************************/
 * {
   box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 body {
@@ -14,12 +16,18 @@ a, a:hover {
   color: inherit;
 }
 
+.fluid-container {
+  max-width: 1310px;
+  margin-left: 15px;
+  margin-right: 15px;
+}
+
 /********************************
  * Header Top styles
  *********************************/
-.container {
+/* .container-fluid {
   max-width: 1310px;
-}
+} */
 
 .page-header date {
   top: 45px;
@@ -75,10 +83,14 @@ a, a:hover {
  *********************************/
 .header-bottom {
   height: 58px;
-  width: 1310px;
-  margin-left: -15px;
+  width: 100%;
+  position: relative;
   background-color: #fff;
   border-bottom: 1px solid #d9d9d9;
+}
+
+.page-header .header-top {
+    margin:0;
 }
 
 .header-bottom a {
@@ -162,16 +174,12 @@ header::after {
 /********************************
  * Articles styles
  *********************************/
-.container-fluid {
-  max-width: 1310px;
-  padding-left: 30px;
-  padding-right: 30px;
-}
-
 main {
   background: #fff;
   padding-bottom: 30px;
   margin: 0 auto;
+  padding-left: 15px;
+  padding-right: 15px;
 }
 
 main img {
@@ -180,6 +188,7 @@ main img {
 
 main .row {
   padding-top: 20px;
+  margin: 0;
 }
 
 .wrap {
@@ -213,7 +222,7 @@ main .row {
  *********************************/
 
 .block-opinion {
-  padding-bottom: 30px;
+  padding-bottom: 20px;
 }
 
 ul {
@@ -222,8 +231,10 @@ ul {
 }
 
 .line {
-  border-bottom: 1px solid;
-  margin-bottom: 10px;
+  border-bottom: 1px solid #ccc;
+  margin-bottom: 8px;
+  /* padding-bottom: 10px; */
+  height: auto;
 }
 
 ul > li img {
@@ -233,14 +244,12 @@ ul > li img {
 
 .img-opinion {
   float: left;
-  width: 22%;
   margin-right: 7px;
 }
 
 .info-opinion {
-  width: 96%;
-  height: 63px;
-  margin-bottom: 15px;
+  width: auto;
+  margin-bottom: 10px;
   font:bold 16px/18px "Roboto Condensed",sans-serif;
 }
 
@@ -251,6 +260,8 @@ ul > li img {
 .info-by, .info-by a {
   color: #555;
   margin-top: 5px;
+  font-size: 14px;
+  line-height: 21px;
 }
 
 .info-opinion a:hover{
@@ -258,7 +269,6 @@ ul > li img {
 }
 
 .block-latest h2 {
-  padding-top: 25px;
   padding-bottom: 0;
   border-bottom: none;
 }
@@ -551,20 +561,63 @@ h3 > a:hover {
   border-bottom: none;
 }
 
-.galleries-pictures .n-title .icon-n::after {
-  width: 26px;
-  right: -4px;
-  bottom: -4px;
-  height: 25px;
-  content: "";
-  display: block;
-  position: absolute;
-  border-bottom: 3px solid red;
-  border-right: 3px solid red;
+.section-picks {
+  padding-top: 20px;
+  padding-bottom: 20px;
+  border-top: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
 }
 
-.galleries-pictures .image {
-  margin-bottom: 15px;
+.section-picks .block-title {
+  color: #f72210;
+  font-size: 22px;
+  line-height: 22px;
+  margin-left: -15px;
+  border-bottom: none;
+  text-transform: none;
+  padding-bottom: 10px;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.section-picks .row {
+  padding-top: 0;
+}
+
+.sp-row {
+  margin-bottom: 10px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #ccc;
+}
+
+.sp-subfeatued li {
+  content: "";
+  clear: both;
+  display: inline-table;
+}
+
+.sp-subfeatued .info {
+  font: bold 17px/23px "Roboto Condensed",sans-serif;
+}
+
+.sp-subfeatued .image {
+  float: left;
+  margin-right: 11px;
+}
+
+.sp-subfeatued .info {
+  float: left;
+  width: 68%;
+}
+
+.sp-subfeatued .info a:hover {
+  color: #f72210;
+}
+
+.section-picks article h3 {
+  margin-top: 10px;
+  font-size: 22px;
+  line-height: 22px;
 }
 
 /********************************
@@ -582,4 +635,37 @@ h3 > a:hover {
     top: 0;
   }
 
+}
+
+@media only screen and (max-width: 414px) {
+    #first {
+      order: 2;
+    }
+    #second {
+      order: 1;
+    }
+    #third {
+      order: 3;
+    }
+
+    .fluid-container {
+      max-width: 1305px;
+      margin: 0;
+    }
+
+    .header-top-title,
+    .header-bottom,
+    .page-header date {
+      display: none;
+    }
+
+    .page-header .header-top .subscribe {
+      max-width: 100%;
+      flex: 100%;
+      margin-top: -50px;
+    }
+
+    .info-opinion {
+      height: auto;
+    }
 }

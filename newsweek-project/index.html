@@ -10,20 +10,20 @@
     <script type="text/javascript" src="js/myscript.js"></script>
   </head>
   <body>
-    <header class="page-header">
-      <div class="container">
+    <div class="fluid-container">
+      <header class="page-header">
         <div class="row header-top">
-          <div class="col-2">
-            <date class="">Sun, Aug 12, 2018 </date>
+            <div class="col-3">
+              <date class="">Sun, Aug 12, 2018 </date>
+            </div>
+            <div class="col-6 header-top-title" >
+              <a href="" class="lk-color">Newsweek</a>
+            </div>
+            <div class="col-3 subscribe">
+              <a href="" class="lk-color lk-font">SIGN IN</a>
+              <a href="" class="lk-color">SUBSCRIBE ></a>
+            </div>
           </div>
-          <div class="col-8 header-top-title" >
-            <a href="" class="lk-color">Newsweek</a>
-          </div>
-          <div class="col-2 subscribe">
-            <a href="" class="lk-color lk-font">SIGN IN</a>
-            <a href="" class="lk-color">SUBSCRIBE ></a>
-          </div>
-        </div>
         <nav class="header-bottom">
           <ul class="nav navbar nav-fill">
             <li class="nav-item separator hv-link"><a href="#">U.S.</a></li>
@@ -35,147 +35,145 @@
             <li class="nav-item separator hv-link"><a href="#">Health</a></li>
             <li class="nav-item separator hv-link"><a href="#">Opinion</a></li>
             <li class="nav-item dlb">
-                <a href="#" class="ndelible">Ndelible</a>
-              </li>
+                  <a href="#" class="ndelible">Ndelible</a>
+                </li>
             <li class="nav-item search-field">
-                <input type="text" id="s-field" placeholder="Search" onfocus="changesize();"
-                     onblur="changesize('60px');">
-              </li>
+                  <input type="text" id="s-field" placeholder="Search" onfocus="changesize();"
+                       onblur="changesize('60px');">
+                </li>
             <li class="nav-item filter-image">
                 <h2>Search</h2>
               </li>
           </ul>
-        </div>
-      </div>
-    </header>
-    <main class="container-fluid">
-      <div class="row">
-        <div class="col-sm-3">
-          <div class="wrap f-stories">
-            <article>
-              <div class="wrap">
-                <h2 class="section-title"> Feature Stories</h2>
-                <a href="#"> <img src="images/ft-001.jpg" alt=""> </a>
-                <div class="category"> <a href="#">U.S.</a></div>
-              </div>
-              <h3><a href="#">Alex Jones Accused of Destroying Evidence</a></h3>
-              <div class="summary">
-                Jones claims that the 2012 Sandy Hook elementary school shooting where 20 first-graders were killed, was a hoax staged by the government
-              </div>
-              <ul class="related">
-                <li>
-                  <a href="/paul-joseph-watson-alex-jones-infowars-twitter-youtube-1075545" itemprop="relatedLink">Alex Jones' British Sidekick's Social Media Still Live</a>
-                </li>
-              </ul>
-            </article>
-            <article>
-              <div class="wrap">
-                <img src="images/ft-002.jpg" alt="">
-                <div class="category"> <a href="#">U.S.</a></div>
-              </div>
-              <h4> <a href="">Mueller Recommends Jail Sentence for Papadopoulos</a> </h4>
-              <div class="summary"> <a href="">Papadopoulos has admitted lying to investigators about his Russia links.</a> </div>
-              <ul class="related">
-                <li> <a href=""> Wife of Indicted Trump Aide Asks for Pardon </a> </li>
-              </ul>
-            </article>
-            <article>
-              <div class="wrap">
-                <img src="images/ft-003.jpg" alt="">
-                <div class="category"> <a href="#">U.S.</a></div>
-              </div>
-              <h3><a href="">Trump Threatens Ohr's Security Clearance</a></h3>
-              <div class="summary">
-                Bruce Ohr served as associate deputy attorney general in late 2017, and has connections to the Trump-Russia dossier's author, Christopher Steele.
-              </div>
-              <ul class="related">
-                <li>
-                  <a href="">Who Is Nellie Ohr? Trump Slams Woman In Steele Dossier</a>
-                </li>
-              </ul>
-            </article>
-            <article>
-              <div class="wrap">
-                <img src="images/ft-004.jpg" alt="">
-                <div class="category"> <a href="#">U.S.</a></div>
-              </div>
-              <h3><a href="">Inmates Risk Their Lives to Fight California Wildfires</a></h3>
-              <div class="summary">
-                “No one says anything about them—they’re heroes," said the mother of one of the 3,400 inmates fighting deadly wildfires throughout the state. "They don’t get the credit and they work so hard.”
-              </div>
-              <ul class="related">
-                <li><a href="">Here’s Where California's Wildfires Are Still Burning</a></li>
-              </ul>
-            </article>
-          </div>
-        </div>
-        <div class="col-sm-6 top-story">
-          <div class="wrap tp-story">
-            <div class="top-story-featured">
+        </nav>
+      </header>
+      <main>
+        <div class="row">
+          <div class="col-sm-3"  id="first">
+            <div class="wrap f-stories">
               <article>
                 <div class="wrap">
-                  <h2 class="section-title"> Top Story</h2>
-                  <a href=""> <img src="images/tp-story-001.jpg" alt=""> </a>
-                  <div class="category"> <a href="#">WORLD</a></div>
+                  <h2 class="section-title"> Feature Stories</h2>
+                  <a href="#"> <img src="images/ft-001.jpg" alt=""> </a>
+                  <div class="category"> <a href="#">U.S.</a></div>
                 </div>
-                <h3> <a href="">Seven Things You Didn't Know About Kofi Annan</a> </h3>
-                <div class="summary"> The former UN chief has died at the age of 80. </div>
+                <h3><a href="#">Alex Jones Accused of Destroying Evidence</a></h3>
+                <div class="summary">
+                  Jones claims that the 2012 Sandy Hook elementary school shooting where 20 first-graders were killed, was a hoax staged by the government
+                </div>
                 <ul class="related">
-                  <li><a href="">Congo's Instability a 'Threat to Africa': Kofi Annan</a></li>
+                  <li>
+                    <a href="/paul-joseph-watson-alex-jones-infowars-twitter-youtube-1075545" itemprop="relatedLink">Alex Jones' British Sidekick's Social Media Still Live</a>
+                  </li>
+                </ul>
+              </article>
+              <article>
+                <div class="wrap">
+                  <img src="images/ft-002.jpg" alt="">
+                  <div class="category"> <a href="#">U.S.</a></div>
+                </div>
+                <h4> <a href="">Mueller Recommends Jail Sentence for Papadopoulos</a> </h4>
+                <div class="summary"> <a href="">Papadopoulos has admitted lying to investigators about his Russia links.</a> </div>
+                <ul class="related">
+                  <li> <a href=""> Wife of Indicted Trump Aide Asks for Pardon </a> </li>
+                </ul>
+              </article>
+              <article>
+                <div class="wrap">
+                  <img src="images/ft-003.jpg" alt="">
+                  <div class="category"> <a href="#">U.S.</a></div>
+                </div>
+                <h3><a href="">Trump Threatens Ohr's Security Clearance</a></h3>
+                <div class="summary">
+                  Bruce Ohr served as associate deputy attorney general in late 2017, and has connections to the Trump-Russia dossier's author, Christopher Steele.
+                </div>
+                <ul class="related">
+                  <li>
+                    <a href="">Who Is Nellie Ohr? Trump Slams Woman In Steele Dossier</a>
+                  </li>
+                </ul>
+              </article>
+              <article>
+                <div class="wrap">
+                  <img src="images/ft-004.jpg" alt="">
+                  <div class="category"> <a href="#">U.S.</a></div>
+                </div>
+                <h3><a href="">Inmates Risk Their Lives to Fight California Wildfires</a></h3>
+                <div class="summary">
+                  “No one says anything about them—they’re heroes," said the mother of one of the 3,400 inmates fighting deadly wildfires throughout the state. "They don’t get the credit and they work so hard.”
+                </div>
+                <ul class="related">
+                  <li><a href="">Here’s Where California's Wildfires Are Still Burning</a></li>
                 </ul>
               </article>
             </div>
-            <div class="top-story-more">
-              <h2 class="block-title">More Stories</h2>
-              <article>
-                <div class="image">
-                  <img src="images/tp-story-more-001.jpg" alt="">
-                </div>
-                <h4><a href="">Donald Trump Made It Easier to Launch Cyberattacks</a></h4>
-                <div class="summary">
-                  Trump reversed an Obama-era policy known as the Presidential Policy Directive 20. Here’s what that means.
-                </div>
-              </article>
-              <article>
-                <div class="image">
-                  <img src="images/tp-story-more-002.jpg" alt="">
-                </div>
-                <h4><a href="">Kerala: 324 Dead as Floods Shut Down Trains, Airport</a></h4>
-                <div class="summary">
-                  “We are witnessing something that has never happened before in the history of Kerala,” Pinarayi Vijayan, the Kerala chief minister, said on Friday.
-                </div>
-              </article>
-              <article>
-                <div class="image">
-                  <img src="images/tp-story-more-003.jpg" alt="">
-                </div>
-                <h4><a href="">Pastor Urged to Be 'Great Patriot Hostage'</a></h4>
-                <div class="summary">
-                  Turkey recently released American pastor Andrew Brunson from jail
-                  and put him under house arrest as his trial continues.
-                </div>
-              </article>
-              <article>
-                <div class="image">
-                  <img src="images/tp-story-more-004.jpg" alt="">
-                </div>
-                <h4><a href="">Imran Khan Confirmed as Pakistan Prime Minister</a></h4>
-                <div class="summary">
-                  The former cricketer's party won the most seats in July's elections,
-                  propping up Khan to become Pakistan's new leader more than two decades
-                  after pivoting from the sporting world to politics.
-                </div>
-              </article>
+          </div>
+          <div class="col-sm-6 top-story" id="second">
+            <div class="wrap tp-story">
+              <div class="top-story-featured">
+                <article>
+                  <div class="wrap">
+                    <h2 class="section-title"> Top Story</h2>
+                    <a href=""> <img src="images/tp-story-001.jpg" alt=""> </a>
+                    <div class="category"> <a href="#">WORLD</a></div>
+                  </div>
+                  <h3> <a href="">Seven Things You Didn't Know About Kofi Annan</a> </h3>
+                  <div class="summary"> The former UN chief has died at the age of 80. </div>
+                  <ul class="related">
+                    <li><a href="">Congo's Instability a 'Threat to Africa': Kofi Annan</a></li>
+                  </ul>
+                </article>
+              </div>
+              <div class="top-story-more">
+                <h2 class="block-title">More Stories</h2>
+                <article>
+                  <div class="image">
+                    <img src="images/tp-story-more-001.jpg" alt="">
+                  </div>
+                  <h4><a href="">Donald Trump Made It Easier to Launch Cyberattacks</a></h4>
+                  <div class="summary">
+                    Trump reversed an Obama-era policy known as the Presidential Policy Directive 20. Here’s what that means.
+                  </div>
+                </article>
+                <article>
+                  <div class="image">
+                    <img src="images/tp-story-more-002.jpg" alt="">
+                  </div>
+                  <h4><a href="">Kerala: 324 Dead as Floods Shut Down Trains, Airport</a></h4>
+                  <div class="summary">
+                    “We are witnessing something that has never happened before in the history of Kerala,” Pinarayi Vijayan, the Kerala chief minister, said on Friday.
+                  </div>
+                </article>
+                <article>
+                  <div class="image">
+                    <img src="images/tp-story-more-003.jpg" alt="">
+                  </div>
+                  <h4><a href="">Pastor Urged to Be 'Great Patriot Hostage'</a></h4>
+                  <div class="summary">
+                    Turkey recently released American pastor Andrew Brunson from jail
+                    and put him under house arrest as his trial continues.
+                  </div>
+                </article>
+                <article>
+                  <div class="image">
+                    <img src="images/tp-story-more-004.jpg" alt="">
+                  </div>
+                  <h4><a href="">Imran Khan Confirmed as Pakistan Prime Minister</a></h4>
+                  <div class="summary">
+                    The former cricketer's party won the most seats in July's elections,
+                    propping up Khan to become Pakistan's new leader more than two decades
+                    after pivoting from the sporting world to politics.
+                  </div>
+                </article>
+              </div>
             </div>
           </div>
-        </div>
-        <div class="col-sm-3">
-          <div class="wrap r-sidebar">
-            <div class="block-opinion">
-              <h2 class="section-title"> Opinion</h2>
-              <ul>
-                <li class="line">
-                  <div>
+          <div class="col-sm-3" id="third">
+            <div class="wrap r-sidebar">
+              <div class="block-opinion">
+                <h2 class="section-title"> Opinion</h2>
+                <ul>
+                  <li class="line">
                     <div class="img-opinion">
                       <img src="images/op-columnist-001.png" alt="">
                     </div>
@@ -183,354 +181,411 @@
                       <a href="#"> Trump, Omarosa and Dangerous Stereotypes About Women </a>
                       <div class="info-by"> BY <a href="">NATALIE HANNA</a> </div>
                     </div>
-                  </div>
-                </li>
-                <li class="line">
-                  <div class="img-opinion">
-                    <img src="images/op-columnist-002.png" alt="">
-                  </div>
-                  <div class="info-opinion">
-                    <a href="#"> The Texas Town Proving Trump Supporters Aren’t Racist </a>
-                    <div class="info-by"> BY <a href="">LEE HABEEB</a> </div>
-                  </div>
-                </li>
-                <li class="line">
-                  <div class="img-opinion">
-                    <img src="images/op-columnist-003.png" alt="">
-                  </div>
-                  <div class="info-opinion">
-                    <a href="#"> Trump Is Taking a Meat Ax to Regulation </a>
-                    <div class="info-by"> BY <a href="">ROBERT REICH</a> </div>
-                  </div>
-                </li>
-                <li class="">
-                  <div class="img-opinion">
-                    <img src="images/op-columnist-004.png" alt="">
-                  </div>
-                  <div class="info-opinion">
-                    <a href="#"> The Problem With Banning Plastic Straws </a>
-                    <div class="info-by"> BY <a href="">JULIANA BRITTO SCHWARTZ</a> </div>
-                  </div>
-                </li>
-              </ul>
-            </div>
-            <div class="block-latest">
-              <h2 class="block-title">Latest News</h2>
-              <ul>
-                <li>
-                  <div class="image">
-                    <img src="images/latest-001.jpg" alt="">
-                  </div>
-                  <div class="latest-info">
-                    <a href="">Georgia Wants to Close All But Two Voting Locations</a>
-                  </div>
-                </li>
-                <li>
-                  <div class="image">
-                    <img src="images/latest-002.jpg" alt="">
-                  </div>
-                  <div class="latest-info">
-                    <a href="">Titans vs. Buccaneers Time, TV Channels Tonight</a>
-                  </div>
-                </li>
-                <li>
-                  <div class="image">
-                    <img src="images/latest-003.jpg" alt="">
-                  </div>
-                  <div class="latest-info">
-                    <a href="">Lara Trump Spotlighted in Omorosa Tape Scandal</a>
-                  </div>
-                </li>
-                <li>
-                  <div class="image">
-                    <img src="images/latest-004.jpg" alt="">
-                  </div>
-                  <div class="latest-info">
-                    <a href="">Manafort Attorney May Have Committed Ethics Violation</a>
-                  </div>
-                </li>
-                <li>
-                  <div class="image">
-                    <img src="images/latest-005.jpg" alt="">
-                  </div>
-                  <div class="latest-info">
-                    <a href="">When, Where to Watch 49ers vs. Texans Tonight</a>
-                  </div>
-                </li>
-                <li>
-                  <div class="image">
-                    <img src="images/latest-006.jpg" alt="">
-                  </div>
-                  <div class="latest-info">
-                    <a href="">'Big Brother' Spoilers: A controversial nomination</a>
-                  </div>
-                </li>
-                <li>
-                  <div class="image">
-                    <img src="images/latest-007.jpg" alt="">
-                  </div>
-                  <div class="latest-info">
-                    <a href="">How, When to Watch Bears vs. Broncos Tonight</a>
-                  </div>
-                </li>
-                <li>
-                  <div class="image">
-                    <img src="images/latest-008.jpg" alt="">
-                  </div>
-                  <div class="latest-info">
-                    <a href="">Bill Maher Defends Alex Jones Over Social Media Ban</a>
-                  </div>
-                </li>
-              </ul>
-              <div class="newsletter">
-                <div class="n-title">
-                  <span class="icon-n"></span>
-                  Sign up for our Newsletter
-                </div>
-                <a href="" class="signup-lk">SIGN UP ></a> <br>
-                <a href="" class="upprefs-lk">Update your preferences >></a>
-              </div>
-          </div>
-          </div>
-        </div>
-      </div>
-      <div class="magazine">
-        <div class="row top">
-          <div class="col-sm-3" style="padding-left: 15px; padding-right:15px;">
-            <div class="wrap cover-footer">
-              <div class="picture">
-                <a href=""> <img src="images/magazine-001.jpg" alt=""></a>
-              </div>
-              <div class="category"> <a href="">August 24 Issue</a> </div>
-            </div>
-            <a href="#" class="lk-all-features">See All Features ></a>
-          </div>
-          <div class="col-sm-9 ">
-            <div class="n-title">
-              <span class="icon-n"></span>
-              In the Magazine
-            </div>
-            <div class="row wrap">
-              <article class="col-sm-4">
-                <div>
-                  <a href="#">
-                    <picture width="391" height="261">
-                      <img src="images/magazine-002.jpg" alt="">
-                    </picture>
-                  </a>
-                </div>
-                <div class="category">
-                  <span class="mag-cat">Cover</span>
-                  <span class="cat"> <a href="#">U.S.</a></span>
-                </div>
-                <h5> <a href=""> How Republicans Learned to Love Pot </a> </h5>
-              </article>
-              <article class="col-sm-4">
-                <div>
-                  <a href="">
-                    <picture width="391" height="261">
-                      <img src="images/magazine-003.jpg" alt="">
-                    </picture>
-                  </a>
-                </div>
-                <div class="category">
-                  <span class="mag-cat">Downtime</span>
-                  <span class="cat"><a href="#">CULTURE</a></span>
-                </div>
-                <h5><a href="#">‘Minding the Gap’: Escaping Toxic Masculinity’s Loop</a></h5>
-              </article>
-              <article class="col-sm-4">
-                <div>
-                  <a href="#">
-                    <picture width="391" height="261">
-                      <img src="images/magazine-004.jpg" alt="">
-                    </picture>
-                    <div class="category">
-                      <span class="mag-cat">Download</span>
-                      <span class="cat"><a href="#">U.S.</a></span>
+                  </li>
+                  <li class="line">
+                    <div class="img-opinion">
+                      <img src="images/op-columnist-002.png" alt="">
                     </div>
-                    <h5><a href="#">'Overcome Pessimism,' Says AIDS Rights Activist</a></h5>
-                  </a>
+                    <div class="info-opinion">
+                      <a href="#"> The Texas Town Proving Trump Supporters Aren’t Racist </a>
+                      <div class="info-by"> BY <a href="">LEE HABEEB</a> </div>
+                    </div>
+                  </li>
+                  <li class="line">
+                    <div class="img-opinion">
+                      <img src="images/op-columnist-003.png" alt="">
+                    </div>
+                    <div class="info-opinion">
+                      <a href="#"> Trump Is Taking a Meat Ax to Regulation </a>
+                      <div class="info-by"> BY <a href="">ROBERT REICH</a> </div>
+                    </div>
+                  </li>
+                  <li class="">
+                    <div class="img-opinion">
+                      <img src="images/op-columnist-004.png" alt="">
+                    </div>
+                    <div class="info-opinion">
+                      <a href="#"> The Problem With Banning Plastic Straws </a>
+                      <div class="info-by"> BY <a href="">JULIANA BRITTO SCHWARTZ</a> </div>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+              <div class="block-latest">
+                <h2 class="block-title">Latest News</h2>
+                <ul>
+                  <li>
+                    <div class="image">
+                      <img src="images/latest-001.jpg" alt="">
+                    </div>
+                    <div class="latest-info">
+                      <a href="">Georgia Wants to Close All But Two Voting Locations</a>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="image">
+                      <img src="images/latest-002.jpg" alt="">
+                    </div>
+                    <div class="latest-info">
+                      <a href="">Titans vs. Buccaneers Time, TV Channels Tonight</a>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="image">
+                      <img src="images/latest-003.jpg" alt="">
+                    </div>
+                    <div class="latest-info">
+                      <a href="">Lara Trump Spotlighted in Omorosa Tape Scandal</a>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="image">
+                      <img src="images/latest-004.jpg" alt="">
+                    </div>
+                    <div class="latest-info">
+                      <a href="">Manafort Attorney May Have Committed Ethics Violation</a>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="image">
+                      <img src="images/latest-005.jpg" alt="">
+                    </div>
+                    <div class="latest-info">
+                      <a href="">When, Where to Watch 49ers vs. Texans Tonight</a>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="image">
+                      <img src="images/latest-006.jpg" alt="">
+                    </div>
+                    <div class="latest-info">
+                      <a href="">'Big Brother' Spoilers: A controversial nomination</a>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="image">
+                      <img src="images/latest-007.jpg" alt="">
+                    </div>
+                    <div class="latest-info">
+                      <a href="">How, When to Watch Bears vs. Broncos Tonight</a>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="image">
+                      <img src="images/latest-008.jpg" alt="">
+                    </div>
+                    <div class="latest-info">
+                      <a href="">Bill Maher Defends Alex Jones Over Social Media Ban</a>
+                    </div>
+                  </li>
+                </ul>
+                <div class="newsletter">
+                  <div class="n-title">
+                    <span class="icon-n"></span>
+                    Sign up for our Newsletter
+                  </div>
+                  <a href="" class="signup-lk">SIGN UP ></a> <br>
+                  <a href="" class="upprefs-lk">Update your preferences >></a>
                 </div>
-              </article>
+            </div>
             </div>
           </div>
         </div>
-        <div class="row bottom">
-          <article class="col-sm-3">
-            <div>
-              <a href="#">
-                <picture width="391" height="261">
-                  <img src="images/magazine-005.jpg" alt="">
+        <div class="magazine">
+          <div class="row top">
+            <div class="col-sm-3" style="padding-left: 15px; padding-right:15px;">
+              <div class="wrap cover-footer">
+                <div class="picture">
+                  <a href=""> <img src="images/magazine-001.jpg" alt=""></a>
+                </div>
+                <div class="category"> <a href="">August 24 Issue</a> </div>
+              </div>
+              <a href="#" class="lk-all-features">See All Features ></a>
+            </div>
+            <div class="col-sm-9 ">
+              <div class="n-title">
+                <span class="icon-n"></span>
+                In the Magazine
+              </div>
+              <div class="row wrap">
+                <article class="col-sm-4">
+                  <div>
+                    <a href="#">
+                      <picture width="391" height="261">
+                        <img src="images/magazine-002.jpg" alt="">
+                      </picture>
+                    </a>
+                  </div>
+                  <div class="category">
+                    <span class="mag-cat">Cover</span>
+                    <span class="cat"> <a href="#">U.S.</a></span>
+                  </div>
+                  <h5> <a href=""> How Republicans Learned to Love Pot </a> </h5>
+                </article>
+                <article class="col-sm-4">
+                  <div>
+                    <a href="">
+                      <picture width="391" height="261">
+                        <img src="images/magazine-003.jpg" alt="">
+                      </picture>
+                    </a>
+                  </div>
+                  <div class="category">
+                    <span class="mag-cat">Downtime</span>
+                    <span class="cat"><a href="#">CULTURE</a></span>
+                  </div>
+                  <h5><a href="#">‘Minding the Gap’: Escaping Toxic Masculinity’s Loop</a></h5>
+                </article>
+                <article class="col-sm-4">
+                  <div>
+                    <a href="#">
+                      <picture width="391" height="261">
+                        <img src="images/magazine-004.jpg" alt="">
+                      </picture>
+                      <div class="category">
+                        <span class="mag-cat">Download</span>
+                        <span class="cat"><a href="#">U.S.</a></span>
+                      </div>
+                      <h5><a href="#">'Overcome Pessimism,' Says AIDS Rights Activist</a></h5>
+                    </a>
+                  </div>
+                </article>
+              </div>
+            </div>
+          </div>
+          <div class="row bottom">
+            <article class="col-sm-3">
+              <div>
+                <a href="#">
+                  <picture width="391" height="261">
+                    <img src="images/magazine-005.jpg" alt="">
+                  </picture>
+                </a>
+              </div>
+              <div class="category">
+                <span class="mag-cat">New World</span>
+                <spa class="cat"><a href="#">HEALTH</a></spa>
+              </div>
+              <H5><a href="#">How Mecca Pilgrimage Could Help Prevent Health Pandemic</a></H5>
+            </article>
+            <article class="col-sm-3">
+              <div>
+                <a href="">
+                  <picture width="391" height="261">
+                    <img src="images/magazine-006.jpg" alt="">
+                  </picture>
+                </a>
+              </div>
+              <div class="category">
+                <span class="mag-cat">Features</span>
+                <spa class="cat"><a href="#">WORLD</a></spa>
+              </div>
+              <H5><a href="#">Russia Making Moves in 'Battle for Africa'</a></H5>
+            </article>
+            <article class="col-sm-3">
+              <div>
+                <a href="#">
+                  <picture width="391" height="261">
+                    <img src="images/magazine-007.jpg" alt="">
+                  </picture>
+                </a>
+              </div>
+              <div class="category">
+                <span class="mag-cat">Downloades</span>
+                <spa class="cat"><a href="#">CULTURE</a></spa>
+              </div>
+              <H5><a href="#">Constance Wu on 'Crazy Rich Asians'</a></H5>
+            </article>
+            <article class="col-sm-3">
+              <div class="wrap big-shots">
+                <picture  width="1035" height="690">
+                  <a href=""> <img src="images/magazine-008.jpg" alt=""></a>
                 </picture>
-              </a>
-            </div>
-            <div class="category">
-              <span class="mag-cat">New World</span>
-              <spa class="cat"><a href="#">HEALTH</a></spa>
-            </div>
-            <H5><a href="#">How Mecca Pilgrimage Could Help Prevent Health Pandemic</a></H5>
-          </article>
-          <article class="col-sm-3">
-            <div>
-              <a href="">
-                <picture width="391" height="261">
-                  <img src="images/magazine-006.jpg" alt="">
-                </picture>
-              </a>
-            </div>
-            <div class="category">
-              <span class="mag-cat">Features</span>
-              <spa class="cat"><a href="#">WORLD</a></spa>
-            </div>
-            <H5><a href="#">Russia Making Moves in 'Battle for Africa'</a></H5>
-          </article>
-          <article class="col-sm-3">
-            <div>
-              <a href="#">
-                <picture width="391" height="261">
-                  <img src="images/magazine-007.jpg" alt="">
-                </picture>
-              </a>
-            </div>
-            <div class="category">
-              <span class="mag-cat">Downloades</span>
-              <spa class="cat"><a href="#">CULTURE</a></spa>
-            </div>
-            <H5><a href="#">Constance Wu on 'Crazy Rich Asians'</a></H5>
-          </article>
-          <article class="col-sm-3">
-            <div class="wrap big-shots">
-              <picture  width="1035" height="690">
-                <a href=""> <img src="images/magazine-008.jpg" alt=""></a>
-              </picture>
-              <div class="category"> <a href="">Big Shots</a> </div>
-            </div>
-            <h5><a href="">HEAT OF THE MOMENT</a></h5>
-          </article>
+                <div class="category"> <a href="">Big Shots</a> </div>
+              </div>
+              <h5><a href="">HEAT OF THE MOMENT</a></h5>
+            </article>
+          </div>
         </div>
-      </div>
-      <div class="editors-pick">
-        <div class="n-title">
-          <span class="icon-n"></span>
-          Eitor's Pick
+        <div class="editors-pick">
+          <div class="n-title">
+            <span class="icon-n"></span>
+            Eitor's Pick
+          </div>
+          <div class="row">
+            <article class="col-sm-3">
+              <div class="wrap">
+                <a href="#">
+                  <picture> <img src="images/ed-pick-001.png" alt=""> </picture>
+                </a>
+                <div class="category"> <a href="#">CULTURE</a></div>
+              </div>
+              <h3> <a href="#">How Katherine Ho Turned 'Yellow' Into a Mandarin Anthem</a></h3>
+              <div class="summary">
+                "Seeing faces like mine portrayed in such a striking, vibrant and badass way in the media had a huge impact on me emotionally," Katherine Ho told Newsweek.
+              </div>
+            </article>
+            <article class="col-sm-3">
+              <div class="wrap">
+                <a href="#">
+                  <picture>
+                    <img src="images/ed-pick-002.jpg" alt="">
+                  </picture>
+                </a>
+                <div class="category"> <a href="#">U.S.</a></div>
+              </div>
+              <h3> <a href="#">What Is The 'Echo Chamber' Conspiracy Memo</a></h3>
+              <div class="summary">
+                Former Obama administration officials have expressed outrage over a memo alleged to have circulated through the White House last year.
+              </div>
+            </article>
+            <article class="col-sm-3">
+              <div class="wrap">
+                <a href="#">
+                  <picture>
+                    <img src="images/ed-pick-003.jpg" alt="">
+                  </picture>
+                </a>
+                <div class="category"> <a href="#">WORLD</a></div>
+              </div>
+              <h3> <a href="#">World's Oldest Customer Complaint Goes Viral</a></h3>
+              <div class="summary">
+                "How have you treated me for that copper? You have withheld my money bag from me in enemy territory," Nanni wrote to Ea-nasir. "It is now up to you to restore (my money) to me in full."
+              </div>
+            </article>
+            <article class="col-sm-3">
+              <div class="wrap">
+                <a href="#">
+                  <picture>
+                    <img src="images/ed-pick-004.jpg" alt="">
+                  </picture>
+                </a>
+                <div class="category"> <a href="#">HEALTH</a></div>
+              </div>
+              <h3> <a href="#">Alzheimer's Disease Could Be Diagnosed With Eye Test</a></h3>
+              <div class="summary">
+                There is currently no one reliable biological test for Alzheimer's disease.
+              </div>
+            </article>
+          </div>
+          <div class="row">
+            <article class="col-sm-3">
+              <div class="wrap">
+                <a href="#">
+                  <picture> <img src="images/ed-pick-005.jpg" alt=""> </picture>
+                </a>
+                <div class="category"><a href="#">U.S.</a></div>
+              </div>
+              <h3><a href="#">Trump Backs Cindy Hyde-Smith in Senate Race</a></h3>
+              <div class="summary">
+                <span>
+                  The president declared his support for the Mississippi senator, the only one who has voted 100 percent in favor of his legislative agenda items.
+                </span>
+              </div>
+            </article>
+            <article class="col-sm-3">
+              <div class="wrap">
+                <a href="#">
+                  <picture> <img src="images/ed-pick-006.jpg" alt=""> </picture>
+                </a>
+                <div class="category"><a href="#">HEALTH</a></div>
+              </div>
+              <h3><a href="">Baby Feces Cocktail Could Boost Gut Health: Study</a></h3>
+              <div class="summary">
+                <span>
+                  Baby feces could help the body produce what are known as short-chain fatty acids.
+                </span>
+              </div>
+            </article>
+            <article class="col-sm-3">
+              <div class="wrap">
+                <a href="#">
+                  <picture> <img src="images/ed-pick-007.jpg" alt=""> </picture>
+                </a>
+                <div class="category"><a href="#">TECH & SCIENCE</a></div>
+              </div>
+              <h3><a href="">Exceptional Intelligence May Be a Hindrance in Romance</a></h3>
+              <div class="summary">
+                <span>
+                  There also appears to be little benefit in being extremely attractive over simply being very attractive in the eyes of a typical potential partner.
+                </span>
+              </div>
+            </article>
+            <article class="col-sm-3">
+               <div class="wrap">
+                <a href="#">
+                  <picture> <img src="images/ed-pick-008.jpg" alt=""> </picture>
+                </a>
+                <div class="category"><a href="#">U.S.</a></div>
+              </div>
+              <h3><a href="">Giuliani on Manafort: White-Collar Crime Isn’t a Crime</a></h3>
+              <div class="summary">
+                <span>
+                  "It's a white-collar crime, who the heck is in jeopardy, the American public?"
+                </span>
+              </div>
+            </article>
+          </div>
         </div>
-        <div class="row">
-          <article class="col-sm-3">
-            <div class="wrap">
-              <a href="#">
-                <picture> <img src="images/ed-pick-001.png" alt=""> </picture>
-              </a>
-              <div class="category"> <a href="#">CULTURE</a></div>
+        <div class="section-picks">
+          <div class="block-title">
+            <a href="#">World</a>
+          </div>
+          <div class="row">
+            <div class="col-sm-4">
+              <article>
+                <a href="#">
+                  <picture> <img src="images/ps-001.jpg" alt=""></picture>
+                </a>
+                <h3><a href="#">Man Sentenced to Five Years after Hospital Knife Attack</a></h3>
+              </article>
             </div>
-            <h3> <a href="#">How Katherine Ho Turned 'Yellow' Into a Mandarin Anthem</a></h3>
-            <div class="summary">
-              "Seeing faces like mine portrayed in such a striking, vibrant and badass way in the media had a huge impact on me emotionally," Katherine Ho told Newsweek.
+            <div class="col-sm-4">
+              <article>
+                <a href="#">
+                  <picture> <img src="images/ps-002.jpg" alt=""></picture>
+                </a>
+                <h3><a href="#">Police Accused of Fracturing Autistic Boy's Skull</a></h3>
+              </article>
             </div>
-          </article>
-          <article class="col-sm-3">
-            <div class="wrap">
-              <a href="#">
-                <picture>
-                  <img src="images/ed-pick-002.jpg" alt="">
-                </picture>
-              </a>
-              <div class="category"> <a href="#">U.S.</a></div>
+            <div class="col-sm-4 sp-subfeatued">
+              <ul>
+                <li class="sp-row">
+                  <div class="image">
+                    <a href="#">
+                      <picture><img src="images/ps-003.jpg" alt=""></picture>
+                    </a>
+                  </div>
+                  <div class="info">
+                    <a href="#">YouTubers Logan Paul, KSI Prepare to Fight</a>
+                  </div>
+                </li>
+                <li class="sp-row">
+                  <div class="image">
+                    <a href="#">
+                      <picture><img src="images/ps-004.jpg" alt=""></picture>
+                    </a>
+                  </div>
+                  <div class="info">
+                    <a href="#">Controversy Over Serena Williams' Catsuit Continues</a>
+                  </div>
+                </li>
+                <li>
+                  <div class="image">
+                    <a href="#">
+                      <picture><img src="images/ps-005.jpg" alt=""></picture>
+                    </a>
+                  </div>
+                  <div class="info">
+                    <a href="#">Walmart Canada Gets Backlash for "Fat Tax" On Clothes</a>
+                  </div>
+                </li>
+              </ul>
             </div>
-            <h3> <a href="#">What Is The 'Echo Chamber' Conspiracy Memo</a></h3>
-            <div class="summary">
-              Former Obama administration officials have expressed outrage over a memo alleged to have circulated through the White House last year.
-            </div>
-          </article>
-          <article class="col-sm-3">
-            <div class="wrap">
-              <a href="#">
-                <picture>
-                  <img src="images/ed-pick-003.jpg" alt="">
-                </picture>
-              </a>
-              <div class="category"> <a href="#">WORLD</a></div>
-            </div>
-            <h3> <a href="#">World's Oldest Customer Complaint Goes Viral</a></h3>
-            <div class="summary">
-              "How have you treated me for that copper? You have withheld my money bag from me in enemy territory," Nanni wrote to Ea-nasir. "It is now up to you to restore (my money) to me in full."
-            </div>
-          </article>
-          <article class="col-sm-3">
-            <div class="wrap">
-              <a href="#">
-                <picture>
-                  <img src="images/ed-pick-004.jpg" alt="">
-                </picture>
-              </a>
-              <div class="category"> <a href="#">HEALTH</a></div>
-            </div>
-            <h3> <a href="#">Alzheimer's Disease Could Be Diagnosed With Eye Test</a></h3>
-            <div class="summary">
-              There is currently no one reliable biological test for Alzheimer's disease.
-            </div>
-          </article>
+          </div>
         </div>
-        <div class="row">
-          <article class="col-sm-3">
-            <div class="wrap">
-              <a href="#">
-                <picture> <img src="images/ed-pick-005.jpg" alt=""> </picture>
-              </a>
-              <div class="category"><a href="#">U.S.</a></div>
-            </div>
-            <h3><a href="#">Trump Backs Cindy Hyde-Smith in Senate Race</a></h3>
-            <div class="summary">
-              <span>
-                The president declared his support for the Mississippi senator, the only one who has voted 100 percent in favor of his legislative agenda items.
-              </span>
-            </div>
-          </article>
-          <article class="col-sm-3">
-            <div class="wrap">
-              <a href="#">
-                <picture> <img src="images/ed-pick-006.jpg" alt=""> </picture>
-              </a>
-              <div class="category"><a href="#">HEALTH</a></div>
-            </div>
-            <h3><a href="">Baby Feces Cocktail Could Boost Gut Health: Study</a></h3>
-            <div class="summary">
-              <span>
-                Baby feces could help the body produce what are known as short-chain fatty acids.
-              </span>
-            </div>
-          </article>
-          <article class="col-sm-3">
-            <div class="wrap">
-              <a href="#">
-                <picture> <img src="images/ed-pick-007.jpg" alt=""> </picture>
-              </a>
-              <div class="category"><a href="#">TECH & SCIENCE</a></div>
-            </div>
-            <h3><a href="">Exceptional Intelligence May Be a Hindrance in Romance</a></h3>
-            <div class="summary">
-              <span>
-                There also appears to be little benefit in being extremely attractive over simply being very attractive in the eyes of a typical potential partner.
-              </span>
-            </div>
-          </article>
-          <article class="col-sm-3">
-             <div class="wrap">
-              <a href="#">
-                <picture> <img src="images/ed-pick-008.jpg" alt=""> </picture>
-              </a>
-              <div class="category"><a href="#">U.S.</a></div>
-            </div>
-            <h3><a href="">Giuliani on Manafort: White-Collar Crime Isn’t a Crime</a></h3>
-            <div class="summary">
-              <span>
-                "It's a white-collar crime, who the heck is in jeopardy, the American public?"
-              </span>
-            </div>
-          </article>
-        </div>
-      </div>
-    </main>
+      </main>
+    </div>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
