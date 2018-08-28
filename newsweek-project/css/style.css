@@ -25,9 +25,6 @@ a, a:hover {
 /********************************
  * Header Top styles
  *********************************/
-/* .container-fluid {
-  max-width: 1310px;
-} */
 
 .page-header date {
   top: 45px;
@@ -37,45 +34,62 @@ a, a:hover {
   font: 16px/34px "Roboto Condensed",sans-serif;
 }
 
-.page-header a, .page-header a:hover {
-  color: #fff;
+.header-top {
+  height: 95px;
+  position: relative;
+  padding: 20px 15px;
+  background-color: #f72210;
+}
+
+.header-top date {
+  top: 0;
+  margin: 0;
+}
+
+.header-top section {
+  width: 50%;
+  padding-left: 15px;
+}
+
+.header-top section:last-child {
+  text-align: right;
+}
+
+.link-1 {
+  padding-left: 12px;
+  padding-right: 12px;
+}
+
+.link-2 {
+  color: #f72210;
+  background-color: #fff;
+  padding: 10px;
 }
 
 .lk-font {
   text-decoration: none;
-  font: bold 14px/14px "Roboto Condensed",sans-serif;
+  font: bold 16px/16px "Roboto Condensed",sans-serif;
 }
 
 .lk-color {
   color: #fff;
 }
 
-.header-top {
-  height: 95px;
-  position: relative;
+.header-middle {
+  top: 0;
+  left: 50%;
+  z-index: 10;
+  position: absolute;
   background-color: #f72210;
+  transform: translate(-50%,0);
+  padding: 10px 10px 15px;
+  font: bold 70px/70px "Roboto Condensed", sans-serif;
 }
 
-.subscribe a {
-  top: 45px;
-  padding: 10px;
-  position: relative;
-  font: bold 16px/16px "Roboto Condensed",sans-serif;
-}
-
-.subscribe a:last-child {
-  color: #f72210;
-  background-color: #fff;
-}
-
-.header-top-title {
-  text-align: center;
-}
-
-.header-top-title a {
-  font-size: 70px;
-  font-weight: bolder;
-  position: relative;
+.header-middle a:hover,
+.subscribe a:first-child:hover,
+.subscribe a:last-child:hover {
+  color: #fff;
 }
 
 /********************************
