@@ -634,7 +634,12 @@ h3 > a:hover {
     position: sticky;
     top: 0;
   }
+}
 
+@media only screen and (max-width: 1310px) {
+  .fluid-container {
+    margin: 0;
+  }
 }
 
 @media only screen and (max-width: 414px) {
