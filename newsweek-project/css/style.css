@@ -9,6 +9,7 @@
 
 body {
   background-color: #f4f5f6;
+  /* min-width: 320px; */
 }
 
 a, a:hover {
@@ -18,8 +19,7 @@ a, a:hover {
 
 .fluid-container {
   max-width: 1310px;
-  margin-left: 15px;
-  margin-right: 15px;
+  margin: 0 auto;
 }
 
 /********************************
@@ -91,6 +91,9 @@ a, a:hover {
   color: #fff;
 }
 
+.header-middle a:last-child i {
+  display: none;
+}
 /********************************
  * Nav bar styles
  *********************************/
@@ -246,7 +249,6 @@ ul {
 .line {
   border-bottom: 1px solid #ccc;
   margin-bottom: 8px;
-  /* padding-bottom: 10px; */
   height: auto;
 }
 
@@ -263,6 +265,7 @@ ul > li img {
 .info-opinion {
   width: auto;
   margin-bottom: 10px;
+  display: flow-root;
   font:bold 16px/18px "Roboto Condensed",sans-serif;
 }
 
@@ -331,7 +334,7 @@ h4 {
   font-size: 15px;
   line-height: 20px;
   padding-bottom: 10px;
-  border-bottom: 1px solid #ccc;
+  border-bottom: 1px solid #333;
 }
 
 h3 > a:hover {
@@ -455,6 +458,9 @@ h3 > a:hover {
   margin-bottom: 0;
   text-align: center;
   border-bottom: 1px solid #ccc;
+}
+
+.editors-pick .n-title {
   margin-left: 15px;
   margin-right: 15px;
 }
@@ -549,6 +555,11 @@ h3 > a:hover {
   position: relative;
 }
 
+.magazine .mag-feat {
+  margin-left: -15px;
+  margin-right: -15px;
+}
+
 .magazine h5 a:hover {
   text-decoration: underline #f72210;
 }
@@ -584,26 +595,19 @@ h3 > a:hover {
 .section-picks {
   padding-top: 20px;
   padding-bottom: 20px;
-  border-top: 1px solid #ccc;
-  border-bottom: 1px solid #ccc;
 }
 
 .section-picks .block-title {
   color: #f72210;
   font-size: 22px;
   line-height: 22px;
-  /* margin-left: -15px; */
   border-bottom: none;
   text-transform: none;
   padding-bottom: 10px;
-  /* padding-left: 15px;
-  padding-right: 15px; */
   margin-left: 15px;
   margin-right: 15px;
   padding-top: 20px;
   border-top: 1px solid #ccc;
-
-
 }
 
 .section-picks .row {
@@ -650,7 +654,6 @@ h3 > a:hover {
 * Responsive settings
 *********************************/
 @media (min-height: 60px) {
-
   .tp-story {
     position: sticky;
     top: 0;
@@ -662,55 +665,49 @@ h3 > a:hover {
   }
 }
 
-@media only screen and (max-width: 1310px) {
+@media only screen and (max-width: 767px) {
+
+  body {
+    min-width: 320px;
+    max-width: 1310px;
+  }
+
   .fluid-container {
     margin: 0;
   }
 
-  .header-middle i {
+  main {
+    padding: 0;
+  }
+
+  #first {
+    order: 2;
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+
+  #second {
+    order: 1;
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+
+  #third {
+    order: 3;
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+
+  .page-header {
+    display: block;
+    position: fixed;
+    z-index: 30;
+    width: 100%;
+  }
+
+  .header-top {
     display: none;
   }
-
-  .search-field {
-    padding-left: 100px;
-  }
-
-}
-
-@media only screen and (max-width: 992px) {
-
-  .header-top  {
-    height: 34px;
-    z-index: 15;
-    display:block;
-    position: relative;
-    background-color: #000;
-    overflow: hidden;
-  }
-
-    /* @media (min-height: 70px) {
-
-      .page-header {
-        display: block;
-        position: fixed;
-        z-index: 30;
-        width: 100%;
-      }
-
-      .header-top {
-        display: none;
-      }
-
-      .header-middle {
-        display: block;
-        position: fixed;
-      }
-
-       main .row {
-        padding-top: 91px;
-      }
-
-    } */
 
   #edition-date {
     display: none;
@@ -721,15 +718,10 @@ h3 > a:hover {
     width: 100%;
   }
 
-  .subscribe #arrow {
-    display: none;
-  }
-
-  .subscribe {
-    top: 0;
-    padding-top: 8px;
-    position: absolute;
-    padding-right: 15px;
+  .header-middle {
+    display: block;
+    position: relative;
+    height: 40px;
   }
 
   .link-1 {
@@ -745,19 +737,13 @@ h3 > a:hover {
     display: none;
   }
 
-  .header-middle {
-    display: block;
-    position: relative;
-    height: 40px;
-  }
-
-  .header-middle a {
+  .header-middle a:first-child {
     top: -16px;
     font-size: 28px;
     position: absolute;
   }
 
-  .header-middle i {
+  .header-middle a:last-child i {
     top: 0;
     right: 0;
     display: block;
@@ -767,94 +753,51 @@ h3 > a:hover {
     margin-right: 20px;
   }
 
-  #first {
-    flex: 0 0 40%;
-    max-width: 40%;
+  .sp-subfeatued .info {
+    width: 63%;
   }
 
-  #second {
-    flex: 0 0 60%;
-    max-width: 60%;
+  .top-story-featured h3 {
+    font-size: 22px;
   }
 
-  #third {
-    flex: 0 0 100%;
-    max-width: 100%;
+  .summary {
+    font-size: 13px;
+    line-height: 18px;
   }
 
-  .block-opinion ul li {
-    padding-bottom: 15px;
+  .top-story-more h4 {
+    font-size: 17px;
+    line-height: 20px;
   }
+
+  .f-stories h3, .f-stories h4 {
+    font-size: 18px;
+    line-height: 18px;
+  }
+
+  .magazine h5, .bottom h5 {
+    font-size: 16px;
+    line-height: 16px;
+  }
+
+  .editors-pick h3 {
+    font-size: 20px;
+    line-height: 20px;
+  }
+
+  .section-picks article h3 {
+    font-size: 18px;
+    line-height: 18px;
+  }
+
 
 }
 
-@media only screen and (max-width: 768px) {
-  #first {
-    order: 2;
-    flex: 0 0 100%;
-    max-width: 100%;
+@media only screen and (max-width: 991px) {
+
+  .sp-subfeatued .info {
+	  float: left;
+	  width: 62%;
   }
-
-  #second {
-    order: 1;
-    flex: 0 0 100%;
-    max-width: 100%;
-  }
-
-  #third {
-    order: 3;
-  }
-
-  /*************************
-  *  Magazine section
-  **************************/
-
-  #articles,
-  #articles article,
-  #cover-magazine,
-  .bottom article,
-  .editors-pick article {
-    flex: 0 0 100%;
-    max-width: 100%;
-    padding-left: 0;
-    padding-right: 0;
-  }
-
-  .magazine .bottom .col-sm-3 {
-    padding-left:  0;
-    padding-right: 0;
-  }
-
-  .section-picks div {
-    flex: 0 0 100%;
-    max-width: 100%;
-  }
-
 }
-/*
-@media only screen and (max-width: 768px) {
-    .subscribe {
-      padding-right: 12px;
-    }
-
-    .fluid-container {
-      max-width: 1305px;
-      margin: 0;
-    }
-
-    .header-top-title,
-    .header-bottom,
-    .page-header date {
-      display: none;
-    }
-
-    .page-header .header-top .subscribe {
-      max-width: 100%;
-      flex: 100%;
-      margin-top: -50px;
-    }
-
-    .info-opinion {
-      height: auto;
-    }
-} */
