@@ -6,6 +6,8 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="icon" type="image/png" href="https://s.newsweek.com/sites/www.newsweek.com/themes/newsweek/favicons/favicon-32x32.png" sizes="32x32">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css"
+      integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
     <link rel="stylesheet" href="css/style.css">
     <script type="text/javascript" src="js/myscript.js"></script>
   </head>
@@ -13,14 +15,15 @@
     <div class="fluid-container">
       <header class="page-header">
         <nav class="header-top navbar">
-          <section> <date>Sun, Aug 12, 2018 </date> </section>
+          <section id="edition-date"> <date>Sun, Aug 12, 2018 </date> </section>
           <section class="subscribe">
             <a href="" class="link-1 lk-color lk-font">SIGN IN</a>
-            <a href="" class="lk-font link-2">SUBSCRIBE ></a>
+            <a href="" class="lk-font link-2">SUBSCRIBE <span id="arrow"> > </span> </a>
           </section>
         </nav>
         <nav class="header-middle navbar">
           <a href="" class="lk-color">Newsweek</a>
+          <i class="fas fa-bars text-white"></i>
         </nav>
         <nav class="header-bottom">
           <ul class="nav navbar nav-fill">
@@ -46,8 +49,8 @@
         </nav>
       </header>
       <main>
-        <div class="row">
-          <div class="col-sm-3"  id="first">
+        <div class="row sc-ct">
+          <div class="col-sm-3" id="first">
             <div class="wrap f-stories">
               <article>
                 <div class="wrap">
@@ -291,7 +294,7 @@
         </div>
         <div class="magazine">
           <div class="row top">
-            <div class="col-sm-3" style="padding-left: 15px; padding-right:15px;">
+            <div class="col-sm-3" id="cover-magazine">
               <div class="wrap cover-footer">
                 <div class="picture">
                   <a href=""> <img src="images/magazine-001.jpg" alt=""></a>
@@ -300,7 +303,7 @@
               </div>
               <a href="#" class="lk-all-features">See All Features ></a>
             </div>
-            <div class="col-sm-9 ">
+            <div class="col-sm-9" id="articles">
               <div class="n-title">
                 <span class="icon-n"></span>
                 In the Magazine

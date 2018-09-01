@@ -25,7 +25,6 @@ a, a:hover {
 /********************************
  * Header Top styles
  *********************************/
-
 .page-header date {
   top: 45px;
   color: #fff;
@@ -42,7 +41,7 @@ a, a:hover {
 }
 
 .header-top date {
-  top: 0;
+  top: 10px;
   margin: 0;
 }
 
@@ -456,6 +455,8 @@ h3 > a:hover {
   margin-bottom: 0;
   text-align: center;
   border-bottom: 1px solid #ccc;
+  margin-left: 15px;
+  margin-right: 15px;
 }
 
 .magazine .icon-n,
@@ -472,6 +473,11 @@ h3 > a:hover {
 .magazine .bottom .col-sm-3 {
   padding-left: 15px;
   padding-right: 15px;
+}
+
+#cover-magazine {
+  padding-left: 15px;
+  padding-right:15px;
 }
 
 .lk-all-features {
@@ -586,12 +592,18 @@ h3 > a:hover {
   color: #f72210;
   font-size: 22px;
   line-height: 22px;
-  margin-left: -15px;
+  /* margin-left: -15px; */
   border-bottom: none;
   text-transform: none;
   padding-bottom: 10px;
-  padding-left: 15px;
-  padding-right: 15px;
+  /* padding-left: 15px;
+  padding-right: 15px; */
+  margin-left: 15px;
+  margin-right: 15px;
+  padding-top: 20px;
+  border-top: 1px solid #ccc;
+
+
 }
 
 .section-picks .row {
@@ -654,17 +666,175 @@ h3 > a:hover {
   .fluid-container {
     margin: 0;
   }
+
+  .header-middle i {
+    display: none;
+  }
+
+  .search-field {
+    padding-left: 100px;
+  }
+
 }
 
-@media only screen and (max-width: 414px) {
-    #first {
-      order: 2;
-    }
-    #second {
-      order: 1;
-    }
-    #third {
-      order: 3;
+@media only screen and (max-width: 992px) {
+
+  .header-top  {
+    height: 34px;
+    z-index: 15;
+    display:block;
+    position: relative;
+    background-color: #000;
+    overflow: hidden;
+  }
+
+    /* @media (min-height: 70px) {
+
+      .page-header {
+        display: block;
+        position: fixed;
+        z-index: 30;
+        width: 100%;
+      }
+
+      .header-top {
+        display: none;
+      }
+
+      .header-middle {
+        display: block;
+        position: fixed;
+      }
+
+       main .row {
+        padding-top: 91px;
+      }
+
+    } */
+
+  #edition-date {
+    display: none;
+  }
+
+  .header-top section {
+    height: 34px;
+    width: 100%;
+  }
+
+  .subscribe #arrow {
+    display: none;
+  }
+
+  .subscribe {
+    top: 0;
+    padding-top: 8px;
+    position: absolute;
+    padding-right: 15px;
+  }
+
+  .link-1 {
+    padding-right: 12px;
+  }
+
+  .link-2 {
+    padding: 9px;
+    font-size: 14px;
+  }
+
+  .header-bottom {
+    display: none;
+  }
+
+  .header-middle {
+    display: block;
+    position: relative;
+    height: 40px;
+  }
+
+  .header-middle a {
+    top: -16px;
+    font-size: 28px;
+    position: absolute;
+  }
+
+  .header-middle i {
+    top: 0;
+    right: 0;
+    display: block;
+    font-size: 25px;
+    position: absolute;
+    line-height: 40px;
+    margin-right: 20px;
+  }
+
+  #first {
+    flex: 0 0 40%;
+    max-width: 40%;
+  }
+
+  #second {
+    flex: 0 0 60%;
+    max-width: 60%;
+  }
+
+  #third {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+
+  .block-opinion ul li {
+    padding-bottom: 15px;
+  }
+
+}
+
+@media only screen and (max-width: 768px) {
+  #first {
+    order: 2;
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+
+  #second {
+    order: 1;
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+
+  #third {
+    order: 3;
+  }
+
+  /*************************
+  *  Magazine section
+  **************************/
+
+  #articles,
+  #articles article,
+  #cover-magazine,
+  .bottom article,
+  .editors-pick article {
+    flex: 0 0 100%;
+    max-width: 100%;
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .magazine .bottom .col-sm-3 {
+    padding-left:  0;
+    padding-right: 0;
+  }
+
+  .section-picks div {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+
+}
+/*
+@media only screen and (max-width: 768px) {
+    .subscribe {
+      padding-right: 12px;
     }
 
     .fluid-container {
@@ -687,4 +857,4 @@ h3 > a:hover {
     .info-opinion {
       height: auto;
     }
-}
+} */
