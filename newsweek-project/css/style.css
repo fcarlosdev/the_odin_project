@@ -9,7 +9,6 @@
 
 body {
   background-color: #f4f5f6;
-  /* min-width: 320px; */
 }
 
 a, a:hover {
@@ -800,4 +799,29 @@ h3 > a:hover {
 	  float: left;
 	  width: 62%;
   }
+
+}
+
+/* @media only screen and (min-width: 768px) {
+
+  body {
+    font-size: 15px;
+    line-height: 20px;
+  }
+
+} */
+
+@media only screen and (min-width: 992px) {
+  .search-field {
+    width: 48px;
+  }
+
+}
+
+@media (min-width: 1310px) {
+
+  .search-field {
+    width: 0;
+  }
+
 }
