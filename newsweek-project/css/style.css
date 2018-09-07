@@ -18,6 +18,7 @@ a, a:hover {
 
 .fluid-container {
   max-width: 1310px;
+  min-width: 320px;
   margin: 0 auto;
 }
 
@@ -202,7 +203,6 @@ header::after {
  *********************************/
 main {
   background: #fff;
-  padding-bottom: 30px;
   margin: 0 auto;
   padding-left: 15px;
   padding-right: 15px;
@@ -344,7 +344,7 @@ h4 {
   font-size: 15px;
   line-height: 20px;
   padding-bottom: 10px;
-  border-bottom: 1px solid #333;
+  border-bottom: 1px solid #ccc;
 }
 
 h3 > a:hover {
@@ -660,7 +660,138 @@ h3 > a:hover {
 }
 
 /********************************
-* Responsive settings
+* Footer styles
+*********************************/
+footer {
+  padding-top: 30px;
+  padding-bottom: 30px;
+  background-color: #fff;
+  border-top: 2px solid #f4f5f6;
+}
+
+.brand {
+  color: #f22210;
+  font: bold 50px/50px "Roboto Condensed", sans-serif;
+}
+
+.brand:hover {
+  color: #f22210;
+  text-decoration: none;
+}
+
+.copyright {
+  margin: 0;
+  padding: 0;
+}
+
+.copyright {
+  color: #666;
+  font-size: 12px;
+  margin-left: 5px;
+  line-height: 12px;
+  padding-bottom: 7px;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+
+footer {
+  padding-left: 30px;
+  padding-right: 30px;
+}
+
+footer .copyright a:hover {
+  color: #000;
+}
+
+footer div:first-child {
+  margin-bottom: 4px;
+}
+
+footer ul  {
+  margin-bottom: 6px;
+}
+
+footer ul li {
+  margin-left: 10px;
+}
+
+footer ul li a:hover {
+  color: #3b5998;
+}
+
+.ft-flex {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.fx-content {
+  justify-content: space-between;
+}
+
+.fx-align {
+  align-items: flex-end;
+}
+
+.ft-social-icon {
+  font-size: 26px;
+  display: block;
+}
+
+.ft-menus {
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.ft-links {
+  color: #666;
+  display: flex;
+  flex-wrap: wrap;
+  font-size: 14px;
+  padding-top: 6px;
+  line-height: 15px;
+  border-top: 1px solid #d9d9d9;
+}
+
+.ft-links .col-md-7 {
+  padding: 0;
+}
+
+.ft-links ul li {
+  margin: 6px 0;
+  margin-left: auto;
+  margin-right: 10px;
+  padding-right: 10px;
+  display: inline-block;
+}
+
+.ft-links ul li a:hover {
+  color: #000;
+}
+
+.ft-leaf {
+  border-right: 1px solid #d9d9d9;
+}
+
+.ft-edition {
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  position: relative;
+}
+
+.ft-edition label {
+  position: absolute;
+  margin-top: 6px;
+}
+
+.ft-edition ul {
+  position: absolute;
+  left: 66px;
+}
+
+
+/********************************
+* Sticky colums
 *********************************/
 @media (min-height: 60px) {
   .tp-story {
@@ -673,6 +804,10 @@ h3 > a:hover {
     top: 0;
   }
 }
+
+/********************************
+* Media queries settings
+*********************************/
 
 @media (max-width: 991px) {
 
@@ -743,6 +878,12 @@ h3 > a:hover {
   .info-opinion {
     margin-bottom: 30px;
   }
+
+  .ft-edition ul {
+    position: absolute;
+    left: 79px;
+  }
+
 
 }
 
@@ -826,6 +967,33 @@ h3 > a:hover {
 
   main {
     padding: 0;
+  }
+
+  .ft-edition ul {
+    position: absolute;
+    left: 60px;
+  }
+
+  .ft-edition label {
+    margin-top: -7px;
+  }
+
+  .ft-edition ul {
+    margin-top: -12px;
+  }
+
+}
+
+@media (max-width: 768px) {
+
+  .col-md-7, .col-md-4  {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+
+  .ft-edition {
+    margin: auto;
+    margin-bottom: 40px;
   }
 
 }
