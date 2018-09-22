@@ -1,0 +1,14 @@
+
+[class*='grid-item'] {
+  background-color: #9a9a0e;
+}
+
+
+.bg-color {
+  background-color: rgb(67, 92, 170);
+}
+
+.two-columns-layout,
+.three-columns-layout {
+  margin-top: 30px;
+}
