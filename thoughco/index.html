@@ -9,32 +9,72 @@
       integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Heebo" rel="stylesheet">
   </head>
   <body>
 
-    <header>
-      <div class="grid">
-        <div class="grid-item-8">
-          <div class="menu">
-            <a href="#"> <i class="fas fa-bars"></i> </a>
-          </div>
-          <div class="logo">
-            <span>Tough<span class="logo-co">Co.</span> </span>
-          </div>
-          <div class="slogan">
-            <span>life long learning</span>
-          </div>
-        </div>
-        <div class="grid-item-4 h-search">
-          <form action="#">
-            <input class="search-text" type="text" placeholder="Search" />
-            <button class="btn-go btn-text">GO</button>
-          </form>
-        </div>
+    <header class="grid grid-alignments">
+      <div class="grid-item menu-button">
+        <a href="#"> <i class="fas fa-bars"></i> </a>
       </div>
+      <div class="grid-item-8 logo-comp">
+        <a class="logo" href="#"> <span>Though<span class="logo-co">Co.</span></span> </a>
+        <div class="slogan"> <span>lifelong learning</span></div>
+      </div>
+      <div class="grid-item-4 search">
+        <input type="text" placeholder="Search" />
+        <button>GO</button>
+      </div>
+      <div class="search-icon"> <i class="fas fa-search"></i> </div>
     </header>
 
     <main>
+
+      <div class="grid image-nav-items">
+
+        <div class="grid-item-3 science">
+          <img src="images/hp-science-tech-math.png" alt="">
+        </div>
+
+        <div class="grid-item-3 humanities">
+          <img src="images/hp-humanities.png" alt="">
+        </div>
+
+        <div class="grid-item-3 arts">
+          <img src="images/hp-arts-music-recreation.png" alt="">
+        </div>
+
+        <div class="grid-item-3 resources">
+          <img src="images/hp-resources.png" alt="">
+        </div>
+
+      </div>
+
+      <articles class="grid">
+
+        <article class="grid-item-3">
+          <h2>Science,Tech,Math</h2>
+          <img src="images/lightning.jpg" />
+        </article>
+
+        <article class="grid-item-3">
+          <h2>humanities</h2>
+          <img src="images/russian-president.jpg" />
+        </article>
+
+        <article class="grid-item-3">
+          <h2>Arts,Music,Recreation</h2>
+          <img src="images/joe-strummer.jpg" />
+        </article>
+
+        <article class="grid-item-3">
+          <h2>Resources</h2>
+          <img src="images/hand-holding-plant.jpg" />
+        </article>
+
+
+      </articles>
+
 
     </main>
 
