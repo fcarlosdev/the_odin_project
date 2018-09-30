@@ -2,7 +2,6 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
     <title>Scaffold framework</title>
     <link rel="stylesheet" href="css/scaffold.css">
     <link rel="stylesheet" href="css/style.css">
@@ -11,7 +10,6 @@
     <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Heebo" rel="stylesheet">
-
   </head>
   <body>
 
@@ -19,70 +17,205 @@
       <div class="button-menu grid-item">
         <a href="#"> <i class="fas fa-bars"></i> </a>
       </div>
-      <div class="grid-item-8 logo-comp">
+      <div class="grid-item-12 logo-comp">
         <h2>Though<span>Co.</span></h2>
-        <h3>lfelong learning</h3>
+        <h3>lifelong learning</h3>
       </div>
-      <div class="grid-item-4 search">
+      <div class="grid-item-6 search">
         <input type="text" placeholder="Search" />
         <button>GO</button>
       </div>
-      <div class="search-icon">
+      <div class="search-icon grid-item-2">
         <i class="fas fa-search"></i>
       </div>
+
     </header>
 
     <main class="grid">
 
-      <div class="images-sections grid-item-12">
+      <div class="grid nav-images">
 
-        <div class="grid-item-3 science">
-          <img src="images/hp-science-tech-math.png" alt="science,tech,math">
+        <div class="grid-item-3">
+          <a class="science" href="#">
+            <img src="images/hp-science-tech-math.png" alt="science" class="img">
+            <span>SCIENCE, TECH, MATH</span>
+          </a>
         </div>
 
-        <div class="grid-item-3 humanities">
-          <img src="images/hp-humanities.png" alt="humanities">
+        <div class="grid-item-3">
+          <a class="humanities" href="#">
+            <img src="images/hp-humanities.png" alt="humanities" class="img">
+            <span>HUMANITIES</span>
+          </a>
         </div>
 
-        <div class="grid-item-3 arts">
-          <img src="images/hp-arts-music-recreation.png" alt="arts,music,recreation">
+        <div class="grid-item-3">
+          <a class="arts" href="#">
+            <img src="images/hp-arts-music-recreation.png" alt="arts" class="img">
+            <span>ARTS, MUSIC, RECREATION</span>
+          </a>
         </div>
 
-        <div class="grid-item-3 resources">
-          <img src="images/hp-resources.png" alt="resources">
-        </div>
-
-      </div>
-
-      <div class="articles grid-item-12">
-
-        <div class="grid-item-3 article">
-          <h2 class="section-title">Science,Tech,Math</h2>
-          <div class="block-media">
-            <img src="images/lightning.jpg" alt=""/>
-          </div>
-        </div>
-        <div class="grid-item-3 article">
-          <h2 class="section-title">Humanities</h2>
-          <div class="block-media">
-            <img src="images/russian-president.jpg" alt=""/>
-          </div>
-        </div>
-        <div class="grid-item-3 article">
-          <h2 class="section-title">Arts,Music,Recreation</h2>
-          <div class="block-media">
-            <img src="images/joe-strummer.jpg" alt=""/>
-          </div>
-        </div>
-        <div class="grid-item-3 article">
-          <h2 class="section-title">Resources</h2>
-          <div class="block-media">
-            <img src="images/hand-holding-plant.jpg" alt=""/>
-          </div>
+        <div class="grid-item-3">
+          <a class="resources" href="#">
+            <img src="images/hp-resources.png" alt="resources" class="img">
+            <span>RESOURCES</span>
+          </a>
         </div>
 
       </div>
+      <section class="grid-item-12 article-columns">
+        <div class="grid-item-3 article-column">
+          <div class="column-item">
+            <h2 class="section-title">
+              <a href="#"> SCIENCE,TECH,MATH </a> </h2>
+            <div class="block-list">
+              <a href="#" class="block-item">
+                <img src="images/lightning.jpg" class="img">
+              </a>
+              <div class="block-content">
+                <p class="block-kicker">Article</p>
+                <h2 class="first-block-title">
+                  <a href="#"> <span>What Is an Electric Field?</span> </a>
+                </h2>
+              </div>
+            </div>
+            <div class="block-list">
+              <div class="block-content">
+                <p class="block-kicker">Article</p>
+                <h2 class="block-title">
+                  <span>Parasocial Relationships: The Psychology of One-Sided
+                        Intimacy With Celebrities</span>
+                </h2>
+              </div>
+            </div>
+            <div class="block-list">
+              <div class="block-content">
+                <p class="block-kicker">Article</p>
+                <h2 class="block-title">
+                  <span>Surprising Facts About the Bald Eagle, Emblem of the U.S.</span>
+                </h2>
+              </div>
+            </div>
+            <a href="#" class="column-btn">
+              All Science, Tech, Math
+              <i class="fas fa-caret-right"></i> </a>
+          </div>
+        </div>
+        <div class="grid-item-3 article-column">
+          <div class="column-item">
+            <h2 class="section-title">
+              <a href="#"> HUMANITIES </a> </h2>
+            <div class="block-list">
+              <a href="#" class="block-item">
+                <img src="images/russian-president.jpg" class="img"> </a>
+              <div class="block-content">
+                <p class="block-kicker">Article</p>
+                <h2 class="first-block-title">
+                  <a href="#">
+                    <span>Vladimir Putin: From KGB Agent to Russian
+                          President</span> </a> </h2>
+              </div>
+            </div>
+            <div class="block-list">
+              <div class="block-content">
+                <p class="block-kicker">Article</p>
+                <h2 class="block-title">
+                  <a href="#">
+                    <span>Cherokee Nation v. Georgia: The Case That Predated the
+                    Trail of Tears</span> </a> </h2>
+              </div>
+            </div>
+            <div class="block-list">
+              <div class="block-content">
+                <p class="block-kicker">Article</p>
+                <h2 class="block-title">
+                  <a href="#">
+                    <span>Definitions of Defamation of Character, Libel, and
+                        Slander</span> </a> </h2>
+              </div>
+            </div>
+            <a href="#" class="column-btn">
+              All Humanities
+              <i class="fas fa-caret-right"></i> </a>
+          </div>
+        </div>
+        <div class="grid-item-3 article-column">
+          <div class="column-item">
+            <h2 class="section-title">
+              <a href="#"> ARTS,MUSIC,RECREATION </a> </h2>
+            <div class="block-list">
+              <a href="#" class="block-item">
+                <img src="images/joe-strummer.jpg" class="img"> </a>
+              <div class="block-content">
+                <p class="block-kicker">Article</p>
+                <h2 class="first-block-title">
+                  <a href="#">
+                    <span>Life of Joe Strummer, The Clash's Frontman</span> </a> </h2>
+              </div>
+            </div>
+            <div class="block-list">
+              <div class="block-content">
+                <p class="block-kicker">Article</p>
+                <h2 class="block-title">
+                  <a href="#">
+                    <span>The Feminist Photography of Cindy Sherman</span> </a> </h2>
+              </div>
+            </div>
+            <div class="block-list">
+              <div class="block-content">
+                <p class="block-kicker">Article</p>
+                <h2 class="block-title">
+                  <a href="#">
+                    <span>18 Funny Baby Pictures That Perfectly Sum
+                          Up Parenthood</span> </a> </h2>
+              </div>
+            </div>
+            <a href="#" class="column-btn">
+              All Arts, Music, Recreation
+              <i class="fas fa-caret-right"></i> </a>
+          </div>
+        </div>
+        <div class="grid-item-3 article-column">
+          <div class="column-item">
+            <h2 class="section-title">
+              <a href="#"> RESOURCES </a> </h2>
+            <div class="block-list">
+              <a href="#" class="block-item">
+                <img src="images/hand-holding-plant.jpg" class="img"> </a>
+              <div class="block-content">
+                <p class="block-kicker">Article</p>
+                <h2 class="first-block-title">
+                  <a href="#">
+                    <span>Introducing Kids to the Plant Life Cycle</span> </a>  </h2>
+              </div>
+            </div>
+            <div class="block-list">
+              <div class="block-content">
+                <p class="block-kicker">Article</p>
+                <h2 class="block-title">
+                  <a href="#">
+                    <span>Online Humanities Classes: Credit and Non-Credit Options</span> </a>  </h2>
+              </div>
+            </div>
+            <div class="block-list">
+              <div class="block-content">
+                <p class="block-kicker">Article</p>
+                <h2 class="block-title">
+                  <a href="#">
+                    <span>Introducing Kids to the Plant Life Cycle</span> </a>  </h2>
+              </div>
+            </div>
+            <a href="#" class="column-btn">
+              All Resources
+              <i class="fas fa-caret-right"></i> </a>
+          </div>
+        </div>
+      </section>
 
     </main>
+
+    <footer></footer>
+
   </body>
 </html>
