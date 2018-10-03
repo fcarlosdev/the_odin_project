@@ -22,6 +22,8 @@ a {
   text-decoration: none;
 }
 
+h2 { word-wrap: break-word; }
+
 .img {
   max-width: 100%;
   height: auto;
@@ -53,10 +55,11 @@ header.grid {
 }
 
 .button-menu {
-  display: inherit;
+  margin-left: 0;
   margin-right: 0;
-  justify-content: flex-end;
   max-width: 40px;
+  display: inherit;
+  justify-content: flex-end;
 }
 
 .button-menu i {
@@ -81,7 +84,7 @@ header.grid {
   font-family: 'Montserrat',sans-serif;
 }
 
-.logo-comp h2 span { color: #a79830; }
+.co-logo { color: #a79830; }
 
 .logo-comp h3 {
   color: #b9b9b9;
@@ -122,9 +125,7 @@ header.grid {
   font-weight: bold;
 }
 
-.search-icon {
-  display: none;
-}
+.search-icon { display: none; }
 
 /*************************************
 *         Main Section styles
@@ -151,9 +152,7 @@ main.grid {
   justify-content: space-between;
 }
 
-.nav-images a {
-  text-align: center;
-}
+.nav-images a { text-align: center; }
 
 .nav-images span { display: none; }
 
@@ -174,7 +173,6 @@ main.grid {
   padding: 0;
   display: flex;
   position: relative;
-  margin-bottom: 2rem;
 }
 
 .article-column {
@@ -186,9 +184,7 @@ main.grid {
   text-align: left;
 }
 
-.article-column .column-item {
-  margin: 0 .425rem;
-}
+.article-column .column-item {  margin: 0 .425rem; }
 
 .article-column .block-item img { object-fit: cover; }
 
@@ -222,9 +218,7 @@ main.grid {
   margin-bottom: 2rem;
 }
 
-.block-item img {
-  height: 167px;
-}
+.block-item img { height: 167px; }
 
 .block-content {
   padding: .8rem 0 1.2rem;
@@ -262,11 +256,11 @@ main.grid {
   bottom: .1rem;
   display: flex;
   font-weight: 900;
-  padding-top: .5rem;
-  padding-bottom: .2rem;
   position: absolute;
+  padding-top: .5rem;
   letter-spacing:.2px;
   font-size: .8125rem;
+  padding-bottom:.2rem;
   color: var(--black-color);
   text-transform: uppercase;
   border-top: 1px solid #E9E9E9;
@@ -281,6 +275,193 @@ main.grid {
   margin-left: .5rem;
   color: #DE2229;
 }
+
+.editors-pick {
+  padding: 1rem 1.7rem 4em;
+}
+
+.edt-pick-title { font-size: 1.5rem; }
+
+.edt-block {
+  display: flex;
+  padding-bottom: 2rem;
+  justify-content: flex-start;
+}
+
+.edt-media {
+  background-image: url("../images/emergingadulthood.jpg");
+  height: 300px;
+  max-width: 300px;
+  min-width: 300px;
+  border-radius: 50%;
+  padding-bottom: 2rem;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.edt-block-title {
+  font-size: 2.6rem;
+  text-align: left;
+  font-weight: 900;
+  padding-top: 3rem;
+  line-height: 1.1em;
+}
+
+.edt-block-title:hover,
+.block-title:hover {
+  color: #DE2229;
+}
+
+.block-exceprt {
+  text-align: left;
+  color: #828282;
+  font-weight: 400;
+  font-style: italic;
+  margin-top: .6rem;
+  display: block;
+  font-size: 1.25rem;
+}
+
+.editors-pick .block-content {
+  padding: 0;
+  border-bottom: 1px solid #ccc;
+}
+
+.block-content .block-title {
+  font-size: 1rem;
+}
+
+/*************************************
+*        Footer Sytles
+**************************************/
+footer.grid  {
+  color: #fff;
+  display: flex;
+  max-width: 100%;
+  background: #333;
+  flex-direction: column;
+  padding-left: calc(50% - 37rem);
+  padding-right: calc(50% - 37rem);
+  padding-bottom: 2rem;
+  margin-bottom: 6rem;
+}
+
+.logo {
+  margin-left: 0;
+  display: inherit;
+  text-align: left;
+  line-height: 40px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  justify-content: flex-start;
+}
+
+.logo h2 { font-size: 40px; }
+
+footer [class*='grid-item'] { text-align: left;}
+
+.footer-social-wrapper {
+  display: flex;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-social { flex-direction: column; }
+
+.footer-links {
+  display: flex;
+  font-weight: 900;
+  padding-left: 1rem;
+  padding-top: .425rem;
+  line-height: 1.25rem;
+}
+
+.footer-links .footer-link-item {
+  width: auto;
+  margin: 0 .2rem;
+  padding-bottom: 1rem;
+}
+
+.footer-link-item:hover { color: #a79830; }
+
+.footer-more-links {
+  display: flex;
+  justify-content: space-between;
+}
+
+.ft-mlnk-item {
+  display: block;
+  line-height: 1;
+  font-size: .875rem;
+  font-weight: 700;
+  padding: .625rem 0;
+}
+
+.newsletter {
+  width: 100%;
+  display: inherit;
+  flex-direction: column;
+}
+
+.newsletter label {
+  font-weight: 900;
+  font-size: 1.125rem;
+  line-height: 1.3rem;
+  margin-bottom: .625rem;
+}
+
+.newsletter input {
+  flex: 1;
+  height: 42px;
+  width: 100%;
+}
+
+.newsletter button {
+  border: none;
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 900;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  background: #DE2229;
+  text-transform: uppercase;
+}
+
+.social-block-bottom {
+  display: inherit;
+  align-items: center;
+  margin-top: 1.25rem;
+  justify-content: space-between;
+}
+
+.social-block {
+  margin: 0;
+  padding: 0;
+}
+
+.social-follow-title {
+  font-size: 1.125rem;
+  line-height: 1.3rem;
+  font-weight: 900;
+  color: #fff;
+  margin-bottom: .625rem;
+}
+
+.social-follow-list {
+  display: inherit;
+  list-style: none;
+  flex-direction: column;
+}
+
+.social-follow-list li {
+  display: inline-block;
+}
+
+.social-follow-list li img {
+  width: 36px;
+}
+
 
 /*************************************
 *          Media Queries styles
@@ -316,6 +497,12 @@ main.grid {
     padding-left: inherit;
   }
 
+  .edt-media {
+    height: 200px;
+    max-width: 200px;
+    min-width: 200px;
+  }
+
 }
 
 @media (max-width: 1024px) {
@@ -337,6 +524,20 @@ main.grid {
 
   .article-columns {
     display: block;
+  }
+
+  .edt-content,
+  .edt-block {
+    margin: 0;
+    padding: 0;
+  }
+
+  .edt-block-title {
+    font-size: 1.625rem;
+  }
+
+  .block-exceprt {
+    font-size: 1rem;
   }
 
 }
@@ -385,8 +586,8 @@ main.grid {
     width: 20%;
   }
 
-  .article-column .block-list img {
-    height: 27vw;
+  .edt-content {
+    min-width: 65%;
   }
 
 }
@@ -420,9 +621,23 @@ main.grid {
     width: 100%;
   }
 
+  .article-column .block-list img, {
+    width: 100%;
+    height: auto;
+  }
+
+  .social-block-links {
+    width: 100%;
+    justify-content: space-between;
+  }
+
   .article-column .block-list img {
     width: 100%;
     height: auto;
+  }
+
+  .footer-social-wrapper {
+    flex-direction: column;
   }
 
 }
@@ -451,6 +666,11 @@ main.grid {
   .article-column .block-list img {
     width: 100%;
     height: auto;
+  }
+
+  .edt-block {
+    flex-direction: column;
+    justify-content: center;
   }
 
 }
