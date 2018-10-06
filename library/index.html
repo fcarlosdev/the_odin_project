@@ -11,18 +11,75 @@
       <h1>Library</h1>
     </header>
 
-    <div id="form-add-book">
-      <form class="form-fields">
-        <label id="lb-title" for="title">Title</label>
-        <input id="iTitle" type="text" name="title">
-        <label id ="lb-author" for="author">Author</label>
-        <input id="iAuthor" type="text" name="author">
-        <label for="pages">Pages</label>
-        <input id="iPages" type="text" name="pages">
-        <button id="save-book">SAVE BOOK</button>
-      </form>
-      <button id="new-book">NEW BOOK</button>
+    <div class="flx-btn add-wrapper">
+      <button id="new-book" class="btn btn-nb">NEW BOOK</button>
     </div>
+
+    <fieldset>
+      <legend>Add book to library</legend>
+      <form id="form-add-book">
+        <div class="form-row">
+
+          <div class="fields-cols">
+
+            <div class="frm-label">
+              <label id="lb-title" for="title">Title</label>
+            </div>
+            <div class="frm-input">
+              <input id="iTitle" type="text" name="title">
+            </div>
+
+          </div>
+
+          <div class="fields-cols">
+
+            <div class="frm-label">
+              <label id ="lb-author" for="author">Author</label>
+            </div>
+            <div class="frm-input">
+              <input id="iAuthor" type="text" name="author">
+            </div>
+
+          </div>
+
+          <div class="fields-cols">
+
+            <div class="frm-label">
+              <label for="pages">Pages</label>
+            </div>
+
+            <div class="frm-input">
+              <input id="iPages" type="text" name="pages">
+            </div>
+
+          </div>
+
+          <div class="fields-col-25">
+            <div class="frm-label">
+              <label for="read">Read</label>
+            </div>
+
+            <div class="frm-input">
+              <select name="read" id="sRead">
+                <option value="no">No</option>
+                <option value="yes">Yes</option>
+              </select>
+            </div>
+
+          </div>
+
+          <div class="fields-col-25 flx-btn">
+            <div>
+              <button id="save-book" class="btn">SAVE BOOK</button>
+            </div>
+            <div>
+              <button id="cancel-button" class="btn">CANCEL</button>
+            </div>
+          </div>
+
+        </div>
+      </form>
+    </fieldset>
 
     <table>
       <thead>
@@ -33,7 +90,7 @@
           <th>Read</th>
         </tr>
       </thead>
-      <tbody>        
+      <tbody>
       </tbody>
     </table>
 
