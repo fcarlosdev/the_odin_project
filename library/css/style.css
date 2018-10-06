@@ -1,0 +1,44 @@
+header {
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 10px;
+  border-bottom: 1px solid;
+}
+
+header h1 {
+  padding: 0;
+  margin: 0;
+}
+
+#form-add-book {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+form { display: none; }
+
+.form-display {
+  display: block;
+}
+
+table { width: 100%;}
+
+table, th, td {
+  border-collapse: collapse;
+}
+
+thead { background: #d8dacf; }
+
+th {
+  padding: 20px;
+  margin-left: 5px;
+  margin-right: 5px;
+  text-transform: uppercase;
+}
+
+th:nth-child(1n+1) { width: 35%; }
+
+th:nth-child(3),
+th:last-child {
+  width: 10%;
+}
