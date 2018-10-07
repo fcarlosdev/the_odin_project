@@ -16,10 +16,6 @@ fieldset {
   display: none;
 }
 
-/* #form-add-book {
-  display: none;
-} */
-
 label { font-weight: bold; }
 input, select {
   padding: 8px;
@@ -107,16 +103,30 @@ th {
   text-transform: uppercase;
 }
 
-th:nth-child(1n+1) { width: 35%; }
-
-th:nth-child(3),
-th:last-child {
-  width: 10%;
+#th-title, #th-author {
+  width: 45%;
+  text-align: left;
 }
 
-th:nth-child(1),
-th:nth-child(2) { text-align: left;}
+#th-pages,
+#th-status {
+  width: 3%;
+}
 
-th:nth-child(4) {
+#th-remove {
+  width: 3%;
+}
+
+#th-status, #th-remove {
   text-align: center;
+}
+
+.btn-delete {
+  color: #fff;
+  border: none;
+  padding: 10px;
+  border-radius: 50%;
+  font-weight: bold;
+  cursor: pointer;
+  background: #f43f20;
 }
