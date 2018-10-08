@@ -84,7 +84,8 @@ function render() {
 
     let read = document.createElement("td");
     read.appendChild(btStatus);
-    applyStyle(read,"paddingLeft","20px");
+    applyStyle(read,"paddingLeft","10px");
+    applyStyle(read,"paddingLeft","10px");
     applyStyle(read,"textAlign","center");
 
     let btnRemove = createButton("X");
