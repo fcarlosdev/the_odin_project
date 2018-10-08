@@ -12,9 +12,12 @@ header h1 {
 }
 
 fieldset {
+  width: 82%;
+  display: none;
+  margin-left: auto;
+  margin-right: auto;
   margin-bottom: 10px;
   border: 1px solid #cacaca;
-  display: none;
 }
 
 label { font-weight: bold; }
@@ -27,6 +30,8 @@ select { background-color: #fff; }
 #iTitle { width: 90%; }
 #iAuthor { width: 96%; }
 #iPages {width: 90%;}
+
+#cancel-button { margin-left: .5rem; }
 
 .form-row {
   display: flex;
@@ -69,7 +74,7 @@ select { background-color: #fff; }
   cursor: pointer;
   font-weight: 900;
   padding-top: 1rem;
-  margin-right: .5rem;
+  margin-right: .1rem;
   padding-bottom: 1rem;
   background-color: #1779ba;
 }
