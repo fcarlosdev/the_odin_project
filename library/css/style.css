@@ -113,19 +113,15 @@ th {
   text-transform: uppercase;
 }
 
-#th-title, #th-author {
-  width: 45%;
-  text-align: left;
-}
+#th-title { width: 65%; }
 
-#th-pages,
-#th-status {
-  width: 3%;
-}
+#th-author { width: 25%; }
 
-#th-remove {
-  width: 3%;
-}
+#th-title, #th-author { text-align: left; }
+
+#th-pages, #th-status { width: 3%; }
+
+#th-remove { width: 3%; }
 
 #th-status, #th-remove {
   text-align: center;

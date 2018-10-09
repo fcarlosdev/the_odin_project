@@ -15,13 +15,12 @@ let bCancel   = document.getElementById("cancel-button");
 
 
 function Book(title, author, pages, read) {
-  this.id = bookId++;
-  this.title = title;
+  this.id     = bookId++;
+  this.title  = title;
   this.author = author;
-  this.pages = pages;
-  // this.read = (read === "yes") ? true : false;
-  this.read = read;
-  this.info = function() {
+  this.pages  = pages;
+  this.read   = read;
+  this.info   = function() {
     var isread = (read === "no") ? "not read yet" : "already read";
     return this.title + " by " + this.author + ", " + this.pages + " pages " +
       isread;
@@ -40,7 +39,7 @@ function render() {
     let book = myBooks[i];
     let row = document.createElement("tr");
     applyStyle(row,"borderBottom","1px solid #cacaca")
-    applyStyle(row,"height","50px");
+    applyStyle(row,"height","60px");
     row.id = (i+1);
 
     let title = document.createElement("td");
