@@ -1,0 +1,42 @@
+.container {
+  display: grid;
+  grid-template-columns: repeat(3, 150px);
+  grid-template-rows: repeat(3, 150px);
+  justify-content: center;
+  width: 50%;
+  height: 300px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.grid-item {
+  display: inherit;
+  justify-items: center;
+  align-items: center;
+  font-size: 100px;
+  border: 1px solid;
+}
+
+.item-one,
+.item-four,
+.item-seven {
+  border-left: none;
+}
+
+.item-one,
+.item-two,
+.item-three {
+  border-top: none;
+}
+
+.item-three,
+.item-six,
+.item-nine {
+  border-right: none;
+}
+
+.item-seven,
+.item-eight,
+.item-nine {
+  border-bottom: none;
+}
