@@ -38,40 +38,39 @@ var GameController = (function() {
 
 })();
 
-var playerX = PlayerFactory("Player X", "X");
-var player0 = PlayerFactory("Player 0", "0");
+GameController.registerPlayers(
+  [ PlayerFactory("Player X", "X"),
+    PlayerFactory("Player 0", "0") ]
+);
 
-GameController.registerPlayers([playerX, player0]);
 
+let gridItems = document.querySelectorAll('.grid-item');
 
-// let gridItems = document.querySelectorAll('.grid-item');
-//
-// gridItems.forEach(function(item){
-//
-//   item.addEventListener('click',function(e) {
-//     e.preventDefault();
-//     // this.textContent = (this.textContent == "X") ? "0" : "X";
-//
-//
-//     if (item.getAttribute("id") === "cell-one") {
-//       GameBoard.fillSpace(this.textContent, 0, 0);
-//     } else if (item.getAttribute("id") === "cell-two") {
-//       GameBoard.fillSpace(this.textContent, 0, 1);
-//     } else if (item.getAttribute("id") === "cell-three") {
-//       GameBoard.fillSpace(this.textContent, 0, 2);
-//     } else if (item.getAttribute("id") === "cell-four") {
-//       GameBoard.fillSpace(this.textContent, 1, 0);
-//     } else if (item.getAttribute("id") === "cell-five") {
-//       GameBoard.fillSpace(this.textContent, 1, 1);
-//     } else if (item.getAttribute("id") === "cell-six") {
-//       GameBoard.fillSpace(this.textContent, 1, 2);
-//     } else if (item.getAttribute("id") === "cell-seven") {
-//       GameBoard.fillSpace(this.textContent, 2, 0);
-//     } else if (item.getAttribute("id") === "cell-eight") {
-//       GameBoard.fillSpace(this.textContent, 2, 1);
-//     } else if (item.getAttribute("id") === "cell-nine") {
-//       GameBoard.fillSpace(this.textContent, 2, 2);
-//     }
-//   });
-//
-// })
+gridItems.forEach(function(item){
+
+  item.addEventListener('click',function(e) {
+    e.preventDefault();
+    this.textContent = (this.textContent == "X") ? "0" : "X";
+
+    if (item.getAttribute("id") === "cell-one") {
+      GameBoard.fillSpace(this.textContent, 0, 0);
+    } else if (item.getAttribute("id") === "cell-two") {
+      GameBoard.fillSpace(this.textContent, 0, 1);
+    } else if (item.getAttribute("id") === "cell-three") {
+      GameBoard.fillSpace(this.textContent, 0, 2);
+    } else if (item.getAttribute("id") === "cell-four") {
+      GameBoard.fillSpace(this.textContent, 1, 0);
+    } else if (item.getAttribute("id") === "cell-five") {
+      GameBoard.fillSpace(this.textContent, 1, 1);
+    } else if (item.getAttribute("id") === "cell-six") {
+      GameBoard.fillSpace(this.textContent, 1, 2);
+    } else if (item.getAttribute("id") === "cell-seven") {
+      GameBoard.fillSpace(this.textContent, 2, 0);
+    } else if (item.getAttribute("id") === "cell-eight") {
+      GameBoard.fillSpace(this.textContent, 2, 1);
+    } else if (item.getAttribute("id") === "cell-nine") {
+      GameBoard.fillSpace(this.textContent, 2, 2);
+    }
+  });
+
+})
