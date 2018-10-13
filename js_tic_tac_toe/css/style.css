@@ -1,12 +1,15 @@
-.container {
+/* Board styles */
+.board-container {
   display: grid;
-  grid-template-columns: repeat(3, 150px);
-  grid-template-rows: repeat(3, 150px);
+  grid-template-columns: repeat(3, 120px);
+  grid-template-rows: repeat(3, 120px);
   justify-content: center;
   width: 50%;
   height: 300px;
   margin-left: auto;
   margin-right: auto;
+  margin-top: 5%;
+  margin-bottom: 5rem;
 }
 
 .grid-item {
@@ -18,26 +21,76 @@
   cursor: pointer;
 }
 
-.item-one,
-.item-four,
-.item-seven {
-  border-left: none;
+/* Player options styles */
+.tc-container {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: flex-start;
 }
 
-.item-one,
-.item-two,
-.item-three {
-  border-top: none;
+.tictactoe  {
+  height: 200px;
+  margin-top: 10rem;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 2rem;
+  border: 1px solid;
+  text-align: center;
 }
 
-.item-three,
-.item-six,
-.item-nine {
-  border-right: none;
+.tictactoe a {
+  color: #fff;
+  padding: 10px;
+  font-size: 24px;
+  font-weight: bold;
+  border: 1px solid #fff;
+  text-decoration: none;
+  background-color: #23c0c6;
 }
 
-.item-seven,
-.item-eight,
-.item-nine {
-  border-bottom: none;
+.players-choose {
+  margin-bottom: 60px;
+}
+
+.players-choose h2 {
+  padding-top: 0;
+  margin-top: 0;
+}
+
+.btn {
+  color: #fff;
+  border: none;
+  width: 35px;
+  padding: 20px;
+  font-size: 20px;
+  cursor: pointer;
+  font-weight: bold;
+  background-color: #216b4a;
+}
+
+#bt-start-game {
+  width: 350px;
+}
+
+.container-buttons {
+  display: flex;
+  justify-content: space-between;
+}
+
+.btn-nwg {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.btn-nwg button {
+  width: 180px;
+}
+
+#bt-new-game {
+  background-color: #345678;
+}
+
+#bt-cancel-game {
+  background-color: #cf0909;
 }
