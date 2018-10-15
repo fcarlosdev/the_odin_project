@@ -39,7 +39,9 @@
   text-align: center;
 }
 
-.tictactoe a {
+.tictactoe a,
+#playerX,
+#player0 {
   color: #fff;
   padding: 10px;
   font-size: 24px;
