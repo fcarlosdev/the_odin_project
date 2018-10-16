@@ -10,7 +10,8 @@ var ctnBts         = document.querySelector('.container-buttons');
 var btnStartGame   = document.querySelector('#bt-start-game');
 var btnCancelGame  = document.querySelector('#bt-cancel-game');
 var btnNewGame     = document.querySelector('#bt-new-game');
-var gridItems = document.querySelectorAll('.grid-item');
+var gridItems      = document.querySelectorAll('.grid-item');
+var playerTurn     = document.querySelector('#player-turn');
 
 
 var GameBoard = (function() {
@@ -30,7 +31,7 @@ var GameBoard = (function() {
     let hasEmptySpace = false;
 
     for (var row = 0; row < board.length; row++) {
-      if (board[row].indexOf("")) {
+      if (board[row].indexOf("") > -1) {
         hasEmptySpace = true;
         break;
       }
@@ -38,8 +39,12 @@ var GameBoard = (function() {
     return hasEmptySpace;
   }
 
+  var clearBoard = function() {
+    board = [["","",""],["","",""],["","",""]];
+  }
+
   return {
-    fillSpace, boardFilled
+    fillSpace, boardFilled, clearBoard
   };
 })();
 
@@ -97,32 +102,69 @@ var DisplayController = (function () {
 
   }
 
+  var _clearGrid = function() {
+    gridItems.forEach(function(item) {
+      item.textContent = "";
+    });
+    GameBoard.clearBoard();
+  }
+
   var resetGameObjects = function() {
+    _clearGrid();
     board.style.display                = "none";
     ctnBts.style.display               = "none";
     btnStartGame.disabled              =  true;
     menuPlayers.style.display          = "block";
     btnNewGame.style.display           = "none";
+    playerTurn.style.display           = "none";
     btnStartGame.style.backgroundColor = "#ccc";
     changeBtnPlayerStatus(optPlayerX, optPlayer0, "unSelectAll");
   }
 
   var showBoard = function() {
-    board.style.display='grid';
-    menuPlayers.style.display='none';
-    ctnBts.style.display="flex";
+    board.style.display       = "grid";
+    menuPlayers.style.display = "none";
+    ctnBts.style.display      = "flex";
+    playerTurn.style.display  = "flex";
+  }
+
+  var showMessage = function(message) {
+    playerTurn.firstChild.textContent = message;
+  }
+
+  var fillSpot = function(spot, value) {
+      spot.textContent = currPlayer.mark;
+      if (spot.getAttribute("id") === "cell-one") {
+        GameBoard.fillSpace(spot.textContent, 0, 0);
+      } else if (spot.getAttribute("id") === "cell-two") {
+        GameBoard.fillSpace(spot.textContent, 0, 1);
+      } else if (spot.getAttribute("id") === "cell-three") {
+        GameBoard.fillSpace(spot.textContent, 0, 2);
+      } else if (spot.getAttribute("id") === "cell-four") {
+        GameBoard.fillSpace(spot.textContent, 1, 0);
+      } else if (spot.getAttribute("id") === "cell-five") {
+        GameBoard.fillSpace(spot.textContent, 1, 1);
+      } else if (spot.getAttribute("id") === "cell-six") {
+        GameBoard.fillSpace(spot.textContent, 1, 2);
+      } else if (spot.getAttribute("id") === "cell-seven") {
+        GameBoard.fillSpace(spot.textContent, 2, 0);
+      } else if (spot.getAttribute("id") === "cell-eight") {
+        GameBoard.fillSpace(spot.textContent, 2, 1);
+      } else if (spot.getAttribute("id") === "cell-nine") {
+        GameBoard.fillSpace(spot.textContent, 2, 2);
+      }
+
   }
 
 
   return {
     changeBtnPlayerStatus, enableStartButton, btnIsSelected, resetGameObjects,
-    showBoard
+    showBoard, showMessage, fillSpot
   }
 
 })();
 
 var Game = (function () {
-
 
     var _choosePlayers = function(playersOptions) {
 
@@ -138,6 +180,11 @@ var Game = (function () {
       }
       currPlayer = choosedPlayer;
     }
+
+    var changeCurrentPlayer = function() {
+      return (currPlayer === players[0]) ? players[1] : players[0];
+    }
+
 
     var _setUpBoardEvents = function() {
 
@@ -164,7 +211,12 @@ var Game = (function () {
           } else if (item.getAttribute("id") === "cell-nine") {
             GameBoard.fillSpace(this.textContent, 2, 2);
           }
-          currPlayer = (currPlayer === players[0]) ? players[1] : players[0];
+          currPlayer = changeCurrentPlayer();
+          if (!GameBoard.boardFilled()) {
+            DisplayController.showMessage("It's a draw");
+          } else {
+            DisplayController.showMessage("Your turn  " + currPlayer.name);
+          }
         });
       });
     }
@@ -195,40 +247,14 @@ var Game = (function () {
       btnCancelGame.addEventListener('click', function(e) {
         e.preventDefault();
         DisplayController.resetGameObjects();
+        _setUpBoardEvents();
       });
 
       btnStartGame.addEventListener('click',function(e) {
         e.preventDefault();
         DisplayController.showBoard();
+        DisplayController.showMessage();
         _setUpBoardEvents();
-
-        // gridItems.forEach(function(item){
-        //   item.addEventListener('click',function(e) {
-        //     e.preventDefault();
-        //     this.textContent = currPlayer.mark;
-        //     if (item.getAttribute("id") === "cell-one") {
-        //       GameBoard.fillSpace(this.textContent, 0, 0);
-        //     } else if (item.getAttribute("id") === "cell-two") {
-        //       GameBoard.fillSpace(this.textContent, 0, 1);
-        //     } else if (item.getAttribute("id") === "cell-three") {
-        //       GameBoard.fillSpace(this.textContent, 0, 2);
-        //     } else if (item.getAttribute("id") === "cell-four") {
-        //       GameBoard.fillSpace(this.textContent, 1, 0);
-        //     } else if (item.getAttribute("id") === "cell-five") {
-        //       GameBoard.fillSpace(this.textContent, 1, 1);
-        //     } else if (item.getAttribute("id") === "cell-six") {
-        //       GameBoard.fillSpace(this.textContent, 1, 2);
-        //     } else if (item.getAttribute("id") === "cell-seven") {
-        //       GameBoard.fillSpace(this.textContent, 2, 0);
-        //     } else if (item.getAttribute("id") === "cell-eight") {
-        //       GameBoard.fillSpace(this.textContent, 2, 1);
-        //     } else if (item.getAttribute("id") === "cell-nine") {
-        //       GameBoard.fillSpace(this.textContent, 2, 2);
-        //     }
-        //     currPlayer = (currPlayer === players[0]) ? players[1] : players[0];
-        //   });
-        // });
-
       });
 
     }
