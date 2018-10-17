@@ -16,7 +16,11 @@ var playerTurn     = document.querySelector('#player-turn');
 
 var GameBoard = (function() {
 
-  var board = [["","",""],["","",""],["","",""]];
+  var board;
+
+  var initializeBoard = function() {
+    board = [["","",""],["","",""],["","",""]];
+  }
 
   var fillSpace = function(mark, row, col) {
     board[row][col] = mark;
@@ -39,13 +43,14 @@ var GameBoard = (function() {
     return hasEmptySpace;
   }
 
-  var clearBoard = function() {
-    board = [["","",""],["","",""],["","",""]];
+  var getBoard = function() {
+    return board;
   }
 
   return {
-    fillSpace, boardFilled, clearBoard
+    fillSpace, boardFilled, initializeBoard, getBoard
   };
+
 })();
 
 const PlayerFactory = function(name, mark) {
@@ -106,7 +111,7 @@ var DisplayController = (function () {
     gridItems.forEach(function(item) {
       item.textContent = "";
     });
-    GameBoard.clearBoard();
+    GameBoard.initializeBoard();
   }
 
   var resetGameObjects = function() {
@@ -153,7 +158,6 @@ var DisplayController = (function () {
       } else if (spot.getAttribute("id") === "cell-nine") {
         GameBoard.fillSpace(spot.textContent, 2, 2);
       }
-
   }
 
 
@@ -185,37 +189,30 @@ var Game = (function () {
       return (currPlayer === players[0]) ? players[1] : players[0];
     }
 
+    var gameOver = function(player, board) {
+      if (!GameBoard.boardFilled()) {
+         DisplayController.showMessage("It's a draw");
+      } else if (_hasRowWithWinner(player, board) ||
+                 _hasColumnWithWinner(player, board) ||
+                 _hasDiagonalWithWinner(player, board)) {
+        alert("Game over");
+      } else {
+        DisplayController.showMessage("Your turn  " + currPlayer.name);
+      }
+
+    }
 
     var _setUpBoardEvents = function() {
 
       gridItems.forEach(function(item){
         item.addEventListener('click',function(e) {
           e.preventDefault();
-          this.textContent = currPlayer.mark;
-          if (item.getAttribute("id") === "cell-one") {
-            GameBoard.fillSpace(this.textContent, 0, 0);
-          } else if (item.getAttribute("id") === "cell-two") {
-            GameBoard.fillSpace(this.textContent, 0, 1);
-          } else if (item.getAttribute("id") === "cell-three") {
-            GameBoard.fillSpace(this.textContent, 0, 2);
-          } else if (item.getAttribute("id") === "cell-four") {
-            GameBoard.fillSpace(this.textContent, 1, 0);
-          } else if (item.getAttribute("id") === "cell-five") {
-            GameBoard.fillSpace(this.textContent, 1, 1);
-          } else if (item.getAttribute("id") === "cell-six") {
-            GameBoard.fillSpace(this.textContent, 1, 2);
-          } else if (item.getAttribute("id") === "cell-seven") {
-            GameBoard.fillSpace(this.textContent, 2, 0);
-          } else if (item.getAttribute("id") === "cell-eight") {
-            GameBoard.fillSpace(this.textContent, 2, 1);
-          } else if (item.getAttribute("id") === "cell-nine") {
-            GameBoard.fillSpace(this.textContent, 2, 2);
-          }
-          currPlayer = changeCurrentPlayer();
-          if (!GameBoard.boardFilled()) {
-            DisplayController.showMessage("It's a draw");
+          if (item.textContent == "") {
+            DisplayController.fillSpot(item,currPlayer.mark);
+            gameOver(currPlayer,GameBoard.getBoard());
+            currPlayer = changeCurrentPlayer();
           } else {
-            DisplayController.showMessage("Your turn  " + currPlayer.name);
+            return;
           }
         });
       });
@@ -225,6 +222,7 @@ var Game = (function () {
 
       players = [PlayerFactory("Player X", "X"),
                  PlayerFactory("Player 0","0")];
+      GameBoard.initializeBoard();
 
       DisplayController.resetGameObjects();
 
@@ -253,12 +251,49 @@ var Game = (function () {
       btnStartGame.addEventListener('click',function(e) {
         e.preventDefault();
         DisplayController.showBoard();
-        DisplayController.showMessage();
+        DisplayController.showMessage("Your turn  " + currPlayer.name);
         _setUpBoardEvents();
       });
 
     }
 
+    var _hasRowWithWinner = function(player, board) {
+      let result = false;
+      for (var i = 0; (i < 3 && result == false); i++) {
+        result = board[i].every(function(value){
+          return value === player.mark;
+        });
+      }
+      return result;
+    }
+
+    var _hasColumnWithWinner = function(player, board) {
+
+      let result = false;
+      for(var col = 0; (col < 3 && result == false); col++) {
+        let columns = [];
+        for (var row = 0; (row < 3 && result == false); row++) {
+          columns.push(board[row][col]);
+        }
+        result = columns.every(function(value){
+          return value == player.mark;
+        });
+      }
+      return result;
+    }
+
+    var _hasDiagonalWithWinner = function(player, board) {
+      let result = [board[0][0],board[1][1],board[2][2]].every(function(value){
+            return value === player.mark;
+          });
+
+      if (result == false) {
+          result = [board[2][0],board[1][1],board[2][0]].every(function(value){
+            return value === player.mark;
+          });
+      }
+      return result;
+    }
 
     var startGame = function() {
       _loadGame();
@@ -272,10 +307,3 @@ var Game = (function () {
 
 
 Game.startGame();
-
-
-// document.querySelector('#bt-start-game').addEventListener('click',function() {
-//     document.querySelector('.board-container').style.display='grid';
-//     document.querySelector('.tictactoe').style.display='none';
-//     document.querySelector('.footer-board').style.display="flex";
-// })
