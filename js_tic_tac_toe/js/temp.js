@@ -18,24 +18,39 @@ const GameBoard = ( () => {
     board.push(cell);
   }
 
+  const _getCells = (cellsFilter) => {
+    return board.filter(cell => (cellsFilter.includes(cell.id)));
+  }
+
+  const _rowHasWinMove = (row) => {
+    return row.every(function(spot){
+        return (spot.value === currentPlayer.mark);
+    });
+  }
+
   const checkWinMove = () => {
 
-    let result = board.slice(0,3).every(function(value) {
-      return value === currentPlayer.mark;
-    });
-    if (result == false) {
-      result = board.slice(3,6).every(function(value) {
-        return value === currentPlayer.mark;
-      });
-    }
+    let foundWinMove = false;
 
-    if (result == false) {
-      result = board.slice(6,9).every(function(value) {
-        return value === currentPlayer.mark;
-      });
-    }
+    if (board.length >=3 ) {
 
-    return result;
+      let winMoves = [
+        _getCells(["#cell-one"  , "#cell-two"  , "#cell-three"]),
+        _getCells(["#cell-four" , "#cell-five" , "#cell-six"  ]),
+        _getCells(["#cell-seven", "#cell-eight", "#cell-nine" ]),
+        _getCells(["#cell-one"  , "#cell-four" , "#cell-seven"]),
+        _getCells(["#cell-two"  , "#cell-five" , "#cell-eight"]),
+        _getCells(["#cell-three", "#cell-six"  , "#cell-nine" ])
+      ];
+
+      for (let index = 0; (index < winMoves.length && !foundWinMove); index++) {
+        if (winMoves[index].length == 3) {
+          foundWinMove = _rowHasWinMove(winMoves[index]);
+        }
+      }
+
+    }
+    return foundWinMove;
 
   }
 
@@ -94,11 +109,11 @@ DisplayController.changeObjectVisibility("#board", "none");
 ["#cell-one","#cell-two","#cell-three","#cell-four","#cell-five","#cell-six",
  "#cell-seven","#cell-eight","#cell-nine"].forEach(function(cell){
 
-   DisplayController.registerObjectEvent(cell,"click",function() {
+   DisplayController.registerObjectEvent(cell,"click",function(e) {
      GameBoard.fillSpot(DisplayController.fillCell(cell,currentPlayer.mark));
-     DisplayController.changeCurrentPlayer(currentPlayer);
      if (GameBoard.checkWinMove()) {
        alert("You won!!!");
      }
+     DisplayController.changeCurrentPlayer(currentPlayer);
    })
  });

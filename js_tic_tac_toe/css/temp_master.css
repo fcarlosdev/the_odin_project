@@ -5,28 +5,28 @@
 }
 
 .row {
-  width: 30%;
+  width: 25rem;
   display: inherit;
   margin-left: auto;
   margin-right: auto;
 }
 
 .grid-item {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  border: 1px solid;
+  height: 7rem;
   width: 33.33%;
-  height: 10rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
   font-size: 100px;
   font-weight: 900;
+  border: 1px solid;
   font-family: arial, verdana, sans-serif;
 }
 
 .opt-players {
-  width: 25%;
-  margin-top: 15rem;
+  width: 25rem;
+  margin-top: 10rem;
   padding-bottom: 50px;
   margin-left: auto;
   margin-right: auto;
@@ -46,12 +46,13 @@
 }
 
 .buttons-game {
-  width: 20%;
+  /* width: 30%; */
+  width: 25rem;
   display: flex;
-  justify-content: space-between;
   margin-top: 20px;
   margin-left: auto;
   margin-right: auto;
+  justify-content: center;
 }
 
 button {
@@ -67,6 +68,9 @@ button {
 
 #btn-playerx { margin-right: 20px; }
 
-#btn-nw-game { background-color: #036b36; }
+#btn-nw-game {
+  margin-right: 5%;
+  background-color: #036b36;
+}
 
 #btn-reset-game { background-color: #d22e11; }
