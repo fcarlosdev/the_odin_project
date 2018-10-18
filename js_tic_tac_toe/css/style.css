@@ -1,112 +1,86 @@
-/* Board styles */
-.board-container {
-  display: grid;
-  grid-template-columns: repeat(3, 120px);
-  grid-template-rows: repeat(3, 120px);
-  justify-content: center;
-  width: 50%;
-  height: 300px;
+#board {
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.row {
+  width: 25rem;
+  display: inherit;
   margin-left: auto;
   margin-right: auto;
-  margin-top: 2%;
-  margin-bottom: 5rem;
 }
 
 .grid-item {
-  display: inherit;
-  justify-items: center;
-  align-items: center;
-  font-size: 100px;
-  border: 1px solid;
-  cursor: pointer;
-}
-
-/* Player options styles */
-.tc-container {
+  height: 7rem;
+  width: 33.33%;
   display: flex;
   align-items: center;
+  justify-content: center;
   flex-direction: column;
-  justify-content: flex-start;
+  font-size: 100px;
+  font-weight: 900;
+  border: 1px solid;
+  font-family: arial, verdana, sans-serif;
 }
 
-.tictactoe  {
-  height: 200px;
-  margin-top: 10rem;
+.opt-players {
+  width: 25rem;
+  margin-top: 7rem;
+  padding-bottom: 50px;
   margin-left: auto;
   margin-right: auto;
-  margin-bottom: 2rem;
-  border: 1px solid;
-  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #ccc;
+  box-shadow: 3px 3px #ccc;
 }
 
-.tictactoe a,
-#playerX,
-#player0 {
-  color: #fff;
-  padding: 10px;
-  font-size: 24px;
-  font-weight: bold;
-  border: 1px solid #fff;
-  text-decoration: none;
-  background-color: #23c0c6;
+.header {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
-.players-choose {
-  margin-bottom: 60px;
+.buttons-game {
+  width: 25rem;
+  display: flex;
+  margin-top: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  justify-content: center;
 }
 
-.players-choose h2 {
-  padding-top: 0;
-  margin-top: 0;
-}
-
-.btn {
+button {
   color: #fff;
   border: none;
-  width: 35px;
   padding: 20px;
   font-size: 20px;
   cursor: pointer;
   font-weight: bold;
-  background-color: #216b4a;
+  background-color: #03236b;
+  box-shadow: 2px 3px #ccc;
 }
 
-#bt-start-game {
-  width: 350px;
+#btn-playerx { margin-right: 20px; }
+
+#btn-nw-game {
+  margin-right: 5%;
+  background-color: #036b36;
 }
 
-.container-buttons {
+#btn-reset-game { background-color: #d22e11; }
+
+#message-game {
   display: flex;
-  justify-content: space-between;
-}
-
-.btn-nwg {
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.btn-nwg button {
-  width: 180px;
-}
-
-#bt-new-game {
-  background-color: #345678;
-}
-
-#bt-cancel-game {
-  background-color: #cf0909;
-}
-
-#player-turn {
-  width: 22rem;
-  height: 60px;
-  display: flex;
-  margin-top: 50px;
-  margin-left: auto;
-  margin-right: auto;
-  font-size: 30px;
-  font-weight: 900;
-  align-items: center;
   justify-content: center;
-  /* border: 1px solid; */
+  align-items: center;
+}
+
+#message {
+  font-size: 35px;
+  font-weight: 900;
 }

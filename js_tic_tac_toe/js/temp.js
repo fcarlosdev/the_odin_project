@@ -10,8 +10,8 @@ const GameBoard = ( () => {
 
   let board = [];
 
-  const getBoard = () => {
-    return board;
+  const initializeBoard = () => {
+    return board = [];
   }
 
   const fillSpot = (cell) => {
@@ -22,7 +22,7 @@ const GameBoard = ( () => {
     return board.filter(cell => (cellsFilter.includes(cell.id)));
   }
 
-  const _rowHasWinMove = (row) => {
+  const _hasWinMove = (row) => {
     return row.every(function(spot){
         return (spot.value === currentPlayer.mark);
     });
@@ -31,30 +31,31 @@ const GameBoard = ( () => {
   const checkWinMove = () => {
 
     let foundWinMove = false;
+    let winMoves = [
+      _getCells(["#cell-one"  , "#cell-two"  , "#cell-three"]),
+      _getCells(["#cell-four" , "#cell-five" , "#cell-six"  ]),
+      _getCells(["#cell-seven", "#cell-eight", "#cell-nine" ]),
+      _getCells(["#cell-one"  , "#cell-four" , "#cell-seven"]),
+      _getCells(["#cell-two"  , "#cell-five" , "#cell-eight"]),
+      _getCells(["#cell-three", "#cell-six"  , "#cell-nine" ]),
+      _getCells(["#cell-one", "#cell-five"  , "#cell-nine" ]),
+      _getCells(["#cell-three", "#cell-five"  , "#cell-seven" ])
+    ];
 
-    if (board.length >=3 ) {
-
-      let winMoves = [
-        _getCells(["#cell-one"  , "#cell-two"  , "#cell-three"]),
-        _getCells(["#cell-four" , "#cell-five" , "#cell-six"  ]),
-        _getCells(["#cell-seven", "#cell-eight", "#cell-nine" ]),
-        _getCells(["#cell-one"  , "#cell-four" , "#cell-seven"]),
-        _getCells(["#cell-two"  , "#cell-five" , "#cell-eight"]),
-        _getCells(["#cell-three", "#cell-six"  , "#cell-nine" ])
-      ];
-
-      for (let index = 0; (index < winMoves.length && !foundWinMove); index++) {
-        if (winMoves[index].length == 3) {
-          foundWinMove = _rowHasWinMove(winMoves[index]);
-        }
-      }
-
+    for (let index = 0; (index < winMoves.length && !foundWinMove); index++) {
+      foundWinMove = (winMoves[index].length == 3) ? _hasWinMove(winMoves[index])
+                                                   : foundWinMove;
     }
     return foundWinMove;
-
   }
 
-  return { getBoard, fillSpot, checkWinMove }
+  const checkDrawGame = () => {
+    return board.every(function(spot) {
+      return (board.length == 9 && spot.value != "");
+    });
+  }
+
+  return { initializeBoard, fillSpot, checkWinMove, checkDrawGame }
 
 })();
 
@@ -82,7 +83,7 @@ const DisplayController = (() => {
   }
 
   const selectPlayer =(type) => {
-    playerSelected = (type == "x") ? players[0] : players[1];
+    playerSelected = (type.toUpperCase() == "X") ? players[0] : players[1];
     currentPlayer = playerSelected;
   }
 
@@ -90,19 +91,33 @@ const DisplayController = (() => {
     currentPlayer = (currentPlayer.mark == "X") ? players[1] : players[0];
   }
 
+  const clearGrid = () => {
+    ["#cell-one","#cell-two","#cell-three","#cell-four","#cell-five","#cell-six",
+     "#cell-seven","#cell-eight","#cell-nine"].forEach(function(cell){
+       DisplayController.fillCell(cell,"");
+     })
+  }
+
+  const showMessage = (text) => {
+    document.querySelector("#message").textContent = text;
+  }
+
   return { changeObjectVisibility, registerObjectEvent, fillCell,
-           changeCurrentPlayer, selectPlayer }
+           changeCurrentPlayer, selectPlayer, clearGrid, showMessage}
 
 })();
 
 
 DisplayController.changeObjectVisibility("#board", "none");
+DisplayController.changeObjectVisibility("#message-game", "none");
 
 ["#btn-playerx","#btn-player0"].forEach(function(btn){
   DisplayController.registerObjectEvent(btn,"click",function(){
     DisplayController.selectPlayer(btn[11]);
     DisplayController.changeObjectVisibility("#board", "flex");
     DisplayController.changeObjectVisibility(".opt-players", "none");
+    DisplayController.changeObjectVisibility("#message-game", "flex");
+    DisplayController.showMessage("Your turn " + currentPlayer.name);
   })
 });
 
@@ -112,8 +127,28 @@ DisplayController.changeObjectVisibility("#board", "none");
    DisplayController.registerObjectEvent(cell,"click",function(e) {
      GameBoard.fillSpot(DisplayController.fillCell(cell,currentPlayer.mark));
      if (GameBoard.checkWinMove()) {
-       alert("You won!!!");
+       DisplayController.showMessage(currentPlayer.name + " won the game!!!");
+       return;
+     } else if (GameBoard.checkDrawGame()) {
+       DisplayController.showMessage("It's a draw");
+       return;
      }
      DisplayController.changeCurrentPlayer(currentPlayer);
+     DisplayController.showMessage("Your turn " + currentPlayer.name);
    })
  });
+
+DisplayController.registerObjectEvent("#btn-nw-game","click",function(e){
+  GameBoard.initializeBoard();
+  DisplayController.clearGrid();
+  DisplayController.changeObjectVisibility("#board", "none");
+  DisplayController.changeObjectVisibility(".opt-players", "flex");
+  // DisplayController.showMessage("");
+  DisplayController.changeObjectVisibility("#message-game", "none");
+});
+
+DisplayController.registerObjectEvent("#btn-reset-game","click",function(e){
+  GameBoard.initializeBoard();
+  DisplayController.clearGrid();
+  DisplayController.selectPlayer(playerSelected.mark);
+});

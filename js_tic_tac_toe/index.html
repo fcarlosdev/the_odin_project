@@ -3,43 +3,47 @@
   <head>
     <meta charset="utf-8">
     <title>Tic Tac Toe JavaScript Project</title>
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/temp_master.css">
   </head>
   <body>
-    <div id="player-turn">
-      <span></span>
+
+    <div id="message-game" class="row">
+      <span id="message">Message here</span>
     </div>
-    <div class="tc-container">
-      <header class="tictactoe">
-        <h1>Tic Tac Toe game</h1>
-        <div class="players-choose">
-          <div> <h2>Choose a player</h2> </div>
-          <div>
-            <a href="#" id="px">Player X</a>
-            <a href="#" id="p0">Player 0</a>
-          </div>
-        </div>
-        <button class="btn" id="bt-start-game">START GAME</button>
-      </header>
-    </div>
-    <div class="board-container">
-      <div id="cell-one"   class="grid-item item-one"></div>
-      <div id="cell-two"   class="grid-item item-two"></div>
-      <div id="cell-three" class="grid-item item-three"></div>
-      <div id="cell-four"  class="grid-item item-four"></div>
-      <div id="cell-five"  class="grid-item item-five"></div>
-      <div id="cell-six"   class="grid-item item-six"></div>
-      <div id="cell-seven" class="grid-item item-seven"></div>
-      <div id="cell-eight" class="grid-item item-eight"></div>
-      <div id="cell-nine"  class="grid-item item-nine"></div>
-    </div>
-    <div class="container-buttons">
-      <div class="btn-nwg">
-        <button class="btn" id="bt-new-game">NEW GAME</button>
-        <button class="btn" id="bt-cancel-game">CANCEL</button>
+    <div class="opt-players">
+      <div class="header">
+        <h1>Tica Tac Toe Game</h1>
+        <h2>Choose a player</h2>
+      </div>
+      <div>
+        <button id="btn-playerx">Player X</button>
+        <button id="btn-player0">Player 0</button>
       </div>
     </div>
 
-   <script src="js/script.js"></script>
+    <div id="board">
+     <div class="row">
+       <div id="cell-one" class="grid-item"></div>
+       <div id="cell-two" class="grid-item"></div>
+       <div id="cell-three" class="grid-item"></div>
+     </div>
+     <div class="row">
+       <div id="cell-four" class="grid-item"></div>
+       <div id="cell-five" class="grid-item"></div>
+       <div id="cell-six" class="grid-item"></div>
+     </div>
+     <div class="row">
+       <div id="cell-seven" class="grid-item"></div>
+       <div id="cell-eight" class="grid-item"></div>
+       <div id="cell-nine" class="grid-item"></div>
+     </div>
+     <div class="buttons-game">
+       <button id="btn-nw-game">New Game</button>
+       <button id="btn-reset-game">Restart Game</button>
+     </div>
+
+   </div>
+
+   <script src="js/temp.js"></script>
   </body>
 </html>
