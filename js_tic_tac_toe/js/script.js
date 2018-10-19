@@ -92,63 +92,94 @@ const DisplayController = (() => {
   }
 
   const clearGrid = () => {
-    ["#cell-one","#cell-two","#cell-three","#cell-four","#cell-five","#cell-six",
-     "#cell-seven","#cell-eight","#cell-nine"].forEach(function(cell){
-       DisplayController.fillCell(cell,"");
-     })
+    document.querySelectorAll(".grid-item").forEach(function(cell){
+      DisplayController.fillCell("#" + cell.getAttribute("id"),"");
+    })
   }
 
   const showMessage = (text) => {
     document.querySelector("#message").textContent = text;
   }
 
+  const changeCellClick = (status) => {
+    document.querySelectorAll(".grid-item").forEach(function(cell) {
+      cell.style.pointerEvents = status;
+    });
+  }
+
   return { changeObjectVisibility, registerObjectEvent, fillCell,
-           changeCurrentPlayer, selectPlayer, clearGrid, showMessage}
+           changeCurrentPlayer, selectPlayer, clearGrid, showMessage,
+           changeCellClick }
 
 })();
 
+const Game = (() => {
 
-DisplayController.changeObjectVisibility("#board", "none");
-DisplayController.changeObjectVisibility("#message-game", "none");
+  const _addPlayerChoiceEvents = () => {
 
-["#btn-playerx","#btn-player0"].forEach(function(btn){
-  DisplayController.registerObjectEvent(btn,"click",function(){
-    DisplayController.selectPlayer(btn[11]);
-    DisplayController.changeObjectVisibility("#board", "flex");
-    DisplayController.changeObjectVisibility(".opt-players", "none");
-    DisplayController.changeObjectVisibility("#message-game", "flex");
-    DisplayController.showMessage("Your turn " + currentPlayer.name);
-  })
-});
+    ["#btn-playerx","#btn-player0"].forEach(function(btn){
+      DisplayController.registerObjectEvent(btn,"click",function(){
+        DisplayController.selectPlayer(btn[11]);
+        DisplayController.changeObjectVisibility("#board", "flex");
+        DisplayController.changeObjectVisibility(".opt-players", "none");
+        DisplayController.changeObjectVisibility("#message-game", "flex");
+        DisplayController.showMessage("Your turn " + currentPlayer.name);
+      })
+    });
 
-["#cell-one","#cell-two","#cell-three","#cell-four","#cell-five","#cell-six",
- "#cell-seven","#cell-eight","#cell-nine"].forEach(function(cell){
+  }
 
-   DisplayController.registerObjectEvent(cell,"click",function(e) {
-     GameBoard.fillSpot(DisplayController.fillCell(cell,currentPlayer.mark));
-     if (GameBoard.checkWinMove()) {
-       DisplayController.showMessage(currentPlayer.name + " won the game!!!");
-       return;
-     } else if (GameBoard.checkDrawGame()) {
-       DisplayController.showMessage("It's a draw");
-       return;
-     }
-     DisplayController.changeCurrentPlayer(currentPlayer);
-     DisplayController.showMessage("Your turn " + currentPlayer.name);
-   })
- });
+  const _addBoardCellsEvents = () =>  {
+    document.querySelectorAll(".grid-item").forEach(function(cell){
+      let idCell = ("#"+cell.getAttribute("id"));
+      DisplayController.registerObjectEvent(idCell,"click",function(e) {
+       GameBoard.fillSpot(DisplayController.fillCell(idCell,currentPlayer.mark));
+       if (GameBoard.checkWinMove()) {
+         DisplayController.showMessage(currentPlayer.name + " won the game!!!");
+         DisplayController.changeCellClick("none");
+         return;
+       } else if (GameBoard.checkDrawGame()) {
+         DisplayController.showMessage("It's a draw");
+         DisplayController.changeCellClick("none");
+         return;
+       }
+       DisplayController.changeCurrentPlayer(currentPlayer);
+       DisplayController.showMessage("Your turn " + currentPlayer.name);
+     });
+    });
+  }
 
-DisplayController.registerObjectEvent("#btn-nw-game","click",function(e){
-  GameBoard.initializeBoard();
-  DisplayController.clearGrid();
-  DisplayController.changeObjectVisibility("#board", "none");
-  DisplayController.changeObjectVisibility(".opt-players", "flex");
-  // DisplayController.showMessage("");
-  DisplayController.changeObjectVisibility("#message-game", "none");
-});
+  const _addGameButtonsControllersEvent = () => {
 
-DisplayController.registerObjectEvent("#btn-reset-game","click",function(e){
-  GameBoard.initializeBoard();
-  DisplayController.clearGrid();
-  DisplayController.selectPlayer(playerSelected.mark);
-});
+    DisplayController.registerObjectEvent("#btn-nw-game","click",function(e){
+      GameBoard.initializeBoard();
+      DisplayController.clearGrid();
+      DisplayController.changeCellClick("");
+      DisplayController.changeObjectVisibility("#board", "none");
+      DisplayController.changeObjectVisibility(".opt-players", "flex");
+      DisplayController.changeObjectVisibility("#message-game", "none");
+    });
+
+    DisplayController.registerObjectEvent("#btn-reset-game","click",function(e){
+      GameBoard.initializeBoard();
+      DisplayController.clearGrid();
+      DisplayController.changeCellClick("");
+      DisplayController.selectPlayer(playerSelected.mark);
+      DisplayController.showMessage("Your turn " + playerSelected.name);
+    });
+
+  }
+
+  const startGame = () => {
+    _addPlayerChoiceEvents();
+    _addBoardCellsEvents();
+    _addGameButtonsControllersEvent()
+    DisplayController.changeObjectVisibility("#board", "none");
+    DisplayController.changeObjectVisibility("#message-game", "none");
+  }
+
+  return {startGame}
+
+})();
+
+Game.startGame();
