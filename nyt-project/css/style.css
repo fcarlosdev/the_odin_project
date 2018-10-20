@@ -16,7 +16,9 @@ a {
   width: 100%;
   height: 43px;
   padding: 4px 0 2px;
-  display: inline-block;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   border-bottom: 1px solid #e2e2e2;
   font-family: "nyt-franklin",helvetica,arial,sans-serif;
 }
@@ -41,7 +43,7 @@ a {
 
 #section-title {
   margin-left: 20px;
-  font-size: 12px;
+  font-size: 16px;
   margin-top: 16px;
   letter-spacing: 0.05em;
   vertical-align: baseline;
@@ -65,7 +67,6 @@ a {
 
 #buttons-container {
   margin-top: 9px;
-  margin-left: 80px;
   display: inline-block;
 }
 
@@ -96,8 +97,15 @@ a {
 
 #main-container h1 {
   width: 385px;
-  margin-left: 380px;
-  text-align: left;
+  margin-left: 150px;
+  /* text-align: left; */
+}
+
+#story {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 
 #main-container h1 span {
@@ -112,12 +120,15 @@ a {
 figure {
   font-size: 13px;
   text-align: left;
-  margin-left: 190px;
 }
 
 figure img {
   width: 893px;
   height: 502px;
+}
+
+figcaption {
+  width: 90%;
 }
 
 figcaption span {
@@ -600,4 +611,24 @@ svg {
 #subscribe-ul-3 {
   padding-top: 5px;
   border-top: 1px solid rgb(226, 226, 226);
+}
+
+@media screen and (max-width: 1125px) {
+  #logo-container {
+    width: 45%;
+  }
+}
+
+@media screen and (max-width: 929px) {
+  #section-title {
+    display: none;
+  }
+  #menu-bar {
+    justify-content: space-around;
+  }
+
+  figure img {
+    width: 90%;
+    height: 50%;
+  }
 }
