@@ -128,9 +128,12 @@ th {
 }
 
 .btn-delete {
+  display: block;
   color: #fff;
   border: none;
+  height: 40px;
   padding: 10px;
+  width: 40px;
   border-radius: 50%;
   font-weight: bold;
   cursor: pointer;

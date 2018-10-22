@@ -13,14 +13,16 @@ let bNewBook  = document.getElementById("new-book");
 let bSaveBook = document.getElementById("save-book");
 let bCancel   = document.getElementById("cancel-button");
 
+class Book {
+  constructor(title, author, pages, read) {
+    this.id     = bookId++;
+    this.title  = title;
+    this.author = author;
+    this.pages  = pages;
+    this.read   = read;
+  }
 
-function Book(title, author, pages, read) {
-  this.id     = bookId++;
-  this.title  = title;
-  this.author = author;
-  this.pages  = pages;
-  this.read   = read;
-  this.info   = function() {
+  info() {
     var isread = (read === "no") ? "not read yet" : "already read";
     return this.title + " by " + this.author + ", " + this.pages + " pages " +
       isread;
@@ -69,7 +71,6 @@ function render() {
     applyStyle(btStatus,"width","80px");
 
     btStatus.addEventListener('click',function(e) {
-      // let book = myLibrary[parseInt(this.getAttribute("book"))];
       let book = findBook(parseInt(this.getAttribute("book")));
       e.preventDefault;
       if (this.innerText === "Not Read") {
