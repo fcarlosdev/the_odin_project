@@ -1,14 +1,47 @@
 * {
   margin: 0;
   padding: 0;
+  text-decoration: none;
 }
 
 #banner {
+  margin: 0;
+  padding: 0;
+  height: 300px;
   background-image: url('./images/beef-food.jpg');
+  background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  background-size: cover;
-  height: 300px;
-  padding: 0;
-  margin: 0;
+}
+
+.menu {
+  color: #fff;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  background-color: #660408;
+  justify-content: center;
+}
+
+.menu-item {
+  height: 50px;
+  display: flex;
+  line-height: 50px;
+  width: calc(100% / 3);
+  justify-content: center;
+  font-size: 30px;
+  font-weight: 600;
+  font-family: verdana, sans-serif;
+}
+
+.menu-item:first-of-type {
+  cursor: pointer;
+}
+
+.menu-item a {
+  color: #fff;
+}
+
+.activate {
+  background-color: #ac1010;
 }
