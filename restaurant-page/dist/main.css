@@ -1,7 +1,6 @@
-@import url('https://fonts.googleapis.com/css?family=Kanit');
-@import url('https://fonts.googleapis.com/css?family=Pacifico');
-@import url('https://fonts.googleapis.com/css?family=ABeeZee');
-
+@import url(https://fonts.googleapis.com/css?family=Kanit);
+@import url(https://fonts.googleapis.com/css?family=Pacifico);
+@import url(https://fonts.googleapis.com/css?family=ABeeZee);
 * {
   margin: 0;
   padding: 0;
@@ -11,7 +10,7 @@
 body { background-color: #f7f4f4; }
 
 #banner {
-  background-image: url('../images/beef-food.jpg');
+  background-image: url(89c372f02b02ada7ee0e29d426017188.jpg);
   margin: 0;
   padding: 0;
   height: 300px;
@@ -88,3 +87,4 @@ body { background-color: #f7f4f4; }
   text-align: justify;
   font-family: 'ABeeZee', sans-serif;
 }
+
