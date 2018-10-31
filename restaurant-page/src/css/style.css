@@ -8,12 +8,10 @@
   text-decoration: none;
 }
 
-body {
-  background-color: #f7f4f4;
-}
+body { background-color: #f7f4f4; }
 
 #banner {
-  background-image: url('./images/beef-food.jpg');
+  background-image: url('../images/beef-food.jpg');
   margin: 0;
   padding: 0;
   height: 300px;
@@ -72,7 +70,7 @@ body {
 }
 
 .service-type {
-  width: calc(50% / 3);
+  width: calc(60% / 3);
   margin-left: 4rem;
   margin-right: 4rem;
   display: flex;

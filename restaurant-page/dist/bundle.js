@@ -86,14 +86,14 @@
 /************************************************************************/
 /******/ ({
 
-/***/ "./node_modules/css-loader/index.js!./src/style.css":
-/*!*************************************************!*\
-  !*** ./node_modules/css-loader!./src/style.css ***!
-  \*************************************************/
+/***/ "./node_modules/css-loader/index.js!./src/css/style.css":
+/*!*****************************************************!*\
+  !*** ./node_modules/css-loader!./src/css/style.css ***!
+  \*****************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("var escape = __webpack_require__(/*! ../node_modules/css-loader/lib/url/escape.js */ \"./node_modules/css-loader/lib/url/escape.js\");\nexports = module.exports = __webpack_require__(/*! ../node_modules/css-loader/lib/css-base.js */ \"./node_modules/css-loader/lib/css-base.js\")(false);\n// imports\nexports.push([module.i, \"@import url(https://fonts.googleapis.com/css?family=Kanit);\", \"\"]);\nexports.push([module.i, \"@import url(https://fonts.googleapis.com/css?family=Pacifico);\", \"\"]);\nexports.push([module.i, \"@import url(https://fonts.googleapis.com/css?family=ABeeZee);\", \"\"]);\n\n// module\nexports.push([module.i, \"* {\\n  margin: 0;\\n  padding: 0;\\n  text-decoration: none;\\n}\\n\\nbody {\\n  background-color: #f7f4f4;\\n}\\n\\n#banner {\\n  background-image: url(\" + escape(__webpack_require__(/*! ./images/beef-food.jpg */ \"./src/images/beef-food.jpg\")) + \");\\n  margin: 0;\\n  padding: 0;\\n  height: 300px;\\n  background-size: cover;\\n  background-position: center;\\n  background-repeat: no-repeat;\\n}\\n\\n.centralize {\\n  display: flex;\\n  align-items: center;\\n  justify-content: center;\\n}\\n\\n#banner .header {\\n  color: #fff;\\n  font-weight: 900;\\n  font-size: 40px;\\n  text-shadow: 1px 2px #333;\\n  font-family: 'Kanit', sans-serif;\\n}\\n\\n.menu {\\n  color: #fff;\\n  height: 50px;\\n  display: flex;\\n  align-items: center;\\n  justify-content: center;\\n  background-color: #660408;\\n}\\n\\n.menu-item {\\n  height: 50px;\\n  display: flex;\\n  font-size: 30px;\\n  cursor: pointer;\\n  font-weight: 600;\\n  line-height: 50px;\\n  align-items: center;\\n  width: calc(100% / 3);\\n  justify-content: center;\\n  font-family: verdana, sans-serif;\\n}\\n\\n.menu-item a { color: #fff; }\\n\\n.activate { background-color: #ac1010; }\\n\\n.headeline {\\n  display: flex;\\n  font-size: 20px;\\n  padding-top: 5rem;\\n  align-items: flex-start;\\n  justify-content: center;\\n  font-family: sans-serif;\\n}\\n\\n.service-type {\\n  width: calc(50% / 3);\\n  margin-left: 4rem;\\n  margin-right: 4rem;\\n  display: flex;\\n  flex-direction: column;\\n}\\n\\n.service-type h2 {\\n  font-size: 35px;\\n  margin-left: auto;\\n  margin-right: auto;\\n  font-family: 'Pacifico', cursive;\\n}\\n\\n.service-type p {\\n  text-align: justify;\\n  font-family: 'ABeeZee', sans-serif;\\n}\\n\", \"\"]);\n\n// exports\n\n\n//# sourceURL=webpack:///./src/style.css?./node_modules/css-loader");
+eval("var escape = __webpack_require__(/*! ../../node_modules/css-loader/lib/url/escape.js */ \"./node_modules/css-loader/lib/url/escape.js\");\nexports = module.exports = __webpack_require__(/*! ../../node_modules/css-loader/lib/css-base.js */ \"./node_modules/css-loader/lib/css-base.js\")(false);\n// imports\nexports.push([module.i, \"@import url(https://fonts.googleapis.com/css?family=Kanit);\", \"\"]);\nexports.push([module.i, \"@import url(https://fonts.googleapis.com/css?family=Pacifico);\", \"\"]);\nexports.push([module.i, \"@import url(https://fonts.googleapis.com/css?family=ABeeZee);\", \"\"]);\n\n// module\nexports.push([module.i, \"* {\\n  margin: 0;\\n  padding: 0;\\n  text-decoration: none;\\n}\\n\\nbody { background-color: #f7f4f4; }\\n\\n#banner {\\n  background-image: url(\" + escape(__webpack_require__(/*! ../images/beef-food.jpg */ \"./src/images/beef-food.jpg\")) + \");\\n  margin: 0;\\n  padding: 0;\\n  height: 300px;\\n  background-size: cover;\\n  background-position: center;\\n  background-repeat: no-repeat;\\n}\\n\\n.centralize {\\n  display: flex;\\n  align-items: center;\\n  justify-content: center;\\n}\\n\\n#banner .header {\\n  color: #fff;\\n  font-weight: 900;\\n  font-size: 40px;\\n  text-shadow: 1px 2px #333;\\n  font-family: 'Kanit', sans-serif;\\n}\\n\\n.menu {\\n  color: #fff;\\n  height: 50px;\\n  display: flex;\\n  align-items: center;\\n  justify-content: center;\\n  background-color: #660408;\\n}\\n\\n.menu-item {\\n  height: 50px;\\n  display: flex;\\n  font-size: 30px;\\n  cursor: pointer;\\n  font-weight: 600;\\n  line-height: 50px;\\n  align-items: center;\\n  width: calc(100% / 3);\\n  justify-content: center;\\n  font-family: verdana, sans-serif;\\n}\\n\\n.menu-item a { color: #fff; }\\n\\n.activate { background-color: #ac1010; }\\n\\n.headeline {\\n  display: flex;\\n  font-size: 20px;\\n  padding-top: 5rem;\\n  align-items: flex-start;\\n  justify-content: center;\\n  font-family: sans-serif;\\n}\\n\\n.service-type {\\n  width: calc(60% / 3);\\n  margin-left: 4rem;\\n  margin-right: 4rem;\\n  display: flex;\\n  flex-direction: column;\\n}\\n\\n.service-type h2 {\\n  font-size: 35px;\\n  margin-left: auto;\\n  margin-right: auto;\\n  font-family: 'Pacifico', cursive;\\n}\\n\\n.service-type p {\\n  text-align: justify;\\n  font-family: 'ABeeZee', sans-serif;\\n}\\n\", \"\"]);\n\n// exports\n\n\n//# sourceURL=webpack:///./src/css/style.css?./node_modules/css-loader");
 
 /***/ }),
 
@@ -141,6 +141,17 @@ eval("\n/**\n * When source maps are enabled, `style-loader` uses a link element
 
 /***/ }),
 
+/***/ "./src/css/style.css":
+/*!***************************!*\
+  !*** ./src/css/style.css ***!
+  \***************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("\nvar content = __webpack_require__(/*! !../../node_modules/css-loader!./style.css */ \"./node_modules/css-loader/index.js!./src/css/style.css\");\n\nif(typeof content === 'string') content = [[module.i, content, '']];\n\nvar transform;\nvar insertInto;\n\n\n\nvar options = {\"hmr\":true}\n\noptions.transform = transform\noptions.insertInto = undefined;\n\nvar update = __webpack_require__(/*! ../../node_modules/style-loader/lib/addStyles.js */ \"./node_modules/style-loader/lib/addStyles.js\")(content, options);\n\nif(content.locals) module.exports = content.locals;\n\nif(false) {}\n\n//# sourceURL=webpack:///./src/css/style.css?");
+
+/***/ }),
+
 /***/ "./src/images/beef-food.jpg":
 /*!**********************************!*\
   !*** ./src/images/beef-food.jpg ***!
@@ -160,18 +171,7 @@ eval("module.exports = __webpack_require__.p + \"89c372f02b02ada7ee0e29d42601718
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _style_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./style.css */ \"./src/style.css\");\n/* harmony import */ var _style_css__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_style_css__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _images_beef_food_jpg__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./images/beef-food.jpg */ \"./src/images/beef-food.jpg\");\n/* harmony import */ var _images_beef_food_jpg__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_images_beef_food_jpg__WEBPACK_IMPORTED_MODULE_1__);\n\n\n\n\n//# sourceURL=webpack:///./src/index.js?");
-
-/***/ }),
-
-/***/ "./src/style.css":
-/*!***********************!*\
-  !*** ./src/style.css ***!
-  \***********************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-eval("\nvar content = __webpack_require__(/*! !../node_modules/css-loader!./style.css */ \"./node_modules/css-loader/index.js!./src/style.css\");\n\nif(typeof content === 'string') content = [[module.i, content, '']];\n\nvar transform;\nvar insertInto;\n\n\n\nvar options = {\"hmr\":true}\n\noptions.transform = transform\noptions.insertInto = undefined;\n\nvar update = __webpack_require__(/*! ../node_modules/style-loader/lib/addStyles.js */ \"./node_modules/style-loader/lib/addStyles.js\")(content, options);\n\nif(content.locals) module.exports = content.locals;\n\nif(false) {}\n\n//# sourceURL=webpack:///./src/style.css?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _css_style_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./css/style.css */ \"./src/css/style.css\");\n/* harmony import */ var _css_style_css__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_css_style_css__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _images_beef_food_jpg__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./images/beef-food.jpg */ \"./src/images/beef-food.jpg\");\n/* harmony import */ var _images_beef_food_jpg__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_images_beef_food_jpg__WEBPACK_IMPORTED_MODULE_1__);\n\n\n\n\n//# sourceURL=webpack:///./src/index.js?");
 
 /***/ })
 
