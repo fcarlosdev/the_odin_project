@@ -10,7 +10,7 @@
 body { background-color: #f7f4f4; }
 
 #banner {
-  background-image: url(89c372f02b02ada7ee0e29d426017188.jpg);
+  background-image: url(images/beef_food.jpeg); 
   margin: 0;
   padding: 0;
   height: 300px;
@@ -89,7 +89,74 @@ body { background-color: #f7f4f4; }
 }
 
 /* Foods Menu styles. */
-.foods ul {
-  list-style: none;
+/* .foods {
+  width: 80%;
+  display: flex;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  border-top: 1px solid #ccc;
+  justify-content: space-around;
+}
+
+.foods img {
+  width: 15rem;
+  height: 15rem;
+  border-radius: 50%;
+}
+
+.section-title {
+  display: flex;
+  align-items: center;
+  padding-bottom: 2rem;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.food-details {
+  padding-top: 2rem;
+} */
+
+.foods {
+  width: 80%;
+  display: flex;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  padding-bottom: 2rem;
+  border-top: 1px solid #ccc;
+  justify-content: space-around;
+}
+
+.foods img {
+  width: 15rem;
+  height: 15rem;
+  border-radius: 50%;
+}
+
+.section-title {
+  display: flex;
+  align-items: center;
+  padding-bottom: 2rem;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.food-details {
+  cursor: pointer;
+  padding-top: 1rem;
+  padding-bottom: .2rem;
+}
+
+.food-details img:hover {
+  transform:scale(1.1);
+}
+
+.food-details h2 {
+  padding-bottom: 1rem;
+}
+
+#sec-menu {
+  display: block;
 }
 

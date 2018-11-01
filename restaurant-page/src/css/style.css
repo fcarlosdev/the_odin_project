@@ -11,7 +11,7 @@
 body { background-color: #f7f4f4; }
 
 #banner {
-  background-image: url('../images/beef-food.jpg');
+  background-image: url('../images/beef_food.jpeg'); 
   margin: 0;
   padding: 0;
   height: 300px;
@@ -90,6 +90,30 @@ body { background-color: #f7f4f4; }
 }
 
 /* Foods Menu styles. */
-.foods ul {
-  list-style: none;
+/* .foods {
+  width: 80%;
+  display: flex;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  border-top: 1px solid #ccc;
+  justify-content: space-around;
 }
+
+.foods img {
+  width: 15rem;
+  height: 15rem;
+  border-radius: 50%;
+}
+
+.section-title {
+  display: flex;
+  align-items: center;
+  padding-bottom: 2rem;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.food-details {
+  padding-top: 2rem;
+} */
