@@ -88,3 +88,8 @@ body { background-color: #f7f4f4; }
   font-family: 'ABeeZee', sans-serif;
 }
 
+/* Foods Menu styles. */
+.foods ul {
+  list-style: none;
+}
+

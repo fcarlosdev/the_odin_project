@@ -10,9 +10,9 @@ const loadPage = (mainContent) => {
   const bannerArea = UTILITY.newElement("div","",{"id": "banner"},["centralize"]);
   bannerArea.appendChild(header);
 
-  const aboutItemBar = UTILITY.newElement("div","ABOUT",[],["menu-item"]);
-  const menuItemBar = UTILITY.newElement("div","MENU",[],["menu-item"]);
-  const contactItemBar = UTILITY.newElement("div","CONTACT",[],["menu-item"]);
+  const aboutItemBar = UTILITY.newElement("div","ABOUT",{"id": "mnAbout"},["menu-item"]);
+  const menuItemBar = UTILITY.newElement("div","MENU",{"id": "mnMenu"},["menu-item"]);
+  const contactItemBar = UTILITY.newElement("div","CONTACT",{"id": "mnContact"},["menu-item"]);
 
   const tabsBar = UTILITY.newElement("div","",[],["menu"]);
   tabsBar.appendChild(aboutItemBar);

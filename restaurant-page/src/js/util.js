@@ -18,6 +18,6 @@ const newElement = (type, value,attributes, classes) => {
   }
 
   return element;
-}
+};
 
 export { newElement };

@@ -14,7 +14,6 @@
   "author": "Francisco Carlos",
   "license": "ISC",
   "devDependencies": {
-    "clean-webpack-plugin": "^0.1.19",
     "css-loader": "^1.0.0",
     "file-loader": "^2.0.0",
     "mini-css-extract-plugin": "^0.4.4",
