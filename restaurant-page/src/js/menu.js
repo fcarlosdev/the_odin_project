@@ -22,53 +22,18 @@ const getImage = (imageType) => {
   return images[imageType];
 };
 
-const getText = (fromType) => {
-  const listOfTexts = {
-    "german-food"    : UTILITY.newElement("h2","German",[],[]),
-    "italian-food"   : UTILITY.newElement("h2","Italian",[],[]),
-    "french-food"    : UTILITY.newElement("h2","French",[],[]),
-    "mexican-food"   : UTILITY.newElement("h2","Mexican",[],[]),
-    "brazilian-food" : UTILITY.newElement("h2","Brazilian",[],[]),
-    "chinese-food"   : UTILITY.newElement("h2","Chinese",[],[]),
-    "japanese-food"  : UTILITY.newElement("h2","Japanese",[],[]),
-    "spanish-food"   : UTILITY.newElement("h2","Spanish",[],[]),
-    "german-drink"   : UTILITY.newElement("h2","German",[],[]),
-    "italian-drink"  : UTILITY.newElement("h2","Italian",[],[]),
-    "french-drink"   : UTILITY.newElement("h2","French",[],[]),
-    "mexican-drink"  : UTILITY.newElement("h2","Mexican",[],[]),
-    "brazilian-drink": UTILITY.newElement("h2","Brazilian",[],[]),
-    "chinese-drink"  : UTILITY.newElement("h2","Chinese",[],[]),
-    "japanese-drink" : UTILITY.newElement("h2","Japanese",[],[]),
-    "spanish-drink"  : UTILITY.newElement("h2","Spanish",[],[])
-  }
-  return listOfTexts[fromType];
-};
+const createH2Title = (content,attributes,styles) => {
+  return UTILITY.newElement("h2",content,attributes,styles);
+}
 
-const getLinkImage = (linkType) => {
-  const linkImages = {
-    "german-food"    : UTILITY.newElement("a","",{"href":"#"},[]),
-    "italian-food"   : UTILITY.newElement("a","",{"href":"#"},[]),
-    "french-food"    : UTILITY.newElement("a","",{"href":"#"},[]),
-    "mexican-food"   : UTILITY.newElement("a","",{"href":"#"},[]),
-    "brazilian-food" : UTILITY.newElement("a","",{"href":"#"},[]),
-    "chinese-food"   : UTILITY.newElement("a","",{"href":"#"},[]),
-    "japanese-food"  : UTILITY.newElement("a","",{"href":"#"},[]),
-    "spanish-food"   : UTILITY.newElement("a","",{"href":"#"},[]),
-    "german-drink"   : UTILITY.newElement("a","",{"href":"#"},[]),
-    "italian-drink"  : UTILITY.newElement("a","",{"href":"#"},[]),
-    "french-drink"   : UTILITY.newElement("a","",{"href":"#"},[]),
-    "mexican-drink"  : UTILITY.newElement("a","",{"href":"#"},[]),
-    "brazilian-drink": UTILITY.newElement("a","",{"href":"#"},[]),
-    "chinese-drink"  : UTILITY.newElement("a","",{"href":"#"},[]),
-    "japanese-drink" : UTILITY.newElement("a","",{"href":"#"},[]),
-    "spanish-drink"  : UTILITY.newElement("a","",{"href":"#"},[])
-  }
-  return linkImages[linkType];
-};
-
-const wrapImgWithLink = (linkObject, imageType) => {
+const wrapImgWithLink = (imageType) => {
+  let linkObject = UTILITY.newElement("a","",{"href":"#"},[])
   linkObject.appendChild(imageType);
   return linkObject;
+}
+
+const formatFoodName = (text) => {
+  return text.slice(0,1).toUpperCase().concat(text.slice(1,text.indexOf("-")));
 }
 
 const getElementsSettings = (type) => {
@@ -106,10 +71,8 @@ const generateBlockElements = (settings) => {
     const element = UTILITY.Element(settings[e].type);
     element.applyAttributes(settings[e].attributes);
     element.applyStyles(settings[e].styles);
-    element.addChild(getText(settings[e].name));
-    element.addChild(
-      wrapImgWithLink(getLinkImage(settings[e].name),getImage(settings[e].name))
-    );
+    element.addChild(createH2Title(formatFoodName(settings[e].name)));
+    element.addChild(wrapImgWithLink(getImage(settings[e].name)));
     listOfElements[e] = element;
   });
 
