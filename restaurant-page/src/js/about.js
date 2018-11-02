@@ -9,7 +9,7 @@ const loadPage = (mainContent) => {
 
   const h2MealsTag = UTILITY.newElement("h2","Delicious Meals",[],[]);
 
-  const mealElement = UTILITY.newElement("div","",[],["service-type","meal"]);
+  const mealElement = UTILITY.newElement("div","",[],["service-type"]);
   mealElement.appendChild(h2MealsTag);
   mealElement.appendChild(pMeal);
 
@@ -20,7 +20,7 @@ const loadPage = (mainContent) => {
 
   const h2DrinksTag = UTILITY.newElement("h2","Good Drinks",[],[]);
 
-  const drinksElement = UTILITY.newElement("div","",[],["service-type","drinks"]);
+  const drinksElement = UTILITY.newElement("div","",[],["service-type"]);
   drinksElement.appendChild(h2DrinksTag);
   drinksElement.appendChild(pDrink);
 
@@ -31,7 +31,7 @@ const loadPage = (mainContent) => {
 
   const h2DessertsTag = UTILITY.newElement("h2","Tasty Desserts",[],[]);
 
-  const dessertsElement = UTILITY.newElement("div","",[],["service-type","desserts"]);
+  const dessertsElement = UTILITY.newElement("div","",[],["service-type"]);
   dessertsElement.appendChild(h2DessertsTag);
   dessertsElement.appendChild(pDessert);
 

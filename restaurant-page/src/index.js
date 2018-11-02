@@ -16,6 +16,15 @@ import Image8 from './images/mexican_food.jpeg';
 import Image9 from './images/japanese_food.jpeg';
 import Image10 from './images/spanish_food.jpeg';
 
+import Image11 from './images/german_drinks.jpeg';
+import Image12 from './images/italian_drinks.jpeg';
+import Image13 from './images/french_drinks.jpeg';
+import Image14 from './images/mexican_drinks.jpeg';
+import Image15 from './images/brazilian_drinks.jpeg';
+import Image16 from './images/chinese_drinks.jpeg';
+import Image17 from './images/japanese_drinks.jpeg';
+import Image18 from './images/spanish_drinks.jpeg';
+
 
 let tabsContainer = document.querySelector("#content");
 header.loadPage(tabsContainer);

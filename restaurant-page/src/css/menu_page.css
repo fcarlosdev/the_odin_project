@@ -1,4 +1,5 @@
-.foods {
+.foods,
+.drinks {
   width: 80%;
   display: flex;
   margin-left: auto;
@@ -9,9 +10,10 @@
   justify-content: space-around;
 }
 
-.foods img {
-  width: 15rem;
-  height: 15rem;
+.foods img,
+.drinks img {
+  width: 10rem;
+  height: 10rem;
   border-radius: 50%;
 }
 
@@ -23,17 +25,20 @@
   justify-content: center;
 }
 
-.food-details {
+.food-details,
+.drink-details {
   cursor: pointer;
   padding-top: 1rem;
   padding-bottom: .2rem;
 }
 
-.food-details img:hover {
-  transform:scale(1.1);
+.food-details img:hover,
+.drink-details img:hover{
+  transform:scale(1.2);
 }
 
-.food-details h2 {
+.food-details h2,
+.drink-details h2 {
   padding-bottom: 1rem;
 }
 
