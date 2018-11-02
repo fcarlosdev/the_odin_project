@@ -64,9 +64,9 @@ const controlTabsActivate = (tabActivated, tabsDesactivated) => {
 
 
 const clearPageContainer = () => {
-  // let pagesContainer = tabsContainer.childNodes[3];
-  // if (pagesContainer.tagName == "SECTION") {
-    // tabsContainer.removeChild(pagesContainer);
-  // }
-  tabsContainer.removeChild(tabsContainer.childNodes[3]);
+  let pagesContainer = tabsContainer.childNodes[3];
+  if (pagesContainer !== undefined && pagesContainer.tagName == "SECTION") {
+    tabsContainer.removeChild(pagesContainer);
+  }
+  // tabsContainer.removeChild(tabsContainer.childNodes[3]);
 }

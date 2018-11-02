@@ -22,8 +22,8 @@ const getImage = (imageType) => {
   return images[imageType];
 };
 
-const createH2Title = (content,attributes,styles) => {
-  return UTILITY.newElement("h2",content,attributes,styles);
+const createHeading = (heading,content,attributes,styles) => {
+  return UTILITY.newElement(heading,content,attributes,styles);
 }
 
 const wrapImgWithLink = (imageType) => {
@@ -40,24 +40,24 @@ const getElementsSettings = (type) => {
 
   const elementsType = {
     "food": {
-      germanFood   :{type: "div", name: "german-food",   attributes: [], styles: ["food-details"] },
-      italianFood  :{type: "div", name: "italian-food",  attributes: [], styles: ["food-details"] },
-      frenchFood   :{type: "div", name: "french-food",   attributes: [], styles: ["food-details"] },
-      mexicanFood  :{type: "div", name: "mexican-food",  attributes: [], styles: ["food-details"] },
-      brazilianFood:{type: "div", name: "brazilian-food",attributes: [], styles: ["food-details"] },
-      chineseFood  :{type: "div", name: "chinese-food",  attributes: [], styles: ["food-details"] },
-      japaneseFood :{type: "div", name: "japanese-food", attributes: [], styles: ["food-details"] },
-      spanishFood  :{type: "div", name: "spanish-food",  attributes: [], styles: ["food-details"] }
+      germanFood   :{type: "div", name: "german-food",   attributes: [], styles: ["food-details"], subElement: "h2" },
+      italianFood  :{type: "div", name: "italian-food",  attributes: [], styles: ["food-details"], subElement: "h2" },
+      frenchFood   :{type: "div", name: "french-food",   attributes: [], styles: ["food-details"], subElement: "h2" },
+      mexicanFood  :{type: "div", name: "mexican-food",  attributes: [], styles: ["food-details"], subElement: "h2" },
+      brazilianFood:{type: "div", name: "brazilian-food",attributes: [], styles: ["food-details"], subElement: "h2" },
+      chineseFood  :{type: "div", name: "chinese-food",  attributes: [], styles: ["food-details"], subElement: "h2" },
+      japaneseFood :{type: "div", name: "japanese-food", attributes: [], styles: ["food-details"], subElement: "h2" },
+      spanishFood  :{type: "div", name: "spanish-food",  attributes: [], styles: ["food-details"], subElement: "h2" }
     },
     "drink": {
-      germanDrink   :{type: "div", name: "german-drink",   attributes: [], styles: ["food-details"] },
-      italianDrink  :{type: "div", name: "italian-drink",  attributes: [], styles: ["food-details"] },
-      frenchDrink   :{type: "div", name: "french-drink",   attributes: [], styles: ["food-details"] },
-      mexicanDrink  :{type: "div", name: "mexican-drink",  attributes: [], styles: ["food-details"] },
-      brazilianDrink:{type: "div", name: "brazilian-drink",attributes: [], styles: ["food-details"] },
-      chineseDrink  :{type: "div", name: "chinese-drink",  attributes: [], styles: ["food-details"] },
-      japaneseDrink :{type: "div", name: "japanese-drink", attributes: [], styles: ["food-details"] },
-      spanishDrink  :{type: "div", name: "spanish-drink",  attributes: [], styles: ["food-details"] }
+      germanDrink   :{type: "div", name: "german-drink",   attributes: [], styles: ["food-details"], subElement: "h2" },
+      italianDrink  :{type: "div", name: "italian-drink",  attributes: [], styles: ["food-details"], subElement: "h2" },
+      frenchDrink   :{type: "div", name: "french-drink",   attributes: [], styles: ["food-details"], subElement: "h2" },
+      mexicanDrink  :{type: "div", name: "mexican-drink",  attributes: [], styles: ["food-details"], subElement: "h2" },
+      brazilianDrink:{type: "div", name: "brazilian-drink",attributes: [], styles: ["food-details"], subElement: "h2" },
+      chineseDrink  :{type: "div", name: "chinese-drink",  attributes: [], styles: ["food-details"], subElement: "h2" },
+      japaneseDrink :{type: "div", name: "japanese-drink", attributes: [], styles: ["food-details"], subElement: "h2" },
+      spanishDrink  :{type: "div", name: "spanish-drink",  attributes: [], styles: ["food-details"], subElement: "h2" }
     }
   }
   return elementsType[type];
@@ -71,7 +71,9 @@ const generateBlockElements = (settings) => {
     const element = UTILITY.Element(settings[e].type);
     element.applyAttributes(settings[e].attributes);
     element.applyStyles(settings[e].styles);
-    element.addChild(createH2Title(formatFoodName(settings[e].name)));
+    // element.addChild(createH2Title(formatFoodName(settings[e].name)));
+    element.addChild(createHeading(settings[e].subElement,
+                                   formatFoodName(settings[e].name)));
     element.addChild(wrapImgWithLink(getImage(settings[e].name)));
     listOfElements[e] = element;
   });
@@ -91,10 +93,10 @@ const addElementsToContainer =(elements, container) => {
 const loadPage = (mainContent) => {
 
   const divFoodSectionTitle = UTILITY.newElement("div","",[],["section-title"]);
-  divFoodSectionTitle.appendChild(UTILITY.newElement("h1","Foods",[],[]));
+  divFoodSectionTitle.appendChild(createHeading("h1","Foods",[],[]));
 
   const divDrinkSectionTitle = UTILITY.newElement("div","",[],["section-title"]);
-  divDrinkSectionTitle.appendChild(UTILITY.newElement("h1","Drinks",[],[]));
+  divDrinkSectionTitle.appendChild(createHeading("h1","Drinks",[],[]));
 
   const objectsFood = generateBlockElements(getElementsSettings("food"));
   const foodsContainer = UTILITY.newElement("div","",[],["foods"]);

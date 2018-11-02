@@ -6,9 +6,16 @@
   margin: 0;
   padding: 0;
   text-decoration: none;
+  box-sizing: border-box;
 }
 
 body { background-color: #f7f4f4; }
+
+#content {
+  height: 100vh;
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
 
 #banner {
   background-image: url('../images/beef_food.jpeg');
