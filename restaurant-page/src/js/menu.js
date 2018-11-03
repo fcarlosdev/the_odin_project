@@ -2,32 +2,32 @@ import * as UTILITY from '../js/util.js';
 
 const getImage = (imageType) => {
   const images = {
-    "german-food"    : UTILITY.newElement("img","",{"src":"images/german_food.jpeg"},[]),
-    "italian-food"   : UTILITY.newElement("img","",{"src":"images/italian_food.jpeg"},[]),
-    "french-food"    : UTILITY.newElement("img","",{"src":"images/french_food.jpeg"},[]),
-    "mexican-food"   : UTILITY.newElement("img","",{"src":"images/mexican_food.jpeg"},[]),
-    "brazilian-food" : UTILITY.newElement("img","",{"src":"images/brazilian_food.jpeg"},[]),
-    "chinese-food"   : UTILITY.newElement("img","",{"src":"images/chinese_food.jpeg"},[]),
-    "japanese-food"  : UTILITY.newElement("img","",{"src":"images/japanese_food.jpeg"},[]),
-    "spanish-food"   : UTILITY.newElement("img","",{"src":"images/spanish_food.jpeg"},[]),
-    "german-drink"   : UTILITY.newElement("img","",{"src":"images/german_drinks.jpeg"},[]),
-    "italian-drink"  : UTILITY.newElement("img","",{"src":"images/italian_drinks.jpeg"},[]),
-    "french-drink"   : UTILITY.newElement("img","",{"src":"images/french_drinks.jpeg"},[]),
-    "mexican-drink"  : UTILITY.newElement("img","",{"src":"images/mexican_drinks.jpeg"},[]),
-    "brazilian-drink": UTILITY.newElement("img","",{"src":"images/brazilian_drinks.jpeg"},[]),
-    "chinese-drink"  : UTILITY.newElement("img","",{"src":"images/chinese_drinks.jpeg"},[]),
-    "japanese-drink" : UTILITY.newElement("img","",{"src":"images/japanese_drinks.jpeg"},[]),
-    "spanish-drink"  : UTILITY.newElement("img","",{"src":"images/spanish_drinks.jpeg"},[])
+    "german-food"    : UTILITY.newSimpleElement("img","",{"src":"images/german_food.jpeg"},[]),
+    "italian-food"   : UTILITY.newSimpleElement("img","",{"src":"images/italian_food.jpeg"},[]),
+    "french-food"    : UTILITY.newSimpleElement("img","",{"src":"images/french_food.jpeg"},[]),
+    "mexican-food"   : UTILITY.newSimpleElement("img","",{"src":"images/mexican_food.jpeg"},[]),
+    "brazilian-food" : UTILITY.newSimpleElement("img","",{"src":"images/brazilian_food.jpeg"},[]),
+    "chinese-food"   : UTILITY.newSimpleElement("img","",{"src":"images/chinese_food.jpeg"},[]),
+    "japanese-food"  : UTILITY.newSimpleElement("img","",{"src":"images/japanese_food.jpeg"},[]),
+    "spanish-food"   : UTILITY.newSimpleElement("img","",{"src":"images/spanish_food.jpeg"},[]),
+    "german-drink"   : UTILITY.newSimpleElement("img","",{"src":"images/german_drinks.jpeg"},[]),
+    "italian-drink"  : UTILITY.newSimpleElement("img","",{"src":"images/italian_drinks.jpeg"},[]),
+    "french-drink"   : UTILITY.newSimpleElement("img","",{"src":"images/french_drinks.jpeg"},[]),
+    "mexican-drink"  : UTILITY.newSimpleElement("img","",{"src":"images/mexican_drinks.jpeg"},[]),
+    "brazilian-drink": UTILITY.newSimpleElement("img","",{"src":"images/brazilian_drinks.jpeg"},[]),
+    "chinese-drink"  : UTILITY.newSimpleElement("img","",{"src":"images/chinese_drinks.jpeg"},[]),
+    "japanese-drink" : UTILITY.newSimpleElement("img","",{"src":"images/japanese_drinks.jpeg"},[]),
+    "spanish-drink"  : UTILITY.newSimpleElement("img","",{"src":"images/spanish_drinks.jpeg"},[])
   }
   return images[imageType];
 };
 
 const createHeading = (heading,content,attributes,styles) => {
-  return UTILITY.newElement(heading,content,attributes,styles);
+  return UTILITY.newSimpleElement(heading,content,attributes,styles);
 }
 
 const wrapImgWithLink = (imageType) => {
-  let linkObject = UTILITY.newElement("a","",{"href":"#"},[])
+  let linkObject = UTILITY.newSimpleElement("a","",{"href":"#"},[])
   linkObject.appendChild(imageType);
   return linkObject;
 }
@@ -68,10 +68,9 @@ const generateBlockElements = (settings) => {
   const listOfElements = [];
 
   Object.keys(settings).forEach(function(e) {
-    const element = UTILITY.Element(settings[e].type);
+    const element = UTILITY.newComplexElement(settings[e].type);
     element.applyAttributes(settings[e].attributes);
     element.applyStyles(settings[e].styles);
-    // element.addChild(createH2Title(formatFoodName(settings[e].name)));
     element.addChild(createHeading(settings[e].subElement,
                                    formatFoodName(settings[e].name)));
     element.addChild(wrapImgWithLink(getImage(settings[e].name)));
@@ -92,25 +91,25 @@ const addElementsToContainer =(elements, container) => {
 
 const loadPage = (mainContent) => {
 
-  const divFoodSectionTitle = UTILITY.newElement("div","",[],["section-title"]);
+  const divFoodSectionTitle = UTILITY.newSimpleElement("div","",[],["section-title"]);
   divFoodSectionTitle.appendChild(createHeading("h1","Foods",[],[]));
 
-  const divDrinkSectionTitle = UTILITY.newElement("div","",[],["section-title"]);
+  const divDrinkSectionTitle = UTILITY.newSimpleElement("div","",[],["section-title"]);
   divDrinkSectionTitle.appendChild(createHeading("h1","Drinks",[],[]));
 
   const objectsFood = generateBlockElements(getElementsSettings("food"));
-  const foodsContainer = UTILITY.newElement("div","",[],["foods"]);
-  const foodsContainer2 = UTILITY.newElement("div","",[],["foods"]);
+  const foodsContainer = UTILITY.newSimpleElement("div","",[],["foods"]);
+  const foodsContainer2 = UTILITY.newSimpleElement("div","",[],["foods"]);
   addElementsToContainer(Object.values(objectsFood).slice(0,4),foodsContainer);
   addElementsToContainer(Object.values(objectsFood).slice(4,8),foodsContainer2);
 
   const objectsDrink = generateBlockElements(getElementsSettings("drink"));
-  const drinksContainer = UTILITY.newElement("div","",[],["drinks"]);
-  const drinksContainer2 = UTILITY.newElement("div","",[],["drinks"]);
+  const drinksContainer = UTILITY.newSimpleElement("div","",[],["drinks"]);
+  const drinksContainer2 = UTILITY.newSimpleElement("div","",[],["drinks"]);
   addElementsToContainer(Object.values(objectsDrink).slice(0,4),drinksContainer);
   addElementsToContainer(Object.values(objectsDrink).slice(4,8),drinksContainer2);
 
-  const menuPage = UTILITY.newElement("section","",{"id": "sec-menu"},["headline"]);
+  const menuPage = UTILITY.newSimpleElement("section","",{"id": "sec-menu"},["headline"]);
   menuPage.appendChild(divFoodSectionTitle);
   menuPage.appendChild(foodsContainer);
   menuPage.appendChild(foodsContainer2);

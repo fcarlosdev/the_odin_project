@@ -1,5 +1,7 @@
 const path = require('path');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const HtmlWebpackPlugin    = require("html-webpack-plugin");
+const CleanWebpackPlugin   = require('clean-webpack-plugin');
 
 module.exports = {
   mode: 'development',
@@ -28,13 +30,21 @@ module.exports = {
             }
           }
         ]
+      },
+      {
+        test: /\.html$/,
+        use:[ 'html-loader']
       }
     ]
   },
   plugins: [
     new MiniCssExtractPlugin({
-      filename: "[name].css",
-      chunkFilename: "[id].css"
-    })
+      filename: '[name].css',
+      chunkFilename: '[id].css'
+    }),
+    new HtmlWebpackPlugin({
+      template: 'src/index.html'
+    }),
+    new CleanWebpackPlugin(['dist'])
   ]
 }

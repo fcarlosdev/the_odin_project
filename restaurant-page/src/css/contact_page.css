@@ -1,0 +1,7 @@
+.location {
+  display: flex;
+  margin-top: 2rem;
+  flex-direction: column;
+}
+
+span { margin-bottom: .5rem; }

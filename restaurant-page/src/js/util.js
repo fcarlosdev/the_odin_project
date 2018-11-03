@@ -1,4 +1,4 @@
-const newElement = (type, value,attributes, classes) => {
+const newSimpleElement = (type, value,attributes, classes) => {
   const element = document.createElement(type);
   element.textContent = value;
 
@@ -21,9 +21,14 @@ const newElement = (type, value,attributes, classes) => {
 };
 
 
-const Element = (pgElement) => {
+const newComplexElement = (pgElement) => {
 
   let element = document.createElement(pgElement);
+
+  const setValue = (value) => {
+    element.textContent = value;
+  }
+
   const applyAttributes = (attributes) => {
     const attributesKeys = Object.keys(attributes);
     if (attributesKeys.length > 0) {
@@ -46,9 +51,9 @@ const Element = (pgElement) => {
    element.appendChild(child);
  }
 
-  const getElement = () => { return element };
+ const getElement = () => { return element };
 
-  return {applyAttributes, applyStyles, addChild, getElement}
+  return {applyAttributes, applyStyles, addChild, getElement, setValue}
 };
 
-export { newElement, Element };
+export { newSimpleElement, newComplexElement };
