@@ -2,7 +2,7 @@
 
 This is a project that is created to apply the knowledge acquired about ***DOM***, ***JavaScript Classes***  and ***ES6 Modules*** , that compound the [JavaScript Course](https://www.theodinproject.com/courses/javascript) of the curriculum of **The Odin Project**.  
 
-To see the project in action click at [View in Browser]().  
+To see the project in action click at [View in Browser](https://fcarlosdev.github.io/restaurant-page/).  
 
 ***Obs.: To run the project locally, after clone it, you'll need to have NodeJs version 8.12.0 or greater installed and run the follow commands inside the folder of the project:***  
 
