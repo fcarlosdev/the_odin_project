@@ -37,6 +37,7 @@ module.exports = {
       }
     ]
   },
+  stats: { children: false }, 
   plugins: [
     new MiniCssExtractPlugin({
       filename: '[name].css',
