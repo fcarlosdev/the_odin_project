@@ -1,1 +1,124 @@
 
+html, body {
+  margin: 0;
+  width: 100%;
+  height: 100%;
+}
+
+a {
+  text-decoration: none;
+  color: #000;
+  font-weight: 900;
+}
+
+.container {
+  height: 100%;
+  display: flex;
+  align-items: stretch;
+}
+
+.sidebar {
+  width: 240px;
+  background: #ccc;
+}
+
+.sidebar-display {
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+}
+
+.sidebar-padding {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.content {
+  flex: 1 1 auto;
+}
+
+#todo-name {
+  text-align: center;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #a29f9f;
+}
+
+#todo-name h1 {
+  margin: 0;
+  padding: 8px;
+  font-weight: 700;
+  font-family: sans-serif, verdana;
+}
+
+.projects-container {
+  overflow: auto;
+  max-height: 85%;
+}
+
+.projects-container::-webkit-scrollbar {
+    width: 6px;
+    background-color: #ccc;
+}
+
+.projects-container::-webkit-scrollbar-thumb {
+    background-color: #9d9797;
+}
+
+.project {
+  width: 240px;
+  height: 63px;
+  cursor: pointer;
+  font-size: 18px;
+  line-height: 63px;
+  text-align: center;
+  min-height: 63px;
+}
+
+.project:hover {
+  background-color: #e7e2e2;
+}
+
+.btn-add {
+  width: 100%;
+  height: auto;
+  margin-left:auto;
+  margin-top: auto;
+  padding-top: 30px;
+  line-height: 30px;
+  text-align: center;
+  border-top: 1px solid #a29f9f;
+}
+
+.btn-add > a {
+  display: inline-flex;
+}
+
+.ln-btn {
+  height: 18px;
+  width: 18px;
+  font-size: 20px;
+  line-height: 18px;
+  border: 1px solid;
+  border-radius: 50%;
+  text-align: center;
+}
+
+#txt-add-btn {
+  width: auto;
+  margin-top: -5px;
+  margin-left: 5px;
+  font-size: 18px;
+}
+
+@media (max-height: 200px) {
+  .project {
+    min-height: 63px;
+  }
+  .sidebar {
+    min-height: 199px;
+  }
+  .btn-add {
+    min-height: 40px;
+  }
+}
+
