@@ -1,14 +1,15 @@
 import './css/main.css';
-import {todoFactory} from './factories/todoFactory.js';
-import {projectFactory} from './factories/project.js';
+import * as Factory from './factories/todoFactory.js';
 import {TodoController} from './controllers/todocontroller.js';
 
-const app = { factory: todoFactory, project: projectFactory }
-const todoController = TodoController(app);
+const app = { factory: Factory};
 
-const todoProject = todoController.newProject("Learning JavaScript.");
-console.log(todoProject);
+const controller = TodoController(app);
+console.log(project);
 
+
+
+// console.log(controller.addItemTo({'Item 1', 'Teste','12/11/2018','medium'}, project));
 
 // const todoOne = todoFactory("Todo 1", "Teste of todo", "12/11/2018", "medium");
 // const todoTwo = todoFactory("Todo 2", "JavaScript OO", "15/11/2018", "medium");
