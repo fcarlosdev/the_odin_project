@@ -1,20 +1,28 @@
 import './css/main.css';
-import {todoFactory} from './modules/todoFactory.js';
-import {projectFactory} from './modules/project.js';
+import {todoFactory} from './factories/todoFactory.js';
+import {projectFactory} from './factories/project.js';
+import {TodoController} from './controllers/todocontroller.js';
 
-const todoOne = todoFactory("Todo 1", "Teste of todo", "12/11/2018", "medium");
-const todoTwo = todoFactory("Todo 2", "JavaScript OO", "15/11/2018", "medium");
+const app = { factory: todoFactory, project: projectFactory }
+const todoController = TodoController(app);
 
-const myTodoProject = projectFactory("Todo List");
-myTodoProject.addTodoItem(todoOne);
-myTodoProject.addTodoItem(todoTwo);
+const todoProject = todoController.newProject("Learning JavaScript.");
+console.log(todoProject);
 
-let projects = document.querySelector('.projects-container');
-let project = document.createElement('div');
-project.setAttribute('id','1');
-project.classList.add('project');
-project.append(myTodoProject.getName());
-projects.appendChild(project);
+
+// const todoOne = todoFactory("Todo 1", "Teste of todo", "12/11/2018", "medium");
+// const todoTwo = todoFactory("Todo 2", "JavaScript OO", "15/11/2018", "medium");
+//
+// const myTodoProject = projectFactory("Todo List");
+// myTodoProject.addTodoItem(todoOne);
+// myTodoProject.addTodoItem(todoTwo);
+//
+// let projects = document.querySelector('.projects-container');
+// let project = document.createElement('div');
+// project.setAttribute('id','1');
+// project.classList.add('project');
+// project.append(myTodoProject.getName());
+// projects.appendChild(project);
 
 // var div = document.createElement('div');
 // listTodoItems();
