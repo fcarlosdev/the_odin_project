@@ -35,24 +35,20 @@ a {
 
 .content { flex: 1 1 auto; }
 
-#todo-name {
-  /* text-align: center; */
-  padding-bottom: 10px;
-  /* border-bottom: 1px solid #e8e5e5; */
-}
+#todo-name { padding-bottom: 10px; }
 
 #todo-name h1 {
   margin: 0;
   padding: 8px;
+  font-size: 20px;
   font-weight: 700;
   font-family: sans-serif, verdana;
-  font-size: 20px;
 }
 
 .projects-container {
   overflow: auto;
-  height: 85%;
-  max-height: 85%;
+  height: 95%;
+  max-height: 95%;
 }
 
 .projects-container::-webkit-scrollbar {
@@ -113,6 +109,34 @@ a {
 .content {
   padding: 30px 50px;
 }
+
+#todo-title {
+  height: 50px;
+  display: none;
+  font-size: 25px;
+  line-height: 50px;
+  border-bottom: 1px solid #e1e2db;
+}
+
+#todo-tasks {
+  padding-top: 10px;
+  padding-bottom: 20px;
+  display: flex;
+}
+
+.img {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  margin-right: 10px;
+}
+
+li {
+  display: flex;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
 
 @media (max-height: 200px) {
   .project {

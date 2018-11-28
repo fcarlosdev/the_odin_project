@@ -1,33 +1,33 @@
-const ProjectFactory = (name) => {
+const Todo = (name) => {
 
-  let todoList = [];
+  let tasks = [];
 
   const getName = () => name;
 
-  const addTodoItem = (item) => {
-    todoList.push(item);
+  const addTask = (task) => {
+    tasks.push(task);
   }
 
-  const getTodoList = () => {
-    return todoList;
+  const getTasks = () => {
+    return tasks;
   }
 
-  const removeTodoItem = (item) => {
+  const removeTask = (task) => {
 
-    let pos = todoList.indexOf(item);
+    let pos = tasks.indexOf(task);
 
     if (pos != null) {
-      todoList.splice(pos,1);
+      tasks.splice(pos,1);
       return true;
     }
     return false;
   }
   return {
-    getName, getTodoList, addTodoItem, removeTodoItem
+    getName, getTasks, addTask, removeTask
   }
 }
 
-const ProjectItemFactory = (title, description, dueDate, priority) => {
+const Task = (title, description, dueDate, priority) => {
 
   const getTitle = () => title;
   const getDescription = () => description;
@@ -40,4 +40,4 @@ const ProjectItemFactory = (title, description, dueDate, priority) => {
 
 }
 
-export { ProjectFactory, ProjectItemFactory };
+export { Todo, Task };

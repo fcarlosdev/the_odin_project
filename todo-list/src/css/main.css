@@ -19,7 +19,7 @@ a {
 
 .sidebar {
   width: 240px;
-  background: #ccc;
+  background: #f1f1f1;
 }
 
 .sidebar-display {
@@ -33,26 +33,22 @@ a {
   padding-bottom: 10px;
 }
 
-.content {
-  flex: 1 1 auto;
-}
+.content { flex: 1 1 auto; }
 
-#todo-name {
-  text-align: center;
-  padding-bottom: 10px;
-  border-bottom: 1px solid #a29f9f;
-}
+#todo-name { padding-bottom: 10px; }
 
 #todo-name h1 {
   margin: 0;
   padding: 8px;
+  font-size: 20px;
   font-weight: 700;
   font-family: sans-serif, verdana;
 }
 
 .projects-container {
   overflow: auto;
-  max-height: 85%;
+  height: 95%;
+  max-height: 95%;
 }
 
 .projects-container::-webkit-scrollbar {
@@ -65,13 +61,14 @@ a {
 }
 
 .project {
-  width: 240px;
+  width: auto;
   height: 63px;
+  margin: 0 auto;
   cursor: pointer;
   font-size: 18px;
-  line-height: 63px;
-  text-align: center;
   min-height: 63px;
+  line-height: 63px;
+  padding-left: 10px;
 }
 
 .project:hover {
@@ -80,24 +77,23 @@ a {
 
 .btn-add {
   width: 100%;
-  height: auto;
+  height: 20px;
   margin-left:auto;
-  margin-top: auto;
-  padding-top: 30px;
-  line-height: 30px;
-  text-align: center;
-  border-top: 1px solid #a29f9f;
+  padding-top: 10px;
+  line-height: 25px;
+  border-top: 1px solid #e6e0e0;
 }
 
 .btn-add > a {
   display: inline-flex;
+  margin-left: 60%;
 }
 
 .ln-btn {
-  height: 18px;
-  width: 18px;
-  font-size: 20px;
-  line-height: 18px;
+  height: 14px;
+  width: 14px;
+  font-size: 18px;
+  line-height: 14px;
   border: 1px solid;
   border-radius: 50%;
   text-align: center;
@@ -105,10 +101,42 @@ a {
 
 #txt-add-btn {
   width: auto;
-  margin-top: -5px;
+  line-height: 16px;
   margin-left: 5px;
-  font-size: 18px;
+  font-size: 16px;
 }
+
+.content {
+  padding: 30px 50px;
+}
+
+#todo-title {
+  height: 50px;
+  display: none;
+  font-size: 25px;
+  line-height: 50px;
+  border-bottom: 1px solid #e1e2db;
+}
+
+#todo-tasks {
+  padding-top: 10px;
+  padding-bottom: 20px;
+  display: flex;
+}
+
+.img {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  margin-right: 10px;
+}
+
+li {
+  display: flex;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
 
 @media (max-height: 200px) {
   .project {

@@ -90,11 +90,11 @@
 /*!*******************************************!*\
   !*** ./src/controllers/todocontroller.js ***!
   \*******************************************/
-/*! exports provided: TodoController */
+/*! exports provided: todoController */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"TodoController\", function() { return TodoController; });\nconst TodoController = (app) => {\n\n  // return { newProject }\n};\n\n\n\n\n//# sourceURL=webpack:///./src/controllers/todocontroller.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"todoController\", function() { return todoController; });\nconst todoController = (app) => {\n\n  let todoFactory = app.todoFactory;\n\n  const newTodo = (title) => {\n    return todoFactory.Todo(title);\n  }\n\n  const newTask = (taskData) => {\n    return todoFactory.Task(taskData.title, taskData.description,\n       taskData.dueDate, taskData.priority);\n  }\n\n  return { newTodo, newTask };\n\n};\n\n\n\n\n//# sourceURL=webpack:///./src/controllers/todocontroller.js?");
 
 /***/ }),
 
@@ -113,11 +113,44 @@ eval("// extracted by mini-css-extract-plugin\n\n//# sourceURL=webpack:///./src/
 /*!**************************************!*\
   !*** ./src/factories/todoFactory.js ***!
   \**************************************/
-/*! exports provided: ProjectFactory, ProjectItemFactory */
+/*! exports provided: Todo, Task */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"ProjectFactory\", function() { return ProjectFactory; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"ProjectItemFactory\", function() { return ProjectItemFactory; });\nconst ProjectFactory = (name) => {\n\n  let todoList = [];\n\n  const getName = () => name;\n\n  const addTodoItem = (item) => {\n    todoList.push(item);\n  }\n\n  const getTodoList = () => {\n    return todoList;\n  }\n\n  const removeTodoItem = (item) => {\n\n    let pos = todoList.indexOf(item);\n\n    if (pos != null) {\n      todoList.splice(pos,1);\n      return true;\n    }\n    return false;\n  }\n  return {\n    getName, getTodoList, addTodoItem, removeTodoItem\n  }\n}\n\nconst ProjectItemFactory = (title, description, dueDate, priority) => {\n\n  const getTitle = () => title;\n  const getDescription = () => description;\n  const getDueDate = () => dueDate;\n  const getPriority = () => priority;\n\n  return {\n    getTitle, getDescription, getDueDate, getPriority\n  }\n\n}\n\n\n\n\n//# sourceURL=webpack:///./src/factories/todoFactory.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"Todo\", function() { return Todo; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"Task\", function() { return Task; });\nconst Todo = (name) => {\n\n  let tasks = [];\n\n  const getName = () => name;\n\n  const addTask = (task) => {\n    tasks.push(task);\n  }\n\n  const getTasks = () => {\n    return tasks;\n  }\n\n  const removeTask = (task) => {\n\n    let pos = tasks.indexOf(task);\n\n    if (pos != null) {\n      tasks.splice(pos,1);\n      return true;\n    }\n    return false;\n  }\n  return {\n    getName, getTasks, addTask, removeTask\n  }\n}\n\nconst Task = (title, description, dueDate, priority) => {\n\n  const getTitle = () => title;\n  const getDescription = () => description;\n  const getDueDate = () => dueDate;\n  const getPriority = () => priority;\n\n  return {\n    getTitle, getDescription, getDueDate, getPriority\n  }\n\n}\n\n\n\n\n//# sourceURL=webpack:///./src/factories/todoFactory.js?");
+
+/***/ }),
+
+/***/ "./src/images sync \\.(png|svg|jpg|gif|jpeg)$":
+/*!****************************************************************!*\
+  !*** ./src/images sync nonrecursive \.(png|svg|jpg|gif|jpeg)$ ***!
+  \****************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("var map = {\n\t\"./circle-regular.svg\": \"./src/images/circle-regular.svg\",\n\t\"./circle-solid.svg\": \"./src/images/circle-solid.svg\"\n};\n\n\nfunction webpackContext(req) {\n\tvar id = webpackContextResolve(req);\n\treturn __webpack_require__(id);\n}\nfunction webpackContextResolve(req) {\n\tvar id = map[req];\n\tif(!(id + 1)) { // check for number or string\n\t\tvar e = new Error(\"Cannot find module '\" + req + \"'\");\n\t\te.code = 'MODULE_NOT_FOUND';\n\t\tthrow e;\n\t}\n\treturn id;\n}\nwebpackContext.keys = function webpackContextKeys() {\n\treturn Object.keys(map);\n};\nwebpackContext.resolve = webpackContextResolve;\nmodule.exports = webpackContext;\nwebpackContext.id = \"./src/images sync \\\\.(png|svg|jpg|gif|jpeg)$\";\n\n//# sourceURL=webpack:///./src/images_sync_nonrecursive_\\.(png%7Csvg%7Cjpg%7Cgif%7Cjpeg)$?");
+
+/***/ }),
+
+/***/ "./src/images/circle-regular.svg":
+/*!***************************************!*\
+  !*** ./src/images/circle-regular.svg ***!
+  \***************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"images/circle-regular.svg\";\n\n//# sourceURL=webpack:///./src/images/circle-regular.svg?");
+
+/***/ }),
+
+/***/ "./src/images/circle-solid.svg":
+/*!*************************************!*\
+  !*** ./src/images/circle-solid.svg ***!
+  \*************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"images/circle-solid.svg\";\n\n//# sourceURL=webpack:///./src/images/circle-solid.svg?");
 
 /***/ }),
 
@@ -129,7 +162,19 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) *
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _css_main_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./css/main.css */ \"./src/css/main.css\");\n/* harmony import */ var _css_main_css__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_css_main_css__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _factories_todoFactory_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./factories/todoFactory.js */ \"./src/factories/todoFactory.js\");\n/* harmony import */ var _controllers_todocontroller_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./controllers/todocontroller.js */ \"./src/controllers/todocontroller.js\");\n\n\n\n\nconst app = { factory: _factories_todoFactory_js__WEBPACK_IMPORTED_MODULE_1__};\n\nconst controller = Object(_controllers_todocontroller_js__WEBPACK_IMPORTED_MODULE_2__[\"TodoController\"])(app);\nconsole.log(project);\n\n\n\n// console.log(controller.addItemTo({'Item 1', 'Teste','12/11/2018','medium'}, project));\n\n// const todoOne = todoFactory(\"Todo 1\", \"Teste of todo\", \"12/11/2018\", \"medium\");\n// const todoTwo = todoFactory(\"Todo 2\", \"JavaScript OO\", \"15/11/2018\", \"medium\");\n//\n// const myTodoProject = projectFactory(\"Todo List\");\n// myTodoProject.addTodoItem(todoOne);\n// myTodoProject.addTodoItem(todoTwo);\n//\n// let projects = document.querySelector('.projects-container');\n// let project = document.createElement('div');\n// project.setAttribute('id','1');\n// project.classList.add('project');\n// project.append(myTodoProject.getName());\n// projects.appendChild(project);\n\n// var div = document.createElement('div');\n// listTodoItems();\n// document.querySelector(\"body\").appendChild(div);\n//\n// var messageDiv = document.createElement('div');\n//\n// if (myTodoProject.removeTodoItem(todoOne)) {\n//   messageDiv.innerHTML += \"Todo: \" + todoOne.getTitle() + \" removed <br>\";\n// } else {\n//   messageDiv.innerHTML += \"Error to remove \" + todoOne.getTitle() + \"<br>\";\n// }\n// div.innerHTML = \"\";\n// messageDiv.innerHTML += \"<hr>\";\n// document.querySelector(\"body\").appendChild(messageDiv);\n// listTodoItems();\n//\n//\n// function listTodoItems() {\n//   div.innerHTML += \"Project: \" + myTodoProject.getName() + \"<br>\";\n//   div.innerHTML += \"<hr>\";\n//   myTodoProject.getTodoList().forEach(function(item) {\n//     div.innerHTML += \"Title: \" + item.getTitle() + \"<br>\";\n//     div.innerHTML += \"Description: \" + todoOne.getDescription() +\"<br>\";\n//     div.innerHTML += \"DueDate: \" + todoOne.getDueDate() +\"<br>\";\n//     div.innerHTML += \"Priority: \" + todoOne.getPriority() +\"<br>\";\n//     div.innerHTML += \"<hr>\";\n//   });\n// }\n\n\n//# sourceURL=webpack:///./src/index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _css_main_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./css/main.css */ \"./src/css/main.css\");\n/* harmony import */ var _css_main_css__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_css_main_css__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _util_loadImages_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./util/loadImages.js */ \"./src/util/loadImages.js\");\n/* harmony import */ var _factories_todoFactory_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./factories/todoFactory.js */ \"./src/factories/todoFactory.js\");\n/* harmony import */ var _controllers_todocontroller_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./controllers/todocontroller.js */ \"./src/controllers/todocontroller.js\");\n\n\n\n\n\n_util_loadImages_js__WEBPACK_IMPORTED_MODULE_1__[\"importImages\"]();\n\n\nlet controller = Object(_controllers_todocontroller_js__WEBPACK_IMPORTED_MODULE_3__[\"todoController\"])( { todoFactory: _factories_todoFactory_js__WEBPACK_IMPORTED_MODULE_2__ } );\nlet todo = controller.newTodo(\"Learning Javascript\");\n\nlet appView = document.querySelector('.container');\n\nlet todoDiv = document.createElement('div');\ntodoDiv.setAttribute('id',1);\ntodoDiv.classList.add('project');\ntodoDiv.textContent = todo.getName();\n\nlet taskData = {\n\n  taskone : {\n    title: \"Learn fundamentals\",\n    description: \"Knowing the data types, the math operator, etc\",\n    dueDate: \"30/11/2018\",\n    priority: \"medium\"\n  },\n  tasktwo: {\n    title: \"Loop structures\",\n    description: \"for-loop, forEach loop, while, etc\",\n    dueDate: \"01/12/2018\",\n    priority: \"medium\"\n  }\n}\n\ntodo.addTask(controller.newTask(taskData['taskone']));\ntodo.addTask(controller.newTask(taskData['tasktwo']));\n\nappView.querySelector('.projects-container').append(todoDiv);\n\ntodoDiv.addEventListener('click', function(e) {\n  e.preventDefault();\n  let contentTodoTitle           = document.querySelector('#todo-title');\n  contentTodoTitle.textContent   = todo.getName();\n  contentTodoTitle.style.display = 'block';\n\n  let todoTasks = document.querySelector('#todo-tasks');\n  let taskList = document.createElement('ul');\n  taskList.style.listStyle = 'none';\n  taskList.style.margin = '0';\n  taskList.style.padding = '0';\n  taskList.style.display = ''\n\n  todo.getTasks().forEach(function(task) {\n    let taskItem = document.createElement('li');\n\n    let checkCircle = document.createElement('img');\n    checkCircle.setAttribute('status','not-done');\n    checkCircle.src = 'images/circle-regular.svg';\n    checkCircle.classList.add('img');\n    checkCircle.addEventListener('click', function(e) {\n        e.preventDefault();\n        if (checkCircle.getAttribute('status') === 'not-done') {\n          checkCircle.src = 'images/circle-solid.svg'\n          checkCircle.setAttribute('status','done');\n        } else {\n          checkCircle.src = 'images/circle-regular.svg';\n          checkCircle.setAttribute('status','not-done');\n        }\n    });\n\n    taskItem.appendChild(checkCircle);\n    taskItem.append(task.getTitle());\n\n    taskList.appendChild(taskItem);\n\n  });\n  todoTasks.appendChild(taskList);\n\n})\n\n\n//# sourceURL=webpack:///./src/index.js?");
+
+/***/ }),
+
+/***/ "./src/util/loadImages.js":
+/*!********************************!*\
+  !*** ./src/util/loadImages.js ***!
+  \********************************/
+/*! exports provided: importImages */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"importImages\", function() { return importImages; });\nconst importImages = (from) => {\n  let req = __webpack_require__(\"./src/images sync \\\\.(png|svg|jpg|gif|jpeg)$\");\n  req.keys().forEach(function(key){\n      req(key);\n  });\n  return req;\n}\n\n\n\n\n//# sourceURL=webpack:///./src/util/loadImages.js?");
 
 /***/ })
 
