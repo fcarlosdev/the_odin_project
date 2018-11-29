@@ -12,6 +12,10 @@ const Todo = (name) => {
     return tasks;
   }
 
+  const hasAnyTask = () => {
+    return (tasks.length > 0);
+  }
+
   const removeTask = (task) => {
 
     let pos = tasks.indexOf(task);
@@ -23,7 +27,8 @@ const Todo = (name) => {
     return false;
   }
   return {
-    getName, getTasks, addTask, removeTask
+    getName, getTasks, addTask, removeTask,
+    hasAnyTask
   }
 }
 

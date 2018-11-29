@@ -62,48 +62,63 @@ a {
 
 .project {
   width: auto;
-  height: 63px;
+  height: 45px;
   margin: 0 auto;
   cursor: pointer;
   font-size: 18px;
-  min-height: 63px;
-  line-height: 63px;
+  min-height: 45px;
+  line-height: 45px;
   padding-left: 10px;
 }
 
 .project:hover {
-  background-color: #e7e2e2;
+  background-color: #c7c6c6;
 }
 
-.btn-add {
-  width: 100%;
-  height: 20px;
-  margin-left:auto;
-  padding-top: 10px;
-  line-height: 25px;
+.new-list {
+  width: auto;
+  height: 30px;
+  padding-top: 20px;
+  padding-bottom: 10px;
   border-top: 1px solid #e6e0e0;
 }
 
-.btn-add > a {
-  display: inline-flex;
-  margin-left: 60%;
+.new-list-display {
+  display: flex;
+  align-items: center;
 }
 
-.ln-btn {
-  height: 14px;
-  width: 14px;
-  font-size: 18px;
-  line-height: 14px;
+.btn-add {
+  color: #fff;
+  width: 32px;
+  height: 32px;
+  text-align: center;
   border: 1px solid;
   border-radius: 50%;
-  text-align: center;
+  background-color: #0a87b5;
 }
 
-#txt-add-btn {
-  width: auto;
-  line-height: 16px;
-  margin-left: 5px;
-  font-size: 16px;
+.btn-add-txt {
+  font-size: 25px;
+  line-height: 32px;
+  font-weight: 800;
+}
+
+.input-list {
+  padding-left: 5px;
+  margin-right: .5rem;
+}
+
+#txt-n-list {
+  padding: 5px;
+  width: 11rem;
+  font-size: 18px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+#txt-n-list::placeholder {
+  color: #ccc;
 }
 
 .content {
@@ -137,16 +152,12 @@ li {
   padding-bottom: 10px;
 }
 
-
 @media (max-height: 200px) {
   .project {
-    min-height: 63px;
+    min-height: 45px;
   }
   .sidebar {
     min-height: 199px;
-  }
-  .btn-add {
-    min-height: 40px;
   }
 }
 
