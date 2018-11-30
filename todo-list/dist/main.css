@@ -120,7 +120,7 @@ a {
   border: 1px solid #ccc;
 }
 
-#txt-n-list::placeholder {
+::placeholder {
   color: #ccc;
 }
 
@@ -138,7 +138,7 @@ a {
 }
 
 #todo-tasks {
-  display: flex;
+  /* display: flex; */
   padding-top: 10px;
   padding-bottom: 20px;
 }
