@@ -89,12 +89,15 @@ a {
 }
 
 .btn-add {
-  color: #fff;
   width: 32px;
   height: 32px;
   text-align: center;
   border: 1px solid;
   border-radius: 50%;
+}
+
+.btn-blue {
+  color: #fff;
   background-color: #0a87b5;
 }
 
@@ -109,7 +112,7 @@ a {
   margin-right: .5rem;
 }
 
-#txt-n-list {
+.input-data {
   padding: 5px;
   width: 11rem;
   font-size: 18px;
@@ -129,14 +132,29 @@ a {
   height: 50px;
   display: none;
   font-size: 25px;
-  line-height: 50px;
+  line-height: 68px;
+  justify-content: space-between;
   border-bottom: 1px solid #e1e2db;
 }
 
 #todo-tasks {
+  display: flex;
   padding-top: 10px;
   padding-bottom: 20px;
-  display: flex;
+}
+
+#lk-add-task > a {
+  font-size: 20px;
+  font-weight: 200;
+}
+
+.lk-add-btn {
+  font-weight: 100;
+}
+
+.bt-add-task {
+  font-size: 18px;
+  font-family: sans-serif;
 }
 
 .img {
