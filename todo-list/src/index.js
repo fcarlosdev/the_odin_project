@@ -6,6 +6,8 @@ import {todoController} from './controllers/todocontroller.js';
 Images.importImages();
 
 let todoId  = 1;
+let taskId  = 1;
+let taskForm = 0;
 let appView = document.querySelector('.container');
 
 let addTodo     = appView.querySelector('#add-todo');
@@ -42,18 +44,16 @@ const newTodo = (todoName) => {
 
   todoDiv.addEventListener('click',function() {
 
-      let lkNewTask = document.createElement('a');
-      lkNewTask.setAttribute('ur','#');
-      lkNewTask.style.cursor = 'pointer';
-      lkNewTask.textContent = "+";
+    tdNewTask.innerHTML = "";
 
-      lkNewTask.addEventListener('click',function() {
+    let lkNewTask = document.createElement('a');
+    lkNewTask.setAttribute('ur','#');
+    lkNewTask.style.cursor = 'pointer';
+    lkNewTask.textContent = "+";
+    lkNewTask.addEventListener('click',function() {
+      if (taskForm == 0) { //Only one form at time.
         let newTaskDiv                   = document.createElement('div');
-        newTaskDiv.style.width           = "100%";
-        newTaskDiv.style.display         = "flex";
-        newTaskDiv.justifyContent        = "space-between";
-        newTaskDiv.style.paddingTop      = "10px";
-
+        newTaskDiv.classList.add("task-form");
 
         let newTaskDiv1                  = document.createElement('div');
         newTaskDiv1.style.width          = "20%";
@@ -63,6 +63,7 @@ const newTodo = (todoName) => {
         taskTitleInput.placeholder       = "Task Title";
         taskTitleInput.style.width       = "100%";
         taskTitleInput.classList.add("input-data");
+        taskTitleInput.setAttribute("id","task-title");
         newTaskDiv1.appendChild(taskTitleInput);
 
         let newTaskDiv2                    = document.createElement('div');
@@ -86,23 +87,34 @@ const newTodo = (todoName) => {
         newTaskDiv3.appendChild(taskDueDateInput);
 
         let newTaskDiv4                     = document.createElement('div');
-        newTaskDiv4.style.width             = "6%";
+        newTaskDiv4.style.width             = "10%";
         newTaskDiv4.style.marginRight      = "10px";
 
         let taskPrioritSelect               = document.createElement('select');
+        taskPrioritSelect.setAttribute("id","sel-priority");
         taskPrioritSelect.style.width       = "100%";
         taskPrioritSelect.classList.add("input-data");
+        taskPrioritSelect.style.backgroundColor = "#fff";
+        taskPrioritSelect.style.color = "#ccc";
         newTaskDiv4.appendChild(taskPrioritSelect);
 
+        taskPrioritSelect.addEventListener('change', function() {
+          taskPrioritSelect.style.color =
+            (taskPrioritSelect.selectedIndex > 0) ? "black" : "#ccc";
+        });
+
         let optionDefault = document.createElement("option");
-        let optionLow = document.createElement("option");
-        let optionMedium = document.createElement("option");
-        let optionHight = document.createElement("option");
+        let optionLow     = document.createElement("option");
+        let optionMedium  = document.createElement("option");
+        let optionHight   = document.createElement("option");
 
         optionDefault.text = "Priority";
         optionLow.text     = "Low";
+        optionLow.value    = "Low"
         optionMedium.text  = "Medium";
+        optionMedium.value = "Medium";
         optionHight.text   = "Hight";
+        optionHight.value  = "Hight";
 
         taskPrioritSelect.add(optionDefault);
         taskPrioritSelect.add(optionLow);
@@ -114,23 +126,72 @@ const newTodo = (todoName) => {
         newTaskDiv.appendChild(newTaskDiv3);
         newTaskDiv.appendChild(newTaskDiv4);
 
-        let btnSaveDiv = document.createElement('div');
-        btnSaveDiv.style.width = "4%";
+        let btnSaveDiv               = document.createElement('div');
+        btnSaveDiv.style.width       = "auto";
+        btnSaveDiv.style.marginRight = "10px";
 
-        let btnCancelDiv = document.createElement('div');
-        btnCancelDiv.style.width = "4%";        
+        let btnCancelDiv         = document.createElement('div');
+        btnCancelDiv.style.width = "auto";
 
-        let btnSave = document.createElement('button');
-        btnSave.style.width = "100%";
-        btnSave.style.height = "100%";
-        btnSave.textContent = "Save";
+        let btnSave           = document.createElement('button');
+        btnSave.style.width   = "100%";
+        btnSave.style.height  = "100%";
+        btnSave.textContent   = "Save";
+        btnSave.classList.add("button-blue");
+
+        btnSave.addEventListener('click',function() {
+
+          let taskData  = {
+            title: taskTitleInput.value,
+            description: taskDescTextArea.value,
+            dueDate: taskDueDateInput.value,
+            priority: taskPrioritSelect.value
+          }
+
+          let task = controller.newTask(taskData);
+
+          let tasksLine = document.createElement('div');
+          tasksLine.style.display = "flex";
+          tasksLine.style.justifyContent = "space-between";
+
+          let taskTitleDiv = document.createElement('div');
+          taskTitleDiv.setAttribute('id',taskId++);
+          taskTitleDiv.textContent = task.getTitle();
+
+          let taskDescDiv = document.createElement('div');
+          taskDescDiv.textContent = task.getDescription();
+
+          let taskDueDateDiv = document.createElement('div');
+          taskDueDateDiv.textContent = task.getDueDate();
+
+          let taskPriorityDiv = document.createElement('div');
+          taskPriorityDiv.textContent = task.getPriority();
+
+          tasksLine.appendChild(taskTitleDiv);
+          tasksLine.appendChild(taskDescDiv);
+          tasksLine.appendChild(taskDueDateDiv);
+          tasksLine.appendChild(taskPriorityDiv);
+
+          Array.from(document.querySelectorAll(".task-form")).forEach(function(line){
+            line.remove();
+          })
+          todoTasks.appendChild(tasksLine);
+          todo.addTask(tasksLine);
+          taskForm  = 0;
+        })
 
         let btnCancel = document.createElement('button');
         btnCancel.style.width = "100%";
         btnCancel.style.height = "100%";
         btnCancel.textContent = "Cancel";
+        btnCancel.classList.add("button-red");
 
-
+        btnCancel.addEventListener('click', function() {
+          Array.from(document.querySelectorAll(".task-form")).forEach(function(line){
+            line.remove();
+          })
+          taskForm = 0;
+        })
 
         btnSaveDiv.appendChild(btnSave);
         btnCancelDiv.appendChild(btnCancel);
@@ -140,7 +201,10 @@ const newTodo = (todoName) => {
 
         todoTasks.appendChild(newTaskDiv);
 
-      })
+         taskForm += 1;
+        }
+
+    })
 
     tdName.textContent = todo.getName();
     tdNewTask.appendChild(lkNewTask);
