@@ -51,7 +51,7 @@ const newTodo = (todoName) => {
     tdNewTask.innerHTML = "";
 
     tdName.textContent = todo.getName();
-    tdNewTask.appendChild(linkNewTask(document,controller).create(numberOfTaskForms,todoTasks,taskId));
+    tdNewTask.appendChild(linkNewTask(document,controller).create(todoTasks,taskId));
     todoTitle.appendChild(tdName);
     todoTitle.appendChild(tdNewTask);
     todoTitle.style.display ='flex';

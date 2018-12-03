@@ -94,6 +94,8 @@ const taskForm = (app) => {
 
   const newForm = (controller, todoTasks, taskId) => {
 
+      taskId = taskId;
+      controller = controller;
       let container = createElement("div","",{},["task-form"],{});
 
       let divTitle    = newFormField("title");
@@ -110,54 +112,66 @@ const taskForm = (app) => {
       let btnSaveDiv = createElement("div","",{},[],{"width:":"auto","margin-right:":"10px;"});
       let btnCancelDiv = createElement("div","",{},[],{"width:":"auto"});
 
-      let btnSave = createElement("button","Save",{},["button-blue"],{"width:":"100%","height:": "100%"});
-
-      btnSave.addEventListener('click',function() {
-
-        let task = controller.newTask(creatTask(container));
-
-        let tasksLine = document.createElement('div');
-        tasksLine.style.display = "flex";
-        tasksLine.style.justifyContent = "space-between";
-
-        Object.keys(task).forEach(function(key){
-            let value = task[key]()
-            if (key != "getTitle") {
-              tasksLine.appendChild(createElement("div",value,{},[],{}))
-            } else {
-              tasksLine.appendChild(createElement("div",value,{"id": taskId++},[],{}))
-            }
-        });
-
-        Array.from(document.querySelectorAll(".task-form")).forEach(function(line){
-          line.remove();
-        })
-        todoTasks.appendChild(tasksLine);
-        // let todo = controller.newTodo(todoName);
-        // todo.addTask(task);
-        //Has to return to the controller
-      })
-
-      let btnCancel = document.createElement('button');
-      btnCancel.style.width = "100%";
-      btnCancel.style.height = "100%";
-      btnCancel.textContent = "Cancel";
-      btnCancel.classList.add("button-red");
-
-      btnCancel.addEventListener('click', function() {
-        Array.from(document.querySelectorAll(".task-form")).forEach(function(line){
-          line.remove();
-        })
-      })
-
-      btnSaveDiv.appendChild(btnSave);
-      btnCancelDiv.appendChild(btnCancel);
+      btnSaveDiv.appendChild(createSaveButton(container,controller, taskId));
+      btnCancelDiv.appendChild(createCancelButton());
 
       container.appendChild(btnSaveDiv);
       container.appendChild(btnCancelDiv);
 
       return container;
   }
+
+
+  const createSaveButton = (container, controller, taskId) => {
+
+    let btnSave = createElement("button","Save",{},["button-blue"],{"width:":"100%","height:": "100%"});
+
+    btnSave.addEventListener('click',function() {
+
+      let task = controller.newTask(creatTask(container));
+
+      let tasksLine = document.createElement('div');
+      tasksLine.style.display = "flex";
+      tasksLine.style.justifyContent = "space-between";
+
+      Object.keys(task).forEach(function(key){
+          let value = task[key]()
+          if (key != "getTitle") {
+            tasksLine.appendChild(createElement("div",value,{},[],{}))
+          } else {
+            tasksLine.appendChild(createElement("div",value,{"id": taskId++},[],{}))
+          }
+      });
+
+      Array.from(document.querySelectorAll(".task-form")).forEach(function(line){
+        line.remove();
+      });
+      //   todoTasks.appendChild(tasksLine);
+      //   // let todo = controller.newTodo(todoName);
+      //   // todo.addTask(task);
+      //   //Has to return to the controller
+    });
+
+    return btnSave;
+  }
+
+  const createCancelButton = () => {
+    let btnCancel = document.createElement('button');
+    btnCancel.style.width = "100%";
+    btnCancel.style.height = "100%";
+    btnCancel.textContent = "Cancel";
+    btnCancel.classList.add("button-red");
+
+    btnCancel.addEventListener('click', function() {
+      Array.from(document.querySelectorAll(".task-form")).forEach(function(line){
+        line.remove();
+      });
+    });
+
+    return btnCancel;
+  }
+
+
 
   return { newForm }
 
