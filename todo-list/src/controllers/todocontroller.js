@@ -11,7 +11,12 @@ const todoController = (app) => {
        taskData.dueDate, taskData.priority);
   }
 
-  return { newTodo, newTask };
+  const getTasks = (todo) => {
+    return todo.getTasks();
+  }
+
+
+  return { newTodo, newTask, getTasks };
 
 };
 
