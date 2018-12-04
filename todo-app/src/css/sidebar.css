@@ -1,0 +1,64 @@
+.side-bar {
+  color: #fff;
+  width: 290px;
+  height: 100%;
+  display: flex;
+  flex: 0 0 auto;
+  min-width: 290px;
+  flex-direction: column;
+  background-color: #0f3794;
+}
+
+#side-bar-title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #1a80cc;
+}
+
+/********************
+  Todo List styles
+*********************/
+.main {
+  display: flex;
+  height: 92%;
+  justify-content: center;
+}
+
+.lst-todos {
+  padding: 0;
+  width: 100%;
+}
+
+.lst-todos li {
+  padding: 20px;
+  font-size: 25px;
+  font-weight: 900;
+  text-align: center;
+}
+
+.lst-todos li:hover {
+  cursor: pointer;
+  background-color: #3e5ea9;
+}
+
+/************************
+  Side Bar Footer styles
+*************************/
+#side-bar-footer {
+  height: 8%;
+  display: flex;
+  padding-left: 5px;
+  padding-right: 15px;
+  padding-top: 5px;
+  align-items: center;
+  background-color: #25458e;
+  justify-content: space-between;
+}
+
+#todo-name input {
+  height: 32px;
+  width: 220px;
+  border: none;
+  border-radius: 3%;
+}
