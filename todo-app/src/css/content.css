@@ -104,8 +104,9 @@ Todo Details Styles
 }
 
 .desc {
+  height: 150px;
   overflow-y: auto;
-  max-height: 250px;
+  max-height: 150px;
 }
 
 .task-details-footer {
