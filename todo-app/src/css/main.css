@@ -18,6 +18,10 @@ ul {
   list-style-type: none;
 }
 
+::placeholder {
+  color: #ccc;
+}
+
 /********************
   Button add styles
 *********************/

@@ -138,7 +138,7 @@ eval("// extracted by mini-css-extract-plugin\n\n//# sourceURL=webpack:///./src/
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _util_imports_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./util/imports.js */ \"./src/util/imports.js\");\n\n\n\n//# sourceURL=webpack:///./src/index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _util_imports_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./util/imports.js */ \"./src/util/imports.js\");\n\n\nlet detailsStatus = \"closed\";\nconst todoView = document.querySelector(\".container\");\n\nconst btDetails = todoView.querySelector(\".bt-details\");\nbtDetails.addEventListener('click',function() {\n  let taskDetails = todoView.querySelector(\".task-details\");\n  if (detailsStatus === \"closed\") {\n    taskDetails.style.display = \"flex\";\n    taskDetails.style.flexDirection = \"column\";\n    detailsStatus = \"opened\";\n  } else {\n    detailsStatus = \"closed\";\n    taskDetails.style.display = \"none\";\n  }\n})\n\n\n//# sourceURL=webpack:///./src/index.js?");
 
 /***/ }),
 

@@ -5,23 +5,27 @@
   display: flex;
   flex: 0 0 auto;
   min-width: 290px;
+  min-height: 220px;
   flex-direction: column;
   background-color: #0f3794;
 }
 
 #side-bar-title {
   display: flex;
+  height: 60px;
+  min-height: 60px;
   align-items: center;
   justify-content: center;
-  background-color: #1a80cc;
+  background-color: #25458e;
 }
 
 /********************
   Todo List styles
 *********************/
 .main {
+  height: 450px;
+  overflow:auto;
   display: flex;
-  height: 92%;
   justify-content: center;
 }
 
@@ -46,12 +50,14 @@
   Side Bar Footer styles
 *************************/
 #side-bar-footer {
-  height: 8%;
+  height: 40px;
   display: flex;
-  padding-left: 5px;
+  min-height: 40px;
+  padding-left: 8px;
+  padding-top: 15px;
   padding-right: 15px;
-  padding-top: 5px;
   align-items: center;
+  padding-bottom: 15px;
   background-color: #25458e;
   justify-content: space-between;
 }
@@ -60,5 +66,7 @@
   height: 32px;
   width: 220px;
   border: none;
-  border-radius: 3%;
+  padding: 2px;
+  font-size: 18px;
+  border-radius:3%;
 }

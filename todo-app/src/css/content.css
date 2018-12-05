@@ -15,27 +15,25 @@
 .todo-title {
   display: flex;
   align-items: flex-end;
-  border-bottom: 1px solid #ccc;
+  justify-content: space-between;
+  border-bottom: 1px solid #ddd;
 }
 
-.todo-title div:first-child {
-  width: 99%;
-}
-
-.todo-title div:last-child {
+.todo-title > div {
   border: 1px solid;
   margin-bottom: 5px;
   background-color: #f0f8ff;
 }
 
-.todo-title div:last-child:hover {
+.todo-title > div:hover {
   border: 1px solid #0671f0;
   background-color: #0671f0;
 }
 
 .todo-title h1 {
   padding-bottom: 0;
-  margin-bottom: .5rem;
+  margin-bottom: .01rem;
+  color: lightseagreen;
 }
 
 /***********************
@@ -67,24 +65,28 @@ Todo Details Styles
 }
 
 .task-title a {
+  color: #6092dd;
+  font-size: 35px;
+  font-weight: 700;
+  margin-top: -13px;
   text-decoration: none;
 }
 
 .task-title h2 {
-  padding: 0;
-  margin: 0;
-  font-size: 25px;
+  margin:0;
+  padding:0;
   color:#6092dd;
+  font-size:25px;
 }
 
 .task-details {
-  padding: 5px;
+  padding: 10px;
   height: 200px;
+  display: none;
+  margin-top: 10px;
   max-height: 200px;
   border: 1px solid #ccc;
-  /* display: flex; */
-  /* flex-direction: column; */
-  display: none;
+  background-color: #afd3f4;
 }
 
 .task-details-footer {
@@ -94,5 +96,5 @@ Todo Details Styles
 }
 
 .desc {
-  margin-bottom: 4rem;
+  margin-bottom: 6rem;
 }
