@@ -23,7 +23,7 @@
   Todo List styles
 *********************/
 .main {
-  height: 450px;
+  height: 100%;
   overflow:auto;
   display: flex;
   justify-content: center;

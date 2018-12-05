@@ -36,11 +36,15 @@
           <div id="todo-details">
             <ul id="tasks">
               <li>
-                <div class="task-title">
+                <div id="tsk-one" class="task-title">
                   <h2>Task One</h2>
                   <a href="#" class="bt-details"> Show details </a>
                 </div>
                 <div class="task-details">
+                  <div class="task-details-top">
+                    <div class="due-date">Due Date 31/12/2012</div>
+                    <div class="priority">Low Priority</div>
+                  </div>
                   <div class="desc">
                     Lorem ipsum dolor sit amet, consectetur adipisicing elit,
                     sed do eiusmod tempor incididunt ut labore et dolore magna
@@ -52,8 +56,13 @@
                     deserunt mollit anim id est laborum.
                   </div>
                   <div class="task-details-footer">
-                    <div class="milestone">Due Date 31/12/2012</div>
-                    <div class="priority">Low</div>
+                    <div class="task-done">
+                      <input id="tsk-done" type="checkbox" value="done">
+                      Done
+                    </div>
+                    <div class="bt-remove">
+                      <span>Remove</span>
+                    </div>
                   </div>
                 </div>
               </li>

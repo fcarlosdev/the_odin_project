@@ -51,24 +51,24 @@ Todo Details Styles
 #tasks li {
   font-size: 20px;
   font-weight: 500;
-  padding-left: 15px;
-  padding-right: 15px;
   padding-top: 15px;
   margin-bottom: 8px;
-  padding-bottom: 15px;
   background-color: #deedfb;
 }
 
 .task-title {
   display: flex;
+  padding-left: 10px;
+  padding-right: 15px;
+  padding-bottom: 5px;
   justify-content: space-between;
 }
 
 .task-title a {
   color: #6092dd;
-  font-size: 35px;
+  font-size: 15px;
+  margin-top: 5px;
   font-weight: 700;
-  margin-top: -13px;
   text-decoration: none;
 }
 
@@ -80,7 +80,7 @@ Todo Details Styles
 }
 
 .task-details {
-  padding: 10px;
+  padding: 15px;
   height: 200px;
   display: none;
   margin-top: 10px;
@@ -89,14 +89,55 @@ Todo Details Styles
   background-color: #afd3f4;
 }
 
-.task-details-footer {
+.task-details-top {
   display: flex;
+  margin-bottom: 1rem;
   align-items: flex-end;
   justify-content: space-between;
 }
 
+.due-date,
+.priority {
+  font-size: 17px;
+  font-weight: 700;
+  color: dodgerblue;
+}
+
 .desc {
-  margin-bottom: 6rem;
+  overflow-y: auto;
+  max-height: 250px;
+}
+
+.task-details-footer {
+  height: 20px;
+  display: flex;
+  padding-top: 10px;
+  justify-content: space-between;
+}
+
+.task-done {
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.task-done input[type="checkbox"] {
+  transform: scale(2);
+  padding: 10px;
+}
+
+.task-done:hover {
+  color: #1b7bdf;
+}
+
+.bt-remove {
+  font-size: 20px;
+  font-weight: 600;
+  margin-right: 10px;
+}
+
+.bt-remove:hover {
+  cursor: pointer;
+  color: #f6251f;
 }
 
 /********************
@@ -169,7 +210,7 @@ ul {
   Todo List styles
 *********************/
 .main {
-  height: 450px;
+  height: 100%;
   overflow:auto;
   display: flex;
   justify-content: center;
