@@ -1,21 +1,20 @@
 import "./util/imports.js";
 import {TodoController} from "./controllers/todoController.js";
 import {TaskController} from "./controllers/taskController.js";
-import {ViewManager} from "./views/viewManager.js";
+import {App} from "./app-todo.js";
 
-let todosList   = document.querySelector(".lst-todos");
 let txtNomeTodo = document.querySelector("#txt-todo-name");
+let todosList   = document.querySelector(".lst-todos");
 
 document.querySelector("#new-todo").addEventListener("click", function() {
-  let todo                   = TodoController.createTodo(txtNomeTodo.value);
-  let todoItem               = document.createElement("li");
-  let spanTodoName           = document.createElement("span");
-  let spanTodoSymbol         = document.createElement("span");
-  spanTodoName.textContent   = todo.getName();
-  spanTodoSymbol.textContent = "x";
-  todoItem.appendChild(spanTodoName);
-  todoItem.appendChild(spanTodoSymbol);
-  todosList.appendChild(todoItem);
+  let todo = TodoController.createTodo(txtNomeTodo.value);
+  App.createTodo(todo.getName(),"li",".lst-todos");
+
+  document.querySelector(".bt-remove").addEventListener("click", function() {
+    todosList.removeChild(
+      todosList.children[document.querySelector(".bt-remove").getAttribute("removeId")-1]
+    )
+  });
   // todo.addTask(todo,"Task One");
   // todo.addTask(todo,"Task Two");
   clearTextField(txtNomeTodo);

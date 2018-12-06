@@ -70,3 +70,9 @@
   font-size: 18px;
   border-radius:3%;
 }
+
+.lst-todos li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}

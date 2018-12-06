@@ -140,8 +140,3 @@ Todo Details Styles
   cursor: pointer;
   color: #f6251f;
 }
-
-.lst-todos li {
-  display: flex;
-  justify-content: space-between;
-}

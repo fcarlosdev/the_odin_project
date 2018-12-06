@@ -141,11 +141,6 @@ Todo Details Styles
   color: #f6251f;
 }
 
-.lst-todos li {
-  display: flex;
-  justify-content: space-between;
-}
-
 /********************
   General styles
 *********************/
@@ -262,5 +257,11 @@ ul {
   padding: 2px;
   font-size: 18px;
   border-radius:3%;
+}
+
+.lst-todos li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
