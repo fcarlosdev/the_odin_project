@@ -13,21 +13,15 @@
 }
 
 .todo-title {
-  display: flex;
+  display:  none;
   align-items: flex-end;
   justify-content: space-between;
   border-bottom: 1px solid #ddd;
 }
 
 .todo-title > div {
-  border: 1px solid;
   margin-bottom: 5px;
   background-color: #f0f8ff;
-}
-
-.todo-title > div:hover {
-  border: 1px solid #0671f0;
-  background-color: #0671f0;
 }
 
 .todo-title h1 {
@@ -139,4 +133,25 @@ Todo Details Styles
 .bt-remove:hover {
   cursor: pointer;
   color: #f6251f;
+}
+
+.todo-actions div  {
+  padding-left: 5px;
+  font-size: 15px;
+  color: #e77e7e;
+}
+
+.todo-actions div:hover {
+  cursor: pointer;
+  color: #f51515;
+}
+
+.add-task {
+  font-size: 16px;
+  color: #ccc;
+}
+
+.add-task:hover {
+  cursor: pointer;
+  color: #19638c;
 }

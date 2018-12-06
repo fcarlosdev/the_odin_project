@@ -7,18 +7,22 @@ let txtNomeTodo = document.querySelector("#txt-todo-name");
 let todosList   = document.querySelector(".lst-todos");
 
 document.querySelector("#new-todo").addEventListener("click", function() {
+  newTodo();
+});
+
+txtNomeTodo.addEventListener('keydown', function(event) {
+  if (event.key === "Enter") {
+    newTodo();
+  }
+});
+
+const newTodo = () => {
   let todo = TodoController.createTodo(txtNomeTodo.value);
   App.createTodo(todo.getName(),"li",".lst-todos");
-
-  document.querySelector(".bt-remove").addEventListener("click", function() {
-    todosList.removeChild(
-      todosList.children[document.querySelector(".bt-remove").getAttribute("removeId")-1]
-    )
-  });
   // todo.addTask(todo,"Task One");
   // todo.addTask(todo,"Task Two");
   clearTextField(txtNomeTodo);
-});
+}
 
 const clearTextField = (textField) => {
   textField.value = "";

@@ -4,7 +4,7 @@ const ViewElements = (() => {
       return document.createElement(type);
     }
 
-    const addAttribute = (element, attributes) => {
+    const addAttributes = (element, attributes) => {
       if (element !== "" || attributes !== undefined) {
         Object.keys(attributes).forEach(function(key) {
           element.setAttribute(key,attributes[key]);
@@ -28,12 +28,21 @@ const ViewElements = (() => {
     }
 
     const attachEvent = (element, type, behavior) => {
-      document.addEventListener(type, behavior);
+      element.addEventListener(type, behavior);
+    }
+
+    const applyStyles = (element, styles) => {
+
+      if (styles != undefined) {
+        Object.keys(styles).forEach(function(styleName){
+          element.style.cssText += styleName+styles[styleName];
+        });
+      }
     }
 
     return {
-      newElement, addAttribute, getElement, setContent,
-      addClass, attachEvent
+      newElement, addAttributes, getElement, setContent,
+      addClass, attachEvent, applyStyles
     }
 
 })();

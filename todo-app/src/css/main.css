@@ -25,7 +25,7 @@ ul {
 /********************
   Button add styles
 *********************/
-.bt-add {
+.bt {
   color: #333;
   width: 32px;
   height: 32px;
@@ -37,7 +37,7 @@ ul {
   background-color: #fff;
 }
 
-.bt-add:hover {
+.bt:hover {
   color: #fff;
   cursor: pointer;
   background-color: #0671f0;
