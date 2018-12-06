@@ -1,18 +1,29 @@
 import "./util/imports.js";
-import {ManagerView} from "./views/appViewManager.js";
 import {TodoController} from "./controllers/todoController.js";
 import {TaskController} from "./controllers/taskController.js";
+import {ViewManager} from "./views/viewManager.js";
 
+let todosList   = document.querySelector(".lst-todos");
+let txtNomeTodo = document.querySelector("#txt-todo-name");
 
 document.querySelector("#new-todo").addEventListener("click", function() {
-  let txtNomeTodo = document.querySelector("#txt-todo-name");
-  let todo = TodoController.createTodo(txtNomeTodo.value);
-  todo.addTask(todo,"Task One");
-  todo.addTask(todo,"Task Two");
-  ManagerView.addNewTodoToListOfTodos(todo.getName());
-  txtNomeTodo.value = "";
+  let todo                   = TodoController.createTodo(txtNomeTodo.value);
+  let todoItem               = document.createElement("li");
+  let spanTodoName           = document.createElement("span");
+  let spanTodoSymbol         = document.createElement("span");
+  spanTodoName.textContent   = todo.getName();
+  spanTodoSymbol.textContent = "x";
+  todoItem.appendChild(spanTodoName);
+  todoItem.appendChild(spanTodoSymbol);
+  todosList.appendChild(todoItem);
+  // todo.addTask(todo,"Task One");
+  // todo.addTask(todo,"Task Two");
+  clearTextField(txtNomeTodo);
+});
 
-})
+const clearTextField = (textField) => {
+  textField.value = "";
+}
 
 
 

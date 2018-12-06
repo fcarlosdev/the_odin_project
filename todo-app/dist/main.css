@@ -141,6 +141,11 @@ Todo Details Styles
   color: #f6251f;
 }
 
+.lst-todos li {
+  display: flex;
+  justify-content: space-between;
+}
+
 /********************
   General styles
 *********************/
