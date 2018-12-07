@@ -1,0 +1,38 @@
+<div class="modal-content">
+  <div class="modal-title">
+    <h1>New Task</h1>
+    <span class="close">&times;</span>
+  </div>
+  <div class="modal-form">
+    <form action="#">
+      <div class="group-fields">
+        <label for="task-title">Title</label>
+        <input id ="task-title" ype="input" name="task-title" class="field-form">
+      </div>
+
+      <div class="group-fields">
+        <label for="task-description">Description</label>
+        <textarea id="task-desc" name="task-description" rows="8" cols="80"></textarea>
+      </div>
+
+      <div class="group-fields">
+        <label for="task-due-date">Due date</label>
+        <input id="task-due-date" type="date" name="task-due-date"  class="date-field">
+      </div>
+
+      <div class="group-fields">
+        <label for="task-priority">Priority</label>
+        <select id="priority" name="task-priority" >
+          <option value="none">Select the priority</option>
+          <option value="Low">Low</option>
+          <option value="Medium">Medium</option>
+          <option value="High">High</option>
+        </select>
+      </div>
+    </form>
+    <div class="modal-buttons">
+      <div id="modal-save-button">Save</div>
+      <div id="modal-cancel-button">Cancel</div>
+    </div>
+  </div>
+</div>

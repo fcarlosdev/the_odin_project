@@ -1,4 +1,4 @@
-import "../models/task.js";
+import {Task} from "../models/task.js";
 
 const TaskController = (() => {
 

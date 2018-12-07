@@ -2,7 +2,11 @@ const ViewElements = (() => {
 
     const newElement = (type,content) => {
       let element = document.createElement(type);
-          element.textContent = content;
+      if (content != undefined && content.includes(">")) {
+        element.innerHTML = content;
+      } else {
+        element.textContent = content;
+      }
       return element;
     }
 
@@ -18,6 +22,7 @@ const ViewElements = (() => {
 
     const addClass = (element, classes) => {
       element.classList = classes;
+      return element;
     }
 
     const getElement = (element) => {
@@ -39,7 +44,9 @@ const ViewElements = (() => {
         Object.keys(styles).forEach(function(styleName){
           element.style.cssText += styleName+styles[styleName];
         });
+        return element;
       }
+      return null;
     }
 
     return {

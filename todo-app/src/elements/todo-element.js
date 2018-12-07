@@ -1,4 +1,6 @@
 import {ViewElements} from "./view-elements.js";
+import newTaskForm from "../partials/new-task-form.html";
+import {TaskController} from "../controllers/taskController.js";
 
 const TodoElement = (() => {
 
@@ -7,7 +9,7 @@ const TodoElement = (() => {
     let todoList = ViewElements.getElement(todoListTag);
     ViewElements.addAttributes(todoItem, {"id": generateTodoId(todoList)});
     setTodoIdentification(name,todoItem, todoList);
-    attachShowTodoDetaisEvent(todoItem);
+    attachSelectTodoEvent(todoItem,name);
     todoList.appendChild(todoItem);
   }
 
@@ -28,18 +30,19 @@ const TodoElement = (() => {
     todoItem.appendChild(btRemove);
   }
 
-  const attachShowTodoDetaisEvent = (todoItem) => {
+  const attachSelectTodoEvent = (todoItem, content) => {
 
     ViewElements.attachEvent(todoItem, "click", e => {
 
       if (e.target.tagName === "LI" || e.target.textContent != "x") {
 
-        todoHeader = ViewElements.getElement(".todo-title");
+        let todoHeader = ViewElements.getElement(".todo-title");
         ViewElements.applyStyles(todoHeader, {"display:":"flex"});
         clearElementChildNodes(todoHeader);
 
         let btAddTask = ViewElements.newElement("div","Add Task");
         ViewElements.addClass(btAddTask,["add-task"]);
+        attachNewTodoTaskEvent(btAddTask);
 
         let removeTodo = ViewElements.newElement("div","Remove");
         ViewElements.addClass(removeTodo, ["bt-remove"]);
@@ -51,14 +54,57 @@ const TodoElement = (() => {
         let todoActions = ViewElements.newElement("div");
         ViewElements.addClass(todoActions,["todo-actions"]);
 
-        todoActions.appendChild(ViewElements.newElement("h1",name));
+        todoActions.appendChild(ViewElements.newElement("h1",content));
         todoActions.appendChild(removeTodo);
 
         todoHeader.appendChild(todoActions);
         todoHeader.appendChild(btAddTask);
-
-        ViewElements.getElement(".todo-container").appendChild(todoHeader);
       }
+    });
+  }
+
+  const attachNewTodoTaskEvent = (btAddTask) => {
+    ViewElements.attachEvent(btAddTask, "click", e => {
+      let modal = ViewElements.getElement('#myModal');
+          modal.innerHTML = newTaskForm;
+          modal.style.display = "block";
+
+      ViewElements.attachEvent(ViewElements.getElement(".close"),"click", e => {
+        modal.style.display = "none";
+      });
+
+      ViewElements.attachEvent(ViewElements.getElement("#modal-cancel-button"),"click", e => {
+        modal.style.display = "none";
+      });
+
+      ViewElements.attachEvent(ViewElements.getElement("#modal-save-button"),"click", e => {
+
+        let tasks = ViewElements.getElement("#tasks");
+
+        let taskTitle = ViewElements.getElement("#task-title");
+        let task = TaskController.createTask(taskTitle.value,"Desc","01/01/2018","Low");
+
+        let taskHeader = ViewElements.newElement("h2",task.getName());
+
+        let taskShowDetails = ViewElements.newElement("a","Show Details");
+        ViewElements.addAttributes(taskShowDetails,{"href":"#"});
+        ViewElements.addClass(taskShowDetails,["bt-details"]);
+
+        let elementTitle = ViewElements.newElement("div");
+        ViewElements.addAttributes("id", tasks.children.length + 1);
+        ViewElements.addClass(elementTitle,["task-title"]);
+        elementTitle.appendChild(taskHeader);
+        elementTitle.appendChild(taskShowDetails);
+
+
+        let taskLine = ViewElements.newElement("li");
+        taskLine.appendChild(elementTitle);
+
+        tasks.append(taskLine);
+
+        ViewElements.getElement('#myModal').style.display = "none";
+
+      });
     });
   }
 
