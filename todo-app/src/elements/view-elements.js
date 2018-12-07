@@ -1,7 +1,9 @@
 const ViewElements = (() => {
 
-    const newElement = (type) => {
-      return document.createElement(type);
+    const newElement = (type,content) => {
+      let element = document.createElement(type);
+          element.textContent = content;
+      return element;
     }
 
     const addAttributes = (element, attributes) => {

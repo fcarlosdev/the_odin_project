@@ -1,7 +1,7 @@
 import "./util/imports.js";
 import {TodoController} from "./controllers/todoController.js";
 import {TaskController} from "./controllers/taskController.js";
-import {App} from "./app-todo.js";
+import {App} from "./elements/app-todo.js";
 
 let txtNomeTodo = document.querySelector("#txt-todo-name");
 let todosList   = document.querySelector(".lst-todos");
@@ -18,10 +18,15 @@ txtNomeTodo.addEventListener('keydown', function(event) {
 
 const newTodo = () => {
   let todo = TodoController.createTodo(txtNomeTodo.value);
-  App.createTodo(todo.getName(),"li",".lst-todos");
+  App.newTodoViewElement(todo.getName(),"li",".lst-todos");
   // todo.addTask(todo,"Task One");
   // todo.addTask(todo,"Task Two");
   clearTextField(txtNomeTodo);
+}
+
+const newTask = (todo) => {
+  let task = TaskController.createTask("Task One", "Task of tests", "01/01/2019", "low");
+  App.newTodoTaskElement(todo, task);
 }
 
 const clearTextField = (textField) => {
