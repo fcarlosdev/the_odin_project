@@ -48,6 +48,7 @@ const TodoElement = (() => {
         ViewElements.addClass(removeTodo, ["bt-remove"]);
         ViewElements.attachEvent(removeTodo, "click", e => {
           clearElementChildNodes(todoHeader);
+          clearElementChildNodes(ViewElements.getElement("#tasks"));
           ViewElements.applyStyles(todoHeader, {"display:":"none"});
         })
 
@@ -86,9 +87,23 @@ const TodoElement = (() => {
 
         let taskHeader = ViewElements.newElement("h2",task.getName());
 
+        let elementTaskDetails = ViewElements.newElement("div");
+        ViewElements.addClass(elementTaskDetails,["task-details"]);
+        ViewElements.applyStyles(elementTaskDetails,{"display:":"none"});
+
         let taskShowDetails = ViewElements.newElement("a","Show Details");
         ViewElements.addAttributes(taskShowDetails,{"href":"#"});
         ViewElements.addClass(taskShowDetails,["bt-details"]);
+        ViewElements.attachEvent(taskShowDetails,"click", e => {
+          if (elementTaskDetails.style.display == "none") {
+            elementTaskDetails.style.display = "flex";
+            taskShowDetails.textContent = "Hide details";
+          } else {
+            elementTaskDetails.style.display = "none";
+            taskShowDetails.textContent = "Show details";
+          }
+
+        });
 
         let elementTitle = ViewElements.newElement("div");
         ViewElements.addAttributes("id", tasks.children.length + 1);
@@ -96,9 +111,9 @@ const TodoElement = (() => {
         elementTitle.appendChild(taskHeader);
         elementTitle.appendChild(taskShowDetails);
 
-
         let taskLine = ViewElements.newElement("li");
         taskLine.appendChild(elementTitle);
+        taskLine.appendChild(elementTaskDetails);
 
         tasks.append(taskLine);
 

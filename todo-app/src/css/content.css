@@ -2,6 +2,7 @@
   width: 100%;
   padding: 20px;
   background-color: #f0f8ff;
+  overflow: auto;
 }
 
 /**************************
@@ -46,8 +47,8 @@ Todo Details Styles
   font-size: 20px;
   font-weight: 500;
   padding-top: 15px;
-  margin-bottom: 8px;
-  background-color: #deedfb;
+  margin-bottom: 15px;
+  background-color: #0656a0;
 }
 
 .task-title {
@@ -59,7 +60,7 @@ Todo Details Styles
 }
 
 .task-title a {
-  color: #6092dd;
+  color: #fff;
   font-size: 15px;
   margin-top: 5px;
   font-weight: 700;
@@ -69,7 +70,7 @@ Todo Details Styles
 .task-title h2 {
   margin:0;
   padding:0;
-  color:#6092dd;
+  color: #fff;
   font-size:25px;
 }
 

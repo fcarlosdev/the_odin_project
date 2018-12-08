@@ -2,6 +2,7 @@
   width: 100%;
   padding: 20px;
   background-color: #f0f8ff;
+  overflow: auto;
 }
 
 /**************************
@@ -46,8 +47,8 @@ Todo Details Styles
   font-size: 20px;
   font-weight: 500;
   padding-top: 15px;
-  margin-bottom: 8px;
-  background-color: #deedfb;
+  margin-bottom: 15px;
+  background-color: #0656a0;
 }
 
 .task-title {
@@ -59,7 +60,7 @@ Todo Details Styles
 }
 
 .task-title a {
-  color: #6092dd;
+  color: #fff;
   font-size: 15px;
   margin-top: 5px;
   font-weight: 700;
@@ -69,7 +70,7 @@ Todo Details Styles
 .task-title h2 {
   margin:0;
   padding:0;
-  color:#6092dd;
+  color: #fff;
   font-size:25px;
 }
 
@@ -159,17 +160,20 @@ Todo Details Styles
 /********************
   General styles
 *********************/
-html, body {
+html, body, .container {
   margin: 0;
   width: 100%;
   height: 100%;
-  font-family: sans-serif;  
+  max-height: 400vh;
+  font-family: sans-serif;
 }
 
 .container {
   display: flex;
-  height: 100%;
+  flex: 1 1 auto;
   align-items: stretch;
+  align-content: stretch;
+  overflow: auto;
 }
 
 ul {
@@ -286,35 +290,37 @@ ul {
 }
 
 .group-fields {
+  padding: 5px;
   display: flex;
   flex-direction: column;
-  padding: 10px;
 }
 
 .field-form {
-  width: 99%;
   padding: 5px;
   height: 30px;
   font-size: 20px;
 }
 
 label {
-  font-size: 25px;
+  font-size: 24px;
   font-family: sans-serif;
   margin-bottom: 5px;
 }
 
 select {
-  font-size: 20px;
+  font-size: 18px;
   padding: 10px;
-  height: 50px;
+  height: 45px;
   background: none;
 }
 
 .date-field {
   padding: 5px;
+  font-size: 20px;  
+}
+
+textarea {
   font-size: 20px;
-  width: 99%;
 }
 
 .modal-buttons {
@@ -331,8 +337,8 @@ select {
 #modal-cancel-button {
   color: #fff;
   width: 100px;
-  height: 50px;
-  line-height: 50px;
+  height: 40px;
+  line-height: 40px;
   text-align: center;
   border-radius: 2px;
   box-shadow: 2px 3px 10px #888;
@@ -359,11 +365,12 @@ select {
 
 .modal-title {
   color: #fff;
+  height: 50px;
   display: flex;
   align-items: center;
   font-family: sans-serif;
   background-color: #323b86;
-  padding: 1px 20px 1px 20px;
+  padding: 0px 20px 0px 20px;
   justify-content: space-between;
 }
 /* Modal Styles; */
@@ -388,7 +395,7 @@ select {
 /* Modal Content/Box */
 .modal-content {
   background-color: #fefefe;
-  margin: 5% auto; /* 15% from the top and centered */
+  margin: 2% auto; /* 15% from the top and centered */
   /* padding: 15px; */
   border: 1px solid #888;
   width: 60%; /* Could be more or less, depending on screen size */

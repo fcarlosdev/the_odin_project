@@ -1,17 +1,20 @@
 /********************
   General styles
 *********************/
-html, body {
+html, body, .container {
   margin: 0;
   width: 100%;
   height: 100%;
-  font-family: sans-serif;  
+  max-height: 400vh;
+  font-family: sans-serif;
 }
 
 .container {
   display: flex;
-  height: 100%;
+  flex: 1 1 auto;
   align-items: stretch;
+  align-content: stretch;
+  overflow: auto;
 }
 
 ul {
