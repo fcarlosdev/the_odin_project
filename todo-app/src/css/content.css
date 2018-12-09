@@ -82,9 +82,11 @@ Todo Details Styles
   max-height: 200px;
   border: 1px solid #ccc;
   background-color: #afd3f4;
+  flex-direction: column;
 }
 
 .task-details-top {
+  width: 100%;
   display: flex;
   margin-bottom: 1rem;
   align-items: flex-end;
@@ -95,14 +97,17 @@ Todo Details Styles
 .priority {
   font-size: 17px;
   font-weight: 700;
-  color: dodgerblue;
+  color: #061792;
 }
 
 .desc {
   height: 150px;
   overflow-y: auto;
+  overflow-x: hidden;
   max-height: 150px;
+  word-break:break-all;
 }
+
 
 .task-details-footer {
   height: 20px;

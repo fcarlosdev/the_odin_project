@@ -82,9 +82,11 @@ Todo Details Styles
   max-height: 200px;
   border: 1px solid #ccc;
   background-color: #afd3f4;
+  flex-direction: column;
 }
 
 .task-details-top {
+  width: 100%;
   display: flex;
   margin-bottom: 1rem;
   align-items: flex-end;
@@ -95,14 +97,17 @@ Todo Details Styles
 .priority {
   font-size: 17px;
   font-weight: 700;
-  color: dodgerblue;
+  color: #061792;
 }
 
 .desc {
   height: 150px;
   overflow-y: auto;
+  overflow-x: hidden;
   max-height: 150px;
+  word-break:break-all;
 }
+
 
 .task-details-footer {
   height: 20px;
@@ -316,10 +321,11 @@ select {
 
 .date-field {
   padding: 5px;
-  font-size: 20px;  
+  font-size: 20px;
 }
 
 textarea {
+  resize: none;
   font-size: 20px;
 }
 
@@ -416,4 +422,59 @@ textarea {
   /* text-decoration: none; */
   cursor: pointer;
 }
+
+/*
+ Adapted from  W3Schools.
+*/
+
+/* Dropdown Button */
+.dropbtn {
+  /* background-color: #3498DB; */
+  background-color: #0656a0;
+  color: white;
+  /* padding: 16px; */
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+}
+
+/* Dropdown button on hover & focus */
+/* .dropbtn:hover, .dropbtn:focus {
+  background-color: #2980B9;
+} */
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+  /* position: relative; */
+  /* display: inline-block; */
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  /* min-width: 160px; */
+  margin-top: 19px;
+  min-width: 116px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {background-color: #ddd}
+
+/* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
+.show {display:block;}
 

@@ -1,5 +1,6 @@
-import {ViewElements} from "./view-elements.js";
 import newTaskForm from "../partials/new-task-form.html";
+import taskMenu from "../partials/task-menu.html";
+import {ViewElements} from "./view-elements.js";
 import {TaskController} from "../controllers/taskController.js";
 
 const TodoElement = (() => {
@@ -82,18 +83,50 @@ const TodoElement = (() => {
 
         let tasks = ViewElements.getElement("#tasks");
 
+        let id = generateTodoId(tasks);
+        let taskLine = ViewElements.newElement("li");
+        ViewElements.addAttributes(taskLine,{"id": "Task"+id});
+        ViewElements.applyStyles(taskLine,{"position:": "relative"});
+
+
         let taskTitle = ViewElements.getElement("#task-title");
-        let task = TaskController.createTask(taskTitle.value,"Desc","01/01/2018","Low");
+        let taskDesc = ViewElements.getElement("#task-desc");
+        let taskDueDate = ViewElements.getElement("#task-due-date");
+        let taskPriority = ViewElements.getElement("#task-priority");
+        let task = TaskController.createTask(taskTitle.value,taskDesc.value,
+                                      taskDueDate.value, taskPriority.value);
 
         let taskHeader = ViewElements.newElement("h2",task.getName());
 
-        let elementTaskDetails = ViewElements.newElement("div");
-        ViewElements.addClass(elementTaskDetails,["task-details"]);
-        ViewElements.applyStyles(elementTaskDetails,{"display:":"none"});
+        //Task Details Header
+        let dueDateElement = ViewElements.newElement("div", "Due date " + task.getDueDate());
+        ViewElements.addClass(dueDateElement,["due-date"]);
 
-        let taskShowDetails = ViewElements.newElement("a","Show Details");
-        ViewElements.addAttributes(taskShowDetails,{"href":"#"});
-        ViewElements.addClass(taskShowDetails,["bt-details"]);
+        let priorityElement = ViewElements.newElement("div", task.getPriority() + " priority");
+        ViewElements.addClass(priorityElement,["priority"]);
+
+        let taskDetailsTop = ViewElements.newElement("div");
+        ViewElements.addClass(taskDetailsTop,["task-details-top"]);
+
+        taskDetailsTop.appendChild(dueDateElement);
+        taskDetailsTop.appendChild(priorityElement);
+
+        let taskActions = ViewElements.newElement("div","...");
+        ViewElements.addClass(taskActions,["dropdown"]);
+        ViewElements.addAttributes(taskActions,{"width:": "84px"});
+        ViewElements.applyStyles(taskActions,{"display:": "flex",
+                                              "flex-direction:": "column"});
+        taskActions.innerHTML = taskMenu;
+
+        ViewElements.attachEvent(taskActions,"click", e => {
+          taskActions.querySelector("#taskMenu").classList.toggle("show");
+        });
+
+        ViewElements.attachEvent(taskActions.querySelector("#removeTask"),"click", e => {
+          tasks.removeChild(taskLine);
+        });
+
+        let taskShowDetails = taskActions.querySelector("#taskDetails");
         ViewElements.attachEvent(taskShowDetails,"click", e => {
           if (elementTaskDetails.style.display == "none") {
             elementTaskDetails.style.display = "flex";
@@ -102,16 +135,55 @@ const TodoElement = (() => {
             elementTaskDetails.style.display = "none";
             taskShowDetails.textContent = "Show details";
           }
-
         });
 
+        //Task Description
+        let taskDescElement = ViewElements.newElement("div", task.getDescription());
+        ViewElements.addClass(taskDescElement,["desc"]);
+
+        //Task Details footer
+        let checkBoxDoneElement = ViewElements.newElement("input")
+        ViewElements.addAttributes(checkBoxDoneElement,{"id":"tsk-done",
+                                                       "type":"checkbox",
+                                                       "value": "done"});
+        ViewElements.attachEvent(checkBoxDoneElement,"click",e => {
+          let taskElement = ViewElements.getElement("#"+taskLine.getAttribute("id"));
+          if (checkBoxDoneElement.checked) {
+            ViewElements.applyStyles(taskElement.querySelector("h2"),{"text-decoration:":"line-through"});
+            ViewElements.applyStyles(taskActions.querySelector(".dropbtn"),{"background-color:": "#f60f0f"});
+            ViewElements.applyStyles(taskElement,{"background-color:": "#f60f0f"});
+          } else {
+            ViewElements.applyStyles(taskElement.querySelector("h2"),{"text-decoration:":"none"});
+            ViewElements.applyStyles(taskActions.querySelector(".dropbtn"),{"background-color:": "#0656a0"});
+            ViewElements.applyStyles(taskElement,{"background-color:": "#0656a0"});
+          }
+        });
+        let spanDoneText = ViewElements.newElement("span","Done");
+        ViewElements.applyStyles(spanDoneText,{"padding-left:": "10px;"});
+
+        let taskDoneElement = ViewElements.newElement("div");
+        ViewElements.addClass(taskDoneElement,["task-done"]);
+        taskDoneElement.appendChild(checkBoxDoneElement);
+        taskDoneElement.appendChild(spanDoneText);
+
+        let taskFooterElement = ViewElements.newElement("div");
+        ViewElements.addClass(taskFooterElement,["task-details-footer"]);
+        taskFooterElement.appendChild(taskDoneElement);
+
+        let elementTaskDetails = ViewElements.newElement("div");
+        ViewElements.addClass(elementTaskDetails,["task-details"]);
+        ViewElements.applyStyles(elementTaskDetails,{"display:":"none"});
+
+        elementTaskDetails.appendChild(taskDetailsTop);
+        elementTaskDetails.appendChild(taskDescElement);
+        elementTaskDetails.appendChild(taskFooterElement);
+
         let elementTitle = ViewElements.newElement("div");
-        ViewElements.addAttributes("id", tasks.children.length + 1);
+        ViewElements.addAttributes("id", id);
         ViewElements.addClass(elementTitle,["task-title"]);
         elementTitle.appendChild(taskHeader);
-        elementTitle.appendChild(taskShowDetails);
+        elementTitle.appendChild(taskActions);
 
-        let taskLine = ViewElements.newElement("li");
         taskLine.appendChild(elementTitle);
         taskLine.appendChild(elementTaskDetails);
 
