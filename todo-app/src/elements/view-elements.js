@@ -29,8 +29,12 @@ const ViewElements = (() => {
       return document.querySelector(element);
     }
 
-    const setContent = (element, value) => {
-      element.textContent = value;
+    const setContent = (element, content) => {
+      if (content != undefined && content.includes(">")) {
+        element.innerHTML = content;
+      } else {
+        element.textContent = content;
+      }
       return element;
     }
 
@@ -49,9 +53,20 @@ const ViewElements = (() => {
       return null;
     }
 
+    const addChildrenTo = (element, children) => {
+
+      if (children !== undefined) {
+        children.forEach(function(child) {
+          element.appendChild(child);
+        });
+      }
+
+      return element;
+    }
+
     return {
       newElement, addAttributes, getElement, setContent,
-      addClass, attachEvent, applyStyles
+      addClass, attachEvent, applyStyles, addChildrenTo
     }
 
 })();
