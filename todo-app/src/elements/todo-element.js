@@ -1,6 +1,6 @@
 import {ViewElements} from "./view-elements.js";
-import newTaskForm from "../partials/new-task-form.html";
 import {TaskController} from "../controllers/taskController.js";
+import {TaskForm} from "./task-form.js";
 
 const TodoElement = (() => {
 
@@ -66,17 +66,7 @@ const TodoElement = (() => {
 
   const attachNewTodoTaskEvent = (btAddTask) => {
     ViewElements.attachEvent(btAddTask, "click", e => {
-      let modal = ViewElements.getElement('#myModal');
-          modal.innerHTML = newTaskForm;
-          modal.style.display = "block";
-
-      ViewElements.attachEvent(ViewElements.getElement(".close"),"click", e => {
-        modal.style.display = "none";
-      });
-
-      ViewElements.attachEvent(ViewElements.getElement("#modal-cancel-button"),"click", e => {
-        modal.style.display = "none";
-      });
+      TaskForm.show();      
 
       ViewElements.attachEvent(ViewElements.getElement("#modal-save-button"),"click", e => {
 

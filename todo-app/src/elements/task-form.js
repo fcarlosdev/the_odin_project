@@ -3,30 +3,49 @@ import {ViewElements} from "./view-elements.js";
 
 const TaskForm = (() => {
 
-  const createAddTaskForm = () => {
-    return attachCloseEventTo(
-             attacheDisplayEventTo(
-               ViewElements.setContent(
-                 ViewElements.getElement('#myModal'),newTaskForm
-               )
-             )
-           );
+  let form;
+  let task;
+
+  const show = () => {
+
+    form = ViewElements.applyStyles(
+            ViewElements.setContent(
+              ViewElements.getElement('#myModal'), newTaskForm
+            ), {"display:": "block"}
+          );
+
+      attachCloseEvent();
+      attachSaveEvent();
+
+      return form;
   }
 
-  const attacheDisplayEventTo = (form) => {
-    return ViewElements.applyStyles(form, {"display:":"block"});
+  const attachCloseEvent = () => {
+    [ViewElements.getElement(".close"),
+     ViewElements.getElement("#modal-cancel-button")].forEach(function(element){
+       ViewElements.attachEvent(element,"click", e => {
+         form.style.display = "none";
+       })
+     });
   }
 
-  const attachCloseEventTo = (form) => {
-    console.log(form);
-    ViewElements.attachEvent(ViewElements.getElement(".close"),"click", e => {
-      ViewElements.applyStyles(form,{"display:" :"none"});
+  const attachSaveEvent = () => {
+    ViewElements.attachEvent(ViewElements.getElement("#modal-save-button"),"click", e => {
+      task = {
+        title: getFieldValue("#task-title"),
+        description: getFieldValue("#task-desc"),
+        dueDate: getFieldValue("#task-due-date"),
+        priority: getFieldValue("#task-priority")
+      }
     });
-    return form;
   }
 
-  return { createAddTaskForm }
+  const getFieldValue = (fieldId) => {
+    return form.querySelector(fieldId).value;
+  }
+
+  return { show };
 
 })();
 
-export {TaskForm}
+export { TaskForm }
