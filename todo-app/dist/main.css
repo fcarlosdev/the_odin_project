@@ -3,6 +3,7 @@
   padding: 20px;
   background-color: #f0f8ff;
   overflow: auto;
+  min-height: 526px;
 }
 
 /**************************
@@ -212,7 +213,7 @@ ul {
   display: flex;
   flex: 0 0 auto;
   min-width: 290px;
-  min-height: 220px;
+  min-height: 566px;
   flex-direction: column;
   background-color: #0f3794;
 }

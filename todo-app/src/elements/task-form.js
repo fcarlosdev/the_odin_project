@@ -1,10 +1,10 @@
 import newTaskForm from "../partials/new-task-form.html";
 import {ViewElements} from "./view-elements.js";
+import {TaskElement} from "./task-element.js";
 
 const TaskForm = (() => {
 
   let form;
-  let task;
 
   const show = () => {
 
@@ -30,13 +30,15 @@ const TaskForm = (() => {
   }
 
   const attachSaveEvent = () => {
+    let task;
     ViewElements.attachEvent(ViewElements.getElement("#modal-save-button"),"click", e => {
-      task = {
-        title: getFieldValue("#task-title"),
-        description: getFieldValue("#task-desc"),
-        dueDate: getFieldValue("#task-due-date"),
-        priority: getFieldValue("#task-priority")
-      }
+      TaskElement.newTask(
+        { title: getFieldValue("#task-title"),
+          description: getFieldValue("#task-desc"),
+          dueDate: getFieldValue("#task-due-date"),
+          priority: getFieldValue("#task-priority") }
+      );
+      form.style.display = "none";
     });
   }
 
