@@ -1,9 +1,9 @@
 .main-content {
   width: 100%;
   padding: 20px;
-  background-color: #f0f8ff;
   overflow: auto;
   min-height: 526px;
+  background-color: #f0f8ff;
 }
 
 /**************************
@@ -49,14 +49,16 @@ Todo Details Styles
   font-weight: 500;
   padding-top: 15px;
   margin-bottom: 15px;
-  background-color: #0656a0;
 }
 
 .task-title {
   display: flex;
+  height: 50px;
+  line-height: 50px;
   padding-left: 10px;
   padding-right: 15px;
   padding-bottom: 5px;
+  background-color: #0656a0;
   justify-content: space-between;
 }
 
@@ -79,10 +81,9 @@ Todo Details Styles
   padding: 15px;
   height: 200px;
   display: none;
-  margin-top: 10px;
   max-height: 200px;
   border: 1px solid #ccc;
-  background-color: #afd3f4;
+  background-color: #e6eff7;
 }
 
 .task-details-top {

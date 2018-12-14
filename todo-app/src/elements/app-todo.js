@@ -2,8 +2,8 @@ import {TodoElement} from "./todo-element.js";
 
 const App = (() => {
 
-  const newTodoViewElement = (todoName, tagType, todoListTag) => {
-    TodoElement.generateTodo(todoName,tagType, todoListTag);
+  const newTodoViewElement = (name) => {
+    return TodoElement.createTodoElement(name);
   }
 
   const newTodoTaskElement = (todo, task) => {

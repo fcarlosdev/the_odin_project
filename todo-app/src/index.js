@@ -1,5 +1,6 @@
 import "./util/imports.js";
-import {TodoController} from "./controllers/todoController.js";
+import {Todo} from "./models/todo.js";
+// import {TodoController} from "./controllers/todoController.js";
 // import {TaskController} from "./controllers/taskController.js";
 import {App} from "./elements/app-todo.js";
 
@@ -18,16 +19,16 @@ txtNomeTodo.addEventListener('keydown', function(event) {
 });
 
 const newTodo = () => {
-  let todo = TodoController.createTodo(txtNomeTodo.value);
-  App.newTodoViewElement(todo.getName(), "li", ".lst-todos");
+  let todo = Todo(txtNomeTodo.value);
+  // App.newTodoViewElement(todo.getName(), "li", ".lst-todos");
+  todosList.appendChild(App.newTodoViewElement(todo.getName()));
   clearTextField(txtNomeTodo);
 }
 
 const newTask = (todo) => {
-  let task = TaskController.createTask("Task One", "Task of tests", "01/01/2019", "low");
   // todo.addTask(todo,"Task One");
   // todo.addTask(todo,"Task Two");
-  App.newTodoTaskElement(todo, task);
+  // App.newTodoTaskElement(todo, task);
 }
 
 const clearTextField = (textField) => {
