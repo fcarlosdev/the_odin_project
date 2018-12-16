@@ -51,7 +51,6 @@ Todo Details Styles
   font-weight: 500;
   padding-top: 15px;
   margin-bottom: 15px;
-  background-color: #0656a0;
 }
 
 .task-title {
@@ -64,6 +63,7 @@ Todo Details Styles
 
 .task-title a {
   color: #fff;
+  cursor: pointer;
   font-size: 15px;
   margin-top: 5px;
   font-weight: 700;
@@ -105,6 +105,7 @@ Todo Details Styles
   height: 150px;
   overflow-y: auto;
   max-height: 150px;
+  white-space: pre-wrap;
 }
 
 .task-details-footer {
@@ -122,10 +123,15 @@ Todo Details Styles
 .task-done input[type="checkbox"] {
   transform: scale(2);
   padding: 10px;
+  margin-right: 8px;
 }
 
 .task-done:hover {
   color: #1b7bdf;
+}
+
+.task-done label {
+  font-size:  20px;
 }
 
 .bt-remove {
@@ -158,6 +164,18 @@ Todo Details Styles
 .add-task:hover {
   cursor: pointer;
   color: #19638c;
+}
+
+.low-priority {
+  background-color: #77a648;
+}
+
+.medium-priority {
+  background-color: #0656a0;
+}
+
+.high-priority {
+  background-color: #980c0c;
 }
 
 /********************
@@ -401,6 +419,7 @@ textarea {
   /* padding: 15px; */
   border: 1px solid #888;
   width: 60%; /* Could be more or less, depending on screen size */
+  max-height: 540px;  
 }
 
 /* The Close Button */
