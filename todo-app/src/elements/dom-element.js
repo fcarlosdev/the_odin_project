@@ -25,7 +25,7 @@ const DomElement = (() => {
       return element;
     }
 
-    const getElement = (element) => {
+    const getElement = (element) => {      
       return document.querySelector(element);
     }
 
