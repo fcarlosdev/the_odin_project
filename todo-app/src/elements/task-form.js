@@ -1,50 +1,110 @@
-import newTaskForm from "../partials/new-task-form.html";
-import {ViewElements} from "./view-elements.js";
+import {Task} from "../models/task.js";
+import {DomElement} from "./dom-element.js";
+import FrmTaskBody from "../partials/new-task-form.html";
 
 const TaskForm = (() => {
 
-  let form;
-  let task;
-
-  const show = () => {
-
-    form = ViewElements.applyStyles(
-            ViewElements.setContent(
-              ViewElements.getElement('#myModal'), newTaskForm
-            ), {"display:": "block"}
-          );
-
-      attachCloseEvent();
-      attachSaveEvent();
-
-      return form;
+  const addTaskTo = (todoModel) => {
+    createTaskElement();
+    attachCloseEvent();
+    attachSaveEvent(todoModel);
   }
 
   const attachCloseEvent = () => {
-    [ViewElements.getElement(".close"),
-     ViewElements.getElement("#modal-cancel-button")].forEach(function(element){
-       ViewElements.attachEvent(element,"click", e => {
-         form.style.display = "none";
+    [DomElement.getElement(".close"),
+     DomElement.getElement("#cancel-button")].forEach(function(element){
+       DomElement.attachEvent(element,"click", e => {
+         closeForm();
        })
      });
   }
 
-  const attachSaveEvent = () => {
-    ViewElements.attachEvent(ViewElements.getElement("#modal-save-button"),"click", e => {
-      task = {
-        title: getFieldValue("#task-title"),
-        description: getFieldValue("#task-desc"),
-        dueDate: getFieldValue("#task-due-date"),
-        priority: getFieldValue("#task-priority")
-      }
+  const attachSaveEvent = (todoModel) => {
+    DomElement.attachEvent(DomElement.getElement("#save-button"),"click", e => {
+      let tasks           = DomElement.getElement("#tasks");
+      let task            = createTaskModel();
+      let taskDetails     = createTaskDetails();
+      let taskShowDetails = createShowDetailsLink();
+      associateTaskToTodo(task,todoModel);
+      attachShowDetailsEventTo(taskShowDetails,taskDetails);
+
+      let elementTitle = createElementTaskTitle(tasks,
+                    [DomElement.newElement("h2",task.getName()),taskShowDetails]);
+
+      let taskLine = DomElement.addChildrenTo(
+                       DomElement.newElement("li"),[elementTitle,taskDetails]
+                     );
+
+      tasks.append(taskLine);
+      closeForm();
     });
   }
 
-  const getFieldValue = (fieldId) => {
-    return form.querySelector(fieldId).value;
+  const createTaskElement = () => {
+    DomElement.applyStyles(
+      DomElement.setContent(
+        DomElement.getElement('#myModal'), FrmTaskBody
+      ), {"display:": "block"}
+    );
   }
 
-  return { show };
+  const createTaskModel = () => {
+    return Task(getFieldValue("#task-title"), getFieldValue("#task-desc"),
+                getFieldValue("#task-due-date"), getFieldValue("#task-priority"));
+  }
+
+  const associateTaskToTodo = (task,todoModel) => {
+    todoModel.addTask(task);
+  }
+
+  const createTaskDetails = () => {
+    return DomElement.applyStyles(
+             DomElement.addClass(
+               DomElement.newElement("div"),["task-details"]
+             ),{"display:":"none"}
+           );
+  }
+
+  const createShowDetailsLink = () => {
+    return DomElement.addClass(
+             DomElement.addAttributes(
+               DomElement.newElement("a","Show Details"),{"href":"#"}
+             ),["bt-details"]
+           );
+  }
+
+  const attachShowDetailsEventTo = (taskShowDetails, taskDetails) => {
+    DomElement.attachEvent(taskShowDetails,"click", e => {
+      if (taskDetails.style.display == "none") {
+        taskDetails.style.display = "flex";
+        taskShowDetails.textContent = "Hide details";
+      } else {
+        taskDetails.style.display = "none";
+        taskShowDetails.textContent = "Show details";
+      }
+    })
+  }
+
+  const createElementTaskTitle = (tasks, children) => {
+    return DomElement.addChildrenTo(
+             DomElement.addClass(
+               DomElement.addAttributes(
+                 DomElement.newElement("div"),{"id": tasks.children.length + 1}
+               ),["task-title"]
+             ),children
+           );
+  }
+
+  const getFieldValue = (fieldId) => {
+    return DomElement.getElement(fieldId).value;
+  }
+
+  const closeForm = () => {
+    DomElement.getElement("#myModal").style.display = "none";
+  }
+
+
+  return { addTaskTo };
 
 })();
 

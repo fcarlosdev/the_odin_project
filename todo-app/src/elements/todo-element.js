@@ -1,129 +1,90 @@
-import {ViewElements} from "./view-elements.js";
-import {TaskController} from "../controllers/taskController.js";
 import {TaskForm} from "./task-form.js";
+import {DomElement} from "./dom-element.js";
+import {AuxiliarLib} from "../util/auxiliar-lib.js";
+import {Todo} from "../models/todo.js";
+import {ListOfTask} from "./list-of-tasks.js";
 
 const TodoElement = (() => {
 
-  const generateTodo = (name, todoItemTag, todoListTag) => {
-    let todoItem = ViewElements.newElement(todoItemTag);
-    let todoList = ViewElements.getElement(todoListTag);
-    ViewElements.addAttributes(todoItem, {"id": generateTodoId(todoList)});
-    setTodoIdentification(name,todoItem, todoList);
-    attachSelectTodoEvent(todoItem,name);
-    todoList.appendChild(todoItem);
+  let todoElement;
+  let todoSection;
+  let todoModel;
+
+  const createTodoElement = (elementType, content) => {
+    todoModel = Todo(content);
+    return todoElement = attachSelectEvent(createTodo(elementType, content));
   }
 
-  const setTodoIdentification = (name,todoItem, todoList) => {
-
-    let todoName  = ViewElements.newElement("span");
-    let btRemove  = ViewElements.newElement("span");
-
-    ViewElements.setContent(todoName,name);
-    ViewElements.setContent(btRemove, "x");
-    ViewElements.addClass(btRemove,["bt-remove"]);
-
-    ViewElements.attachEvent(btRemove, "click", e => {
-      todoList.removeChild(todoItem);
+  const attachSelectEvent = (todoDomElem) => {
+    DomElement.attachEvent(todoDomElem, "click", e => {
+      AuxiliarLib.removeChildNodesFrom(DomElement.getElement(".todo-title"));
+      AuxiliarLib.removeChildNodesFrom(DomElement.getElement("#tasks"));
+      ListOfTask.showListTo(todoModel);
+      todoSection = creatTodoSection();
+      DomElement.addChildrenTo(todoSection,[createTodoSectionIdentification(),
+                                 attachNewTodoTaskEvent(createButtonAddTask())]);
     });
-
-    todoItem.appendChild(todoName);
-    todoItem.appendChild(btRemove);
-  }
-
-  const attachSelectTodoEvent = (todoItem, content) => {
-
-    ViewElements.attachEvent(todoItem, "click", e => {
-
-      if (e.target.tagName === "LI" || e.target.textContent != "x") {
-
-        let todoHeader = ViewElements.getElement(".todo-title");
-        ViewElements.applyStyles(todoHeader, {"display:":"flex"});
-        clearElementChildNodes(todoHeader);
-
-        let btAddTask = ViewElements.newElement("div","Add Task");
-        ViewElements.addClass(btAddTask,["add-task"]);
-        attachNewTodoTaskEvent(btAddTask);
-
-        let removeTodo = ViewElements.newElement("div","Remove");
-        ViewElements.addClass(removeTodo, ["bt-remove"]);
-        ViewElements.attachEvent(removeTodo, "click", e => {
-          clearElementChildNodes(todoHeader);
-          clearElementChildNodes(ViewElements.getElement("#tasks"));
-          ViewElements.applyStyles(todoHeader, {"display:":"none"});
-        })
-
-        let todoActions = ViewElements.newElement("div");
-        ViewElements.addClass(todoActions,["todo-actions"]);
-
-        todoActions.appendChild(ViewElements.newElement("h1",content));
-        todoActions.appendChild(removeTodo);
-
-        todoHeader.appendChild(todoActions);
-        todoHeader.appendChild(btAddTask);
-      }
-    });
+    return todoDomElem;
   }
 
   const attachNewTodoTaskEvent = (btAddTask) => {
-    ViewElements.attachEvent(btAddTask, "click", e => {
-      TaskForm.show();      
-
-      ViewElements.attachEvent(ViewElements.getElement("#modal-save-button"),"click", e => {
-
-        let tasks = ViewElements.getElement("#tasks");
-
-        let taskTitle = ViewElements.getElement("#task-title");
-        let task = TaskController.createTask(taskTitle.value,"Desc","01/01/2018","Low");
-
-        let taskHeader = ViewElements.newElement("h2",task.getName());
-
-        let elementTaskDetails = ViewElements.newElement("div");
-        ViewElements.addClass(elementTaskDetails,["task-details"]);
-        ViewElements.applyStyles(elementTaskDetails,{"display:":"none"});
-
-        let taskShowDetails = ViewElements.newElement("a","Show Details");
-        ViewElements.addAttributes(taskShowDetails,{"href":"#"});
-        ViewElements.addClass(taskShowDetails,["bt-details"]);
-        ViewElements.attachEvent(taskShowDetails,"click", e => {
-          if (elementTaskDetails.style.display == "none") {
-            elementTaskDetails.style.display = "flex";
-            taskShowDetails.textContent = "Hide details";
-          } else {
-            elementTaskDetails.style.display = "none";
-            taskShowDetails.textContent = "Show details";
-          }
-
-        });
-
-        let elementTitle = ViewElements.newElement("div");
-        ViewElements.addAttributes("id", tasks.children.length + 1);
-        ViewElements.addClass(elementTitle,["task-title"]);
-        elementTitle.appendChild(taskHeader);
-        elementTitle.appendChild(taskShowDetails);
-
-        let taskLine = ViewElements.newElement("li");
-        taskLine.appendChild(elementTitle);
-        taskLine.appendChild(elementTaskDetails);
-
-        tasks.append(taskLine);
-
-        ViewElements.getElement('#myModal').style.display = "none";
-
-      });
+    DomElement.attachEvent(btAddTask, "click", e => {
+      TaskForm.addTaskTo(todoModel);
     });
+    return btAddTask;
   }
 
-  const clearElementChildNodes = (element) => {
-    while(element.hasChildNodes()) {
-      element.removeChild(element.lastChild);
+  const createTodo = (tagType, content) => {
+    return DomElement.addAttributes(
+            DomElement.newElement(tagType,content),{"id": content}
+          );
+  }
+
+  const creatTodoSection = () => {
+    return DomElement.applyStyles(
+            DomElement.getElement(".todo-title"),{"display:":"flex"}
+           );
+  }
+
+  const createButtonAddTask = () => {
+    return DomElement.addClass(
+             DomElement.newElement("div","Add Task"),["add-task"]
+           );
+  }
+
+  const createLinkRemoveTodo = () => {
+    return DomElement.addClass(
+             DomElement.newElement("div","Remove"), ["bt-remove"]
+           );
+  }
+
+  const attachRemoveTodoEvent = (toElement) => {
+    DomElement.attachEvent(toElement, "click", e => {
+      AuxiliarLib.removeChildNodesFrom(DomElement.getElement(".todo-title"));
+      AuxiliarLib.removeNodeElement(todoElement);
+      AuxiliarLib.removeNodeElement(DomElement.getElement("#tasks"));
+      DomElement.applyStyles(todoSection, {"display:":"none"});
+    });
+    return toElement;
+  }
+
+  const createTodoSectionIdentification = () => {
+    return DomElement.addChildrenTo(
+             DomElement.addAttributes(
+               DomElement.addClass(DomElement.newElement("div"),["todo-actions"]),
+               {"id":"todo-section"}
+             ),[DomElement.newElement("h1",todoElement.textContent),
+                attachRemoveTodoEvent(createLinkRemoveTodo(),todoElement)]
+           );
+  }
+
+  const listTaskOf = (todo) => {
+    if (todo.getTasks().length > 0) {
+
     }
   }
 
-  const generateTodoId = (todosList) => {
-    return todosList.children.length + 1;
-  }
-
-  return { generateTodo }
+  return { createTodoElement }
 
 })();
 

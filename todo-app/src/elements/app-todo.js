@@ -2,21 +2,21 @@ import {TodoElement} from "./todo-element.js";
 
 const App = (() => {
 
-  const newTodoViewElement = (todoName, tagType, todoListTag) => {
-    TodoElement.generateTodo(todoName,tagType, todoListTag);
+  const newTodoElement = (elementType, content) => {
+    return TodoElement.createTodoElement(elementType, content);
   }
 
   const newTodoTaskElement = (todo, task) => {
-    let taskList = ViewElements.getElement("#tasks");
-    let taskLine = ViewElements.createElement("li");
-    ViewElements.addClass(taskLine,["task-title"]);
+    let taskList = DomElement.getElement("#tasks");
+    let taskLine = DomElement.createElement("li");
+    DomElement.addClass(taskLine,["task-title"]);
 
-    let taskNameWrapper = ViewElements.createElement("div");
-    ViewElements.addAttributes(taskNameWrapper, {"id": generteTaskId(taskList)})
+    let taskNameWrapper = DomElement.createElement("div");
+    DomElement.addAttributes(taskNameWrapper, {"id": generteTaskId(taskList)})
 
-    let taskName = ViewElements.createElement("h2",task.getName());
+    let taskName = DomElement.createElement("h2",task.getName());
 
-    let taskDetailsLink = ViewElements.createElement("a","Show details");
+    let taskDetailsLink = DomElement.createElement("a","Show details");
     taskNameWrapper.appendChild();
   }
 
@@ -24,7 +24,7 @@ const App = (() => {
     taskList.children.length + 1;
   }
 
-  return { newTodoViewElement, newTodoTaskElement }
+  return { newTodoTaskElement, newTodoElement }
 
 })();
 

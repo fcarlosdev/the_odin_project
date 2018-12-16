@@ -4,8 +4,8 @@ const Todo = (name) => {
 
   const getName = () => name;
 
-  const addTask = (todo, task) => {
-    todo.getTasks().push(task);
+  const addTask = (task) => {
+    tasks.push(task);
   }
 
   const getTasks = (fromTodo) => {

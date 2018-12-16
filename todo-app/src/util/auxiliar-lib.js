@@ -6,7 +6,11 @@ const AuxiliarLib = (() => {
       }
   }
 
-  return { removeChildNodesFrom }
+  const removeNodeElement = (element) => {
+    element.parentElement.removeChild(element);
+  }
+
+  return { removeChildNodesFrom, removeNodeElement }
 
 })();
 

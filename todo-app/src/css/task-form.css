@@ -30,7 +30,7 @@ select {
 
 .date-field {
   padding: 5px;
-  font-size: 20px;  
+  font-size: 20px;
 }
 
 textarea {
@@ -47,8 +47,8 @@ textarea {
   justify-content: flex-end;
 }
 
-#modal-save-button,
-#modal-cancel-button {
+#save-button,
+#cancel-button {
   color: #fff;
   width: 100px;
   height: 40px;
@@ -58,21 +58,21 @@ textarea {
   box-shadow: 2px 3px 10px #888;
 }
 
-#modal-save-button {
+#save-button {
   margin-right: 5px;
   background-color: #3a5fcf;
 }
 
-#modal-save-button:hover {
+#save-button:hover {
   cursor: pointer;
   background-color: #164cf0;
 }
 
-#modal-cancel-button {
+#cancel-button {
   background-color: #e72a2a;
 }
 
-#modal-cancel-button:hover {
+#cancel-button:hover {
   cursor: pointer;
   background-color: #f21010;
 }
