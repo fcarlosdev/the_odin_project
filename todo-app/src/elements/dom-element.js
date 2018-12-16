@@ -1,4 +1,4 @@
-const ViewElements = (() => {
+const DomElement = (() => {
 
     const newElement = (type,content) => {
       let element = document.createElement(type);
@@ -71,4 +71,4 @@ const ViewElements = (() => {
 
 })();
 
-export {ViewElements}
+export {DomElement}
