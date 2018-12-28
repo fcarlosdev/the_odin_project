@@ -1,10 +1,11 @@
-import "./util/imports.js";
-import {Task} from "./models/task.js";
-import {Todo} from "./models/todo.js";
-import {AuxiliarLib} from "./util/auxiliar-lib.js";
+import "./util/imports";
+import {Task} from "./models/task";
+import {Todo} from "./models/todo";
+import {AuxiliarLib} from "./util/auxiliar-lib";
 import FrmTaskBody from "./partials/new-task-form.html";
-import {TaskHeader} from './elements/task-header.js';
-import {TaskDetails} from './elements/task-details.js';
+import {TaskHeader} from './elements/task-header';
+import {TaskDetails} from './elements/task-details';
+import ElementFactory from './elements/dom-element-lib';
 
 let txtNomeTodo  = document.querySelector("#txt-todo-name");
 let todosList    = document.querySelector(".lst-todos");
@@ -23,12 +24,12 @@ txtNomeTodo.addEventListener('keydown', function(event) {
 
 const newTodo = () => {
   let todo = Todo(txtNomeTodo.value);
-  let todoListElement = document.createElement("li");
-  todoListElement.setAttribute("id",generateTodoId());
-  todoListElement.textContent = todo.getName();
+  let todoListElement = ElementFactory("li").setContent(todo.getName())
+                                            .addAttributes({id:generateTodoId()})                                            
+                                            .attachEvent("click", showSelectedTodo);
 
-  todoListElement.addEventListener("click", showSelectedTodo);
   todoSelected.querySelector(".bt-remove").addEventListener("click",removeTodo);
+
   todoSelected.querySelector(".add-task").addEventListener("click", e => {
     let taskForm = document.getElementById("myModal");
     taskForm.innerHTML = FrmTaskBody;
@@ -42,26 +43,26 @@ const newTodo = () => {
 
       let taskId = generateTaskId();
 
-      let taskItem = document.createElement("li");
-      taskItem.setAttribute("id","taskItem"+taskId);
-      taskItem.appendChild(TaskHeader.create(taskId, task.getName()));
-      taskItem.appendChild(TaskDetails.create(taskId, task.getDueDate(),
-                                    task.getPriority(), task.getDescription()));
+      let taskItem = ElementFactory("li")
+                        .addAttributes({id:"taskItem"+taskId})
+                        .addChildren(TaskHeader.create(taskId, task.getName()),
+                                     TaskDetails.create(taskId, task.getDueDate(), task.getPriority(), task.getDescription())                                     
+                                    );
       if (task.getPriority() == "Low") {
-        taskItem.classList.add("low-priority");
+        taskItem.addClasses("low-priority");
       } else if (task.getPriority() == "Medium") {
-        taskItem.classList.add("medium-priority");
+        taskItem.addClasses("medium-priority");
       } else {
-        taskItem.classList.add("high-priority");
+        taskItem.addClasses("high-priority");
       }
-      tasksList.appendChild(taskItem);
+      tasksList.appendChild(taskItem.element);
 
       taskForm.style.display  = "none";
     });
 
   });
 
-  todosList.appendChild(todoListElement);
+  todosList.appendChild(todoListElement.element);
 
   clearTextField(txtNomeTodo);
 }

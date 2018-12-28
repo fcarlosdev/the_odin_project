@@ -192,8 +192,7 @@ html, body, .container {
   display: flex;
   flex: 1 1 auto;
   align-items: stretch;
-  align-content: stretch;
-  overflow: hidden;
+  align-content: stretch;  
 }
 
 ul {
@@ -225,6 +224,11 @@ ul {
   background-color: #0671f0;
 }
 
+@media (min-height: 530px) {
+  .container {
+    overflow: hidden; 
+  }
+}
 .side-bar {
   color: #fff;
   width: 290px;
