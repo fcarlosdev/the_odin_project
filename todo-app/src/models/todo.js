@@ -1,18 +1,23 @@
-const Todo = (name) => {
+const Todo = (id, name) => {
 
   let tasks = [];
 
+  const getId = () => id;
   const getName = () => name;
 
   const addTask = (task) => {
     tasks.push(task);
   }
 
-  const getTasks = (fromTodo) => {
+  const getTasks = () => {
     return tasks;
   }
 
-  return { getName, addTask, getTasks }
+  const hasTasks = () => {
+    return tasks.length > 0;
+  }
+
+  return { getId, getName, addTask, getTasks, hasTasks }
 
 };
 
