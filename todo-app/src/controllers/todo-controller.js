@@ -1,29 +1,43 @@
+import { Todo } from "../models/todo";
+import { Task } from "../models/task";
+import { DataStore } from "../data/dataStore";
+
 const TodoController = () => {
+    
+    const storage = DataStore();
 
-    let todos;
-
-    const saveTodo = (todo) => {
-        
-        if (todos === undefined)
-          todos = [];
-
-        todos.push(todo);
-        return todo;
+    const saveTodo = (todo) => {                
+        return (storage.saveTodo(mapToTodoStorage(todo))) ? todo : null;        
     }
 
     const deleteTodo = (todo) => {
-        todos.splice(todos.indexOf(todo),1);
+        storage.removeTodo(getTodoStorageKey(todo.getName()));
     }
 
-    const findTodo = (todoId) => {
-        return todos.filter(todo => todo.getId() === todoId)[0]
+    const findTodo = (todoName) => {        
+        let todoStorage = JSON.parse(storage.findTodo(getTodoStorageKey(todoName)));
+        return (todoStorage !== null) ? mapToTodoModel(todoStorage) : null;
     }
 
-    const getTodos = () => {
-        return todos;
+    const getTodoStorageKey = (todoName) => {
+        return todoName.replace(" ","");
     }
 
-    return {saveTodo, deleteTodo, findTodo, getTodos}
+    const mapToTodoStorage = (todoModel) => {
+        return { id: todoModel.getId(), name: todoModel.getName(), tasks: [] };
+    }
+
+    const mapToTodoModel = (todoStorage) => {
+        let todoModel = Todo(todoStorage.id, todoStorage.name);
+        todoStorage.tasks.forEach(task => {
+            todoModel.addTask(
+                Task(task.id, task.name, task.description, task.dueDate, task.priority)
+            );
+        });
+        return todoModel;
+    }
+
+    return {saveTodo, deleteTodo, findTodo}
 }
 
 export default TodoController

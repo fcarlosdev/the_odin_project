@@ -52,6 +52,8 @@ const TaskDetailsFooter = (() => {
       let task = document.getElementById("task"+taskId);
       AuxiliarLib.removeNodeElement(task.parentElement);
     });
+
+    //IMPLEMENT THE EXLCUSION OF LOCALSTOAREG
   }
 
   return {create}
