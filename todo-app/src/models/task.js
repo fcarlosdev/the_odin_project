@@ -1,11 +1,12 @@
-const Task = (name, description, dueDate, priority) => {
+const Task = (id, name, description, dueDate, priority) => {
 
+  const getId = () => id;
   const getName = () => name;
   const getDescription = () => description;
   const getDueDate = () => dueDate;
-  const getPriority = () => priority;
+  const getPriority = () => priority;  
 
-  return { getName, getDescription, getDueDate, getPriority };
+  return { getId, getName, getDescription, getDueDate, getPriority };
 
 }
 
