@@ -18,10 +18,10 @@ txtNomeTodo.addEventListener('keydown', function(event) {
 });
 
 
-const createTodo = () => {  
+const createTodo = () => {
   let todoElement = appTodo.newTodo(
     TodoElementParams("li",txtNomeTodo.value).withAttributes({id:generateTodoId()})
-  );  
+  );
 
   todoElement.attachEvent("click", appTodo.selectTodo);
 

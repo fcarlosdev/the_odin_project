@@ -33,14 +33,17 @@ const TodoApp = (todosList, tasksList) => {
   }
 
   const selectTodo = (e) => {
-    showSelectedTodo(selectDomElement(".todo-title"),e.target.textContent);
+    showSelectedTodo(selectDomElement(".todo-title"),e.target);
     updateTasksList(e.target.textContent);
     selectDomElement(".bt-remove").addEventListener("click", removeTodo);
     selectDomElement(".add-task").addEventListener("click", createTask);
   }
 
-  const showSelectedTodo = (todoSelected, name) => {    
-    selectChildDOMElement("h1", todoSelected).textContent = name;
+  const showSelectedTodo = (todoSelected, todoEl) => {
+    let titleTodoSelected = selectChildDOMElement("h1", todoSelected);
+    // titleTodoSelected.setAttribute("id","Todo"+todoEl.getAttribute("id"));    
+    titleTodoSelected.textContent = todoEl.textContent;
+
     todoSelected.style.display = "flex";
   }
 
@@ -64,9 +67,9 @@ const TodoApp = (todosList, tasksList) => {
   const saveTask = () => {
     //REPLACE THIS CREATION OF TASK BY A PARAMETERS OBJECT AND LET THE CONTROLLER TAKE CARE OF
     //THIS CREATION.
-    let task = Task(generateTaskId(), TaskFormController.getTaskTitle(),   
-                    TaskFormController.getTaskDescription(), TaskFormController.getTaskDueDate(), 
-                    TaskFormController.getTaskPripority());
+    let task = Task(generateTaskId(), TaskFormController.getTaskTitle(),
+                    TaskFormController.getTaskDescription(), TaskFormController.getTaskDueDate(),
+                    TaskFormController.getTaskPripority(), todoModel.getId());
       taskController.save(task,todoModel);
       createTaskElement(task);
       TaskFormController.closeForm();
@@ -74,7 +77,7 @@ const TodoApp = (todosList, tasksList) => {
 
   const createTaskElement = (task) => {
     let taskHeaderElement = TaskHeader.create(task.getId(), task.getName());
-    let taskDetailsElement = TaskDetails.create(task.getId(), task.getDueDate(), task.getPriority(), 
+    let taskDetailsElement = TaskDetails.create(task.getId(), task.getDueDate(), task.getPriority(),
                                                 task.getDescription());
 
     let taskItem = ElementFactory("li").addAttributes({ id: "taskItem" + task.getId() })
@@ -116,13 +119,13 @@ const TodoApp = (todosList, tasksList) => {
 
     AuxiliarLib.removeChildNodesFrom(selectDomElement("#tasks"));
 
-    if (todoModel.getName() !== name) {      
-      todoModel = todoController.findTodo(name)
+    if (todoModel.getName() !== name) {
+      todoModel = todoController.findTodoByName(name)
       if (todoModel !== undefined && todoModel !== null) {
         todoModel.getTasks().forEach(task => {
           createTaskElement(task);
         });
-      }      
+      }
     }
 
   }

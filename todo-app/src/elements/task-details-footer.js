@@ -1,4 +1,5 @@
 import {AuxiliarLib} from "../util/auxiliar-lib.js";
+// import TaskController from "../controllers/task-controller";
 
 const TaskDetailsFooter = (() => {
 
@@ -47,6 +48,7 @@ const TaskDetailsFooter = (() => {
     });
   }
 
+  //MOVE ALL THIS LOGIC TO THE TODO APP FILE.
   const removeTask = (element, taskId) => {
     element.addEventListener("click", e => {
       let task = document.getElementById("task"+taskId);

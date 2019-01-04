@@ -1,33 +1,51 @@
+import { DataStore } from "../data/dataStore";
+
 const TaskController = () => {
 
+    const storage = DataStore();
+
     const save = (task, todo) => {
-
-        let newTask = {
-                id: task.getId(), 
-                name: task.getName(), 
-                description: task.getDescription(),
-                dueDate: task.getDueDate(),
-                priority: task.getPriority()
-            }
-
-        let todoLocalStoareKey = getTodoStorageKey(todo); 
-
-        let taskOfTodo = JSON.parse(localStorage.getItem(todoLocalStoareKey));
-
-        taskOfTodo.tasks.push(newTask);
-        
-        localStorage.setItem(todoLocalStoareKey,JSON.stringify(taskOfTodo));
-
+        storage.saveTodo(
+            addTaskToStoragedTodo(getStorageTodo(todo),
+                                  maptTaskToStorage(task,todo.getId()))
+        );
         return task;
     }
 
-    const deleteTask = (task) => {
-            
+    const deleteTask = task => {
+        let storagedTodo = getStorageTodoById(task.getTodoId());
+        for(let key in storagedTodo.tasks) {
+            let storagedTask = storagedTodo[key];
+            console.log(storagedTask);
+        }
     }
 
-    //Repeated has to be refactored
-    const getTodoStorageKey = (todo) => {
-        return todo.getName().replace(" ","");
+    const maptTaskToStorage = (task, todoId) => {
+        return {
+            id: task.getId(),
+            name: task.getName(),
+            description: task.getDescription(),
+            dueDate: task.getDueDate(),
+            priority: task.getPriority(),
+            todoId: todoId
+        }
+    }
+
+    const findTaskById = taskId => {
+
+    }
+
+    const getStorageTodo = modelTodo => {
+        return JSON.parse(storage.findTodo(modelTodo));
+    }
+
+    const getStorageTodoById = todoId => {
+        return JSON.parse(storage.findTodoById(todoId));
+    }
+
+    const addTaskToStoragedTodo = (storagedTodo, task) => {
+        storagedTodo.tasks.push(task);
+        return storagedTodo;
     }
 
     return { save };

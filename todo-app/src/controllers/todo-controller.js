@@ -3,41 +3,49 @@ import { Task } from "../models/task";
 import { DataStore } from "../data/dataStore";
 
 const TodoController = () => {
-    
+
     const storage = DataStore();
 
-    const saveTodo = (todo) => {                
-        return (storage.saveTodo(mapToTodoStorage(todo))) ? todo : null;        
+    const saveTodo = (todo) => {
+        return (storage.saveTodo(mapToTodoStorage(todo))) ? todo : null;
     }
 
     const deleteTodo = (todo) => {
-        storage.removeTodo(getTodoStorageKey(todo.getName()));
+        storage.removeTodo(todo);
     }
 
-    const findTodo = (todoName) => {        
-        let todoStorage = JSON.parse(storage.findTodo(getTodoStorageKey(todoName)));
+    const find = (todo) => {
+        let todoStorage = JSON.parse(storage.findTodo(todo.id));
         return (todoStorage !== null) ? mapToTodoModel(todoStorage) : null;
     }
 
-    const getTodoStorageKey = (todoName) => {
-        return todoName.replace(" ","");
+    const findTodoByName = (todoName) => {
+       let todos = storage.getTodos();
+       for( let key in todos) {
+          let todo = mapToTodoModel(JSON.parse(todos[key]));
+          if (todo.getName() == todoName)
+             return todo;
+       }
+       return null;
     }
-
+    
     const mapToTodoStorage = (todoModel) => {
         return { id: todoModel.getId(), name: todoModel.getName(), tasks: [] };
     }
 
     const mapToTodoModel = (todoStorage) => {
         let todoModel = Todo(todoStorage.id, todoStorage.name);
-        todoStorage.tasks.forEach(task => {
-            todoModel.addTask(
-                Task(task.id, task.name, task.description, task.dueDate, task.priority)
-            );
-        });
+        if (todoStorage.tasks !== undefined) {
+            todoStorage.tasks.forEach(task => {
+                todoModel.addTask(
+                    Task(task.id, task.name, task.description, task.dueDate, task.priority)
+                );
+            });
+        }
         return todoModel;
     }
 
-    return {saveTodo, deleteTodo, findTodo}
+    return {saveTodo, deleteTodo, find, findTodoByName}
 }
 
 export default TodoController
