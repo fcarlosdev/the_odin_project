@@ -23,10 +23,6 @@ const DataStore = () => {
         }
     }
 
-    // const removeTask = task => {
-    //
-    // }
-
     const findTodoById = id => {
         return storage.getItem(getTodoKey(id));
     }

@@ -3,14 +3,14 @@ import { Task } from "./models/task";
 
 import TodoController from "./controllers/todo-controller";
 import TaskController from "./controllers/task-controller";
-import TaskFormController from "./controllers/task-form-controller";
+import TaskFrmCtrl from "./controllers/task-form-controller";
 
 import { TaskHeader } from './elements/task-header';
 import { TaskDetails } from './elements/task-details';
 
 import { AuxiliarLib } from "./util/auxiliar-lib";
 
-import ElementFactory from "./elements/dom-element-lib";
+import DOMElement from "./libs/dom-element-lib";
 
 const TodoApp = (todosList, tasksList) => {
 
@@ -27,23 +27,20 @@ const TodoApp = (todosList, tasksList) => {
   const newTodo = (params) => {
     createTodoModel(params.attributes.id, params.textNode);
 
-    return ElementFactory(params.type).setContent(params.textNode)
-                                      .addClasses(params.classes)
-                                      .addAttributes(params.attributes);
+    return DOMElement(params.type).setContent(params.textNode)
+                                  .addClasses(params.classes)
+                                  .addAttributes(params.attributes);
   }
 
   const selectTodo = (e) => {
-    showSelectedTodo(selectDomElement(".todo-title"),e.target);
+    showSelectedTodo(selectDomElement(".todo-title"),e.target.textContent);
     updateTasksList(e.target.textContent);
     selectDomElement(".bt-remove").addEventListener("click", removeTodo);
     selectDomElement(".add-task").addEventListener("click", createTask);
   }
 
-  const showSelectedTodo = (todoSelected, todoEl) => {
-    let titleTodoSelected = selectChildDOMElement("h1", todoSelected);
-    // titleTodoSelected.setAttribute("id","Todo"+todoEl.getAttribute("id"));    
-    titleTodoSelected.textContent = todoEl.textContent;
-
+  const showSelectedTodo = (todoSelected, todoTitle) => {    
+    selectChildDOMElement("h1", todoSelected).textContent = todoTitle;
     todoSelected.style.display = "flex";
   }
 
@@ -61,27 +58,23 @@ const TodoApp = (todosList, tasksList) => {
   }
 
   const createTask = (e) => {
-    TaskFormController.showForm(saveTask);
+    TaskFrmCtrl.showForm(saveTask);
   }
 
   const saveTask = () => {
-    //REPLACE THIS CREATION OF TASK BY A PARAMETERS OBJECT AND LET THE CONTROLLER TAKE CARE OF
-    //THIS CREATION.
-    let task = Task(generateTaskId(), TaskFormController.getTaskTitle(),
-                    TaskFormController.getTaskDescription(), TaskFormController.getTaskDueDate(),
-                    TaskFormController.getTaskPripority(), todoModel.getId());
-      taskController.save(task,todoModel);
-      createTaskElement(task);
-      TaskFormController.closeForm();
+    let task = Task(generateTaskId(), TaskFrmCtrl.getTaskTitle(), TaskFrmCtrl.getTaskDescription(), 
+                    TaskFrmCtrl.getTaskDueDate(), TaskFrmCtrl.getTaskPripority(), todoModel.getId());
+    taskController.save(task,todoModel);
+    createTaskElement(task);
+    TaskFrmCtrl.closeForm();
   }
 
   const createTaskElement = (task) => {
     let taskHeaderElement = TaskHeader.create(task.getId(), task.getName());
-    let taskDetailsElement = TaskDetails.create(task.getId(), task.getDueDate(), task.getPriority(),
-                                                task.getDescription());
+    let taskDetailsElement = TaskDetails.create(task);
 
-    let taskItem = ElementFactory("li").addAttributes({ id: "taskItem" + task.getId() })
-                                       .addChildren([taskHeaderElement, taskDetailsElement]);
+    let taskItem = DOMElement("li").addAttributes({ id: "taskItem" + task.getId() })
+                                   .addChildren([taskHeaderElement, taskDetailsElement]);                                                                                  
     setTaskColorBasedOnPriority(taskItem, task.getPriority());
     tasksList.appendChild(taskItem.element);
   }
@@ -94,7 +87,6 @@ const TodoApp = (todosList, tasksList) => {
     } else {
       taskItem.addClasses("high-priority");
     }
-
   }
 
   const selectDomElement = (selector) => {

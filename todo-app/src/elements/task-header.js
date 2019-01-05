@@ -1,27 +1,15 @@
+import DOMElement from "../libs/dom-element-lib";
+
 const TaskHeader = (() => {
 
   const create = (id, name) => {
-
-    let title = document.createElement("h2");
-    title.textContent = name;
-
-    let showDetails         = document.createElement("a");
-    showDetails.setAttribute("href","#");
-    showDetails.textContent = "Show details";
-    showDetails.addEventListener("click",showTaskDetails);
-
-    let content = document.createElement("div");
-    content.setAttribute("id","task"+id);
-    content.classList.add("task-title");
-    content.appendChild(title);
-    content.appendChild(showDetails);
-
-    return content;
+    return createContent([createTitle(name), createShowDetails()],id)
   }
 
   const showTaskDetails = (e) => {
-    let taskDetails = e.target.parentElement.parentElement
-                                            .querySelector('.task-details');
+
+    let taskDetails = getTaskDetailsEl(e.target);
+
     if (e.target.textContent == "Show details") {
       taskDetails.style.display = "flex";
       taskDetails.style.flexDirection = "column";
@@ -30,7 +18,33 @@ const TaskHeader = (() => {
       taskDetails.style.display = "none";
       e.target.textContent = "Show details";
     }
+    
   }
+
+  const getTaskDetailsEl = fromTarget => {
+    return fromTarget.parentElement
+                     .parentElement
+                     .querySelector('.task-details');
+  }
+
+  const createTitle = withContent => {
+    return DOMElement("h2").setContent(withContent).element;
+  }
+
+  const createShowDetails = () => {
+    return DOMElement("a").setContent("Show details")
+                          .addAttributes({"href": "#"})
+                          .attachEvent("click",showTaskDetails)
+                          .element;
+  }
+
+  const createContent = (withChildren, withTaskId) => {
+    return DOMElement("div").addAttributes({'id':"task"+withTaskId})
+                            .addClasses(["task-title"])
+                            .addChildren(withChildren)
+                            .element;
+  }
+
 
   return {create}
 

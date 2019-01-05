@@ -2,15 +2,15 @@ import {TaskDetailsFooter} from './task-details-footer.js';
 
 const TaskDetails = (() => {
 
-  const create = (taskId, dueDate, priority, description) => {
+  const create = (task) => {
 
     let dueDateElem = document.createElement("div");
     dueDateElem.classList.add("due-date");
-    dueDateElem.textContent = ("Due Date " + dueDate);
+    dueDateElem.textContent = ("Due Date " + task.getDueDate());
 
     let priorityElem = document.createElement("div");
     priorityElem.classList.add("priority");
-    priorityElem.textContent = (priority + " Priority");
+    priorityElem.textContent = (task.getPriority() + " Priority");
 
     let taskIinfo = document.createElement("div");
     taskIinfo.classList.add("task-details-top");
@@ -19,14 +19,14 @@ const TaskDetails = (() => {
 
     let descriptionElem = document.createElement("div");
     descriptionElem.classList.add("desc");
-    descriptionElem.textContent = description;
+    descriptionElem.textContent = task.getDescription();
 
     let taskDetailsWrapper = document.createElement("div");
     taskDetailsWrapper.classList.add("task-details");
 
     taskDetailsWrapper.appendChild(taskIinfo);
     taskDetailsWrapper.appendChild(descriptionElem);
-    taskDetailsWrapper.appendChild(TaskDetailsFooter.create(taskId));
+    taskDetailsWrapper.appendChild(TaskDetailsFooter.create(task));
 
     return taskDetailsWrapper;
 

@@ -13,11 +13,9 @@ const TaskController = () => {
     }
 
     const deleteTask = task => {
-        let storagedTodo = getStorageTodoById(task.getTodoId());
-        for(let key in storagedTodo.tasks) {
-            let storagedTask = storagedTodo[key];
-            console.log(storagedTask);
-        }
+        let todo = getStorageTodoById(task.getTodoId());
+        todo.tasks.splice(todo.tasks.findIndex(stgTask => stgTask.id == task.getId()),1);
+        storage.saveTodo(todo);
     }
 
     const maptTaskToStorage = (task, todoId) => {
@@ -29,10 +27,6 @@ const TaskController = () => {
             priority: task.getPriority(),
             todoId: todoId
         }
-    }
-
-    const findTaskById = taskId => {
-
     }
 
     const getStorageTodo = modelTodo => {
@@ -48,7 +42,7 @@ const TaskController = () => {
         return storagedTodo;
     }
 
-    return { save };
+    return { save, deleteTask };
 
 }
 

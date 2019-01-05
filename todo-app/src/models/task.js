@@ -7,7 +7,10 @@ const Task = (id, name, description, dueDate, priority, todoId) => {
   const getPriority = () => priority;
   const getTodoId = () => todoId;
 
-  return { getId, getName, getDescription, getDueDate, getPriority, getTodoId };
+  return { 
+    getId, getName, getDescription, 
+    getDueDate, getPriority, getTodoId 
+  };
 
 }
 
