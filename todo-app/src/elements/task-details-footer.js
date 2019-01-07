@@ -1,13 +1,12 @@
 import {AuxiliarLib} from "../util/auxiliar-lib.js";
 import DOMElement from "../libs/dom-element-lib";
-import TaskController from "../controllers/task-controller";
 
 const TaskDetailsFooter = (() => {
 
-  const create = (task) => {
+  const create = (task,removeTaskImpl) => {
 
     let taskDoneWrapper   = createDoneWrapper([createCheckboxDone(task), createLabelDone(task)]);                                               
-    let removeTaskWrapper = createRemoveTaskWrapper([createRmoveTextElem(task)]);
+    let removeTaskWrapper = createRemoveTaskWrapper([createRmoveTextElem(task,removeTaskImpl)]);
 
     return DOMElement("div").addClasses(["task-details-footer"])
                             .addChildren([taskDoneWrapper, removeTaskWrapper])
@@ -22,13 +21,6 @@ const TaskDetailsFooter = (() => {
       } else {
         task.querySelector("h2").style.textDecoration = "none";
       }
-  }
-
-  const removeTask = (task) => {
-    AuxiliarLib.removeNodeElement(
-      document.getElementById("task"+task.getId()).parentElement
-    );
-    TaskController().deleteTask(task);    
   }
 
   const createLabelDone = (forTask) => {
@@ -50,9 +42,10 @@ const TaskDetailsFooter = (() => {
                             .element;
   }
 
-  const createRmoveTextElem = (forTask) => {
+  const createRmoveTextElem = (forTask,eventImpl) => {
     return DOMElement("span").setContent("Remove")
-                             .attachEvent("click",removeTask.bind(null,forTask))
+                            //  .attachEvent("click",removeTask.bind(null,forTask))
+                             .attachEvent("click",eventImpl)
                              .element;
   }
 

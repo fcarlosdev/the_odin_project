@@ -19,7 +19,6 @@ const TodoApp = (todosList, tasksList) => {
   let todoController = TodoController();
   let taskController = TaskController();
 
-
   const createTodoModel = (id, todoName) => {
     todoModel = todoController.saveTodo(Todo(id, todoName));
   }
@@ -33,15 +32,15 @@ const TodoApp = (todosList, tasksList) => {
   }
 
   const selectTodo = (e) => {
-    showSelectedTodo(selectDomElement(".todo-title"),e.target.textContent);
+    showSelectedTodo(selectDomElement(".todo-title"),e.target.textContent,"flex");
     updateTasksList(e.target.textContent);
     selectDomElement(".bt-remove").addEventListener("click", removeTodo);
     selectDomElement(".add-task").addEventListener("click", createTask);
   }
 
-  const showSelectedTodo = (todoSelected, todoTitle) => {    
-    selectChildDOMElement("h1", todoSelected).textContent = todoTitle;
-    todoSelected.style.display = "flex";
+  const showSelectedTodo = (todoSelected, content, displayType) => {
+    selectChildDOMElement("h1", todoSelected).textContent = content;
+    todoSelected.style.display = displayType;
   }
 
   const removeTodo = (e) => {
@@ -53,8 +52,7 @@ const TodoApp = (todosList, tasksList) => {
     todoController.deleteTodo(todoModel);
     updateTasksList(todoModel.getName());
 
-    selectChildDOMElement("h1", todoSelected).textContent = "";
-    todoSelected.style.display = "none";
+    showSelectedTodo(todoSelected,"", "none")
   }
 
   const createTask = (e) => {
@@ -71,7 +69,7 @@ const TodoApp = (todosList, tasksList) => {
 
   const createTaskElement = (task) => {
     let taskHeaderElement = TaskHeader.create(task.getId(), task.getName());
-    let taskDetailsElement = TaskDetails.create(task);
+    let taskDetailsElement = TaskDetails.create(task,removeTask.bind(null,task));
 
     let taskItem = DOMElement("li").addAttributes({ id: "taskItem" + task.getId() })
                                    .addChildren([taskHeaderElement, taskDetailsElement]);                                                                                  
@@ -88,6 +86,14 @@ const TodoApp = (todosList, tasksList) => {
       taskItem.addClasses("high-priority");
     }
   }
+
+  const removeTask = (task) => {
+    AuxiliarLib.removeNodeElement(
+      document.getElementById("task"+task.getId()).parentElement
+    );
+    TaskController().deleteTask(task);    
+  }
+
 
   const selectDomElement = (selector) => {
     return document.querySelector(selector);

@@ -1,39 +1,52 @@
 import {TaskDetailsFooter} from './task-details-footer.js';
+import DOMElement from "../libs/dom-element-lib";
 
 const TaskDetails = (() => {
 
-  const create = (task) => {
+  const create = (task, removeTaskEventImpl) => {
 
-    let dueDateElem = document.createElement("div");
-    dueDateElem.classList.add("due-date");
-    dueDateElem.textContent = ("Due Date " + task.getDueDate());
+    let taskIinfo = createTaskInfoEl([ createDueDateEl(task.getDueDate()), 
+                                       createPriorityEl(task.getPriority()) ]);
 
-    let priorityElem = document.createElement("div");
-    priorityElem.classList.add("priority");
-    priorityElem.textContent = (task.getPriority() + " Priority");
-
-    let taskIinfo = document.createElement("div");
-    taskIinfo.classList.add("task-details-top");
-    taskIinfo.appendChild(dueDateElem);
-    taskIinfo.appendChild(priorityElem);
-
-    let descriptionElem = document.createElement("div");
-    descriptionElem.classList.add("desc");
-    descriptionElem.textContent = task.getDescription();
-
-    let taskDetailsWrapper = document.createElement("div");
-    taskDetailsWrapper.classList.add("task-details");
-
-    taskDetailsWrapper.appendChild(taskIinfo);
-    taskDetailsWrapper.appendChild(descriptionElem);
-    taskDetailsWrapper.appendChild(TaskDetailsFooter.create(task));
-
-    return taskDetailsWrapper;
+    return createDetailsWrapperEl(
+              [ taskIinfo,
+                createDescriptionEl(task.getDescription()), 
+                TaskDetailsFooter.create(task, removeTaskEventImpl) ]
+           );
 
   }
 
-  return {create};
+  const createDetailsWrapperEl = (withChidren) => {
+    return DOMElement("div").addClasses(["task-details"])
+                            .addChildren(withChidren)
+                            .element;
+  }
 
+  const createDueDateEl = (withDueDate) => {
+    return DOMElement("div").setContent("Due Date " + withDueDate) 
+                            .addClasses(["due-date"])
+                            .element;
+  }
+
+  const createPriorityEl = (withPriority) => {
+    return DOMElement("div").setContent(withPriority + " Priority")
+                            .addClasses(["priority"])
+                            .element;
+  }
+
+  const createTaskInfoEl = (withChildren) => {
+    return DOMElement("div").addClasses(["task-details-top"])
+                            .addChildren(withChildren)
+                            .element;
+  }
+
+  const createDescriptionEl = (withDescription) => {
+    return DOMElement("div").setContent(withDescription)
+                            .addClasses(["desc"])
+                            .element;
+  }
+
+  return {create};
 
 })();
 
