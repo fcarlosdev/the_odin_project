@@ -28,6 +28,16 @@ const TodoController = () => {
        }
        return null;
     }
+
+    const listTodos = () => {
+        let todos = [];
+        let storagedTodos = storage.getTodos();
+        for (let todo in storagedTodos) {
+            todos.push(mapToTodoModel(JSON.parse(storagedTodos[todo])));
+        }
+        return todos;
+    }
+
     
     const mapToTodoStorage = (todoModel) => {
         return { id: todoModel.getId(), name: todoModel.getName(), tasks: [] };
@@ -45,7 +55,7 @@ const TodoController = () => {
         return todoModel;
     }
 
-    return {saveTodo, deleteTodo, find, findTodoByName}
+    return {saveTodo, deleteTodo, find, findTodoByName, listTodos}
 }
 
 export default TodoController

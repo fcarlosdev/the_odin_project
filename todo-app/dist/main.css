@@ -231,7 +231,7 @@ ul {
 
 .side-bar {
   color: #fff;
-  width: 290px;
+  width: 330px;
   height: 100%;
   display: flex;
   flex: 0 0 auto;
@@ -269,7 +269,7 @@ ul {
   padding: 20px;
   font-size: 25px;
   font-weight: 900;
-  text-align: center;
+  /* text-align: center; */
 }
 
 .lst-todos li:hover {
@@ -295,11 +295,15 @@ ul {
 
 #todo-name input {
   height: 32px;
-  width: 220px;
+  width: 260px;
   border: none;
   padding: 2px;
   font-size: 18px;
   border-radius:3%;
+}
+
+.lst-todos {
+  margin: 0;
 }
 
 .lst-todos li {

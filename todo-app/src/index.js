@@ -23,9 +23,11 @@ const createTodo = () => {
     TodoElementParams("li",txtNomeTodo.value).withAttributes({id:generateTodoId()})
   );
 
-  todoElement.attachEvent("click", appTodo.selectTodo);
+  todoElement.attachEvent("click", appTodo.selectTodo);  
 
   todosList.appendChild(todoElement.element);
+
+  todoElement.element.click();
   clearTextField(txtNomeTodo);
 }
 
@@ -35,4 +37,25 @@ const generateTodoId = () => {
 
 const clearTextField = (field) => {
   field.value = "";
+}
+
+let storagedTodos = appTodo.getTodos();
+
+if (storagedTodos.length == 0) {
+  let tdEl = appTodo.newTodo(TodoElementParams("li","Project One")
+                    .withAttributes({id: 1}))
+                    .attachEvent("click", appTodo.selectTodo).element;
+  todosList.appendChild(tdEl);
+  tdEl.element.click();
+} else {
+    storagedTodos.forEach((todo, index) => {
+      let tdEl = appTodo.loadTodo(TodoElementParams("li",todo.getName())
+                        .withAttributes({id: todo.getId()}))
+                        .attachEvent("click", appTodo.selectTodo)
+                        .element;
+      todosList.appendChild(tdEl);
+      if (index == 0) {
+        tdEl.element.click();
+      }
+    })
 }

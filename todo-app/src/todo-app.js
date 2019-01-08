@@ -19,28 +19,54 @@ const TodoApp = (todosList, tasksList) => {
   let todoController = TodoController();
   let taskController = TaskController();
 
+  let selectedTodo = null;
+  let firstProjectTodo = null;
+
   const createTodoModel = (id, todoName) => {
     todoModel = todoController.saveTodo(Todo(id, todoName));
   }
 
   const newTodo = (params) => {
     createTodoModel(params.attributes.id, params.textNode);
+    if (firstProjectTodo == undefined) {
+      firstProjectTodo = createItemListTodo(params);
+      return firstProjectTodo;
+    } else {
+      return createItemListTodo(params);
+    }
+  }
 
+  const loadTodo = (params) => {
+    return createItemListTodo(params);
+  }
+
+  const createItemListTodo = (params) => {
     return DOMElement(params.type).setContent(params.textNode)
                                   .addClasses(params.classes)
                                   .addAttributes(params.attributes);
   }
 
   const selectTodo = (e) => {
+    higlihtTodoSelected(e.target);
     showSelectedTodo(selectDomElement(".todo-title"),e.target.textContent,"flex");
     updateTasksList(e.target.textContent);
     selectDomElement(".bt-remove").addEventListener("click", removeTodo);
     selectDomElement(".add-task").addEventListener("click", createTask);
   }
 
-  const showSelectedTodo = (todoSelected, content, displayType) => {
+  const showSelectedTodo = (todoSelected, content, displayType) => {    
     selectChildDOMElement("h1", todoSelected).textContent = content;
     todoSelected.style.display = displayType;
+  }
+
+  const higlihtTodoSelected = (project) => {
+    if (selectedTodo == null) {
+      selectedTodo = project;
+    } else {
+      selectedTodo.style.removeProperty('background-color');
+      selectedTodo = project;
+    }
+    selectedTodo.style.backgroundColor = "cornflowerblue";
   }
 
   const removeTodo = (e) => {
@@ -52,7 +78,10 @@ const TodoApp = (todosList, tasksList) => {
     todoController.deleteTodo(todoModel);
     updateTasksList(todoModel.getName());
 
-    showSelectedTodo(todoSelected,"", "none")
+    if (todosList.children.length > 0)
+      firstProjectTodo.element.click();
+    else  
+      showSelectedTodo(todoSelected,"", "none")
   }
 
   const createTask = (e) => {
@@ -117,18 +146,19 @@ const TodoApp = (todosList, tasksList) => {
 
     AuxiliarLib.removeChildNodesFrom(selectDomElement("#tasks"));
 
-    if (todoModel.getName() !== name) {
-      todoModel = todoController.findTodoByName(name)
-      if (todoModel !== undefined && todoModel !== null) {
-        todoModel.getTasks().forEach(task => {
-          createTaskElement(task);
-        });
-      }
-    }
-
+     todoModel = todoController.findTodoByName(name)
+     if (todoModel !== undefined && todoModel !== null) {
+       todoModel.getTasks().forEach(task => {
+         createTaskElement(task);
+       });
+     }
   }
 
-  return { newTodo, selectTodo }
+  const getTodos = () => {
+    return todoController.listTodos();
+  }
+
+  return { newTodo, selectTodo, getTodos, loadTodo }
 }
 
 export { TodoApp };
