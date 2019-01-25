@@ -23,7 +23,14 @@ createProject = (id, name) => {
         project.setAttribute("id",id);        
         project.appendChild(createProjectTitle(name));
         project.appendChild(createTaskList());
-        project.appendChild(createProjectFooter());
+        project.appendChild(createProjectFooter(project));
+
+        // let finalHeight = 80;
+        // for (let h = 0; h < project.children[1].length; h++) {
+        //     finalHeight += 38;
+        // }
+
+        // project.style.height = finalHeight + "px";
     return project;
 }
 
@@ -39,7 +46,7 @@ createTaskList = () => {
     return tasks;
 }
 
-createProjectFooter = () => {
+createProjectFooter = project => {
     let footer = document.createElement("div");
         footer.classList.add("project-footer");
     let addTaskLink = document.createElement("span");
@@ -47,7 +54,7 @@ createProjectFooter = () => {
         addTaskLink.innerHTML = "+ Add task";
         addTaskLink.addEventListener("click", (event) => {
 
-            let tasks = event.target.parentElement.parentElement.children[1];
+            let tasks = project.children[1];
 
             let taskId = tasks.children.length + 1;
             let newTask = document.createElement("div");
@@ -56,6 +63,19 @@ createProjectFooter = () => {
                 newTask.innerHTML = "Task"+taskId;
             
             tasks.appendChild(newTask);
+
+            let finalHeight = 80;
+            for (let h = 0; h < tasks.children.length; h++) {
+              finalHeight += 48;
+            }
+
+            if (finalHeight < 282) {
+                project.style.height = finalHeight + "px";
+            } else {
+                project.style.height = 282 + "px";
+            }
+            
+                
         });
         footer.appendChild(addTaskLink);
     return footer;        

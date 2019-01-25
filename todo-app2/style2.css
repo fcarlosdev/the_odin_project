@@ -67,16 +67,17 @@ a {
 }
 
 .projects {
-  width: 80%;  
+  width: 80%;    
   display: grid;
   margin: 0 auto;  
-  padding: 10px 2px;
+  padding: 10px 2px 20px 2px;
   grid-gap: 1.5rem 2rem;
   grid-template-columns: repeat(3,1fr);  
 }
 
 .project {
-  color: #fff; 
+  color: #fff;
+  height: 80px;
   min-height: 80px;
   border-radius: 4px;  
   padding: 8px 3px 8px 8px;  
@@ -95,6 +96,7 @@ a {
 
 .task-item {  
   color: #000;
+  height: 38px;
   border-radius: 3px;
   padding: 10px 5px;
   margin-bottom: 10px;
@@ -103,7 +105,7 @@ a {
 }
 
 .project-footer {
-  padding: 15px 2px 8px 2px;
+  padding: 10px 2px 8px 2px;
 }
 
 .project-footer .newtask {
