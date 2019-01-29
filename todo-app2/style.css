@@ -149,12 +149,13 @@ a {
 
 .task-content {
   display: none;
+  height: 75px;
   max-height: 75px;  
   overflow-y: auto;
   padding-left: 1px;
   padding-right: 5px;  
   overflow-x: hidden;
-  text-align: justify;
+  text-align: justify;  
   margin-bottom: 10px;
 }
 

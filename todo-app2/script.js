@@ -73,13 +73,12 @@ createProjectFooter = project => {
             let lkDetails = document.createElement("span");
                 lkDetails.classList.add("lk-details");
                 lkDetails.innerHTML = "Details";
-                // lkDetails.addEventListener("click", () => {
-
-                // })
+                lkDetails.addEventListener("click", () => showDetails(lkDetails,newTask));
 
             let lkRemove = document.createElement("span");
                 lkRemove.classList.add("lk-remove");
                 lkRemove.innerHTML = "Remove";
+                lkRemove.addEventListener("click", () => removeTask(newTask));
 
             taskHeaderButtons.appendChild(lkDetails);
             taskHeaderButtons.appendChild(lkRemove);
@@ -100,7 +99,7 @@ createProjectFooter = project => {
                 dueDateLabel.classList.add("l-bold");
                 dueDateLabel.innerHTML = "Due date:";
             dueDate.appendChild(dueDateLabel);
-            dueDate.innerHTML = " 31/01/2019";
+            dueDate.innerHTML += " 31/01/2019";
 
             let priority = document.createElement("span");
                 priority.classList.add("priority");
@@ -108,16 +107,18 @@ createProjectFooter = project => {
                 priorityLabel.classList.add("l-bold");
                 priorityLabel.innerHTML = "Priority:";
             priority.appendChild(priorityLabel);
-            priority.innerHTML = " Low";
+            priority.innerHTML += " Low";
 
+            let spDone = document.createElement("span");                
             let chkDone = document.createElement("input");
                 chkDone.setAttribute("type","checkbox");
                 chkDone.classList.add("task-done");
-                chkDone.innerHTML = " Done";
+            spDone.appendChild(chkDone);
+            spDone.innerHTML += " Done";
 
             taskFooter.appendChild(dueDate);
             taskFooter.appendChild(priority);
-            taskFooter.appendChild(chkDone);
+            taskFooter.appendChild(spDone);
             
             newTask.appendChild(taskHeader);
             newTask.appendChild(taskContent);
@@ -125,7 +126,6 @@ createProjectFooter = project => {
 
             newTask.style.marginBottom = "10px";
 
-            // tasks.appendChild(newTask);
             tasks.insertBefore(newTask,tasks.children[0]);
 
             let finalHeight = 80;
@@ -153,6 +153,29 @@ clearFieldText = () => {
     fieldProjectName.value="";
 }
 
+showDetails = (details,task) => {
+    task.style.height = (task.style.height == "150px") ? "38px" : "150px";
+    details.textContent = (details.textContent == "Details") ? "Hide" : "Details";
+    task.children[1].style.display = (details.textContent == "Details") ? "none" : "flex";
+    task.children[2].style.display = (details.textContent == "Details") ? "none" : "flex";
+    let project = task.parentElement.parentElement;
+    project.style.height = "auto";
+    project.style.display = "flex";
+}
+
+removeTask = task => {
+    let tasks = task.parentElement;
+    let project = task.parentElement.parentElement;
+    let h = project.style.height;
+    task.parentElement.removeChild(task);
+    
+    if (tasks.children.length < 5) {
+        let nH = Number(h.substring(0,h.length-2)) - 48;
+        project.style.height = nH.toString().concat("px");
+    }    
+}
+
+
 let details = document.querySelector(".lk-details");
 let task = document.querySelector(".task-item");
 let taskDetails = document.querySelector(".task-content");
@@ -165,5 +188,5 @@ details.addEventListener("click", () => {
   taskDetails.style.display =  (details.textContent == "Details") ? "none" : "flex";
   taskFooter.style.display= (details.textContent == "Details") ? "none" : "flex";
   project.style.height = "auto";
-  project.style.display = "flex";  
+  project.style.display = "flex";
 })
