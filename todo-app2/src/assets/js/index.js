@@ -24,13 +24,6 @@ createProject = (id, name) => {
         project.appendChild(createProjectTitle(name));
         project.appendChild(createTaskList());
         project.appendChild(createProjectFooter(project));
-
-        // let finalHeight = 80;
-        // for (let h = 0; h < project.children[1].length; h++) {
-        //     finalHeight += 38;
-        // }
-
-        // project.style.height = finalHeight + "px";
     return project;
 }
 
