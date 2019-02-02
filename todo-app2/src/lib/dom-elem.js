@@ -3,7 +3,7 @@ const DOMElement = (type) => ({
   element: document.createElement(type),
 
   setContent(value) {
-    if (value !== undefined && text !== null)
+    if (value !== undefined && value !== null)
       this.element.appendChild(document.createTextNode(value));
     return this;
   },
@@ -15,7 +15,7 @@ const DOMElement = (type) => ({
   },
 
   addAttributes(attributes) {
-    if (attributes !== unedfined && attributes.length !== 0) {
+    if (attributes !== undefined && attributes.length !== 0) {
       for (let key in attributes) {
         this.element.setAttribute(key, attributes[key]);
       }

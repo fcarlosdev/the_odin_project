@@ -1,12 +1,34 @@
-const DOMSearch = (selector) => {
+const DOMSearch = () => {
 
-  const queryElement = selector =>
-    checkNull(selector) ? ocument.querySelector(selector) : null;
+  const getGrandParentElement = (selector, level) => {
+      let parentWanted = null;
 
-  const queryElementChildren = element =>
-    checkNull(element) ? element.children : [];
+      if (notNull(selector)) {
 
-  const checkNull = element => (element !== undefined && element !== null);
+        for (let i = 0; i < level; i++) {
+          if (parentWanted === null) {
+            parentWanted = selector.parentElement;
+          } else {
+            parentWanted = parentWanted.parentElement;
+          }
+        }
+      }
+
+      return parentWanted;
+
+    };
+
+  const getElement = selector =>
+    notNull(selector) ? ocument.querySelector(selector) : null;
+
+  const getChildren = element =>
+    notNull(element) ? element.children : [];
+
+  const notNull = element => (element !== undefined && element !== null);
+
+  return {
+    getGrandParentElement, getElement, getChildren,
+  };
 
 };
 
