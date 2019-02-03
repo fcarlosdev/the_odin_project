@@ -9,7 +9,7 @@ const DOMTaskList = (() => {
   const addTask = (project, taskName) => {
     let tasks  = project.children[1];
     let taskId = tasks.children.length + 1;
-    tasks.insertBefore(DOMTask().createTask(taskId, taskName), tasks.children[0]);
+    tasks.insertBefore(DOMTask(taskId, taskName).createTask(), tasks.children[0]);
     return tasks;
   };
 

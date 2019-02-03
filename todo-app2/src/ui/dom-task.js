@@ -1,6 +1,7 @@
 import DOMElement from '../lib/dom-elem';
+import Util from '../util/utility.js';
 
-const DOMTask = (() => {
+const DOMTask = ((id, name) => {
 
   const createButton = (label, classes, method) =>
     DOMElement('span').setContent(label)
@@ -60,7 +61,7 @@ const DOMTask = (() => {
                             .element;
   };
 
-  const createTask = (id, name) => {
+  const createTask = () => {
 
     let btDetails = createButton('Details', 'lk-details',
                                   event => showDetails(event));
@@ -87,17 +88,22 @@ const DOMTask = (() => {
   };
 
   const showDetails = event => {
-      let lkDetails = event.target;
-      let task      = event.target.parentElement.parentElement.parentElement;
-      let project   = task.parentElement.parentElement;
+      let details = event.target;
+      let task    = event.target.parentElement.parentElement.parentElement;
+      let project = task.parentElement.parentElement;
 
       task.style.height = (task.style.height == '150px') ? '38px' : '150px';
       details.textContent = (details.textContent == 'Details') ? 'Hide' : 'Details';
       task.children[1].style.display = (details.textContent == 'Details') ? 'none' : 'flex';
       task.children[2].style.display = (details.textContent == 'Details') ? 'none' : 'flex';
 
-      project.style.height = 'auto';
-      project.style.display = 'flex';
+      if (details.textContent === 'Hide') {
+        project.style.height = 'auto';
+        project.style.display = 'flex';
+      } else {
+        project.style.display = 'block';
+        Util().setProjectHeight(project);
+      }
 
     };
 
@@ -107,10 +113,7 @@ const DOMTask = (() => {
       let project = tasks.parentElement;
       let h = project.style.height;
       tasks.removeChild(task);
-      if (tasks.children.length < 5) {
-        let nH = Number(h.substring(0, h.length - 2)) - 48;
-        project.style.height = nH.toString().concat('px');
-      }
+      Util().setProjectHeight(project);
 
     };
 

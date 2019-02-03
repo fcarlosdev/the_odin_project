@@ -9,7 +9,7 @@ let fieldProjectName = document.querySelector('#proj-txt-name');
 document.querySelector('#bt-add-prj').addEventListener('click',
     () => {
         let projId = projects.children.length + 1;
-        let project = DOMProject().createProject(projId, getProjectName());
+        let project = DOMProject(projId, getProjectName()).createProject();
 
         if (project.children[1].children.length == 0) {
           project.style.height = '80px';

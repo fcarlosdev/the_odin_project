@@ -1,20 +1,24 @@
 import DOMElement from '../lib/dom-elem';
-import DOMFooter from  '../ui/dom-footer';
-import DOMTaskList from  '../ui/dom-task-list';
+import DOMFooter from '../ui/dom-footer';
+import DOMHeader from '../ui/dom-header';
+import DOMTaskList from '../ui/dom-task-list';
 
-const DOMProject = (() => {
+const DOMProject = ((id, name) => {
 
-  const createProject = (id, name) =>
-    DOMElement('div').addClasses('project')
-                     .addAttributes({ id: 'project' + id })
-                     .addChildren([
-                        createTitleElement(name),
-                        DOMTaskList().createTaskList(),
-                        DOMFooter().createProjectFooter(),
-                      ]).element;
+  const createProject = () => {
+    let project = newProject(id, name);
+    return project.addChildren(
+      [DOMHeader(project.element, name, 'project-header').createHeader(),
+        DOMTaskList().createTaskList(),
+        DOMFooter().createProjectFooter(project.element),
+      ]).element;
 
-  const createTitleElement = withTitle =>
-    DOMElement('h3').setContent(withTitle).element;
+  }
+
+  const newProject = (id, name) =>
+    DOMElement('div').addClasses('project').addAttributes({
+      id: 'project' + id
+    });
 
   return {
     createProject,
