@@ -12,9 +12,8 @@ const Util = (() => {
   };
 
   return {
-    setProjectHeight
-  }
-
+    setProjectHeight,
+  };
 
 });
 

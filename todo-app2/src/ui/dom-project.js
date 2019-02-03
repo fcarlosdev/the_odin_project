@@ -13,11 +13,11 @@ const DOMProject = ((id, name) => {
         DOMFooter().createProjectFooter(project.element),
       ]).element;
 
-  }
+  };
 
   const newProject = (id, name) =>
     DOMElement('div').addClasses('project').addAttributes({
-      id: 'project' + id
+      id: 'project' + id,
     });
 
   return {
