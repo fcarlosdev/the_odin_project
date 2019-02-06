@@ -1,13 +1,22 @@
 import DOMSearch from '../lib/dom-search-elem';
+import DOMTaskList from  '../ui/dom-task-list';
+import Util from '../util/utility.js';
 import FrmTaskBody from "../partials/new-task-form.html";
 
-const DOMFormTask = (() => {
+const DOMFormTask = ((project) => {
 
   let taskForm;
 
   const show = () => {    
     initForm();
-    setCloseButtonEvent();
+    attachEventToCloseButton();
+    attachEventToSaveButton();
+    toggleTaskForm();
+  }
+
+  const save = () => {
+    DOMTaskList().addTask(project, getFormField('#task-name').value);
+    Util().setProjectHeight(project);
     toggleTaskForm();
   }
 
@@ -18,10 +27,15 @@ const DOMFormTask = (() => {
 
   const toggleTaskForm = () =>  taskForm.classList.toggle('show-modal');
 
-  const setCloseButtonEvent =() => 
+  const attachEventToCloseButton =() => 
     DOMSearch().getElement(".close-button")
                .addEventListener('click', toggleTaskForm);
 
+  const attachEventToSaveButton = () =>
+    DOMSearch().getElement("#save-button")
+               .addEventListener('click', save);
+  
+  const getFormField = selector => DOMSearch().getElement(selector);
 
   return { 
     show
