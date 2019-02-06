@@ -1,7 +1,10 @@
 import DOMElement from '../lib/dom-elem';
 import DOMTaskList from  '../ui/dom-task-list';
 import DOMSearch from '../lib/dom-search-elem';
+import DOMButton from '../ui/dom-button';
 import Util from '../util/utility.js';
+
+import DOMFormTask from '../ui/dom-task-form';
 
 const DOMFooter = (() => {
 
@@ -18,8 +21,9 @@ const DOMFooter = (() => {
                       .element;
 
   const addTaskTo = (project, name) => {
-    DOMTaskList().addTask(project, name);
-    Util().setProjectHeight(project);
+    // DOMTaskList().addTask(project, name);
+    // Util().setProjectHeight(project);
+    DOMFormTask().show();
   };
 
   return {

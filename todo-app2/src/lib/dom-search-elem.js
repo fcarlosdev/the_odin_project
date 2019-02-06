@@ -19,7 +19,7 @@ const DOMSearch = () => {
     };
 
   const getElement = selector =>
-    notNull(selector) ? ocument.querySelector(selector) : null;
+    notNull(selector) ? document.querySelector(selector) : null;
 
   const getChildren = element =>
     notNull(element) ? element.children : [];
