@@ -1,65 +1,7 @@
 import DOMElement from '../lib/dom-elem';
 import Util from '../util/utility.js';
 
-const DOMTask = ((id, name) => {
-
-  const createButton = (label, classes, method) =>
-    DOMElement('span').setContent(label)
-                      .addClasses(classes)
-                      .attachEvent('click', method)
-                      .element;
-
-  const createTaskHeaderButtons = buttons =>
-
-    DOMElement('div').addClasses('t-header-buttons')
-                     .addChildren(buttons)
-                     .element;
-
-  const createTaskTitle = title =>
-    DOMElement('h4').setContent(title).element;
-
-  const createTaskHeader = content =>
-    DOMElement('div').addClasses('task-header')
-                     .addChildren(content)
-                     .element;
-
-  const createTaskBody = description =>
-    DOMElement('div').setContent(description)
-                     .addClasses('task-content')
-                     .element;
-
-  const createTaskFooter = () => {
-
-    let dueDateLabel = DOMElement('span').setContent('Due date:')
-                                         .addClasses('l-bold')
-                                         .element;
-
-    let dueDate = DOMElement('span').addClasses('due-date')
-                                    .setContent(' 31/01/2019')
-                                    .addChildren([dueDateLabel])
-                                    .element;
-
-    let priorityLabel = DOMElement('span').setContent('Priority')
-                                          .addClasses('l-bold')
-                                          .element;
-
-    let priority = DOMElement('span').setContent('Low')
-                                     .addClasses('priority')
-                                     .addChildren([priorityLabel])
-                                     .element;
-
-    let chkDone = DOMElement('input').addAttributes({ type: 'checkbox' })
-                                     .addClasses('task-done')
-                                     .element;
-
-    let spDone = DOMElement('span').addChildren([chkDone])
-                                   .setContent(' Done')
-                                   .element;
-
-    return DOMElement('div').addClasses('task-footer')
-                            .addChildren([dueDate, priority, spDone])
-                            .element;
-  };
+const DOMTask = ((id, task) => {
 
   const createTask = () => {
 
@@ -68,10 +10,10 @@ const DOMTask = ((id, name) => {
     let btRemove = createButton('Remove', 'lk-remove', event => removeTask(event));
 
     let taskHeader = createTaskHeader(
-      [createTaskTitle(name), createTaskHeaderButtons([btDetails, btRemove])]
+      [createTaskTitle(task.getTitle()), createTaskHeaderButtons([btDetails, btRemove])]
     );
 
-    let taskContent = createTaskBody('This is a model of a task');
+    let taskContent = createTaskBody(task.getDescription());
 
     let taskFooter = createTaskFooter();
 
@@ -86,6 +28,69 @@ const DOMTask = ((id, name) => {
     return newTask;
 
   };
+
+  const createButton = (label, classes, method) =>
+    DOMElement('span').setContent(label)
+                      .addClasses(classes)
+                      .attachEvent('click', method)
+                      .element;
+
+  const createTaskHeaderButtons = buttons =>
+    DOMElement('div').addClasses('t-header-buttons')
+                     .addChildren(buttons)
+                     .element;
+
+  const createTaskTitle = title => DOMElement('h4').setContent(title).element;
+
+  const createTaskHeader = content =>
+    DOMElement('div').addClasses('task-header')
+                     .addChildren(content)
+                     .element;
+
+  const createTaskBody = description =>
+    DOMElement('div').setContent(description)
+                     .addClasses('task-content')
+                     .element;
+
+  const createTaskFooter = () => {
+
+    return DOMElement('div').addClasses('task-footer')
+                            .addChildren([createDueDateEL(), createPriorityEL(), createDoneEL()])
+                            .element;
+  };
+
+  const createDueDateEL = () => {
+
+    let dueDateLabel = DOMElement('span').setContent('Due date: ')
+                                         .addClasses('l-bold').element;
+
+    return DOMElement('span').addClasses('due-date')
+                             .addChildren([dueDateLabel])
+                             .setContent(task.getDueDate())
+                             .element;
+  };
+
+  const createPriorityEL = () => {
+    let priorityLabel = DOMElement('span').setContent('Priority: ')
+                                          .addClasses('l-bold')
+                                          .element;
+
+    return DOMElement('span').addClasses('priority')
+                             .addChildren([priorityLabel])
+                             .setContent(task.getPriority())
+                             .element;
+  };
+
+  const createDoneEL = () => {
+    let chkDone = DOMElement('input').addAttributes({ type: 'checkbox' })
+                                     .addClasses('task-done')
+                                     .element;
+
+    return DOMElement('span').addChildren([chkDone])
+                             .setContent(' Done')
+                             .element;
+
+  }
 
   const showDetails = event => {
       let details = event.target;

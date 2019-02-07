@@ -2,6 +2,7 @@ import DOMSearch from '../lib/dom-search-elem';
 import DOMTaskList from  '../ui/dom-task-list';
 import Util from '../util/utility.js';
 import FrmTaskBody from "../partials/new-task-form.html";
+import TaskFactory from '../factories/task-factory';
 
 const DOMFormTask = ((project) => {
 
@@ -15,7 +16,14 @@ const DOMFormTask = ((project) => {
   }
 
   const save = () => {
-    DOMTaskList().addTask(project, getFormField('#task-name').value);
+    const task = TaskFactory(
+      getFieldValue('#task-name'),
+      getFieldValue('#task-desc'),
+      getFieldValue('#task-date'),
+      getFieldValue('#task-priority')
+    );
+
+    DOMTaskList().addTask(project, task);
     Util().setProjectHeight(project);
     toggleTaskForm();
   }
@@ -35,7 +43,7 @@ const DOMFormTask = ((project) => {
     DOMSearch().getElement("#save-button")
                .addEventListener('click', save);
   
-  const getFormField = selector => DOMSearch().getElement(selector);
+  const getFieldValue = selector => DOMSearch().getElement(selector).value;
 
   return { 
     show
