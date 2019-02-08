@@ -21,8 +21,14 @@ const DOMSearch = () => {
   const getElement = selector =>
     notNull(selector) ? document.querySelector(selector) : null;
 
-  const getChildren = element =>
-    notNull(element) ? element.children : [];
+  const getChildren = (element,level) => {
+    
+    if ( notNull(element) ) {
+      return (level != undefined) ? element.children[level] : element.children;
+    }
+    return [];
+
+  }
 
   const notNull = element => (element !== undefined && element !== null);
 

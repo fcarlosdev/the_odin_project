@@ -80,19 +80,22 @@
   **************************************/
   .projects {
     width: 80%;
-    display: grid;
+    display: flex;
+    flex-wrap: wrap;
     margin: 0 auto;
     grid-gap: 1.5rem 2rem;
+    flex-direction: column;
     padding: 10px 2px 20px 2px;
-    grid-template-columns: repeat(2,1fr);
-    /* grid-template-columns: 1fr; */
+    justify-content: space-between;    
   }
 
   .project {
     color: #fff;
     height: 80px;
-    min-height: 80px;
+    width: 100%;
+    min-height: 80px;  
     border-radius: 4px;
+    margin-bottom: 20px;
     flex-direction: column;
     padding: 8px 3px 8px 8px;
     background-color: #212F3D;
@@ -373,18 +376,18 @@
   /*************************************
   *         Media Queries Styles       *
   **************************************/
-  @media (max-width: 1124px) {
+  /* @media (max-width: 1124px) {
 
     .projects {
       grid-template-columns: repeat(2,auto);
     }
 
-  }
+  } */
 
   @media (max-width: 970px) {
     .projects {
-      width: 90%;
-      grid-column-gap: 1rem;
+      width: 90%;      
+      /* grid-column-gap: 1rem; */
     }
 
     .proj-form {
@@ -396,7 +399,7 @@
   @media (max-width: 768px) {
     .projects {
       width: 90%;
-      grid-column-gap: 1rem;
-      grid-template-columns: 1fr;
+      /* grid-column-gap: 1rem;
+      grid-template-columns: 1fr; */
     }
   }

@@ -1,5 +1,6 @@
 import DOMElement from '../lib/dom-elem';
 import Util from '../util/utility.js';
+import DOMSearch from '../lib/dom-search-elem';
 
 const DOMTask = ((id, task) => {
 
@@ -94,8 +95,8 @@ const DOMTask = ((id, task) => {
 
   const showDetails = event => {
       let details = event.target;
-      let task    = event.target.parentElement.parentElement.parentElement;
-      let project = task.parentElement.parentElement;
+      let task = DOMSearch().getGrandParentElement(details,3);
+      let project = DOMSearch().getGrandParentElement(task,2);
 
       task.style.height = (task.style.height == '150px') ? '38px' : '150px';
       details.textContent = (details.textContent == 'Details') ? 'Hide' : 'Details';
@@ -106,8 +107,10 @@ const DOMTask = ((id, task) => {
         project.style.height = 'auto';
         project.style.display = 'flex';
       } else {
-        project.style.display = 'block';
-        Util().setProjectHeight(project);
+        if ( !Util().anyTaskShowingDetails(project) ) {
+          project.style.display = 'block';
+          Util().setProjectHeight(project);
+        }
       }
 
     };

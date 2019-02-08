@@ -1,18 +1,22 @@
 const Util = (() => {
 
-  const setProjectHeight = project => {
+  const setProjectHeight = (project) => {
 
     let finalHeight = 80;
     for (let h = 0; h < project.children[1].children.length; h++) {
-      finalHeight += 48;
-    }
+      finalHeight += 48;      
+    }    
 
     project.style.height = (finalHeight < 282) ? finalHeight + 'px' : '320px';
 
   };
 
+  const anyTaskShowingDetails = project => 
+    Array.from(project.querySelectorAll('.lk-details'))
+         .some(dt => dt.textContent == 'Hide')
+
   return {
-    setProjectHeight,
+    setProjectHeight, anyTaskShowingDetails, 
   };
 
 });
