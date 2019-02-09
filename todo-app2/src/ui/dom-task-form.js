@@ -9,7 +9,7 @@ const DOMFormTask = ((project) => {
   let taskForm;
 
   const show = () => {    
-    initForm();
+    initForm();    
     attachEventToCloseButton();
     attachEventToSaveButton();
     toggleTaskForm();
@@ -30,14 +30,17 @@ const DOMFormTask = ((project) => {
 
   const initForm = () => {
     taskForm = DOMSearch().getElement('#myModal');
-    taskForm.innerHTML = FrmTaskBody;
+    taskForm.innerHTML = FrmTaskBody;    
   }
 
   const toggleTaskForm = () =>  taskForm.classList.toggle('show-modal');
 
-  const attachEventToCloseButton =() => 
+  const attachEventToCloseButton =() => {
     DOMSearch().getElement(".close-button")
                .addEventListener('click', toggleTaskForm);
+    DOMSearch().getElement("#cancel-button")
+               .addEventListener('click', toggleTaskForm);
+  }
 
   const attachEventToSaveButton = () =>
     DOMSearch().getElement("#save-button")
