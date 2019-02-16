@@ -1,0 +1,169 @@
+/******** General Styles *********/
+
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: #f1f4f7;
+}
+
+.container {
+    width: 90%;
+    display: flex;
+    margin: 0 auto;
+    font-size: 20px;
+    align-items: center;
+    flex-direction: column;
+}
+
+/******* App Header Styles ******/
+
+.app-header {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #ccc;
+}
+
+.app-header h2 {
+    margin: 10px 5px;
+}
+
+.app-header span {
+    color: #2874A6;
+}
+
+/******* Project Form Styles ******/
+
+.project-form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.project-form input[type="text"] {
+    padding: 10px;
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.project-form button {
+    color: #fff;
+    border: none;
+    padding: 10px;
+    font-size: 20px;
+    cursor: pointer;
+    margin-bottom: 10px;
+    background-color: #1A5276;
+}
+
+/******* Projects List Styles ******/
+
+.projects {
+    width: 100%;
+    display: flex;
+    padding: 10px 2px;
+    flex-direction: column;
+}
+
+.project {
+    margin-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+}
+
+.project-header {
+    display: flex;
+    padding: 10px 0 5px 5px;
+    background-color: #5D6D7E;
+    border-bottom: 1px solid #ccc;
+    justify-content: space-between;
+}
+
+.project h3 {
+    margin: 0
+}
+
+.bt {
+    color: #fff;
+    border: none;
+    padding: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.bt-add {
+    width: 80px;
+}
+
+.bt-add:hover {
+    color: #1A5276;
+}
+
+.bt-remove {
+    width: 25px;
+}
+
+.bt-remove:hover {
+    color: #971919;
+}
+
+.bt-wrapper {
+    width: 102px;
+    display: flex;
+    text-align: center;
+    justify-content: space-between
+}
+
+/******* Tasks List Styles ******/
+
+.tasks {
+    display: flex;
+    overflow: auto;        
+    margin: 10px 0;
+    max-height: 200px;
+    flex-direction: column;
+}
+
+.task {
+    border: 1px solid #ccc;
+    padding: 10px 8px 5px 10px;
+    margin-bottom: 10px;
+    background-color: #ECF0F1;
+}
+
+.task-header {
+    display: flex;
+    justify-content: space-between;
+}
+
+.task-header h4 {
+    margin: 0
+}
+
+.task-content {
+    min-height: 80px;
+    text-align: justify;
+    overflow: auto;
+    padding: 10px 5px;
+}
+
+.task-content p {
+    margin: 0;
+}
+
+.task-footer {
+    display: flex;
+    padding-bottom: 5px;
+    justify-content: space-between;
+}
+
+.bold-label {
+    font-weight: 600;
+}
+
+.bt-task {
+    cursor: pointer;
+    font-size: 16px;
+}

@@ -1,0 +1,35 @@
+<div class="modal-content">
+    <div class="modal-header">
+        <span class="title">New Task</span>
+        <span class="close-button">&times;</span>
+    </div>
+    <div class="fields-wrapper">
+        <div class="row">
+            <label for="task-name">Name</label>
+            <input id="task-name" type="text" name="task-name" autofocus
+                class="form-field" placeholder="Task name">
+        </div>
+        <div class="row">
+            <label for="task-desc">Description</label>
+            <textarea name="task-desc" id="task-desc" cols="30" rows="4" maxlength="250">
+                </textarea>
+        </div>
+        <div class="row">
+            <label for="task-date">Due Date</label>
+            <input type="date" name="task-date" id="task-date" class="form-field">
+        </div>
+        <div class="row">
+            <label for="task-priority">Priority</label>
+            <select name="task-priority" id="task-priority" class="form-field">
+                <option value="">Select the priority</option>
+                <option value="Low">Low</option>
+                <option value="Medium">Medium</option>
+                <option value="High">High</option>
+            </select>
+        </div>
+        <div class="row buttons">
+            <input id="cancel-button" type="button" value="Cancelar">
+            <input id="save-button" type="button" value="Salvar">
+        </div>
+    </div>
+</div>
