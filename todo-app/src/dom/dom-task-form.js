@@ -9,14 +9,15 @@ const DOMFormTask = ((taskEL, project) => {
 
   let taskForm
 
-  const show = () => {    
-    initForm()    
+  const show = () => {
+    initForm()
     attachEventToCloseButton()
     attachEventToSaveButton()
     toggleTaskForm()
+    DOMSearch().getElement('#task-name').focus()
   }
 
-  const save = () => {        
+  const save = () => {
     const task = Task(generateId(),
                       getFieldValue('#task-name'),
                       getFieldValue('#task-desc'),
@@ -27,12 +28,12 @@ const DOMFormTask = ((taskEL, project) => {
 
     taskEL.appendChild(DOMTask(task).create())
     toggleTaskForm()
-    
+
   }
 
   const initForm = () => {
     taskForm = DOMSearch().getElement('#formTask')
-    taskForm.innerHTML = FrmTask    
+    taskForm.innerHTML = FrmTask
   }
 
   const toggleTaskForm = () =>  taskForm.classList.toggle('show-modal')
@@ -47,7 +48,7 @@ const DOMFormTask = ((taskEL, project) => {
   const attachEventToSaveButton = () =>
     DOMSearch().getElement("#save-button")
                .addEventListener('click', save)
-  
+
   const getFieldValue = selector => DOMSearch().getElement(selector).value.trim()
 
   const generateId = () => project.tasks.length + 1

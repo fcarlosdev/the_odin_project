@@ -19,18 +19,18 @@ DOMSearch().getElement('#bt-project').addEventListener('click', () => {
         let project = controller.create(txtProjName.value)
 
         let tasksEL = DOMElement('div').addClasses(['tasks']).element
-        
+
         let btAddTaskEL = DOMElement('span').setContent('Add task')
             .addClasses(['bt','bt-add'])
             .attachEvent('click', () => DOMFormTask(tasksEL, project).show()).element
-        
+
         let btDelProject = DOMElement('span').setContent('X')
             .addClasses(['bt','bt-remove'])
             .attachEvent('click', event => {
                 event.target.parentElement.parentElement.parentElement.remove();
-                txtProjName.focus()        
+                txtProjName.focus()
             }).element
-        
+
         let buttonsWrapper = DOMElement('div').addClasses(['bt-wrapper'])
             .addChildren([btAddTaskEL, btDelProject])
             .element
@@ -41,15 +41,15 @@ DOMSearch().getElement('#bt-project').addEventListener('click', () => {
             .addChildren([projectTitleEL, buttonsWrapper]).element
 
         let projectEL = DOMElement('div').addClasses(['project'])
-            .addAttributes({id: 'Project'+project.id})
+            .addAttributes({id: 'Project'+project.id, sotrageId: project.id})
             .addChildren([projectHeader, tasksEL ])
-            .element        
+            .element
 
         projectsEL.appendChild(projectEL)
 
         txtProjName.value = ''
         txtProjName.focus()
-      
+
     }
 
 })
