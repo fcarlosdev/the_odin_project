@@ -1,7 +1,6 @@
 import DOMElement from '../dom/dom-elem'
 import DOMSearch from '../dom/dom-search'
 import DOMTaskList from '../dom/dom-task-list'
-// import ProjectController from '../controllers/project-controller'
 import Utils from '../util/utils'
 
 const DOMTask = ((task) => {
@@ -39,8 +38,24 @@ const DOMTask = ((task) => {
 
                 DOMElement('span').addChildren([
                     DOMElement('span').addClasses(['bold-label']).setContent('Priority: ').element
-                ]).setContent(task.priority).element
+                ]).setContent(task.priority).element,
+
+                DOMElement('span').addChildren([
+                    DOMElement('input').addAttributes({id: 'chkDone', type: 'checkbox'})
+                                       .attachEvent('click', () => { changeTaskDoneState(event.target) })
+                                       .element
+                ]).setContent('Done').element
             ]).element
+
+    const changeTaskDoneState = checkbox => {
+        let task = DOMSearch().getGrandParentElement(checkbox,3)
+        let taskTitle = DOMSearch().getGrandSon(task,'h4')
+        if (event.target.checked) {
+            taskTitle.classList.add('task-done')
+        } else {
+            taskTitle.classList.remove('task-done')
+        }
+    }            
 
     return { create }
 })

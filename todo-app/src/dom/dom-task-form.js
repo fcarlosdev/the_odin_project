@@ -1,10 +1,7 @@
 import DOMSearch from '../dom/dom-search'
-import DOMTask from '../dom/dom-task'
 import DOMTaskList from '../dom/dom-task-list'
 import FrmTask from "../partials/task-form.html"
-import Task from '../models/task'
 import TaskController from '../controllers/task-controller'
-// import ProjectController from '../controllers/project-controller'
 
 const taskControl = TaskController()
 
@@ -21,16 +18,8 @@ const DOMFormTask = ((tasksEL, project) => {
   }
 
   const save = () => {
-    // const task = TaskController().create(generateId(), getFieldValue('#task-name'),
-    //                                      getFieldValue('#task-desc'), getFieldValue('#task-date'),
-    //                                      getFieldValue('#task-priority'), project.id)
-
-    // ProjectController().addTask(task, project)
-
-    // tasksEL.appendChild(DOMTask(task).create())
     DOMTaskList().addTask(createTask(project), tasksEL, project)
     toggleTaskForm()
-
   }
 
   const initForm = () => {

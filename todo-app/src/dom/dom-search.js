@@ -30,10 +30,17 @@ const DOMSearch = () => {
 
   }
 
+  const getGrandSon = (fromElement, grandSonaWanted) => {
+    if (notNull(fromElement)) {
+      return (grandSonaWanted !== undefined) ? fromElement.querySelector(grandSonaWanted) : null;
+    }  
+    return null;
+  }
+
   const notNull = element => (element !== undefined && element !== null);
 
   return {
-    getGrandParentElement, getElement, getChildren,
+    getGrandParentElement, getElement, getChildren, getGrandSon
   };
 
 };

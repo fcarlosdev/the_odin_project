@@ -8,6 +8,8 @@ import DOMFormTask from './dom/dom-task-form'
 
 import ProjectController from './controllers/project-controller'
 
+import Utils from './util/utils'
+
 let txtProjName = DOMSearch().getElement('#field-project-name')
 let projectsEL = DOMSearch().getElement('.projects')
 let controller = ProjectController()
@@ -18,7 +20,7 @@ DOMSearch().getElement('#bt-project').addEventListener('click', () => {
 
         let project = controller.create(txtProjName.value)
 
-        let tasksEL = DOMElement('div').addClasses(['tasks']).element
+        let tasksEL = DOMElement('div').addClasses(['tasks']).element        
         
         let btAddTaskEL = DOMElement('span').setContent('Add task')
             .addClasses(['bt','bt-add'])
@@ -46,6 +48,7 @@ DOMSearch().getElement('#bt-project').addEventListener('click', () => {
             .addChildren([projectHeader, tasksEL ])
             .element
 
+        Utils().controlListTasksVibility(projectEL)
         projectsEL.appendChild(projectEL)
 
         txtProjName.value = ''
