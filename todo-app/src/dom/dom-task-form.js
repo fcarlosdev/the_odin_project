@@ -1,11 +1,14 @@
 import DOMSearch from '../dom/dom-search'
 import DOMTask from '../dom/dom-task'
+import DOMTaskList from '../dom/dom-task-list'
 import FrmTask from "../partials/task-form.html"
 import Task from '../models/task'
 import TaskController from '../controllers/task-controller'
-import ProjectController from '../controllers/project-controller'
+// import ProjectController from '../controllers/project-controller'
 
-const DOMFormTask = ((taskEL, project) => {
+const taskControl = TaskController()
+
+const DOMFormTask = ((tasksEL, project) => {
 
   let taskForm
 
@@ -18,16 +21,14 @@ const DOMFormTask = ((taskEL, project) => {
   }
 
   const save = () => {
-    const task = Task(generateId(),
-                      getFieldValue('#task-name'),
-                      getFieldValue('#task-desc'),
-                      getFieldValue('#task-date'),
-                      getFieldValue('#task-priority'),
-                      project.id)
+    // const task = TaskController().create(generateId(), getFieldValue('#task-name'),
+    //                                      getFieldValue('#task-desc'), getFieldValue('#task-date'),
+    //                                      getFieldValue('#task-priority'), project.id)
 
-    ProjectController().addTask(TaskController().create(task), project)
+    // ProjectController().addTask(task, project)
 
-    taskEL.appendChild(DOMTask(task).create())
+    // tasksEL.appendChild(DOMTask(task).create())
+    DOMTaskList().addTask(createTask(project), tasksEL, project)
     toggleTaskForm()
 
   }
@@ -52,10 +53,13 @@ const DOMFormTask = ((taskEL, project) => {
 
   const getFieldValue = selector => DOMSearch().getElement(selector).value.trim()
 
-  const generateId = () => {
-    let numberOfTasks = ProjectController().getTasks(project.id).length
-    return (numberOfTasks > 0) ? (numberOfTasks + 1) : 1
-  }
+  const createTask = () =>
+    taskControl.create(taskControl.generateId(project),
+                       getFieldValue('#task-name'),
+                       getFieldValue('#task-desc'),
+                       getFieldValue('#task-date'),
+                       getFieldValue('#task-priority'),
+                      project.id)
 
   return { show }
 

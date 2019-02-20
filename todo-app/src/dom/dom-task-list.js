@@ -1,0 +1,35 @@
+import DOMTask from '../dom/dom-task'
+import DOMSearch from '../dom/dom-search'
+
+import Utils from '../util/utils'
+import ProjectController from '../controllers/project-controller'
+import TaskController from '../controllers/task-controller'
+
+const prjControl = ProjectController()
+
+const DOMTaskList = (() => {
+
+  const addTask = (task, tasksEL, toProject) => {
+
+      tasksEL.appendChild(DOMTask(task).create())
+      prjControl.addTask(task, toProject)
+
+      if (tasksEL.style.display === 'none')
+        tasksEL.style.display = 'flex'
+  }
+
+  const removeTask = (task, project) => {
+    let tasks = DOMSearch().getChildren(project,1)
+    tasks.removeChild(task)
+    prjControl.removeTask(task.getAttribute('storageid'),
+                                   project.getAttribute('storageid'))
+    Utils().controlListTasksVibility(project)
+  }
+
+  return {
+    addTask, removeTask
+  }
+
+})
+
+export default DOMTaskList

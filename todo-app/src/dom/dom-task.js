@@ -1,7 +1,8 @@
 import DOMElement from '../dom/dom-elem'
 import DOMSearch from '../dom/dom-search'
-import ProjectController from '../controllers/project-controller'
-// import TaskController from '../controllers/task-controller'
+import DOMTaskList from '../dom/dom-task-list'
+// import ProjectController from '../controllers/project-controller'
+import Utils from '../util/utils'
 
 const DOMTask = ((task) => {
 
@@ -20,9 +21,7 @@ const DOMTask = ((task) => {
                     .attachEvent('click', () => {
                         let task = DOMSearch().getGrandParentElement(event.target,2)
                         let project = DOMSearch().getGrandParentElement(task,2)
-                        ProjectController().removeTask(task.getAttribute('storageid'), 
-                                                       project.getAttribute('storageid'))
-                        DOMSearch().getGrandParentElement(event.target,2).remove();                        
+                        DOMTaskList().removeTask(task, project)
                     }).setContent('X').element
             ]).element
 
