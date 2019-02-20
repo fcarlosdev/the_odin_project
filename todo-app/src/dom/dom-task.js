@@ -1,7 +1,7 @@
 import DOMElement from '../dom/dom-elem'
 import DOMSearch from '../dom/dom-search'
-import ProjectController from './controllers/project-controller'
-import TaskController from './controllers/task-controller'
+import ProjectController from '../controllers/project-controller'
+// import TaskController from '../controllers/task-controller'
 
 const DOMTask = ((task) => {
 
@@ -18,9 +18,11 @@ const DOMTask = ((task) => {
                 DOMElement('h4').setContent(task.title).element,
                 DOMElement('span').addClasses(['bt-task','bt-remove'])
                     .attachEvent('click', () => {
-                        console.log(event.target.parentElement.parentElement.getAttribute('storageId'))                        
-                        DOMSearch().getGrandParentElement(event.target,2).remove();
-                        //event.target.parentElement.parentElement.remove();
+                        let task = DOMSearch().getGrandParentElement(event.target,2)
+                        let project = DOMSearch().getGrandParentElement(task,2)
+                        ProjectController().removeTask(task.getAttribute('storageid'), 
+                                                       project.getAttribute('storageid'))
+                        DOMSearch().getGrandParentElement(event.target,2).remove();                        
                     }).setContent('X').element
             ]).element
 

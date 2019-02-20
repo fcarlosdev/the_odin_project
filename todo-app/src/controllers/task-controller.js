@@ -4,7 +4,7 @@ const TaskController = (() => {
 
     const create = (task) => 
         Task(task.id, task.title, task.description, 
-             task.dueDate, task.priority)
+             task.dueDate, task.priority, task.projId)
 
     return {
         create

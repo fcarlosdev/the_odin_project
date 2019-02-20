@@ -19,7 +19,7 @@ DOMSearch().getElement('#bt-project').addEventListener('click', () => {
         let project = controller.create(txtProjName.value)
 
         let tasksEL = DOMElement('div').addClasses(['tasks']).element
-
+        
         let btAddTaskEL = DOMElement('span').setContent('Add task')
             .addClasses(['bt','bt-add'])
             .attachEvent('click', () => DOMFormTask(tasksEL, project).show()).element
@@ -27,7 +27,8 @@ DOMSearch().getElement('#bt-project').addEventListener('click', () => {
         let btDelProject = DOMElement('span').setContent('X')
             .addClasses(['bt','bt-remove'])
             .attachEvent('click', event => {
-                event.target.parentElement.parentElement.parentElement.remove();
+                if (ProjectController().removeProject(project.id))
+                    DOMSearch().getGrandParentElement(event.target,3).remove()                
                 txtProjName.focus()
             }).element
 
@@ -41,7 +42,7 @@ DOMSearch().getElement('#bt-project').addEventListener('click', () => {
             .addChildren([projectTitleEL, buttonsWrapper]).element
 
         let projectEL = DOMElement('div').addClasses(['project'])
-            .addAttributes({id: 'Project'+project.id, sotrageId: project.id})
+            .addAttributes({id: 'Project'+project.id, storageId: project.id})
             .addChildren([projectHeader, tasksEL ])
             .element
 

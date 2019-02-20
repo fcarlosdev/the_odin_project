@@ -22,7 +22,8 @@ const DOMFormTask = ((taskEL, project) => {
                       getFieldValue('#task-name'),
                       getFieldValue('#task-desc'),
                       getFieldValue('#task-date'),
-                      getFieldValue('#task-priority'))
+                      getFieldValue('#task-priority'),
+                      project.id)
 
     ProjectController().addTask(TaskController().create(task), project)
 
@@ -51,7 +52,10 @@ const DOMFormTask = ((taskEL, project) => {
 
   const getFieldValue = selector => DOMSearch().getElement(selector).value.trim()
 
-  const generateId = () => project.tasks.length + 1
+  const generateId = () => {
+    let numberOfTasks = ProjectController().getTasks(project.id).length
+    return (numberOfTasks > 0) ? (numberOfTasks + 1) : 1
+  }
 
   return { show }
 
