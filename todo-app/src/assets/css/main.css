@@ -67,17 +67,19 @@ body {
 }
 
 .project {
-    margin-bottom: 15px;
     display: flex;
+    margin-bottom: 15px;
     flex-direction: column;
+    background-color: #212F3D;
+    box-shadow: 0px 4px 9px #000;
+    padding: 6px 6px 10px 6px;
+    border-radius: 4px;
 }
 
 .project-header {
     color: #fff;
     display: flex;
-    padding: 10px 5px 10px 15px;
-    background-color: #020910;
-    border-bottom: 1px solid #ccc;
+    padding: 5px;
     justify-content: space-between;
 }
 
@@ -121,19 +123,18 @@ body {
 
 .tasks {
     display: flex;
-    padding: 15px;
+    padding: 0 5px ;
     overflow: auto;        
-    max-height: 180px;
+    max-height: 195px;
     flex-direction: column;
-    border: 1px solid #d1d4d6;
-    border: 1px solid #ccc;
 }
 
 .task {
-    border: 1px solid #ccc;
-    padding: 10px 8px 5px 10px;
     margin-bottom: 10px;
+    border: 1px solid #ccc;
     background-color: #fff;
+    padding: 10px 8px 5px 10px;
+    box-shadow: 1px 2px 4px #000;
 }
 
 .task-header {
@@ -179,3 +180,18 @@ body {
     color: #ccc;
     text-decoration: line-through
 }
+
+  /*************************************
+  *          ScrollBar Styles          *
+  **************************************/
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #212F3D;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #85929E;
+  }
