@@ -1,6 +1,6 @@
 const Repository = (() => {
 
-    let storage = sessionStorage
+    let storage = localStorage
 
     const saveProject = project => {
         storage.setItem(project.id, JSON.stringify(project))

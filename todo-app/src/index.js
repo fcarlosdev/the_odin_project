@@ -2,17 +2,19 @@ import './assets/css/main.css'
 import './assets/css/task-form.css'
 import './assets/css/shared.css'
 
-import DOMElement from './dom/dom-elem'
 import DOMSearch from './dom/dom-search'
-import DOMFormTask from './dom/dom-task-form'
+import DOMTaskList from './dom/dom-task-list'
 
 import ProjectController from './controllers/project-controller'
 
 import Utils from './util/utils'
 
+import TodoApp from './todo-app'
+
 let txtProjName = DOMSearch().getElement('#field-project-name')
 let projectsEL = DOMSearch().getElement('.projects')
 let controller = ProjectController()
+let app = TodoApp()
 
 DOMSearch().getElement('#bt-project').addEventListener('click', () => {
 
@@ -20,33 +22,19 @@ DOMSearch().getElement('#bt-project').addEventListener('click', () => {
 
         let project = controller.create(txtProjName.value)
 
-        let tasksEL = DOMElement('div').addClasses(['tasks']).element        
-        
-        let btAddTaskEL = DOMElement('span').setContent('Add task')
-            .addClasses(['bt','bt-add'])
-            .attachEvent('click', () => DOMFormTask(tasksEL, project).show()).element
+        let tasksEL = app.createTaskListWrapper()
 
-        let btDelProject = DOMElement('span').setContent('X')
-            .addClasses(['bt','bt-remove'])
-            .attachEvent('click', event => {
-                if (ProjectController().removeProject(project.id))
-                    DOMSearch().getGrandParentElement(event.target,3).remove()                
-                txtProjName.focus()
-            }).element
+        let btAddTaskEL = app.createBtAddTask(tasksEL, project)
 
-        let buttonsWrapper = DOMElement('div').addClasses(['bt-wrapper'])
-            .addChildren([btAddTaskEL, btDelProject])
-            .element
+        let btDelProject = app.createBtDelProject(project, controller)
 
-        let projectTitleEL = DOMElement('h3').setContent(project.name).element
+        let buttonsWrapper = app.createButtonsWrapper(btAddTaskEL, btDelProject)
 
-        let projectHeader = DOMElement('div').addClasses(['project-header'])
-            .addChildren([projectTitleEL, buttonsWrapper]).element
+        let projectTitleEL = app.createProjectTitle(project)
 
-        let projectEL = DOMElement('div').addClasses(['project'])
-            .addAttributes({id: 'Project'+project.id, storageId: project.id})
-            .addChildren([projectHeader, tasksEL ])
-            .element
+        let projectHeader = app.createProjectHeader(projectTitleEL, buttonsWrapper)
+
+        let projectEL = app.createProjectEL(project, projectHeader, tasksEL)
 
         Utils().controlListTasksVibility(projectEL)
         projectsEL.appendChild(projectEL)
@@ -55,5 +43,27 @@ DOMSearch().getElement('#bt-project').addEventListener('click', () => {
         txtProjName.focus()
 
     }
+
+})
+
+controller.getProjects().forEach(project => {
+
+    let tasksEL = app.createTaskListWrapper()
+    Object.assign([],project.tasks).forEach(task => {
+        DOMTaskList().loadTask(task, tasksEL)
+    })
+
+    let projectEL = app.createProjectEL(
+                        project, app.createProjectHeader(
+                                    app.createProjectTitle(project), 
+                                    app.createButtonsWrapper(
+                                        app.createBtAddTask(tasksEL, project), 
+                                        app.createBtDelProject(project, controller)
+                                    )
+                                ), tasksEL)
+    Utils().controlListTasksVibility(projectEL)
+
+    projectsEL.appendChild(projectEL)
+
 
 })

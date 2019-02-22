@@ -3,7 +3,6 @@ import DOMSearch from '../dom/dom-search'
 
 import Utils from '../util/utils'
 import ProjectController from '../controllers/project-controller'
-import TaskController from '../controllers/task-controller'
 
 const prjControl = ProjectController()
 
@@ -26,8 +25,12 @@ const DOMTaskList = (() => {
     Utils().controlListTasksVibility(project)
   }
 
+  const loadTask = (task, tasksEL) => {
+    tasksEL.appendChild(DOMTask(task).create())
+  }
+
   return {
-    addTask, removeTask
+    addTask, removeTask, loadTask
   }
 
 })
