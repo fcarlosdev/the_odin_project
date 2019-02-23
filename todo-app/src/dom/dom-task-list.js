@@ -28,7 +28,7 @@ const DOMTaskList = (() => {
   const loadTask = (task, tasksEL) => {
     tasksEL.appendChild(DOMTask(task).create())
   }
-
+  
   return {
     addTask, removeTask, loadTask
   }

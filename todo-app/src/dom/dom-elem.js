@@ -27,7 +27,8 @@ const DOMElement = (type) => ({
   addChildren(children) {
     if (children !== undefined && children.length !== 0) {
       children.forEach(child => {
-        this.element.appendChild(child);
+        if( child !== undefined)
+          this.element.appendChild(child);
       });
     }
 

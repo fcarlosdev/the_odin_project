@@ -43,9 +43,11 @@ const ProjectController = () => {
 
     const generateId = () => Repository().getProjects().length + 1
 
+    const totalOfProjects = () => Repository().getProjects().length
+
     return {
         create, getProjects, getProject, addTask, 
-        removeTask, getTasks, removeProject
+        removeTask, getTasks, removeProject, totalOfProjects
     }
 }
 

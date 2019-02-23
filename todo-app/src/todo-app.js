@@ -1,50 +1,58 @@
-import DOMElement from './dom/dom-elem'
+import ProjectUI from './projectUI'
+import DOMTaskList from './dom/dom-task-list'
 import DOMSearch from './dom/dom-search'
-import DOMFormTask from './dom/dom-task-form'
+import ProjectController from './controllers/project-controller'
 
-const TodoApp = (() => {
+let controller = ProjectController()
+let projectUI = ProjectUI()
+let projectsUI = DOMSearch().getElement('.projects')
 
-    const createTaskListWrapper = () => DOMElement('div').addClasses(['tasks']).element
+const TodoApp = () => {
 
-    const createBtAddTask = (tasksWrapper, project) =>
-        DOMElement('span').setContent('Add task')
-            .addClasses(['bt', 'bt-add'])
-            .attachEvent('click', () => DOMFormTask(tasksWrapper, project).show())
-            .element
+    const createDefaultProject = withTitle => {        
+        if (controller.totalOfProjects() == 0)
+            createProject(withTitle)
+    }
 
-    const createBtDelProject = (project, controller) =>
-        DOMElement('span').setContent('X')
-            .addClasses(['bt', 'bt-remove'])
-            .attachEvent('click', event => {
-                if (controller.removeProject(project.id))
-                    DOMSearch().getGrandParentElement(event.target, 3).remove()
-            }).element
+    const createProject = withTitle => 
+        addToProjectList(buildProject(controller.create(withTitle), projectUI.withTasks()))
 
-    const createButtonsWrapper = (btAddtask, btDelProject) =>
-        DOMElement('div').addClasses(['bt-wrapper'])
-            .addChildren([btAddtask, btDelProject])
-            .element
+    const loadProjects = () => {
+        controller.getProjects().forEach(project => {
+            if (!projectAlreadLoaded(project))
+                addToProjectList(buildProject(project, loadTasks(project)))
+        })
+    }
 
-    const createProjectTitle = project =>
-        DOMElement('h3').setContent(project.name).element
+    const loadTasks = fromProject => mapToTasksUI(fromProject.tasks, projectUI.withTasks())
 
-    const createProjectHeader = (projectTitle, buttonsWrapper) =>
-        DOMElement('div').addClasses(['project-header'])
-            .addChildren([projectTitle, buttonsWrapper]).element
+    const mapToTasksUI = (tasks, toTasksUI) =>{
+        tasks.forEach(task => DOMTaskList().loadTask(task, toTasksUI))
+        return toTasksUI
+    } 
 
-    const createProjectEL = (project, headerEL, tasksEL) =>
-        DOMElement('div').addClasses(['project'])
-            .addAttributes({ id: 'Project' + project.id, storageId: project.id })
-            .addChildren([headerEL, tasksEL])
-            .element
+    const addToProjectList = project =>  projectsUI.appendChild(project)
 
+    const projectAlreadLoaded = project => {        
+        
+        return Object.assign([],projectsUI.children)
+              .some(projectDB => Number(projectDB.getAttribute('storageid')) === project.id )
+    }
 
+    const buildProject = (projectModel, taskskUI) => {
+        if (projectModel != undefined)
+            return projectUI.create(
+                        projectModel, projectUI.withHeader(
+                            projectUI.withTitle(projectModel),
+                            projectUI.witButtons(projectUI.withBtAddTask(taskskUI, projectModel),
+                                                 projectUI.withBtDelProject(projectModel, controller))
+                        ), taskskUI
+                    )
+    }
 
     return {
-        createTaskListWrapper, createBtAddTask, createBtDelProject,
-        createButtonsWrapper, createProjectTitle, createProjectHeader,
-        createProjectEL
+        createProject, loadProjects, createDefaultProject
     }
-})
+}
 
 export default TodoApp

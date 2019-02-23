@@ -4,7 +4,8 @@ const Utils = (() => {
 
   const controlListTasksVibility = projectEL => {
         let tasks = DOMSearch().getChildren(projectEL,1)
-        tasks.style.display = (tasks.children.length > 0) ? 'flex' : 'none'
+        if (tasks !== undefined)
+          tasks.style.display = (tasks.children.length > 0) ? 'flex' : 'none'
     }
 
   return {
