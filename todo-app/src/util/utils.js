@@ -1,4 +1,4 @@
-import DOMSearch from '../dom/dom-search'
+import DOMSearch from '../ui/dom-search'
 
 const Utils = (() => {
 

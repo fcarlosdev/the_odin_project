@@ -1,7 +1,6 @@
-import DOMElement from '../dom/dom-elem'
-import DOMSearch from '../dom/dom-search'
-import DOMTaskList from '../dom/dom-task-list'
-import Utils from '../util/utils'
+import DOMElement from '../ui/dom-elem'
+import DOMSearch from '../ui/dom-search'
+import DOMTaskList from '../ui/dom-task-list'
 
 const DOMTask = ((task) => {
 

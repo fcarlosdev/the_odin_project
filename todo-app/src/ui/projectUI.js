@@ -1,6 +1,6 @@
-import DOMElement from './dom/dom-elem'
-import DOMSearch from './dom/dom-search'
-import DOMFormTask from './dom/dom-task-form'
+import DOMElement from './dom-elem'
+import DOMSearch from './dom-search'
+import DOMFormTask from './dom-task-form'
 
 const ProjectUI = (() => {
 

@@ -1,5 +1,5 @@
-import DOMTask from '../dom/dom-task'
-import DOMSearch from '../dom/dom-search'
+import DOMTask from '../ui/dom-task'
+import DOMSearch from '../ui/dom-search'
 
 import Utils from '../util/utils'
 import ProjectController from '../controllers/project-controller'

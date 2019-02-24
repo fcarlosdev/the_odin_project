@@ -1,7 +1,7 @@
 import './assets/css/main.css'
 import './assets/css/task-form.css'
 import './assets/css/shared.css'
-import DOMSearch from './dom/dom-search'
+import DOMSearch from './ui/dom-search'
 import Utils from './util/utils'
 import TodoApp from './todo-app'
 
@@ -11,8 +11,16 @@ let app = TodoApp()
 app.createDefaultProject('Learn JavaScript')
 app.loadProjects()
 
-DOMSearch().getElement('#bt-project').addEventListener('click', () => {
+DOMSearch().getElement('#bt-project').addEventListener('click', () => newProject())
 
+txtProjName.addEventListener('keydown', event => {    
+    if (event.keyCode === 13)
+        newProject()
+})
+
+
+
+const newProject = () => {
     if (txtProjName.value.length > 0) {
 
         let projectUI = app.createProject(txtProjName.value)
@@ -24,4 +32,4 @@ DOMSearch().getElement('#bt-project').addEventListener('click', () => {
 
     }
 
-})
+}

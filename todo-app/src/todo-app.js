@@ -1,6 +1,6 @@
-import ProjectUI from './projectUI'
-import DOMTaskList from './dom/dom-task-list'
-import DOMSearch from './dom/dom-search'
+import ProjectUI from './ui/projectUI'
+import DOMTaskList from './ui/dom-task-list'
+import DOMSearch from './ui/dom-search'
 import ProjectController from './controllers/project-controller'
 
 let controller = ProjectController()

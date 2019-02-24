@@ -1,5 +1,5 @@
-import DOMSearch from '../dom/dom-search'
-import DOMTaskList from '../dom/dom-task-list'
+import DOMSearch from './dom-search'
+import DOMTaskList from './dom-task-list'
 import FrmTask from "../partials/task-form.html"
 import TaskController from '../controllers/task-controller'
 
