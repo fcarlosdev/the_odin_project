@@ -8,4 +8,30 @@ done running the command below:
 ```
 rails db:seed
 ```
-where after that the application is ready to use.
+and then
+
+```
+rails -s 
+```
+to run the server and access the app at http://localhost:3000
+
+where after that the application is ready to use.  
+
+## Other Commands that be useful
+
+In case there is any trouble with the database run
+
+```
+rails db:migrate:redo
+```
+to recreate the database or
+
+```
+rails db:rollback
+```
+flollwed from
+
+```
+rails db:migrate
+```
+that has the same effect that the first one.
