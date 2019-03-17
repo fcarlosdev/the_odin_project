@@ -12,6 +12,13 @@ Basically it has only two models ***Users*** and ***Posts*** where any people ca
 
 To get sign in it's need to create a user via rails console, because there is no register form, as the example below.
 
+first enter in the Rails console typing:
+
+```
+rails -c
+```
+then copy and paste the follow command and after that you can login in the app.
+
 ```
 User.create(name:'Foobar', email:'foobar@mail.com', password:'foobar', password_confirmation:'foobar')
 ```
