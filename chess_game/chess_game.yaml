@@ -1,0 +1,348 @@
+--- !ruby/object:Game
+players:
+- &42 !ruby/object:Player
+  name: Player1
+  color: :white
+- &41 !ruby/object:Player
+  name: Player2
+  color: :black
+board: &1 !ruby/object:Board
+  rows: 8
+  columns: 8
+  bg_colors:
+  - :light_white
+  - :cyan
+  squares:
+  - - &8 !ruby/object:Rook
+      color: :black
+      type: :rook
+      position: a8
+      old_position: a6
+      image: "♜"
+      moves: 0
+    - &9 !ruby/object:Knight
+      color: :black
+      type: :knight
+      position: b8
+      old_position: a6
+      image: "♞"
+      moves: 0
+    - &10 !ruby/object:Bishop
+      color: :black
+      type: :bishop
+      position: c8
+      old_position: c8
+      image: "♝"
+      moves: 0
+    - &11 !ruby/object:Queen
+      color: :black
+      type: :queen
+      position: d8
+      old_position: d8
+      image: "♛"
+      moves: 0
+    - &12 !ruby/object:King
+      color: :black
+      type: :king
+      position: e8
+      old_position: e8
+      image: "♚"
+      moves: 0
+    - &13 !ruby/object:Bishop
+      color: :black
+      type: :bishop
+      position: f8
+      old_position: f8
+      image: "♝"
+      moves: 0
+    - &14 !ruby/object:Knight
+      color: :black
+      type: :knight
+      position: g8
+      old_position: g8
+      image: "♞"
+      moves: 0
+    - &15 !ruby/object:Rook
+      color: :black
+      type: :rook
+      position: h8
+      old_position: h8
+      image: "♜"
+      moves: 0
+  - - 
+    - &16 !ruby/object:Pawn
+      color: :black
+      type: :pawn
+      position: b7
+      old_position: b7
+      image: "♟"
+      moves: 0
+      en_passant_ok: false
+    - &17 !ruby/object:Pawn
+      color: :black
+      type: :pawn
+      position: c7
+      old_position: c7
+      image: "♟"
+      moves: 0
+      en_passant_ok: false
+    - 
+    - &18 !ruby/object:Pawn
+      color: :black
+      type: :pawn
+      position: e7
+      old_position: e7
+      image: "♟"
+      moves: 0
+      en_passant_ok: false
+    - &19 !ruby/object:Pawn
+      color: :black
+      type: :pawn
+      position: f7
+      old_position: f7
+      image: "♟"
+      moves: 0
+      en_passant_ok: false
+    - &20 !ruby/object:Pawn
+      color: :black
+      type: :pawn
+      position: g7
+      old_position: g7
+      image: "♟"
+      moves: 0
+      en_passant_ok: false
+    - &21 !ruby/object:Pawn
+      color: :black
+      type: :pawn
+      position: h7
+      old_position: h7
+      image: "♟"
+      moves: 0
+      en_passant_ok: false
+  - - 
+    - 
+    - 
+    - &22 !ruby/object:Pawn
+      color: :black
+      type: :pawn
+      position: d6
+      old_position: d7
+      image: "♟"
+      moves: 1
+      en_passant_ok: false
+    - 
+    - 
+    - 
+    - 
+  - - &23 !ruby/object:Pawn
+      color: :black
+      type: :pawn
+      position: a5
+      old_position: a6
+      image: "♟"
+      moves: 2
+      en_passant_ok: false
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+  - - &24 !ruby/object:Pawn
+      color: :white
+      type: :pawn
+      position: a4
+      old_position: a4
+      image: "♙"
+      moves: 2
+      en_passant_ok: false
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+  - - &25 !ruby/object:Rook
+      color: :white
+      type: :rook
+      position: a3
+      old_position: a1
+      image: "♖"
+      moves: 1
+    - 
+    - 
+    - &26 !ruby/object:Pawn
+      color: :white
+      type: :pawn
+      position: d3
+      old_position: d4
+      image: "♙"
+      moves: 1
+      en_passant_ok: false
+    - 
+    - 
+    - 
+    - 
+  - - 
+    - &27 !ruby/object:Pawn
+      color: :white
+      type: :pawn
+      position: b2
+      old_position: b3
+      image: "♙"
+      moves: 0
+      en_passant_ok: false
+    - &28 !ruby/object:Pawn
+      color: :white
+      type: :pawn
+      position: c2
+      old_position: c2
+      image: "♙"
+      moves: 0
+      en_passant_ok: false
+    - 
+    - &29 !ruby/object:Pawn
+      color: :white
+      type: :pawn
+      position: e2
+      old_position: e2
+      image: "♙"
+      moves: 0
+      en_passant_ok: false
+    - &30 !ruby/object:Pawn
+      color: :white
+      type: :pawn
+      position: f2
+      old_position: f2
+      image: "♙"
+      moves: 0
+      en_passant_ok: false
+    - &31 !ruby/object:Pawn
+      color: :white
+      type: :pawn
+      position: g2
+      old_position: g2
+      image: "♙"
+      moves: 0
+      en_passant_ok: false
+    - &32 !ruby/object:Pawn
+      color: :white
+      type: :pawn
+      position: h2
+      old_position: h2
+      image: "♙"
+      moves: 0
+      en_passant_ok: false
+  - - 
+    - &33 !ruby/object:Knight
+      color: :white
+      type: :knight
+      position: b1
+      old_position: b1
+      image: "♘"
+      moves: 0
+    - &34 !ruby/object:Bishop
+      color: :white
+      type: :bishop
+      position: c1
+      old_position: c1
+      image: "♗"
+      moves: 0
+    - &35 !ruby/object:Queen
+      color: :white
+      type: :queen
+      position: d1
+      old_position: d1
+      image: "♕"
+      moves: 0
+    - &36 !ruby/object:King
+      color: :white
+      type: :king
+      position: e1
+      old_position: e1
+      image: "♔"
+      moves: 0
+    - &37 !ruby/object:Bishop
+      color: :white
+      type: :bishop
+      position: f1
+      old_position: f1
+      image: "♗"
+      moves: 0
+    - &38 !ruby/object:Knight
+      color: :white
+      type: :knight
+      position: g1
+      old_position: g1
+      image: "♘"
+      moves: 0
+    - &39 !ruby/object:Rook
+      color: :white
+      type: :rook
+      position: h1
+      old_position: h1
+      image: "♖"
+      moves: 0
+status: :exit
+move_piece: &40 !ruby/object:MovePiece
+  move_pawn: &2 !ruby/object:MovePawn
+    board: *1
+  move_bishop: &6 !ruby/object:MoveBishop
+    board: *1
+  move_king: &3 !ruby/object:MoveKing
+    board: *1
+  move_queen: &5 !ruby/object:MoveQueen
+    board: *1
+  move_rook: &4 !ruby/object:MoveRook
+    board: *1
+  move_knight: &7 !ruby/object:MoveKnight
+    board: *1
+  board: *1
+  moves:
+    :pawn: *2
+    :king: *3
+    :rook: *4
+    :queen: *5
+    :bishop: *6
+    :knight: *7
+game_status: !ruby/object:GameStatus
+  board: *1
+  allies:
+  - *8
+  - *9
+  - *10
+  - *11
+  - *12
+  - *13
+  - *14
+  - *15
+  - *16
+  - *17
+  - *18
+  - *19
+  - *20
+  - *21
+  - *22
+  - *23
+  enemies:
+  - *24
+  - *25
+  - *26
+  - *27
+  - *28
+  - *29
+  - *30
+  - *31
+  - *32
+  - *33
+  - *34
+  - *35
+  - *36
+  - *37
+  - *38
+  - *39
+  movement: *40
+current_player: *41
+enemy_player: *42

@@ -4,6 +4,13 @@ This is the Ruby Course final project, below there is an explanation about how t
 
 To start the game open a terminal (Linux/Mac) / command prompt (Windows) on the folder of the game and type "ruby chess.rb".
 
+Obs.: Maybe you must install the colorize gem with the follow command:  
+
+```
+gem install colorize  
+
+```
+
 The image below will be shown.
 
 ![Main menu](images/start_page.png)
