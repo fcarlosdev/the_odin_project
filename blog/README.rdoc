@@ -1,3 +1,9 @@
 == Blog Project
 
 Blog based at this tutorial: (Blogger)[http://tutorials.jumpstartlab.com/projects/blogger.html#i5:-authentication].
+
+To acces the app use   
+
+User: admin@example.com  
+
+Password: password
