@@ -63,3 +63,144 @@
   [1m[36mFixture Insert (0.7ms)[0m  [1m[32mINSERT INTO "authors" ("created_at", "updated_at", "id") VALUES ('2019-03-17 23:33:12.690216', '2019-03-17 23:33:12.690216', 980190962)[0m
   [1m[35m (0.5ms)[0m  [1m[31mrollback transaction[0m
   [1m[35m (0.2ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[35m (19.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.2ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mFixture Delete (34.7ms)[0m  [1m[31mDELETE FROM "taggings"[0m
+  [1m[36mFixture Delete (0.4ms)[0m  [1m[31mDELETE FROM "articles"[0m
+  [1m[36mFixture Delete (30.6ms)[0m  [1m[31mDELETE FROM "comments"[0m
+  [1m[36mFixture Delete (0.4ms)[0m  [1m[31mDELETE FROM "attachments"[0m
+  [1m[36mFixture Delete (0.2ms)[0m  [1m[31mDELETE FROM "authors"[0m
+  [1m[36mFixture Delete (19.1ms)[0m  [1m[31mDELETE FROM "tags"[0m
+  [1m[36mFixture Insert (0.4ms)[0m  [1m[32mINSERT INTO "taggings" ("tag_id", "article_id", "created_at", "updated_at", "id") VALUES (NULL, NULL, '2019-03-18 01:35:12.890238', '2019-03-18 01:35:12.890238', 980190962)[0m
+  [1m[36mFixture Insert (0.2ms)[0m  [1m[32mINSERT INTO "taggings" ("tag_id", "article_id", "created_at", "updated_at", "id") VALUES (NULL, NULL, '2019-03-18 01:35:12.890238', '2019-03-18 01:35:12.890238', 298486374)[0m
+  [1m[36mFixture Insert (0.2ms)[0m  [1m[32mINSERT INTO "articles" ("created_at", "updated_at", "id") VALUES ('2019-03-18 01:35:12.898907', '2019-03-18 01:35:12.898907', 980190962)[0m
+  [1m[36mFixture Insert (0.2ms)[0m  [1m[32mINSERT INTO "articles" ("created_at", "updated_at", "id") VALUES ('2019-03-18 01:35:12.898907', '2019-03-18 01:35:12.898907', 298486374)[0m
+  [1m[36mFixture Insert (0.2ms)[0m  [1m[32mINSERT INTO "comments" ("author_name", "body", "article_id", "created_at", "updated_at", "id") VALUES ('MyString', 'MyText', NULL, '2019-03-18 01:35:12.901909', '2019-03-18 01:35:12.901909', 980190962)[0m
+  [1m[36mFixture Insert (0.2ms)[0m  [1m[32mINSERT INTO "comments" ("author_name", "body", "article_id", "created_at", "updated_at", "id") VALUES ('MyString', 'MyText', NULL, '2019-03-18 01:35:12.901909', '2019-03-18 01:35:12.901909', 298486374)[0m
+  [1m[36mFixture Insert (0.2ms)[0m  [1m[32mINSERT INTO "attachments" ("article_id", "created_at", "updated_at", "id") VALUES (NULL, '2019-03-18 01:35:12.905300', '2019-03-18 01:35:12.905300', 980190962)[0m
+  [1m[36mFixture Insert (0.2ms)[0m  [1m[32mINSERT INTO "attachments" ("article_id", "created_at", "updated_at", "id") VALUES (NULL, '2019-03-18 01:35:12.905300', '2019-03-18 01:35:12.905300', 298486374)[0m
+  [1m[36mFixture Insert (0.5ms)[0m  [1m[32mINSERT INTO "authors" ("created_at", "updated_at", "id") VALUES ('2019-03-18 01:35:12.967153', '2019-03-18 01:35:12.967153', 980190962)[0m
+  [1m[35m (0.4ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[35m (0.2ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.2ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mFixture Delete (0.8ms)[0m  [1m[31mDELETE FROM "taggings"[0m
+  [1m[36mFixture Delete (0.3ms)[0m  [1m[31mDELETE FROM "articles"[0m
+  [1m[36mFixture Delete (0.4ms)[0m  [1m[31mDELETE FROM "comments"[0m
+  [1m[36mFixture Delete (0.4ms)[0m  [1m[31mDELETE FROM "attachments"[0m
+  [1m[36mFixture Delete (0.4ms)[0m  [1m[31mDELETE FROM "authors"[0m
+  [1m[36mFixture Delete (0.3ms)[0m  [1m[31mDELETE FROM "tags"[0m
+  [1m[36mFixture Insert (0.5ms)[0m  [1m[32mINSERT INTO "taggings" ("tag_id", "article_id", "created_at", "updated_at", "id") VALUES (NULL, NULL, '2019-03-18 01:35:13.094860', '2019-03-18 01:35:13.094860', 980190962)[0m
+  [1m[36mFixture Insert (0.3ms)[0m  [1m[32mINSERT INTO "taggings" ("tag_id", "article_id", "created_at", "updated_at", "id") VALUES (NULL, NULL, '2019-03-18 01:35:13.094860', '2019-03-18 01:35:13.094860', 298486374)[0m
+  [1m[36mFixture Insert (0.2ms)[0m  [1m[32mINSERT INTO "articles" ("created_at", "updated_at", "id") VALUES ('2019-03-18 01:35:13.105940', '2019-03-18 01:35:13.105940', 980190962)[0m
+  [1m[36mFixture Insert (0.3ms)[0m  [1m[32mINSERT INTO "articles" ("created_at", "updated_at", "id") VALUES ('2019-03-18 01:35:13.105940', '2019-03-18 01:35:13.105940', 298486374)[0m
+  [1m[36mFixture Insert (0.3ms)[0m  [1m[32mINSERT INTO "comments" ("author_name", "body", "article_id", "created_at", "updated_at", "id") VALUES ('MyString', 'MyText', NULL, '2019-03-18 01:35:13.107486', '2019-03-18 01:35:13.107486', 980190962)[0m
+  [1m[36mFixture Insert (0.3ms)[0m  [1m[32mINSERT INTO "comments" ("author_name", "body", "article_id", "created_at", "updated_at", "id") VALUES ('MyString', 'MyText', NULL, '2019-03-18 01:35:13.107486', '2019-03-18 01:35:13.107486', 298486374)[0m
+  [1m[36mFixture Insert (0.2ms)[0m  [1m[32mINSERT INTO "attachments" ("article_id", "created_at", "updated_at", "id") VALUES (NULL, '2019-03-18 01:35:13.109014', '2019-03-18 01:35:13.109014', 980190962)[0m
+  [1m[36mFixture Insert (0.3ms)[0m  [1m[32mINSERT INTO "attachments" ("article_id", "created_at", "updated_at", "id") VALUES (NULL, '2019-03-18 01:35:13.109014', '2019-03-18 01:35:13.109014', 298486374)[0m
+  [1m[36mFixture Insert (1.0ms)[0m  [1m[32mINSERT INTO "authors" ("created_at", "updated_at", "id") VALUES ('2019-03-18 01:35:13.110689', '2019-03-18 01:35:13.110689', 980190962)[0m
+  [1m[35m (0.5ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[35m (0.2ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.2ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mFixture Delete (0.5ms)[0m  [1m[31mDELETE FROM "taggings"[0m
+  [1m[36mFixture Delete (0.2ms)[0m  [1m[31mDELETE FROM "articles"[0m
+  [1m[36mFixture Delete (0.3ms)[0m  [1m[31mDELETE FROM "comments"[0m
+  [1m[36mFixture Delete (0.3ms)[0m  [1m[31mDELETE FROM "attachments"[0m
+  [1m[36mFixture Delete (0.3ms)[0m  [1m[31mDELETE FROM "authors"[0m
+  [1m[36mFixture Delete (0.2ms)[0m  [1m[31mDELETE FROM "tags"[0m
+  [1m[36mFixture Insert (0.5ms)[0m  [1m[32mINSERT INTO "taggings" ("tag_id", "article_id", "created_at", "updated_at", "id") VALUES (NULL, NULL, '2019-03-18 01:35:13.147668', '2019-03-18 01:35:13.147668', 980190962)[0m
+  [1m[36mFixture Insert (0.3ms)[0m  [1m[32mINSERT INTO "taggings" ("tag_id", "article_id", "created_at", "updated_at", "id") VALUES (NULL, NULL, '2019-03-18 01:35:13.147668', '2019-03-18 01:35:13.147668', 298486374)[0m
+  [1m[36mFixture Insert (0.3ms)[0m  [1m[32mINSERT INTO "articles" ("created_at", "updated_at", "id") VALUES ('2019-03-18 01:35:13.149534', '2019-03-18 01:35:13.149534', 980190962)[0m
+  [1m[36mFixture Insert (0.3ms)[0m  [1m[32mINSERT INTO "articles" ("created_at", "updated_at", "id") VALUES ('2019-03-18 01:35:13.149534', '2019-03-18 01:35:13.149534', 298486374)[0m
+  [1m[36mFixture Insert (0.4ms)[0m  [1m[32mINSERT INTO "comments" ("author_name", "body", "article_id", "created_at", "updated_at", "id") VALUES ('MyString', 'MyText', NULL, '2019-03-18 01:35:13.151290', '2019-03-18 01:35:13.151290', 980190962)[0m
+  [1m[36mFixture Insert (0.3ms)[0m  [1m[32mINSERT INTO "comments" ("author_name", "body", "article_id", "created_at", "updated_at", "id") VALUES ('MyString', 'MyText', NULL, '2019-03-18 01:35:13.151290', '2019-03-18 01:35:13.151290', 298486374)[0m
+  [1m[36mFixture Insert (0.3ms)[0m  [1m[32mINSERT INTO "attachments" ("article_id", "created_at", "updated_at", "id") VALUES (NULL, '2019-03-18 01:35:13.152805', '2019-03-18 01:35:13.152805', 980190962)[0m
+  [1m[36mFixture Insert (0.4ms)[0m  [1m[32mINSERT INTO "attachments" ("article_id", "created_at", "updated_at", "id") VALUES (NULL, '2019-03-18 01:35:13.152805', '2019-03-18 01:35:13.152805', 298486374)[0m
+  [1m[36mFixture Insert (0.7ms)[0m  [1m[32mINSERT INTO "authors" ("created_at", "updated_at", "id") VALUES ('2019-03-18 01:35:13.161478', '2019-03-18 01:35:13.161478', 980190962)[0m
+  [1m[35m (0.5ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[35m (0.2ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mFixture Delete (0.4ms)[0m  [1m[31mDELETE FROM "taggings"[0m
+  [1m[36mFixture Delete (0.2ms)[0m  [1m[31mDELETE FROM "articles"[0m
+  [1m[36mFixture Delete (0.2ms)[0m  [1m[31mDELETE FROM "comments"[0m
+  [1m[36mFixture Delete (0.2ms)[0m  [1m[31mDELETE FROM "attachments"[0m
+  [1m[36mFixture Delete (0.2ms)[0m  [1m[31mDELETE FROM "authors"[0m
+  [1m[36mFixture Delete (0.2ms)[0m  [1m[31mDELETE FROM "tags"[0m
+  [1m[36mFixture Insert (0.4ms)[0m  [1m[32mINSERT INTO "taggings" ("tag_id", "article_id", "created_at", "updated_at", "id") VALUES (NULL, NULL, '2019-03-18 01:35:13.207843', '2019-03-18 01:35:13.207843', 980190962)[0m
+  [1m[36mFixture Insert (0.3ms)[0m  [1m[32mINSERT INTO "taggings" ("tag_id", "article_id", "created_at", "updated_at", "id") VALUES (NULL, NULL, '2019-03-18 01:35:13.207843', '2019-03-18 01:35:13.207843', 298486374)[0m
+  [1m[36mFixture Insert (0.3ms)[0m  [1m[32mINSERT INTO "articles" ("created_at", "updated_at", "id") VALUES ('2019-03-18 01:35:13.209465', '2019-03-18 01:35:13.209465', 980190962)[0m
+  [1m[36mFixture Insert (0.3ms)[0m  [1m[32mINSERT INTO "articles" ("created_at", "updated_at", "id") VALUES ('2019-03-18 01:35:13.209465', '2019-03-18 01:35:13.209465', 298486374)[0m
+  [1m[36mFixture Insert (0.3ms)[0m  [1m[32mINSERT INTO "comments" ("author_name", "body", "article_id", "created_at", "updated_at", "id") VALUES ('MyString', 'MyText', NULL, '2019-03-18 01:35:13.210965', '2019-03-18 01:35:13.210965', 980190962)[0m
+  [1m[36mFixture Insert (0.3ms)[0m  [1m[32mINSERT INTO "comments" ("author_name", "body", "article_id", "created_at", "updated_at", "id") VALUES ('MyString', 'MyText', NULL, '2019-03-18 01:35:13.210965', '2019-03-18 01:35:13.210965', 298486374)[0m
+  [1m[36mFixture Insert (0.3ms)[0m  [1m[32mINSERT INTO "attachments" ("article_id", "created_at", "updated_at", "id") VALUES (NULL, '2019-03-18 01:35:13.212492', '2019-03-18 01:35:13.212492', 980190962)[0m
+  [1m[36mFixture Insert (0.3ms)[0m  [1m[32mINSERT INTO "attachments" ("article_id", "created_at", "updated_at", "id") VALUES (NULL, '2019-03-18 01:35:13.212492', '2019-03-18 01:35:13.212492', 298486374)[0m
+  [1m[36mFixture Insert (0.6ms)[0m  [1m[32mINSERT INTO "authors" ("created_at", "updated_at", "id") VALUES ('2019-03-18 01:35:13.214169', '2019-03-18 01:35:13.214169', 980190962)[0m
+  [1m[35m (0.5ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[35m (0.2ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.2ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mFixture Delete (0.5ms)[0m  [1m[31mDELETE FROM "taggings"[0m
+  [1m[36mFixture Delete (0.2ms)[0m  [1m[31mDELETE FROM "articles"[0m
+  [1m[36mFixture Delete (0.3ms)[0m  [1m[31mDELETE FROM "comments"[0m
+  [1m[36mFixture Delete (0.3ms)[0m  [1m[31mDELETE FROM "attachments"[0m
+  [1m[36mFixture Delete (0.3ms)[0m  [1m[31mDELETE FROM "authors"[0m
+  [1m[36mFixture Delete (0.2ms)[0m  [1m[31mDELETE FROM "tags"[0m
+  [1m[36mFixture Insert (0.4ms)[0m  [1m[32mINSERT INTO "taggings" ("tag_id", "article_id", "created_at", "updated_at", "id") VALUES (NULL, NULL, '2019-03-18 01:35:13.244868', '2019-03-18 01:35:13.244868', 980190962)[0m
+  [1m[36mFixture Insert (0.3ms)[0m  [1m[32mINSERT INTO "taggings" ("tag_id", "article_id", "created_at", "updated_at", "id") VALUES (NULL, NULL, '2019-03-18 01:35:13.244868', '2019-03-18 01:35:13.244868', 298486374)[0m
+  [1m[36mFixture Insert (0.2ms)[0m  [1m[32mINSERT INTO "articles" ("created_at", "updated_at", "id") VALUES ('2019-03-18 01:35:13.246337', '2019-03-18 01:35:13.246337', 980190962)[0m
+  [1m[36mFixture Insert (0.2ms)[0m  [1m[32mINSERT INTO "articles" ("created_at", "updated_at", "id") VALUES ('2019-03-18 01:35:13.246337', '2019-03-18 01:35:13.246337', 298486374)[0m
+  [1m[36mFixture Insert (0.3ms)[0m  [1m[32mINSERT INTO "comments" ("author_name", "body", "article_id", "created_at", "updated_at", "id") VALUES ('MyString', 'MyText', NULL, '2019-03-18 01:35:13.247616', '2019-03-18 01:35:13.247616', 980190962)[0m
+  [1m[36mFixture Insert (0.3ms)[0m  [1m[32mINSERT INTO "comments" ("author_name", "body", "article_id", "created_at", "updated_at", "id") VALUES ('MyString', 'MyText', NULL, '2019-03-18 01:35:13.247616', '2019-03-18 01:35:13.247616', 298486374)[0m
+  [1m[36mFixture Insert (0.3ms)[0m  [1m[32mINSERT INTO "attachments" ("article_id", "created_at", "updated_at", "id") VALUES (NULL, '2019-03-18 01:35:13.249126', '2019-03-18 01:35:13.249126', 980190962)[0m
+  [1m[36mFixture Insert (0.3ms)[0m  [1m[32mINSERT INTO "attachments" ("article_id", "created_at", "updated_at", "id") VALUES (NULL, '2019-03-18 01:35:13.249126', '2019-03-18 01:35:13.249126', 298486374)[0m
+  [1m[36mFixture Insert (0.6ms)[0m  [1m[32mINSERT INTO "authors" ("created_at", "updated_at", "id") VALUES ('2019-03-18 01:35:13.250781', '2019-03-18 01:35:13.250781', 980190962)[0m
+  [1m[35m (0.5ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[35m (0.2ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.2ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mFixture Delete (0.5ms)[0m  [1m[31mDELETE FROM "taggings"[0m
+  [1m[36mFixture Delete (0.2ms)[0m  [1m[31mDELETE FROM "articles"[0m
+  [1m[36mFixture Delete (0.3ms)[0m  [1m[31mDELETE FROM "comments"[0m
+  [1m[36mFixture Delete (0.3ms)[0m  [1m[31mDELETE FROM "attachments"[0m
+  [1m[36mFixture Delete (0.3ms)[0m  [1m[31mDELETE FROM "authors"[0m
+  [1m[36mFixture Delete (0.2ms)[0m  [1m[31mDELETE FROM "tags"[0m
+  [1m[36mFixture Insert (0.4ms)[0m  [1m[32mINSERT INTO "taggings" ("tag_id", "article_id", "created_at", "updated_at", "id") VALUES (NULL, NULL, '2019-03-18 01:35:13.281496', '2019-03-18 01:35:13.281496', 980190962)[0m
+  [1m[36mFixture Insert (0.4ms)[0m  [1m[32mINSERT INTO "taggings" ("tag_id", "article_id", "created_at", "updated_at", "id") VALUES (NULL, NULL, '2019-03-18 01:35:13.281496', '2019-03-18 01:35:13.281496', 298486374)[0m
+  [1m[36mFixture Insert (0.2ms)[0m  [1m[32mINSERT INTO "articles" ("created_at", "updated_at", "id") VALUES ('2019-03-18 01:35:13.283219', '2019-03-18 01:35:13.283219', 980190962)[0m
+  [1m[36mFixture Insert (0.2ms)[0m  [1m[32mINSERT INTO "articles" ("created_at", "updated_at", "id") VALUES ('2019-03-18 01:35:13.283219', '2019-03-18 01:35:13.283219', 298486374)[0m
+  [1m[36mFixture Insert (0.2ms)[0m  [1m[32mINSERT INTO "comments" ("author_name", "body", "article_id", "created_at", "updated_at", "id") VALUES ('MyString', 'MyText', NULL, '2019-03-18 01:35:13.285148', '2019-03-18 01:35:13.285148', 980190962)[0m
+  [1m[36mFixture Insert (0.3ms)[0m  [1m[32mINSERT INTO "comments" ("author_name", "body", "article_id", "created_at", "updated_at", "id") VALUES ('MyString', 'MyText', NULL, '2019-03-18 01:35:13.285148', '2019-03-18 01:35:13.285148', 298486374)[0m
+  [1m[36mFixture Insert (0.3ms)[0m  [1m[32mINSERT INTO "attachments" ("article_id", "created_at", "updated_at", "id") VALUES (NULL, '2019-03-18 01:35:13.286819', '2019-03-18 01:35:13.286819', 980190962)[0m
+  [1m[36mFixture Insert (0.3ms)[0m  [1m[32mINSERT INTO "attachments" ("article_id", "created_at", "updated_at", "id") VALUES (NULL, '2019-03-18 01:35:13.286819', '2019-03-18 01:35:13.286819', 298486374)[0m
+  [1m[36mFixture Insert (0.7ms)[0m  [1m[32mINSERT INTO "authors" ("created_at", "updated_at", "id") VALUES ('2019-03-18 01:35:13.288585', '2019-03-18 01:35:13.288585', 980190962)[0m
+  [1m[35m (0.5ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[35m (0.2ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.2ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mFixture Delete (0.5ms)[0m  [1m[31mDELETE FROM "taggings"[0m
+  [1m[36mFixture Delete (0.2ms)[0m  [1m[31mDELETE FROM "articles"[0m
+  [1m[36mFixture Delete (0.3ms)[0m  [1m[31mDELETE FROM "comments"[0m
+  [1m[36mFixture Delete (0.3ms)[0m  [1m[31mDELETE FROM "attachments"[0m
+  [1m[36mFixture Delete (0.3ms)[0m  [1m[31mDELETE FROM "authors"[0m
+  [1m[36mFixture Delete (0.2ms)[0m  [1m[31mDELETE FROM "tags"[0m
+  [1m[36mFixture Insert (0.4ms)[0m  [1m[32mINSERT INTO "taggings" ("tag_id", "article_id", "created_at", "updated_at", "id") VALUES (NULL, NULL, '2019-03-18 01:35:13.319392', '2019-03-18 01:35:13.319392', 980190962)[0m
+  [1m[36mFixture Insert (0.3ms)[0m  [1m[32mINSERT INTO "taggings" ("tag_id", "article_id", "created_at", "updated_at", "id") VALUES (NULL, NULL, '2019-03-18 01:35:13.319392', '2019-03-18 01:35:13.319392', 298486374)[0m
+  [1m[36mFixture Insert (0.2ms)[0m  [1m[32mINSERT INTO "articles" ("created_at", "updated_at", "id") VALUES ('2019-03-18 01:35:13.320979', '2019-03-18 01:35:13.320979', 980190962)[0m
+  [1m[36mFixture Insert (0.2ms)[0m  [1m[32mINSERT INTO "articles" ("created_at", "updated_at", "id") VALUES ('2019-03-18 01:35:13.320979', '2019-03-18 01:35:13.320979', 298486374)[0m
+  [1m[36mFixture Insert (0.3ms)[0m  [1m[32mINSERT INTO "comments" ("author_name", "body", "article_id", "created_at", "updated_at", "id") VALUES ('MyString', 'MyText', NULL, '2019-03-18 01:35:13.322320', '2019-03-18 01:35:13.322320', 980190962)[0m
+  [1m[36mFixture Insert (0.3ms)[0m  [1m[32mINSERT INTO "comments" ("author_name", "body", "article_id", "created_at", "updated_at", "id") VALUES ('MyString', 'MyText', NULL, '2019-03-18 01:35:13.322320', '2019-03-18 01:35:13.322320', 298486374)[0m
+  [1m[36mFixture Insert (0.3ms)[0m  [1m[32mINSERT INTO "attachments" ("article_id", "created_at", "updated_at", "id") VALUES (NULL, '2019-03-18 01:35:13.324140', '2019-03-18 01:35:13.324140', 980190962)[0m
+  [1m[36mFixture Insert (0.2ms)[0m  [1m[32mINSERT INTO "attachments" ("article_id", "created_at", "updated_at", "id") VALUES (NULL, '2019-03-18 01:35:13.324140', '2019-03-18 01:35:13.324140', 298486374)[0m
+  [1m[36mFixture Insert (0.6ms)[0m  [1m[32mINSERT INTO "authors" ("created_at", "updated_at", "id") VALUES ('2019-03-18 01:35:13.325739', '2019-03-18 01:35:13.325739', 980190962)[0m
+  [1m[35m (0.5ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
