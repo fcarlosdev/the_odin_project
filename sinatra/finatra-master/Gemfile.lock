@@ -23,7 +23,7 @@ GEM
       ruby_dep (~> 1.2)
     minitest (5.11.3)
     mustermann (1.0.2)
-    rack (2.0.8)
+    rack (2.2.3)
     rack-protection (2.0.2)
       rack
     rb-fsevent (0.10.3)
